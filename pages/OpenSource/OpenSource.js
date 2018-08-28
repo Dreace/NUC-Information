@@ -14,7 +14,21 @@ Page({
   onLoad: function (options) {
 
   },
+copy:function(e){
 
+  wx.setClipboardData({
+    data: 'https://github.com/Dreace/Academic-Information-Inquiry-for-NUC',
+    success: function (res) {
+      wx.getClipboardData({
+        success: function (res) {
+          wx.showToast({
+            title: '已复制到剪贴板',
+          })
+        }
+      })
+    }
+  })
+},
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */

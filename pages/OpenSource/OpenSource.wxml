@@ -1,2 +1,5 @@
-<!--pages/OpenSource/OpenSource.wxml-->
-<text>pages/OpenSource/OpenSource.wxml</text>
+<view class='main'>
+  <image src='../../images/GitHub.png' mode='widthFix'></image>
+  <view>本项目已在 GitHub 开源</view>
+  <view class='url' bindtap='copy' >点击复制地址</view>
+</view>

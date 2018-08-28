@@ -1,1 +1,8 @@
 /* pages/WhatsNew/WhatsNew.wxss */
+.main{
+  font-size: 110%;
+}
+.new{
+  font-size: 95%;
+  margin-top: 5rpx;
+}

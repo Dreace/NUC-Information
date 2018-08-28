@@ -1,2 +1,7 @@
 <!--pages/WhatsNew/WhatsNew.wxml-->
-<text>pages/WhatsNew/WhatsNew.wxml</text>
+<text class='main' style='margin-left:10rpx'>V 1.5.0</text>
+<view style='margin-left:30rpx'>
+  <view wx:for="{{new150}}" class='new'>
+    <view>·{{item}}</view>
+  </view>
+</view>

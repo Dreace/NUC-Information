@@ -1,1 +1,10 @@
 /* pages/OpenSource/OpenSource.wxss */
+.main{
+  margin-top: 15%;
+  text-align: center;
+}
+.url{
+  margin-top: 10%;
+  font: 85%;
+  color: #413c3c6e
+}
