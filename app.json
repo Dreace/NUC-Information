@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/CourseTable/CourseTable",
+    "pages/Grade/Grade",
+    "pages/My/My",
+    "pages/About/About",
+    "pages/Setting/Setting",
+    "pages/WhatsNew/WhatsNew",
+    "pages/OpenSource/OpenSource"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "教务信息查询-中北",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#35495e",
+    "borderStyle": "white",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "text": "课表",
+        "pagePath": "pages/CourseTable/CourseTable",
+        "iconPath": "images/CourseTable.png",
+        "selectedIconPath": "images/CourseTable-active.png"
+      },
+      {
+        "text": "成绩",
+        "pagePath": "pages/Grade/Grade",
+        "iconPath": "images/Grade.png",
+        "selectedIconPath": "images/Grade-active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/My/My",
+        "iconPath": "images/My.png",
+        "selectedIconPath": "images/My-active.png"
+      }
+    ]
+  }
+}

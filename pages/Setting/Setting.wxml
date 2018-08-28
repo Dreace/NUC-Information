@@ -1,0 +1,37 @@
+<!--pages/Setting/Setting.wxml-->
+<view class="container" class="userinfo">
+  <open-data type="userAvatarUrl" class="icon" mode="aspectFit"></open-data>
+</view>
+<view class="page__bd">
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">账号</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input bindinput="inputname" class="weui-input" focus='true' placeholder="学号" value='{{name}}' confirm-type='next' />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">密码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input bindinput="inputpasswd" class="weui-input" placeholder="学号或身份证后六位" password='true' value='{{passwd}}' confirm-type='done' />
+      </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_switch">
+        <view class="weui-cell__bd">自动识别验证码</view>
+        <view class="weui-cell__ft">
+          <switch bindchange='swtichChnage' checked='{{autoVcode}}' />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-cells__title">该功能为实验功能，存在不稳定性。\n若服务器无法自动识别验证码则需手动输入</view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+/* pages/Setting/Setting.wxss */
+@import "../../utils/weui.wxss";
+
+.icon {
+    height: 180rpx;
+    width: 180rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+}
