@@ -41,7 +41,6 @@ App({
         content: '已更新到最新版本，是否查看版本说明？',
         success: function (res) {
           if (res.confirm) {
-            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
             wx.navigateTo({
               url: '../../pages/WhatsNew/WhatsNew',
             })

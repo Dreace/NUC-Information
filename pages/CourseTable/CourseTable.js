@@ -26,7 +26,9 @@ Page({
     ModelContent: '', //弹窗文字内容
     showMoreInformation: false,
     showTopTips: false,
-    tips: ""
+    tips: "",
+    enableRefresh: true,
+    courseTableRawData: undefined
   },
   preventTouchMove: function () { },
   showInformation: function (e) {
@@ -160,7 +162,12 @@ Page({
     that.setData({
       table: that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
     })
-    wx.setStorageSync("courseTableRawData", data)
+    that.setData({
+      courseTableRawData: data
+    })
+    if (that.data.enableRefresh) {
+      wx.setStorageSync("courseTableRawData", data)
+    }
   },
   getCourseTable: function (e) {
     if (this.data.loading) {
@@ -249,7 +256,7 @@ Page({
   },
   getCourseTableWithoutVcode: function () {
     var that = this
-    if (!(this.data.name === "" || this.data.name === "")) {
+    if (!(this.data.name === "" || this.data.passwd === "")) {
       wx.showToast({
         title: '加载中',
         icon: 'loading',
@@ -301,9 +308,21 @@ Page({
     app.globalData.name = wx.getStorageSync("name")
     app.globalData.passwd = wx.getStorageSync("passwd")
     app.globalData.autoVcode = wx.getStorageSync("autoVcode")
+    if (options.courseTableRawData != undefined) {
+      console.log
+      this.setData({
+        enableRefresh: false
+      })
+      this.handleData({
+        data: JSON.parse(options.courseTableRawData)
+      })
+      wx.showToast({
+        title: '好友的课程表',
+        duration: 3000
+      })
+      return
+    }
     app.globalData.courseTableRawData = wx.getStorageSync("courseTableRawData")
-    app.globalData.name = "1707004548"
-    app.globalData.passwd = "1707004548"
     app.globalData.autoVcode = true
     if (app.globalData.courseTableRawData != "") {
       this.handleData({
@@ -327,7 +346,7 @@ Page({
   onShareAppMessage: function (e) {
     return {
       title: '我的课程表',
-      path: 'pages/CourseTable/CourseTable',
+      path: 'pages/CourseTable/CourseTable?courseTableRawData=' + JSON.stringify(this.data.courseTableRawData)+'&showNow=false',
       success: function (res) {
         wx.showToast({
           title: '已转发',
@@ -342,7 +361,6 @@ Page({
         })
       }
     }
-
   },
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()

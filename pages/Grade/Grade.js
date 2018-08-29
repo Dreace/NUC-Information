@@ -24,7 +24,9 @@ Page({
     ModelTitle: '验证码', //弹窗标题
     ModelContent: '', //弹窗文字内容
     showTopTips: false,
-    tips: ""
+    tips: "",
+    enableRefresh:true,
+    gradeRawData:undefined
   },
   preventTouchMove: function () { },
   showModel: function (e) {
@@ -146,7 +148,8 @@ Page({
       grades: data
     })
     that.setData({
-      datas: that.data.grades[that.data.count + 1 - that.data.termsIndex][2]
+      datas: that.data.grades[that.data.count + 1 - that.data.termsIndex][2],
+      gradeRawData:data
     })
   },
   getGrade: function (e) {
@@ -236,7 +239,7 @@ Page({
   },
   getGradeWithoutVcode: function () {
     var that = this
-    if (!(this.data.name === "" || this.data.name === "")) {
+    if (!(this.data.name === "" || this.data.passwd === "")) {
       wx.showToast({
         title: '加载中',
         icon: 'loading',
@@ -276,6 +279,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var app=getApp()
+    app.globalData.name = wx.getStorageSync("name")
+    app.globalData.passwd = wx.getStorageSync("passwd")
+    app.globalData.autoVcode = wx.getStorageSync("autoVcode")
+    if (options.gradeRawData != undefined) {
+      this.setData({
+        enableRefresh: false
+      })
+      this.handleData({
+        data: JSON.parse(options.gradeRawData)
+      })
+      wx.showToast({
+        title: '好友的成绩',
+        duration: 3000
+      })
+      return
+    }
     this.getGrade()
   },
   bindTermChange: function (e) {
@@ -289,7 +309,7 @@ Page({
   onShareAppMessage: function (e) {
     return {
       title: '我的成绩',
-      path: 'pages/Grade/Grade',
+      path: 'pages/Grade/Grade?gradeRawData='+JSON.stringify(this.data.gradeRawData),
       success: function (res) {
         wx.showToast({
           title: '已转发',

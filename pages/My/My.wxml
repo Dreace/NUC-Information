@@ -1,5 +1,4 @@
 <!--pages/Grade/Grade.wxml-->
-<scroll-view scroll-y="true">
 <view class="container" class="userinfo" >
   <open-data type="userAvatarUrl" class="icon" mode="aspectFit"></open-data>
   <open-data type="userNickName" class="userinfo-nickname"></open-data>
@@ -25,6 +24,5 @@
 
 </view>
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">Vserion 1.5.3</view>
+  <view class="weui-footer__text">Vserion 1.5.5</view>
 </view>
-</scroll-view>

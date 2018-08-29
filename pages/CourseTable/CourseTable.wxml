@@ -1,6 +1,6 @@
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
 <view bindtap='refresh'>
-  <image class="add_icon" src="/images/Refresh.png"></image>
+  <image class="add_icon " src="/images/Refresh.png"></image>
 </view>
 <scroll-view scroll-y="true" class="scroll">
   <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">

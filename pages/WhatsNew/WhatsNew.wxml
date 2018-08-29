@@ -1,16 +1,22 @@
 <!--pages/WhatsNew/WhatsNew.wxml-->
 <view class='main' style='margin-left:15rpx;'>当前版本</view>
-<text  style='margin-left:15rpx;'>V 1.5.3</text>
+<text  style='margin-left:15rpx;'>V 1.5.5</text>
 <view style='margin-left:30rpx;margin-bottom:50rpx;'>
-  <view wx:for="{{new153}}" class='new'>
-    <view>·{{item}}</view>
+  <view wx:for="{{new155}}" class='new'>
+    <view>· {{item}}</view>
   </view>
 </view>
 
 <view class='main setborder' style='margin-left:15rpx;'>历史版本</view>
+<text  style='margin-left:15rpx;'>V 1.5.3</text>
+<view style='margin-left:30rpx;margin-bottom:20rpx;'>
+  <view wx:for="{{new153}}" class='new'>
+    <view>· {{item}}</view>
+  </view>
+</view>
 <text class='main' style='margin-left:15rpx'>V 1.5.0</text>
 <view style='margin-left:30rpx'>
   <view wx:for="{{new150}}" class='new'>
-    <view>·{{item}}</view>
+    <view>· {{item}}</view>
   </view>
 </view>
