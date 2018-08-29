@@ -21,11 +21,11 @@ App({
         success: function (res) {
           if (res.confirm) {
             // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            wx.setStorageSync("updated", true)
             updateManager.applyUpdate()
           }
         }
       })
-
     })
 
     updateManager.onUpdateFailed(function () {
@@ -33,6 +33,22 @@ App({
         title: '版本更新失败',
       })
     })
-
+    console.log(wx.getStorageSync("updated"))
+    if (wx.getStorageSync("updated")) {
+      wx.setStorageSync("updated", false)
+      wx.showModal({
+        title: '更新完成',
+        content: '已更新到最新版本，是否查看版本说明？',
+        success: function (res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            wx.navigateTo({
+              url: '../../pages/WhatsNew/WhatsNew',
+            })
+          }
+        }
+      }
+      )
+    }
   },
 })

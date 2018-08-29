@@ -1,26 +1,30 @@
 <!--pages/Grade/Grade.wxml-->
-<view class="container" class="userinfo">
+<scroll-view scroll-y="true">
+<view class="container" class="userinfo" >
   <open-data type="userAvatarUrl" class="icon" mode="aspectFit"></open-data>
   <open-data type="userNickName" class="userinfo-nickname"></open-data>
 </view>
-<view class="weui-cells weui-cells_after-title">
+<view class="weui-cells weui-cells_after-title" style='font-size:100%'>
   <navigator url="/pages/Setting/Setting" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__bd">教务账号设置</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
-    <navigator url="/pages/WhatsNew/WhatsNew" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+  <navigator url="/pages/WhatsNew/WhatsNew" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__bd">版本说明</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
-    <navigator url="/pages/OpenSource/OpenSource" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+  <navigator url="/pages/OpenSource/OpenSource" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__bd">开源</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
-    <navigator url="/pages/About/About" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+  <navigator url="/pages/About/About" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__bd">关于</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
+    <button class='weui-cell__bd' open-type="contact" hover-class="none" style='text-align:left;border-top:1rpx solid #d9d9d9;font-size:100%' class='b' >联系开发者</button>
+
 </view>
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">Vserion 1.5.0</view>
+  <view class="weui-footer__text">Vserion 1.5.3</view>
 </view>
+</scroll-view>

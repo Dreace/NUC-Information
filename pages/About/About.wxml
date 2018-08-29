@@ -1,10 +1,12 @@
 <!--pages/About/About.wxml-->
 <view class='centerup appname'>教务成绩查询</view>
 <view class='centerup'>中北大学</view>
+<!--<contact-button class='add_icon' type="default-dark" size="50">
+</contact-button>-->
 <view class="weui-footer weui-footer_fixed-bottom">
-    <view class="weui-footer__links">
-        <navigator url="https://dreace.top" class="weui-footer__link">网站首页</navigator>
-        <navigator url="" class="weui-footer__link">联系我</navigator>
-    </view>
-    <view class="weui-footer__text">Copyright © 2018 dreace.top</view>
+  <view class="weui-footer__links">
+    <navigator url="https://dreace.top" class="weui-footer__link">网站首页</navigator>
+    <navigator url="" class="weui-footer__link">联系我</navigator>
+  </view>
+  <view class="weui-footer__text">Copyright © 2018 dreace.top</view>
 </view>

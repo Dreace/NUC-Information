@@ -24,7 +24,7 @@
     <view wx:for="{{['一','二','三','四','五','六','日']}}" class="top-text">周{{item}}</view>
   </view>
 
-  <view style="height:1100rpx;width:730rpx;display:flex;">
+  <view style="height:1150rpx;width:730rpx;display:flex;">
     <view style="background-color:#bce1df;color:#43676b;">
       <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}" class="left">
         {{item}}

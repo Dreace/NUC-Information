@@ -20,3 +20,9 @@
 .poweredname {
   color: #8c8c8c;
 }
+.add_icon {
+  position: fixed;
+  bottom: 300rpx;
+  right: 50rpx;
+  z-index: 999;
+}

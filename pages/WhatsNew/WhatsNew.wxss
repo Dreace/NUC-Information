@@ -6,3 +6,6 @@
   font-size: 95%;
   margin-top: 5rpx;
 }
+.setborder{
+  border-top: 1rpx solid gainsboro;
+}

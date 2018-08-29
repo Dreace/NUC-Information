@@ -28,31 +28,31 @@ Page({
     showTopTips: false,
     tips: ""
   },
-  preventTouchMove: function() {},
-  showInformation: function(e) {
+  preventTouchMove: function () { },
+  showInformation: function (e) {
     this.setData({
       showMoreInformation: true
     })
   },
-  showInformationConfirm: function() {
+  showInformationConfirm: function () {
     this.setData({
       showMoreInformation: false
     })
   },
-  showModel: function(e) {
+  showModel: function (e) {
     this.setData({
       isShowModel: true,
       ModelContent: e.ModelContent
     })
   },
-  cancel: function(e) {
+  cancel: function (e) {
     //关闭模态弹窗
     this.setData({
       isShowModel: false
     })
   },
   //确定事件
-  confirm: function(e) {
+  confirm: function (e) {
     var that = this
     if (this.data.vcode != "") {
       this.setData({
@@ -73,13 +73,13 @@ Page({
             vcode: this.data.vcode,
             cookie: this.data.cookie
           },
-          success: function(res) {
+          success: function (res) {
             wx.hideToast()
             that.handleData({
               data: res.data
             })
           },
-          fail: function(e) {
+          fail: function (e) {
             wx.showToast({
               title: '网络异常',
               image: '/images/Error.png',
@@ -87,7 +87,7 @@ Page({
             })
             console.log(e)
           },
-          complete: function() {
+          complete: function () {
             that.setData({
               vcode: ""
             })
@@ -96,12 +96,12 @@ Page({
       }
     }
   },
-  inputvcode: function(e) {
+  inputvcode: function (e) {
     this.setData({
       vcode: e.detail.value
     })
   },
-  handleData: function(e) {
+  handleData: function (e) {
     var data = e.data
     var that = this
     if (data[0]["code"] === "-1") {
@@ -118,7 +118,7 @@ Page({
         tips: "验证码错误",
         showTopTips: true
       });
-      setTimeout(function() {
+      setTimeout(function () {
         that.setData({
           showTopTips: false
         });
@@ -140,7 +140,7 @@ Page({
         tips: "账号或密码错误",
         showTopTips: true
       });
-      setTimeout(function() {
+      setTimeout(function () {
         that.setData({
           showTopTips: false
         });
@@ -162,14 +162,14 @@ Page({
     })
     wx.setStorageSync("courseTableRawData", data)
   },
-  getCourseTable: function(e) {
+  getCourseTable: function (e) {
     if (this.data.loading) {
       var that = this;
       this.setData({
         tips: "数据加载中，请勿操作",
         showTopTips: true
       });
-      setTimeout(function() {
+      setTimeout(function () {
         that.setData({
           showTopTips: false
         });
@@ -188,7 +188,7 @@ Page({
       wx.showModal({
         title: '信息未设置',
         content: '你好像还没有设置教务账号\n请前往"我的"进行设置',
-        success: function(res) {
+        success: function (res) {
           if (res.confirm) {
             wx.switchTab({
               url: '/pages/My/My',
@@ -206,7 +206,7 @@ Page({
       })
     }
   },
-  getCourseTableWithVcode: function(e) {
+  getCourseTableWithVcode: function (e) {
     var that = this
     try {
       wx.showToast({
@@ -219,7 +219,7 @@ Page({
       })
       wx.request({
         url: 'https://cdn.dreace.top/getvcode',
-        success: function(res) {
+        success: function (res) {
           wx.hideToast()
           that.setData({
             vcodeImage: 'data:image/jpeg;base64,' + res.data[0],
@@ -229,7 +229,7 @@ Page({
             ModelContent: e.message
           })
         },
-        fail: function(e) {
+        fail: function (e) {
           wx.showToast({
             title: '网络异常',
             image: '/images/Error.png',
@@ -237,7 +237,7 @@ Page({
           })
           console.log(e)
         },
-        complete: function() {
+        complete: function () {
           that.setData({
             loading: false
           })
@@ -247,7 +247,7 @@ Page({
       console.log(e)
     }
   },
-  getCourseTableWithoutVcode: function() {
+  getCourseTableWithoutVcode: function () {
     var that = this
     if (!(this.data.name === "" || this.data.name === "")) {
       wx.showToast({
@@ -264,20 +264,20 @@ Page({
           name: this.data.name,
           passwd: this.data.passwd
         },
-        success: function(res) {
+        success: function (res) {
           wx.hideToast()
           that.handleData({
             data: res.data
           })
         },
-        fail: function() {
+        fail: function () {
           wx.showToast({
             title: '网络异常',
             image: '/images/Error.png',
             duration: 3000
           })
         },
-        complete: function() {
+        complete: function () {
           that.setData({
             loading: false
           })
@@ -285,7 +285,7 @@ Page({
       })
     }
   },
-  showCardView: function(e) {
+  showCardView: function (e) {
     var index = e.currentTarget.dataset.courseindex
     console.log(index)
     this.setData({
@@ -296,13 +296,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var app = getApp()
     app.globalData.name = wx.getStorageSync("name")
     app.globalData.passwd = wx.getStorageSync("passwd")
     app.globalData.autoVcode = wx.getStorageSync("autoVcode")
     app.globalData.courseTableRawData = wx.getStorageSync("courseTableRawData")
-    console.log(app.globalData.autoVcode)
     app.globalData.name = "1707004548"
     app.globalData.passwd = "1707004548"
     app.globalData.autoVcode = true
@@ -314,7 +313,7 @@ Page({
       this.getCourseTable()
     }
   },
-  bindTermChange: function(e) {
+  bindTermChange: function (e) {
     this.setData({
       termsIndex: e.detail.value
     })
@@ -322,10 +321,30 @@ Page({
       table: this.data.tables[this.data.count + 1 - this.data.termsIndex][2]
     })
   },
-  refresh: function() {
+  refresh: function () {
     this.getCourseTable()
   },
-  onPullDownRefresh: function() {
+  onShareAppMessage: function (e) {
+    return {
+      title: '我的课程表',
+      path: 'pages/CourseTable/CourseTable',
+      success: function (res) {
+        wx.showToast({
+          title: '已转发',
+          duration: 3000
+        })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '转发失败',
+          image: '/images/Error.png',
+          duration: 3000
+        })
+      }
+    }
+
+  },
+  onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
   }
 })

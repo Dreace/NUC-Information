@@ -286,6 +286,26 @@ Page({
       datas: this.data.grades[this.data.count + 1 - this.data.termsIndex][2]
     })
   },
+  onShareAppMessage: function (e) {
+    return {
+      title: '我的成绩',
+      path: 'pages/Grade/Grade',
+      success: function (res) {
+        wx.showToast({
+          title: '已转发',
+          duration: 3000
+        })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '转发失败',
+          image: '/images/Error.png',
+          duration: 3000
+        })
+      }
+    }
+
+  },
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading()
     this.getGrade()
