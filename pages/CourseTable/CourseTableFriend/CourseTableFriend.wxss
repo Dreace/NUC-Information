@@ -1,10 +1,6 @@
-@import "../../utils/weui.wxss";
-@import "../../utils/showModel.wxss";
+@import "../../../utils/weui.wxss";
+@import "../../../utils/showModel.wxss";
 
-.text {
-  overflow: hidden;
-  -webkit-line-clamp: 6;
-}
 
 .sw {
   position: fixed;
@@ -18,10 +14,10 @@
 
 .add_icon {
   position: fixed;
-  width: 42px;
-  height: 42px;
-  bottom: 30px;
-  right: 20px;
+  width: 90rpx;
+  height: 90rpx;
+  bottom: 30rpx;
+  right: 330rpx;
   z-index: 999;
 }
 

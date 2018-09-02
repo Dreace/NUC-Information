@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/CourseTable/CourseTable",
+    "pages/CourseTable/CourseTableFriend/CourseTableFriend",
     "pages/Grade/Grade",
+    "pages/Grade/GradeFriend/GradeFriend",
     "pages/My/My",
     "pages/About/About",
     "pages/Setting/Setting",

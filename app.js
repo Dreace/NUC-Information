@@ -4,6 +4,7 @@ App({
     name: "",
     passwd: "",
     autoVcode: "",
+    firstWeek:"",
     courseTableRawData: []
   },
   onLaunch: function () {

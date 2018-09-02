@@ -1,8 +1,7 @@
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
-<view bindtap='refresh'>
-  <image class="add_icon " src="/images/Refresh.png"></image>
+<view >
+  <image class="add_icon" bindtap='backto' src="/images/Cancel.png"></image>
 </view>
-
 <scroll-view scroll-y="true" class="scroll">
   <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
     <view class="page__bd">
@@ -39,31 +38,22 @@
     <!--课表-->
     <view wx:for="{{table}}">
       <block wx:if="{{item.Course_Week!=''}}">
-        <view wx:if="{{toRight[index]&&enableNow[index]}}" class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100+5}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:{{colorArrays[index%10]}};z-index:9999">
-          <view class="smalltext text">{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
+        <view wx:if="{{toRight[index]}}" class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100+5}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:{{colorArrays[index%10]}}">
+          <view class="smalltext">{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
         </view>
-
-        <view wx:elif="{{!toRight[index]&&enableNow[index]}}" class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100+5}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:{{colorArrays[index%10]}};z-index:9999">
-          <view class="smalltext text">{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
-        </view>
-
-        <view wx:elif="{{!toRight[index]&&!enableNow[index]}}" class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:#727171;z-index:999">
-          <view class="smalltext text">[非本周]{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
-        </view>
-        
-        <view wx:else class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:#727171;z-index:999">
-          <view class="smalltext text">[非本周]{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
+        <view wx:else class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:{{colorArrays[index%15]}}">
+          <view class="smalltext">{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
         </view>
       </block>
     </view>
   </view>
 </scroll-view>
-<view wx:if="{{showCardsList!=[]}}" class="{{showMoreInformation?'show':'close'}}">
-  <swiper class="sw" indicator-dots='true'>
+<view class="{{showMoreInformation?'show':'close'}}">
+  <swiper class="sw" indicator-dots='true' previous-margin='0rpx' next-margin='0rpx'>
     <block wx:for="{{showCardsList}}">
       <swiper-item>
         <view class='model-pack' style='margin-top:40%'>
-          <view class="model-title">课程信息({{(index+1)+"/"+showCardsList.length}})</view>
+          <view class="model-title">课程信息</view>
           <view class=" " style='margin:0 auto;width:90%; font-size: 100%%;'>
             <view>课程号:{{table[item]["Course_Number"]}}</view>
             <view>课程名:{{table[item]["Course_Name"]}}</view>
@@ -73,9 +63,9 @@
             <view>周次:{{table[item]["Course_Week"]}}</view>
             <view>上课地点:{{table[item]["Course_Building"]+" "+table[item]["Course_Classroom"]}}</view>
           </view>
-          <view class="model-button">
-            <view data-modelid="{{ModelId}}" class="model-button-confirm show" bindtap="closethis" style='width:100%;'>关闭</view>
-          </view>
+    <view class="model-button">
+      <view data-modelid="{{ModelId}}" class="model-button-confirm show" bindtap="closethis" style='width:100%;'>关闭</view>
+    </view>
         </view>
       </swiper-item>
 

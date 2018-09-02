@@ -1,0 +1,80 @@
+<!--pages/Grade/Grade.wxml-->
+<view >
+  <image class="add_icon" bindtap='backto' src="/images/Cancel.png"></image>
+</view>
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">选择学期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker bindchange="bindTermChange" value="{{termsIndex}}" range="{{terms}}">
+            <view class="weui-select weui-select_in-select-after" style='font-size:1rem'>{{terms[termsIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<scroll-view scroll-x="true" class='scrollClass'>
+  <view class='table'>
+    <view class='table_header'>
+      <view class='th1'>
+        <view class="cell_label centerclass">{{heads[0]}}</view>
+      </view>
+      <view class='th2'>
+        <view class="cell_label centerclass">{{heads[1]}}</view>
+      </view>
+      <view class='th2'>
+        <view class="cell_label centerclass">{{heads[2]}}</view>
+      </view>
+      <view class='th2'>
+        <view class="cell_label centerclass">{{heads[3]}}</view>
+      </view>
+    </view>
+    <block wx:for="{{datas}}">
+      <view class='table_main'>
+        <view class='td1'>
+          <view class="table_Text_class">{{item.Course_Name}}</view>
+        </view>
+        <view class='td2'>
+          <view class="table_Text_class">{{item.Course_Attribute}}</view>
+        </view>
+        <view class='td2'>
+          <view class="table_Text_class">{{item.Course_Credit}}</view>
+        </view>
+        <view class='td2'>
+          <view class="table_Text_class">{{item.Course_Grade}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+
+<view class="model {{isShowModel?'show':'close'}}" catchtouchmove="preventTouchMove">
+  <!--弹窗样式可自定义-->
+  <view class="model-pack">
+  <view class="model-title">{{ModelTitle}}</view>
+    <view class="model-content">{{ModelContent}}</view>
+    <view class="weui-cells weui-cells_after-title" style='margin:0 auto;width:99%'>
+      <view class="weui-cell weui-cell_input weui-cell_vcode" >
+        <view class="weui-cell__bd">
+          <input bindinput='inputvcode' class="weui-input" placeholder="请输入验证码" focus='{{isShowModel?true:false}}' value='{{vcode}}'/>
+        </view>
+        <view class="weui-cell__ft">
+          <image class="weui-vcode-img" src="{{vcodeImage}}" style="width: 108px"></image>
+        </view>
+      </view>
+    </view>
+    <view class="model-button">
+      <view data-modelid="{{ModelId}}" class="model-button-cancel show" bindtap="cancel">取消</view>
+      <view data-modelid="{{ModelId}}" class="model-button-confirm show" bindtap="confirm">确定</view>
+    </view>
+  </view>
+</view>
