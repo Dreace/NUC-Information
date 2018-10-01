@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.9",
+	"libVersion": "2.2.5",
 	"appid": "wx85fb532d0cf8a7f8",
 	"projectname": "WeChat",
 	"isGameTourist": false,
