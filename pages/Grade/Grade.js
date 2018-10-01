@@ -28,6 +28,26 @@ Page({
     enableRefresh:true,
     gradeRawData:undefined
   },
+  copy: function (e) {
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.downloadFile({
+      url: 'https://dreace.top/GPA.pdf',
+      success: function (res) {
+        var filePath = res.tempFilePath
+        wx.openDocument({
+          filePath: filePath,
+          success: function (res) {
+            wx.hideLoading()
+          }
+        })
+      }
+    })
+  },
+  refresh: function () {
+    this.getGrade()
+  },
   preventTouchMove: function () { },
   showModel: function (e) {
     this.setData({
@@ -104,25 +124,11 @@ Page({
       return
     }
     if (data[0]["code"] === "1") {
-      var that = this;
-      this.setData({
-        tips: "验证码错误",
-        showTopTips: true
-      });
-      setTimeout(function () {
-        that.setData({
-          showTopTips: false
-        });
-      }, 3000);
-      if (this.data.autoVcode) {
-        this.getGradeWithVcode({
-          message: "自动识别失败，请手动输入验证码"
-        })
-      } else {
-        this.getGradeWithVcode({
-          message: "自动识别关闭，请手动输入验证码"
-        })
-      }
+      wx.showToast({
+        title: '系统错误',
+        image: '/images/Error.png',
+        duration: 3000
+      })
       return
     }
     if (data[0]["code"] === "2") {
@@ -152,6 +158,7 @@ Page({
       datas: that.data.grades[that.data.count + 1 - that.data.termsIndex][2],
       gradeRawData:data
     })
+    wx.setStorageSync("gradeRawData", data)
   },
   getGrade: function (e) {
     if (this.data.loading) {
@@ -293,7 +300,14 @@ Page({
         url: 'GradeFriend/GradeFriend?gradeRawData=' + options.gradeRawData,
       })
     }
-    this.getGrade()
+    app.globalData.gradeRawData = wx.getStorageSync("gradeRawData")
+    if (app.globalData.gradeRawData != "") {
+      this.handleData({
+        data: app.globalData.gradeRawData
+      })
+    } else {
+      this.getGrade()
+    }
   },
   bindTermChange: function (e) {
     this.setData({
@@ -324,6 +338,22 @@ Page({
       }
     }
 
+  },
+  onShow: function () {
+    if (!wx.getStorageSync("newed")) {
+      wx.showModal({
+        title: '更新完成',
+        content: '由于系统升级,请前往"我的"更新信息',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../../pages/Setting/Setting',
+            })
+          }
+        }
+      })
+    }
   },
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading()

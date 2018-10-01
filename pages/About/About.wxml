@@ -1,5 +1,5 @@
 <!--pages/About/About.wxml-->
-<view class='centerup appname'>教务成绩查询</view>
+<view class='centerup appname'>教务教务信息查询</view>
 <view class='centerup'>中北大学</view>
 <!--<contact-button class='add_icon' type="default-dark" size="50">
 </contact-button>-->

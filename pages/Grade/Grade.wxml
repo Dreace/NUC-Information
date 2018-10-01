@@ -1,4 +1,7 @@
 <!--pages/Grade/Grade.wxml-->
+<view bindtap='refresh'>
+  <image class="add_icon " src="/images/Refresh.png"></image>
+</view>
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd">
@@ -75,3 +78,4 @@
     </view>
   </view>
 </view>
+<view class='url' bindtap='copy' >点击查看 GPA 计算方法</view>

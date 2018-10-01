@@ -127,25 +127,11 @@ Page({
       return
     }
     if (data[0]["code"] === "1") {
-      var that = this;
-      this.setData({
-        tips: "验证码错误",
-        showTopTips: true
-      });
-      setTimeout(function () {
-        that.setData({
-          showTopTips: false
-        });
-      }, 3000);
-      if (this.data.autoVcode) {
-        this.getCourseTableWithVcode({
-          message: "自动识别失败，请手动输入验证码"
-        })
-      } else {
-        this.getCourseTableWithVcode({
-          message: "自动识别关闭，请手动输入验证码"
-        })
-      }
+      wx.showToast({
+        title: '系统错误',
+        image: '/images/Error.png',
+        duration: 3000
+      })
       return
     }
     if (data[0]["code"] === "2") {
@@ -495,6 +481,22 @@ Page({
           duration: 3000
         })
       }
+    }
+  },
+  onShow:function(){
+    if (!wx.getStorageSync("newed")) {
+      wx.showModal({
+        title: '更新完成',
+        content: '由于系统升级,请前往"我的"更新信息',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../../pages/Setting/Setting',
+            })
+          }
+        }
+      })
     }
   },
   onPullDownRefresh: function () {

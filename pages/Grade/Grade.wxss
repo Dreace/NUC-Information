@@ -2,7 +2,19 @@
 @import "../../utils/weui.wxss";
 @import "../../utils/showModel.wxss";
 
-
+.add_icon {
+  position: fixed;
+  width: 42px;
+  height: 42px;
+  bottom: 30px;
+  right: 20px;
+  z-index: 999;
+}
+.url{
+  margin-top: 2%;
+  font: 50%;
+  color: #413c3c6e
+}
 .table{
   display: inline-flex;
   flex-direction: column;

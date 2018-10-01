@@ -2,10 +2,14 @@
 @import "../../utils/weui.wxss";
 
 .icon {
-    height: 180rpx;
-    width: 180rpx;
-    border-radius: 50%;
-    overflow: hidden;
+  height: 180rpx;
+  width: 180rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.toptext {
+  font-size: 85%;
+  text-align: center;
 }
 .userinfo {
   display: flex;
