@@ -14,7 +14,7 @@
 
 .appname {
   font-size: 200%;
-  padding-top: 45%;
+  padding-top: 20%;
 }
 
 .poweredname {
@@ -25,4 +25,15 @@
   bottom: 300rpx;
   right: 50rpx;
   z-index: 999;
+}
+.b {
+  background: none !important;
+  color: #000 !important;
+  border-radius: 0;
+}
+
+.b::after {
+  border: none;
+  border-radius: 0;
+ 
 }

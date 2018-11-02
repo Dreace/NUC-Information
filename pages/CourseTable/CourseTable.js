@@ -35,7 +35,8 @@ Page({
     cardToIndex: undefined,
     indexToCard: undefined,
     firstWeek: undefined,
-    enableNow: undefined
+    enableNow: undefined,
+    weekNow:0
   },
   preventTouchMove: function () { },
   closethis: function () {
@@ -120,7 +121,7 @@ Page({
     var that = this
     if (data[0]["code"] === "-1") {
       wx.showToast({
-        title: '加载失败',
+        title: '服务器异常',
         image: '/images/Error.png',
         duration: 3000
       })
@@ -216,6 +217,9 @@ Page({
     if (this.data.firstWeek.length >= 1) {
       var enableNow = new Array()
       var weekNow = Math.floor(((new Date()).getTime() - (new Date(this.data.firstWeek)).getTime()) / (24 * 3600 * 1000 * 7)) + 1
+      that.setData({
+        weekNow: weekNow
+      })
       for (var i = 0; i < this.data.table.length; i++) {
         var t = this.handleWeek({
           data: this.data.table[i]["Course_Week"]
@@ -497,6 +501,14 @@ Page({
           }
         }
       })
+    }
+    var app=getApp()
+    if (app.globalData.courseTableRawData != "") {
+      this.handleData({
+        data: app.globalData.courseTableRawData
+      })
+    } else {
+      this.getCourseTable()
     }
   },
   onPullDownRefresh: function () {

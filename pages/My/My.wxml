@@ -1,5 +1,5 @@
 <!--pages/Grade/Grade.wxml-->
-<view class="container" class="userinfo" >
+<view class="container" class="userinfo">
   <open-data type="userAvatarUrl" class="icon" mode="aspectFit"></open-data>
   <open-data type="userNickName" class="userinfo-nickname"></open-data>
 </view>
@@ -8,21 +8,29 @@
     <view class="weui-cell__bd">教务账号设置</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
-  <navigator url="/pages/WhatsNew/WhatsNew" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">版本说明</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-  </navigator>
-  <navigator url="/pages/OpenSource/OpenSource" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">开源</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-  </navigator>
+
   <navigator url="/pages/About/About" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__bd">关于</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
-    <button class='weui-cell__bd' open-type="contact" hover-class="none" style='text-align:left;border-top:1rpx solid #d9d9d9;font-size:100%' class='b' >联系开发者</button>
+  <button class='weui-cell__bd' open-type="contact" hover-class="none" style='text-align:left;border-top:1rpx solid #d9d9d9;font-size:100%' class='b'>联系开发者</button>
+  <view class='weui-cell__bd b content' hover-class="none" style='text-align:center;border-top:1rpx solid #d9d9d9;font-size:100%;'>
+    <view style='margin-left:1em;'>
+      <text style='flex:1;'>主服务器：</text>
+      <text style='flex:1;color:{{mainServerColor}};'>{{mainServer}}</text>
+    </view>
+    <view style='margin-right:1em;'>
+      <text style=''>代理服务器：</text>
+      <text style='color:{{proxyServerColor}}; '>{{proxyServer}}</text>
+    </view>
+  </view>
 
 </view>
+<view style='text-align: center;'>
+  <view>👆关于广告投放请详见关于页面👆</view>
+  <view>👇所有广告收入将用于服务器建设👇</view>
+</view>
+<ad style="width:90%" unit-id="adunit-0065a48368fd1ab4"></ad>
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">Vserion 1.7.0</view>
+  <view class="weui-footer__text">Vserion 1.8.0</view>
 </view>

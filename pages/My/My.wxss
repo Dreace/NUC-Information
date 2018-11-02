@@ -11,8 +11,14 @@
 .userinfo-nickname {
   margin-top: 30rpx;
   color: #aaa;
+
 }
 
+.content{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
 .icon {
   height: 180rpx;
   width: 180rpx;

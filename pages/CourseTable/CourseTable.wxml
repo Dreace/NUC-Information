@@ -3,7 +3,7 @@
   <image class="add_icon " src="/images/Refresh.png"></image>
 </view>
 
-<scroll-view scroll-y="true" class="scroll">
+<scroll-view class="scroll">
   <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
     <view class="page__bd">
       <view class="weui-cells weui-cells_after-title">
@@ -21,7 +21,8 @@
     </view>
   </view>
   <view class="top" style="background-color:#bce1df;color:#43676b;">
-    <view class='top' style='margin-left: 35rpx;'></view>
+    <view class='week' style=''>{{weekNow}}周</view>
+
     <view wx:for="{{['一','二','三','四','五','六','日']}}" class="top-text">周{{item}}</view>
   </view>
 
@@ -50,7 +51,7 @@
         <view wx:elif="{{!toRight[index]&&!enableNow[index]}}" class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:#727171;z-index:999">
           <view class="smalltext text">[非本周]{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
         </view>
-        
+
         <view wx:else class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:#727171;z-index:999">
           <view class="smalltext text">[非本周]{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
         </view>
@@ -62,7 +63,7 @@
   <swiper class="sw" indicator-dots='true'>
     <block wx:for="{{showCardsList}}">
       <swiper-item>
-        <view class='model-pack' style='margin-top:40%'>
+        <view class='model-pack' style='margin-top:200rpx'>
           <view class="model-title">课程信息({{(index+1)+"/"+showCardsList.length}})</view>
           <view class=" " style='margin:0 auto;width:90%; font-size: 100%%;'>
             <view>课程号:{{table[item]["Course_Number"]}}</view>

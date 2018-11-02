@@ -7,7 +7,20 @@ Page({
   data: {
   
   },
-
+  copy: function (e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.url,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showToast({
+              title: '已复制到剪贴板',
+            })
+          }
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

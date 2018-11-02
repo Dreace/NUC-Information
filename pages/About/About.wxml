@@ -1,9 +1,33 @@
 <!--pages/About/About.wxml-->
-<view class='centerup appname'>教务教务信息查询</view>
+<view class='centerup appname'>教务信息查询</view>
 <view class='centerup'>中北大学</view>
 <!--<contact-button class='add_icon' type="default-dark" size="50">
 </contact-button>-->
-<view class="weui-footer weui-footer_fixed-bottom">
+<navigator url="/pages/WhatsNew/WhatsNew" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+  <view class="weui-cell__bd">版本说明</view>
+  <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+</navigator>
+<navigator url="/pages/OpenSource/OpenSource" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+  <view class="weui-cell__bd">开源</view>
+  <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+</navigator>
+<view style=' width: 95%;margin-left:2%;'>
+  <view style='text-align: center;font-weight:bold;'>非常感谢你的理解与支持。</view>
+  <view style='text-align: center;'>进行赞助或点击广告不影响任何功能，也不会因此限制小程序任何功能</view>
+  <view style='font-size:80%;color:gray;text-align: center;'>点击链接复制到剪辑板</view>
+  <view style='text-align: center;font-weight:bold;'>关于广告和赞助</view>
+  小程序的广告收入和赞助将全部用于服务器建设，所有收入支出将在我的博客
+  <text bindtap='copy' data-url="https://dreace.top">(https://dreace.top)</text>公示，广告收入每一个月结算一次。
+  <view>赞助链接<text bindtap='copy' data-url="https://dreace.top/?page_id=335">https://dreace.top/?page_id=335</text>，请备注“微信小程序”。</view>
+
+  <view style='text-align: center;font-weight:bold;'>服务器现状</view>
+  由于相关规定外网不能访问校园网，而查询服务必须位于外网，由于条件限制无法在校内网直接部署服务器。因此我使用个人电脑作为代理服务器，具体原理请看这篇博文
+  <text bindtap='copy' data-url="https://dreace.top/?p=316">(https://dreace.top/?p=316)</text>。个人电脑无法保障高可用，因此需要一台小型设备作为代理服务器（例如 树莓派，价格 ¥350 左右）。
+
+
+
+</view>
+<view class="weui-footer " style='margin-top:2em;'>
   <view class="weui-footer__links">
     <navigator url="https://dreace.top" class="weui-footer__link">网站首页</navigator>
     <navigator url="" class="weui-footer__link">联系我</navigator>

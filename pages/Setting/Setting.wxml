@@ -5,6 +5,7 @@
 <view class="page__bd">
   <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
   <view class="toptext">登陆方式修改为个人门户，请更新账号密码信息</view>
+  <view class="toptext">保存成功后返回之前的页面即可看到数据</view>
   <view class="weui-cells weui-cells_after-title">
 
     <view class="weui-cell weui-cell_input">
@@ -20,7 +21,7 @@
         <view class="weui-label">密码</view>
       </view>
       <view class="weui-cell__bd">
-        <input bindinput="inputpasswd" class="weui-input" placeholder="身份证后六位或学号" password='true' value='{{passwd}}' confirm-type='done' />
+        <input bindinput="inputpasswd" class="weui-input" placeholder="个人门户登录密码" password='true' value='{{passwd}}' confirm-type='done' />
       </view>
     </view>
     <view class="weui-cells weui-cells_after-title">

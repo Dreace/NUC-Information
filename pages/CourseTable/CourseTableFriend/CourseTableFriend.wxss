@@ -57,9 +57,7 @@
 }
 
 .scroll {
-  height: 1170rpx;
   z-index: 101;
-  position: fixed;
 }
 
 .left {

@@ -60,7 +60,7 @@ Page({
           }, 3000);
         }else{
           wx.showToast({
-            title: '系统错误',
+            title: '服务器异常',
             image: '/images/Error.png',
             duration: 3000
           })

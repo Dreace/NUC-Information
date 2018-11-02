@@ -54,6 +54,13 @@
 .top-text {
   width: 100rpx;
   height: 35rpx;
+  font-size: 11pt;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.week{
+  height: 35rpx;
   font-size: 9pt;
   justify-content: center;
   display: flex;
@@ -61,9 +68,9 @@
 }
 
 .scroll {
-  height: 1170rpx;
+  /* height: 1170rpx;*/
   z-index: 101;
-  position: fixed;
+  /*position: fixed;*/
 }
 
 .left {
