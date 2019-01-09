@@ -92,7 +92,7 @@ Page({
           },
           fail: function(e) {
             wx.showToast({
-              title: '网络异常',
+              title: '未能完成请求',
               image: '/images/Error.png',
               duration: 3000
             })
@@ -127,6 +127,14 @@ Page({
     if (data[0]["code"] === "1") {
       wx.showToast({
         title: '系统错误',
+        image: '/images/Error.png',
+        duration: 3000
+      })
+      return
+    }
+    if (data[0]["code"] === "0") {
+      wx.showToast({
+        title: '没有成绩',
         image: '/images/Error.png',
         duration: 3000
       })
@@ -231,7 +239,7 @@ Page({
         },
         fail: function(e) {
           wx.showToast({
-            title: '网络异常',
+            title: '未能完成请求',
             mask: true,
             image: '/images/Error.png',
             duration: 3000
@@ -255,7 +263,7 @@ Page({
         title: '加载中',
         mask: true,
         icon: 'loading',
-        duration: 10000
+        duration: 60000
       })
       that.setData({
         loading: true
@@ -274,7 +282,7 @@ Page({
         },
         fail: function() {
           wx.showToast({
-            title: '网络异常',
+            title: '未能完成请求',
             mask: true,
             image: '/images/Error.png',
             duration: 3000
@@ -342,7 +350,7 @@ Page({
   },
   onShow: function() {
     
-    if (!wx.getStorageSync("newed")) {
+    /*if (!wx.getStorageSync("newed")) {
       wx.showModal({
         title: '更新完成',
         content: '由于系统升级,请前往"我的"更新信息',
@@ -355,7 +363,7 @@ Page({
           }
         }
       })
-    }
+    }*/
   },
   onPullDownRefresh: function() {
     wx.stopPullDownRefresh()

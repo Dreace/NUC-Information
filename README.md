@@ -42,6 +42,10 @@
 <img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
 
 ### 版本日志
+#### Version 1.8.3
+  1. 相同的课程表使用相同的颜色显示
+  2. 稍微修改了课程表显示方式（需重新获取课程表并重启小程序）
+  3. 常规修复
 #### Version 1.8.0
   1. 增加广告显示，具体信息请查看“关于”页面
   2. 修复 iPad 课程表显示不正常

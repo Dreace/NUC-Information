@@ -27,7 +27,17 @@ Page({
     })
   },
   test: function (e) {
+    if(this.data.testing){
+      return;
+    }
     var that = this
+    if(this.data.name==""||this.data.passwd==""){
+      that.setData({
+        message: "账号密码不能为空",
+        showTopTips: true
+      });
+      return;
+    }
     this.setData({
       testing: true
     })
@@ -38,7 +48,6 @@ Page({
         passwd: this.data.passwd,
       },
       success: function (res) {
-        console.log(res.data)
         if (res.data[0]["code"] == "200") {
           wx.showToast({
             title: '登录测试成功',
@@ -69,7 +78,7 @@ Page({
       },
       fail: function (e) {
         wx.showToast({
-          title: '网络异常',
+          title: '未能完成请求',
           image: '/images/Error.png',
           duration: 3000
         })

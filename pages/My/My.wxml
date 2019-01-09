@@ -28,9 +28,9 @@
 </view>
 <view style='text-align: center;'>
   <view>👆关于广告投放请详见关于页面👆</view>
-  <view>👇所有广告收入将用于服务器建设👇</view>
+  <view>👇收入用于服务器建设 每次一点击转化为资金👇</view>
 </view>
 <ad style="width:90%" unit-id="adunit-0065a48368fd1ab4"></ad>
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">Vserion 1.8.0</view>
+  <view class="weui-footer__text">Version 1.8.3</view>
 </view>

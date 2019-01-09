@@ -38,11 +38,8 @@
     <!--课表-->
     <view wx:for="{{table}}">
       <block wx:if="{{item.Course_Week!=''}}">
-        <view wx:if="{{toRight[index]}}" class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100+5}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:{{colorArrays[index%10]}}">
-          <view class="smalltext">{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
-        </view>
-        <view wx:else class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:{{colorArrays[index%15]}}">
-          <view class="smalltext">{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
+        <view class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100+5}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:{{colorArrays[item.Course_Color%20]}};z-index:9999">
+          <view class="smalltext text">{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
         </view>
       </block>
     </view>

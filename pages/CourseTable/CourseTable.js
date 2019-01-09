@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    colorArrays: ["#ca8269", "#b23e52", "#008d56", "#455765", "#cd6118", "#474b42", "#6f6f43", "#48493f", "#6c2c2f", "#79520b", "#cd6118", "#104539", "#003a47", "#595455", "6d3c14"],
+    colorArrays: ["#ca8269", "#b23e52", "#008d56", "#455765", "#cd6118", "#474b42", "#6f6f43", "#48493f", "#6c2c2f", "#79520b", "#cd6118", "#104539", "#003a47", "#595455", "#6d3c14", "#005b98", "ee869a", "73b8e2", "b28c6e", "bce1df"],
     loading: false,
     name: "",
     passwd: "",
@@ -36,38 +36,38 @@ Page({
     indexToCard: undefined,
     firstWeek: undefined,
     enableNow: undefined,
-    weekNow:0
+    weekNow: 0
   },
-  preventTouchMove: function () { },
-  closethis: function () {
+  preventTouchMove: function() {},
+  closethis: function() {
     this.setData({
       showMoreInformation: false
     })
   },
-  showInformation: function (e) {
+  showInformation: function(e) {
     this.setData({
       showMoreInformation: true
     })
   },
-  showInformationConfirm: function () {
+  showInformationConfirm: function() {
     this.setData({
       showMoreInformation: false
     })
   },
-  showModel: function (e) {
+  showModel: function(e) {
     this.setData({
       isShowModel: true,
       ModelContent: e.ModelContent
     })
   },
-  cancel: function (e) {
+  cancel: function(e) {
     //关闭模态弹窗
     this.setData({
       isShowModel: false
     })
   },
   //确定事件
-  confirm: function (e) {
+  confirm: function(e) {
     var that = this
     if (this.data.vcode != "") {
       this.setData({
@@ -88,21 +88,21 @@ Page({
             vcode: this.data.vcode,
             cookie: this.data.cookie
           },
-          success: function (res) {
+          success: function(res) {
             wx.hideToast()
             that.handleData({
               data: res.data
             })
           },
-          fail: function (e) {
+          fail: function(e) {
             wx.showToast({
-              title: '网络异常',
+              title: '未能完成请求',
               image: '/images/Error.png',
               duration: 3000
             })
             console.log(e)
           },
-          complete: function () {
+          complete: function() {
             that.setData({
               vcode: ""
             })
@@ -111,13 +111,16 @@ Page({
       }
     }
   },
-  inputvcode: function (e) {
+  inputvcode: function(e) {
     this.setData({
       vcode: e.detail.value
     })
   },
-  handleData: function (e) {
+  handleData: function(e) {
     var data = e.data
+    if (data === undefined) {
+      return;
+    }
     var that = this
     if (data[0]["code"] === "-1") {
       wx.showToast({
@@ -135,13 +138,21 @@ Page({
       })
       return
     }
+    if (data[0]["code"] === "0") {
+      wx.showToast({
+        title: '没有课程表',
+        image: '/images/Error.png',
+        duration: 3000
+      })
+      return
+    }
     if (data[0]["code"] === "2") {
       var that = this;
       this.setData({
         tips: "账号或密码错误",
         showTopTips: true
       });
-      setTimeout(function () {
+      setTimeout(function() {
         that.setData({
           showTopTips: false
         });
@@ -167,7 +178,7 @@ Page({
     that.handleMoreData()
     wx.setStorageSync("courseTableRawData", data)
   },
-  handleMoreData: function () {
+  handleMoreData: function() {
     var hasData = new Array()
     var toRight = new Array()
     var that = this
@@ -241,7 +252,7 @@ Page({
       indexToCard: indexToCard
     })
   },
-  handleWeek: function (e) {
+  handleWeek: function(e) {
     var weekList = []
     var tempList = undefined
     tempList = this.removeChinese(e.data).split(",")
@@ -258,14 +269,14 @@ Page({
     }
     return weekList
   },
-  removeChinese: function (strValue) {
+  removeChinese: function(strValue) {
     if (strValue != null && strValue != "") {
       var reg = /[\u4e00-\u9fa5]/g;
       return strValue.replace(reg, "");
     } else
       return "";
   },
-  getCourseTable: function (e) {
+  getCourseTable: function(e) {
     var that = this
     if (this.data.loading) {
       var that = this;
@@ -273,7 +284,7 @@ Page({
         tips: "数据加载中，请勿操作",
         showTopTips: true
       });
-      setTimeout(function () {
+      setTimeout(function() {
         that.setData({
           showTopTips: false
         });
@@ -292,7 +303,7 @@ Page({
       wx.showModal({
         title: '信息未设置',
         content: '你好像还没有设置教务账号\n请前往"我的"进行设置',
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) {
             wx.switchTab({
               url: '/pages/My/My',
@@ -304,7 +315,7 @@ Page({
     }
     wx.request({
       url: 'https://cdn.dreace.top/getdate',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           firstWeek: res.data
         })
@@ -319,7 +330,7 @@ Page({
       })
     }
   },
-  getCourseTableWithVcode: function (e) {
+  getCourseTableWithVcode: function(e) {
     var that = this
     try {
       wx.showToast({
@@ -333,7 +344,7 @@ Page({
       })
       wx.request({
         url: 'https://cdn.dreace.top/getvcode',
-        success: function (res) {
+        success: function(res) {
           wx.hideToast()
           that.setData({
             vcodeImage: 'data:image/jpeg;base64,' + res.data[0],
@@ -343,16 +354,16 @@ Page({
             ModelContent: e.message
           })
         },
-        fail: function (e) {
+        fail: function(e) {
           wx.showToast({
-            title: '网络异常',
+            title: '未能完成请求',
             mask: true,
             image: '/images/Error.png',
             duration: 3000
           })
           console.log(e)
         },
-        complete: function () {
+        complete: function() {
           that.setData({
             loading: false
           })
@@ -362,14 +373,14 @@ Page({
       console.log(e)
     }
   },
-  getCourseTableWithoutVcode: function () {
+  getCourseTableWithoutVcode: function() {
     var that = this
     if (!(this.data.name === "" || this.data.passwd === "")) {
       wx.showToast({
         title: '加载中',
         mask: true,
         icon: 'loading',
-        duration: 10000
+        duration: 60000
       })
       that.setData({
         loading: true
@@ -380,21 +391,21 @@ Page({
           name: this.data.name,
           passwd: this.data.passwd
         },
-        success: function (res) {
+        success: function(res) {
           wx.hideToast()
           that.handleData({
             data: res.data
           })
         },
-        fail: function () {
+        fail: function() {
           wx.showToast({
-            title: '网络异常',
+            title: '未能完成请求',
             mask: true,
             image: '/images/Error.png',
             duration: 3000
           })
         },
-        complete: function () {
+        complete: function() {
           that.setData({
             loading: false
           })
@@ -402,7 +413,7 @@ Page({
       })
     }
   },
-  showCardView: function (e) {
+  showCardView: function(e) {
     var index = e.currentTarget.dataset.courseindex
     var showCardsList = []
     console.log(index)
@@ -420,7 +431,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this
     var app = getApp()
     app.globalData.name = wx.getStorageSync("name")
@@ -432,7 +443,7 @@ Page({
     })
     wx.request({
       url: 'https://cdn.dreace.top/getdate',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           firstWeek: res.data
         })
@@ -454,7 +465,7 @@ Page({
       this.getCourseTable()
     }
   },
-  bindTermChange: function (e) {
+  bindTermChange: function(e) {
     this.setData({
       termsIndex: e.detail.value
     })
@@ -463,21 +474,21 @@ Page({
     })
     this.handleMoreData()
   },
-  refresh: function () {
+  refresh: function() {
     this.getCourseTable()
   },
-  onShareAppMessage: function (e) {
+  onShareAppMessage: function(e) {
     return {
       title: '我的课程表',
       path: 'pages/CourseTable/CourseTable?courseTableRawData=' + JSON.stringify(this.data.courseTableRawData),
-      success: function (res) {
+      success: function(res) {
         wx.showToast({
           title: '已转发',
           mask: true,
           duration: 3000
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         wx.showToast({
           title: '转发失败',
           mask: true,
@@ -487,8 +498,8 @@ Page({
       }
     }
   },
-  onShow:function(){
-    if (!wx.getStorageSync("newed")) {
+  onShow: function() {
+    /*if (!wx.getStorageSync("newed")) {
       wx.showModal({
         title: '更新完成',
         content: '由于系统升级,请前往"我的"更新信息',
@@ -501,9 +512,9 @@ Page({
           }
         }
       })
-    }
-    var app=getApp()
-    if (app.globalData.courseTableRawData != "") {
+    }*/
+    var app = getApp()
+    if (this.data.courseTableRawData !== undefined) {
       this.handleData({
         data: app.globalData.courseTableRawData
       })
@@ -511,7 +522,7 @@ Page({
       this.getCourseTable()
     }
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     wx.stopPullDownRefresh()
   }
 })
