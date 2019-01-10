@@ -9,20 +9,7 @@ App({
     gradeRawData:[]
   },
   onLaunch: function () {
-    if(!wx.getStorageSync("newed")){
-      wx.showModal({
-        title: '更新完成',
-        content: '由于系统升级,请前往"我的"更新信息',
-        showCancel:false,
-        success: function (res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../../pages/Setting/Setting',
-            })
-          }
-        }
-      })
-    }
+
     const updateManager = wx.getUpdateManager()
 
     updateManager.onCheckForUpdate(function (res) {

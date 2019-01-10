@@ -100,7 +100,6 @@ Page({
               image: '/images/Error.png',
               duration: 3000
             })
-            console.log(e)
           },
           complete: function() {
             that.setData({
@@ -305,8 +304,8 @@ Page({
         content: '你好像还没有设置教务账号\n请前往"我的"进行设置',
         success: function(res) {
           if (res.confirm) {
-            wx.switchTab({
-              url: '/pages/My/My',
+            wx.navigateTo({
+              url: '/pages/Setting/Setting',
             })
           }
         }
@@ -322,56 +321,7 @@ Page({
         wx.setStorageSync("firstWeek", res.data)
       },
     })
-    if (this.data.autoVcode) {
-      this.getCourseTableWithoutVcode()
-    } else {
-      this.getCourseTableWithVcode({
-        message: "自动识别关闭，请手动输入验证码"
-      })
-    }
-  },
-  getCourseTableWithVcode: function(e) {
-    var that = this
-    try {
-      wx.showToast({
-        title: '加载中',
-        mask: true,
-        icon: 'loading',
-        duration: 10000
-      })
-      that.setData({
-        loading: true
-      })
-      wx.request({
-        url: 'https://cdn.dreace.top/getvcode',
-        success: function(res) {
-          wx.hideToast()
-          that.setData({
-            vcodeImage: 'data:image/jpeg;base64,' + res.data[0],
-            cookie: res.data[1]
-          })
-          that.showModel({
-            ModelContent: e.message
-          })
-        },
-        fail: function(e) {
-          wx.showToast({
-            title: '未能完成请求',
-            mask: true,
-            image: '/images/Error.png',
-            duration: 3000
-          })
-          console.log(e)
-        },
-        complete: function() {
-          that.setData({
-            loading: false
-          })
-        }
-      })
-    } catch (e) {
-      console.log(e)
-    }
+    this.getCourseTableWithoutVcode()
   },
   getCourseTableWithoutVcode: function() {
     var that = this
@@ -416,7 +366,6 @@ Page({
   showCardView: function(e) {
     var index = e.currentTarget.dataset.courseindex
     var showCardsList = []
-    console.log(index)
     var card = this.data.indexToCard[index]
     for (var i = 0; i < card.length; i++) {
       var p = this.data.cardToIndex[card[i]["x"]][card[i]["y"]]
@@ -499,24 +448,10 @@ Page({
     }
   },
   onShow: function() {
-    /*if (!wx.getStorageSync("newed")) {
-      wx.showModal({
-        title: '更新完成',
-        content: '由于系统升级,请前往"我的"更新信息',
-        showCancel: false,
-        success: function (res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../../pages/Setting/Setting',
-            })
-          }
-        }
-      })
-    }*/
     var app = getApp()
     if (this.data.courseTableRawData !== undefined) {
       this.handleData({
-        data: app.globalData.courseTableRawData
+        data: this.data.courseTableRawData
       })
     } else {
       this.getCourseTable()

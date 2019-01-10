@@ -42,6 +42,9 @@
 <img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
 
 ### 版本日志
+#### Version 1.8.5
+  1. 做了一些清理
+  2. 修复几处遗留问题
 #### Version 1.8.3
   1. 相同的课程表使用相同的颜色显示
   2. 稍微修改了课程表显示方式（需重新获取课程表并重启小程序）
