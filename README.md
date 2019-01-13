@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-1.7.0-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
+![](https://img.shields.io/badge/Version-1.8.5-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
 
 这是什么？
 =========
