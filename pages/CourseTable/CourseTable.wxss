@@ -22,7 +22,7 @@
   height: 42px;
   bottom: 30px;
   right: 20px;
-  z-index: 999;
+  z-index: 99999999;
 }
 
 .flex-item {
@@ -61,6 +61,7 @@
 }
 .week{
   height: 35rpx;
+  width: 55rpx;
   font-size: 9pt;
   justify-content: center;
   display: flex;

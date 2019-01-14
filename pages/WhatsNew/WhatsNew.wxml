@@ -14,13 +14,14 @@
   <view wx:for="{{new183}}" class='new'>
     <view>· {{item}}</view>
   </view>
-  <text style='margin-left:15rpx;'>V 1.8.0</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new180}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
+</view>
+<text style='margin-left:15rpx;'>V 1.8.0</text>
+<view style='margin-left:30rpx;margin-bottom:20rpx;'>
+  <view wx:for="{{new180}}" class='new'>
+    <view>· {{item}}</view>
   </view>
 </view>
+
 <text style='margin-left:15rpx;'>V 1.7.0</text>
 <view style='margin-left:30rpx;margin-bottom:20rpx;'>
   <view wx:for="{{new170}}" class='new'>

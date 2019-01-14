@@ -1,7 +1,5 @@
 <!--pages/Grade/Grade.wxml-->
-<view bindtap='refresh'>
-  <image class="add_icon " src="/images/Refresh.png"></image>
-</view>
+<wux-fab-button position="bottomRight" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd">
@@ -57,25 +55,4 @@
   </view>
 </scroll-view>
 
-<view class="model {{isShowModel?'show':'close'}}" catchtouchmove="preventTouchMove">
-  <!--弹窗样式可自定义-->
-  <view class="model-pack">
-  <view class="model-title">{{ModelTitle}}</view>
-    <view class="model-content">{{ModelContent}}</view>
-    <view class="weui-cells weui-cells_after-title" style='margin:0 auto;width:99%'>
-      <view class="weui-cell weui-cell_input weui-cell_vcode" >
-        <view class="weui-cell__bd">
-          <input bindinput='inputvcode' class="weui-input" placeholder="请输入验证码" focus='{{isShowModel?true:false}}' value='{{vcode}}'/>
-        </view>
-        <view class="weui-cell__ft">
-          <image class="weui-vcode-img" src="{{vcodeImage}}" style="width: 108px"></image>
-        </view>
-      </view>
-    </view>
-    <view class="model-button">
-      <view data-modelid="{{ModelId}}" class="model-button-cancel show" bindtap="cancel">取消</view>
-      <view data-modelid="{{ModelId}}" class="model-button-confirm show" bindtap="confirm">确定</view>
-    </view>
-  </view>
-</view>
-<view class='url' bindtap='copy' >点击查看 GPA 计算方法</view>
+<view class='url' bindtap='copy'>点击查看 GPA 计算方法</view>

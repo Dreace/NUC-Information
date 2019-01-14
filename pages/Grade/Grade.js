@@ -1,4 +1,19 @@
 // pages/Grade/Grade.js
+const buttons = [{
+    label: '刷新',
+    icon: "/images/Refresh.png",
+  },
+  {
+    openType: 'share',
+    label: '分享',
+    icon: "/images/Share.png",
+
+  },
+  {
+    label: '切换账号(开发中)',
+    icon: "/images/Switch.png",
+  },
+]
 Page({
 
   /**
@@ -27,7 +42,12 @@ Page({
     tips: "",
     enableRefresh: true,
     gradeRawData: undefined,
-
+    buttons,
+  },
+  onClick(e) {
+    if (e.detail.index === 0) {
+      this.refresh()
+    }
   },
   copy: function(e) {
     wx.showLoading({
@@ -54,61 +74,6 @@ Page({
     this.setData({
       isShowModel: true,
       ModelContent: e.ModelContent
-    })
-  },
-  cancel: function(e) {
-    //关闭模态弹窗
-    this.setData({
-      isShowModel: false
-    })
-  },
-  //确定事件
-  confirm: function(e) {
-    var that = this
-    if (this.data.vcode != "") {
-      this.setData({
-        isShowModel: false
-      })
-
-      if (!(this.data.name === "" || this.data.name === "")) {
-        wx.showToast({
-          title: '加载中',
-          icon: 'loading',
-          duration: 10000
-        })
-        wx.request({
-          url: 'https://cdn.dreace.top',
-          data: {
-            name: this.data.name,
-            passwd: this.data.passwd,
-            vcode: this.data.vcode,
-            cookie: this.data.cookie
-          },
-          success: function(res) {
-            wx.hideToast()
-            that.handleData({
-              data: res.data
-            })
-          },
-          fail: function(e) {
-            wx.showToast({
-              title: '未能完成请求',
-              image: '/images/Error.png',
-              duration: 3000
-            })
-          },
-          complete: function() {
-            that.setData({
-              vcode: ""
-            })
-          }
-        })
-      }
-    }
-  },
-  inputvcode: function(e) {
-    this.setData({
-      vcode: e.detail.value
     })
   },
   handleData: function(e) {
@@ -154,18 +119,20 @@ Page({
     }
     var count = data[1]["count"]
     var terms = []
-    for (var i = count + 1; i > 1; i--) {
-      terms.push(data[i][1])
+    if (count > 0) {
+      for (var i = count + 1; i > 1; i--) {
+        terms.push(data[i][1])
+      }
+      that.setData({
+        terms: terms,
+        count: count,
+        grades: data
+      })
+      that.setData({
+        datas: that.data.grades[that.data.count + 1 - that.data.termsIndex][2],
+        gradeRawData: data
+      })
     }
-    that.setData({
-      terms: terms,
-      count: count,
-      grades: data
-    })
-    that.setData({
-      datas: that.data.grades[that.data.count + 1 - that.data.termsIndex][2],
-      gradeRawData: data
-    })
     wx.setStorageSync("gradeRawData", data)
   },
   getGrade: function(e) {
@@ -275,30 +242,7 @@ Page({
       datas: this.data.grades[this.data.count + 1 - this.data.termsIndex][2]
     })
   },
-  onShareAppMessage: function(e) {
-    return {
-      title: '我的成绩',
-      path: 'pages/Grade/Grade?gradeRawData=' + JSON.stringify(this.data.gradeRawData),
-      success: function(res) {
-        wx.showToast({
-          title: '已转发',
-          mask: true,
-          duration: 3000
-        })
-      },
-      fail: function(res) {
-        wx.showToast({
-          title: '转发失败',
-          mask: true,
-          image: '/images/Error.png',
-          duration: 3000
-        })
-      }
-    }
-
-  },
-  onShow: function() {
-  },
+  onShow: function() {},
   onPullDownRefresh: function() {
     wx.stopPullDownRefresh()
     return;

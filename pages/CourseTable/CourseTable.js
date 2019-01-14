@@ -1,4 +1,19 @@
 // pages/ClassTable/ClassTable.js
+const buttons = [{
+    label: '刷新',
+    icon: "/images/Refresh.png",
+  },
+  {
+    openType: 'share',
+    label: '分享',
+    icon: "/images/Share.png",
+
+  },
+  {
+    label: '导出到日历(开发中)',
+    icon: "/images/Export.png",
+  },
+]
 Page({
 
   /**
@@ -36,9 +51,15 @@ Page({
     indexToCard: undefined,
     firstWeek: undefined,
     enableNow: undefined,
-    weekNow: 0
+    weekNow: 0,
+    buttons
   },
-  preventTouchMove: function() {},
+  onClick(e) {
+    if (e.detail.index === 0) {
+      this.refresh()
+    }
+  },
+  //preventTouchMove: function() {},
   closethis: function() {
     this.setData({
       showMoreInformation: false
