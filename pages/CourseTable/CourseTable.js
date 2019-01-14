@@ -13,6 +13,10 @@ const buttons = [{
     label: '导出到日历(开发中)',
     icon: "/images/Export.png",
   },
+  {
+    label: '切换账号(开发中)',
+    icon: "/images/Switch.png",
+  },
 ]
 Page({
 
@@ -52,7 +56,8 @@ Page({
     firstWeek: undefined,
     enableNow: undefined,
     weekNow: 0,
-    buttons
+    buttons,
+    day:undefined
   },
   onClick(e) {
     if (e.detail.index === 0) {
@@ -137,6 +142,9 @@ Page({
     })
   },
   handleData: function(e) {
+    this.setData({
+      day: new Date().getDay()
+    })
     var data = e.data
     if (data === undefined) {
       return;
@@ -477,6 +485,7 @@ Page({
     } else {
       this.getCourseTable()
     }
+
   },
   onPullDownRefresh: function() {
     wx.stopPullDownRefresh()
