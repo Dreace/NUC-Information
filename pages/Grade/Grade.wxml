@@ -20,7 +20,7 @@
 
 
 
-<scroll-view scroll-x="true" class='scrollClass'>
+<scroll-view class='scrollClass'>
   <view class='table'>
     <view class='table_header'>
       <view class='th1'>

@@ -9,14 +9,14 @@ const buttons = [{
     icon: "/images/Share.png",
 
   },
-  {
+ /* {
     label: '导出到日历(开发中)',
     icon: "/images/Export.png",
   },
   {
     label: '切换账号(开发中)',
     icon: "/images/Switch.png",
-  },
+  },*/
 ]
 Page({
 

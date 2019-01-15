@@ -9,10 +9,10 @@ const buttons = [{
     icon: "/images/Share.png",
 
   },
-  {
+  /*{
     label: '切换账号(开发中)',
     icon: "/images/Switch.png",
-  },
+  },*/
 ]
 Page({
 
@@ -98,8 +98,8 @@ Page({
     }
     if (data[0]["code"] === "0") {
       wx.showToast({
-        title: '没有成绩',
-        image: '/images/Error.png',
+        title: '暂时没有成绩',
+        image: '/images/Sad.png',
         duration: 3000
       })
       return
