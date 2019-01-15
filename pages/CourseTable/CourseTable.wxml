@@ -1,8 +1,6 @@
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
-<view bindtap='refresh'>
-  <image class="add_icon " src="/images/Refresh.png"></image>
-</view>
 
+<wux-fab-button position="bottomRight" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
 <scroll-view class="scroll">
   <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
     <view class="page__bd">
@@ -20,25 +18,25 @@
       </view>
     </view>
   </view>
-  <view class="top" style="background-color:#bce1df;color:#43676b;">
-    <view class='week' style=''>{{weekNow}}周</view>
-
-    <view wx:for="{{['一','二','三','四','五','六','日']}}" class="top-text">周{{item}}</view>
+  <view class="top" style="background-color:#ECEEEF;color:#AEB7B8;">
+    <view class='week' style='color:#6D7373;'>{{weekNow}}周</view>
+    <view class="{{day==1?'top-text-strong':'top-text'}}" style='width:80rpx' >周一</view>
+    <view wx:for="{{['二','三','四','五','六','日']}}" wx:key="unique" class="{{day==(index+2)?'top-text-strong':'top-text'}}">周{{item}}</view>
   </view>
 
-  <view style="height:1150rpx;width:730rpx;display:flex;">
-    <view style="background-color:#bce1df;color:#43676b;">
-      <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}" class="left">
+  <view style="height:1100rpx;width:730rpx;display:flex;">
+    <view style="background-color:#ECEEEF;color:#AEB7B8;">
+      <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}" wx:key="unique" class="left">
         {{item}}
       </view>
     </view>
-    <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}">
+    <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}" wx:key="unique">
       <view style="width:750rpx;margin-top:{{(index+1)*100}}rpx;  position: absolute;border-bottom:1rpx solid {{index==3||index==7?'rgb(143,46,20)':'lightgray'}};">
       </view>
     </view>
 
     <!--课表-->
-    <view wx:for="{{table}}">
+    <view wx:for="{{table}}" wx:key="unique">
       <block wx:if="{{item.Course_Week!=''}}">
         <view wx:if="{{enableNow[index]}}" class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*100+5}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:{{colorArrays[item.Course_Color%20]}};z-index:9999">
           <view class="smalltext text">{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
@@ -53,7 +51,7 @@
 </scroll-view>
 <view wx:if="{{showCardsList!=[]}}" class="{{showMoreInformation?'show':'close'}}">
   <swiper class="sw" indicator-dots='true'>
-    <block wx:for="{{showCardsList}}">
+    <block wx:for="{{showCardsList}}" wx:key="unique">
       <swiper-item>
         <view class='model-pack' style='margin-top:200rpx'>
           <view class="model-title">课程信息({{(index+1)+"/"+showCardsList.length}})</view>
@@ -74,25 +72,4 @@
 
     </block>
   </swiper>
-</view>
-<view class="model {{isShowModel?'show':'close'}}" catchtouchmove="preventTouchMove">
-  <!--弹窗样式可自定义-->
-  <view class="model-pack">
-    <view class="model-title">{{ModelTitle}}</view>
-    <view class="model-content">{{ModelContent}}</view>
-    <view class="weui-cells weui-cells_after-title" style='margin:0 auto;width:99%'>
-      <view class="weui-cell weui-cell_input weui-cell_vcode">
-        <view class="weui-cell__bd">
-          <input bindinput='inputvcode' class="weui-input" placeholder="请输入验证码" focus='{{isShowModel?true:false}}' value='{{vcode}}' />
-        </view>
-        <view class="weui-cell__ft">
-          <image class="weui-vcode-img" src="{{vcodeImage}}" style="width: 108px"></image>
-        </view>
-      </view>
-    </view>
-    <view class="model-button">
-      <view data-modelid="{{ModelId}}" class="model-button-cancel show" bindtap="cancel">取消</view>
-      <view data-modelid="{{ModelId}}" class="model-button-confirm show" bindtap="confirm">确定</view>
-    </view>
-  </view>
 </view>

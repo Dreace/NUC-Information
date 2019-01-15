@@ -1,4 +1,23 @@
 // pages/ClassTable/ClassTable.js
+const buttons = [{
+    label: '刷新',
+    icon: "/images/Refresh.png",
+  },
+  {
+    openType: 'share',
+    label: '分享',
+    icon: "/images/Share.png",
+
+  },
+ /* {
+    label: '导出到日历(开发中)',
+    icon: "/images/Export.png",
+  },
+  {
+    label: '切换账号(开发中)',
+    icon: "/images/Switch.png",
+  },*/
+]
 Page({
 
   /**
@@ -36,9 +55,16 @@ Page({
     indexToCard: undefined,
     firstWeek: undefined,
     enableNow: undefined,
-    weekNow: 0
+    weekNow: 0,
+    buttons,
+    day:undefined
   },
-  preventTouchMove: function() {},
+  onClick(e) {
+    if (e.detail.index === 0) {
+      this.refresh()
+    }
+  },
+  //preventTouchMove: function() {},
   closethis: function() {
     this.setData({
       showMoreInformation: false
@@ -116,6 +142,9 @@ Page({
     })
   },
   handleData: function(e) {
+    this.setData({
+      day: new Date().getDay()
+    })
     var data = e.data
     if (data === undefined) {
       return;
@@ -456,6 +485,7 @@ Page({
     } else {
       this.getCourseTable()
     }
+
   },
   onPullDownRefresh: function() {
     wx.stopPullDownRefresh()
