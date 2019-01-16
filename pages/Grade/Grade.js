@@ -242,6 +242,13 @@ Page({
       datas: this.data.grades[this.data.count + 1 - this.data.termsIndex][2]
     })
   },
+  onShareAppMessage: function (e) {
+    return {
+      title: '我的成绩',
+      path: 'pages/Grade/Grade?gradeRawData=' + JSON.stringify(this.data.gradeRawData),
+    }
+
+  },
   onShow: function() {},
   onPullDownRefresh: function() {
     wx.stopPullDownRefresh()

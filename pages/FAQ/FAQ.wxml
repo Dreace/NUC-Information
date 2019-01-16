@@ -1,0 +1,20 @@
+<!--pages/FAQ/FAQ.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">FAQ</view>
+    <view class="page__desc">常见问题与解答</view>
+  </view>
+  <view class="page__bd">
+    <wux-accordion-group>
+      <wux-accordion title="数据是怎么来的？" content="模拟手工查询的。"></wux-accordion>
+      <wux-accordion title="还有其他办法查成绩吗？" content="可以通过个人门户进入教务系统查询。这也是唯一的官方信息查询途径，小程序展现的数据仅供参考。"></wux-accordion>
+      <wux-accordion title="这个小程序和学校有关系吗？" content="本项目属于个人项目，与学校没有合作，也不保证和承担任何数据有效性，只作为便捷查询方式。一切结果以教务系统信息为准。"></wux-accordion>
+      <wux-accordion title="数据加载缓慢。" content="一般情况下数据会在十秒内展现出来，如出现数据加载缓慢可能是服务器负载过高可以错开这个时间访问。"></wux-accordion>
+      <wux-accordion title="课程表/成绩显示不完全。" content="请先到教务系统确认教务系统能获取到完整的内容，确认的确有确实后请到 GitHub 提 Issue，请附上小程序截图和教务系统截图。 "></wux-accordion>
+      <wux-accordion title="想一起开发小程序。" content="可以到 GitHub 上查看已经开源的小程序代码，未来也会开源服务器代码。"></wux-accordion>
+      <wux-accordion title="如何在 GitHub 上找到这个项目？" content="请到 我的->关于->开源 查看项目地址"></wux-accordion>
+      <wux-accordion title="如何登录教务系统？" content="首先登录个人门户(https://ca.nuc.edu.cn),之后可以在首页看到教务系统链接。放假前教务系统只能通过校园网访问。"></wux-accordion>
+      <wux-accordion title="这里没有我的问题。" content="请到 GitHub 提 Issue。"></wux-accordion>
+    </wux-accordion-group>
+  </view>
+</view>

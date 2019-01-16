@@ -459,21 +459,6 @@ Page({
     return {
       title: '我的课程表',
       path: 'pages/CourseTable/CourseTable?courseTableRawData=' + JSON.stringify(this.data.courseTableRawData),
-      success: function(res) {
-        wx.showToast({
-          title: '已转发',
-          mask: true,
-          duration: 3000
-        })
-      },
-      fail: function(res) {
-        wx.showToast({
-          title: '转发失败',
-          mask: true,
-          image: '/images/Error.png',
-          duration: 3000
-        })
-      }
     }
   },
   onShow: function() {

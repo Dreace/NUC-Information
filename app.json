@@ -8,7 +8,8 @@
     "pages/About/About",
     "pages/Setting/Setting",
     "pages/WhatsNew/WhatsNew",
-    "pages/OpenSource/OpenSource"
+    "pages/OpenSource/OpenSource",
+    "pages/FAQ/FAQ"
   ],
   "window": {
     "backgroundTextStyle": "light",
