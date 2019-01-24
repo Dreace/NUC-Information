@@ -5,7 +5,7 @@
 </view>
 <view class="weui-cells weui-cells_after-title" style='font-size:100%'>
   <navigator url="/pages/Setting/Setting" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">教务账号设置</view>
+    <view class="weui-cell__bd">账号管理</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
 
@@ -27,13 +27,15 @@
       <text style='color:{{proxyServerColor}}; '>{{proxyServer}}</text>
     </view>
   </view>
+  <view class='weui-cell__bd b content' hover-class="none" style='text-align:center;border-top:1rpx solid #d9d9d9;font-size:100%;'>
+    <view style='margin-left: 1%;margin-top: 5rpx; margin-bottom: 2rpx;display:flex;width:98%;flex-direction: column;'>
+      <text style='flex:4;'>系统负载：</text>
+      <wux-progress show-info style='flex:6; justify-content: center;' status="normal" percent="{{load}}" bar-style="background-color:{{loadColor}}"/>
+    </view>
+  </view>
 
 </view>
-<view style='text-align: center;'>
-  <view>👆关于广告投放请详见关于页面👆</view>
-  <view>👇收入用于服务器建设 每次一点击转化为资金👇</view>
-</view>
-<ad style="width:90%" unit-id="adunit-0065a48368fd1ab4"></ad>
+<ad style="width:90%;margin-top:15rpx;" unit-id="adunit-0065a48368fd1ab4"></ad>
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">Version 1.8.6.5</view>
+  <view class="weui-footer__text">Version 1.8.8.1</view>
 </view>

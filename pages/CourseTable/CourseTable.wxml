@@ -1,6 +1,6 @@
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
 
-<wux-fab-button position="bottomRight" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
+<wux-fab-button position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
 <scroll-view class="scroll">
   <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
     <view class="page__bd">

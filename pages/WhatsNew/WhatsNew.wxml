@@ -1,60 +1,84 @@
 <!--pages/WhatsNew/WhatsNew.wxml-->
-<view class='main' style='margin-left:15rpx;'>当前版本</view>
-<text style='margin-left:15rpx;'>V 1.8.6</text>
-<view style='margin-left:30rpx;margin-bottom:35rpx;'>
-  <view wx:for="{{new186}}" class='new'>
-    <view>· {{item}}</view>
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">New Version</view>
+    <view class="page__desc">版本说明</view>
   </view>
-</view>
+  <view class='main' style='margin-left:15rpx;'>当前版本</view>
+  <text style='margin-left:15rpx;'>V 1.8.8.1</text>
+  <view style='margin-left:30rpx;margin-bottom:30rpx;'>
+    <view wx:for="{{new1881}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
+  </view>
+<view class='line'></view>
+  <view class='main' style='margin-left:15rpx;margin-top:30rpx'>历史版本</view>
+  
+  <text style='margin-left:15rpx;'>V 1.8.8</text>
+  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
+    <view wx:for="{{new188}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
+  </view>
+    <text style='margin-left:15rpx;'>V 1.8.7</text>
+  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
+    <view wx:for="{{new187}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
+  </view>
+  <text style='margin-left:15rpx;'>V 1.8.6</text>
+  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
+    <view wx:for="{{new186}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
+  </view>
+  <text style='margin-left:15rpx;'>V 1.8.5</text>
+  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
+    <view wx:for="{{new185}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
+  </view>
+  <text style='margin-left:15rpx;'>V 1.8.3</text>
+  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
+    <view wx:for="{{new183}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
+  </view>
+  <text style='margin-left:15rpx;'>V 1.8.0</text>
+  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
+    <view wx:for="{{new180}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
+  </view>
 
-<view class='main setborder' style='margin-left:15rpx;margin-top:20rpx'>历史版本</view>
-
-<text style='margin-left:15rpx;'>V 1.8.5</text>
-<view style='margin-left:30rpx;margin-bottom:20rpx;'>
-  <view wx:for="{{new185}}" class='new'>
-    <view>· {{item}}</view>
+  <text style='margin-left:15rpx;'>V 1.7.0</text>
+  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
+    <view wx:for="{{new170}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
   </view>
-</view>
-<text style='margin-left:15rpx;'>V 1.8.3</text>
-<view style='margin-left:30rpx;margin-bottom:20rpx;'>
-  <view wx:for="{{new183}}" class='new'>
-    <view>· {{item}}</view>
+  <text style='margin-left:15rpx;'>V 1.6.0</text>
+  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
+    <view wx:for="{{new160}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
   </view>
-</view>
-<text style='margin-left:15rpx;'>V 1.8.0</text>
-<view style='margin-left:30rpx;margin-bottom:20rpx;'>
-  <view wx:for="{{new180}}" class='new'>
-    <view>· {{item}}</view>
+  <text style='margin-left:15rpx;'>V 1.5.5</text>
+  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
+    <view wx:for="{{new155}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
   </view>
-</view>
-
-<text style='margin-left:15rpx;'>V 1.7.0</text>
-<view style='margin-left:30rpx;margin-bottom:20rpx;'>
-  <view wx:for="{{new170}}" class='new'>
-    <view>· {{item}}</view>
+  <text style='margin-left:15rpx;'>V 1.5.3</text>
+  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
+    <view wx:for="{{new153}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
   </view>
-</view>
-<text style='margin-left:15rpx;'>V 1.6.0</text>
-<view style='margin-left:30rpx;margin-bottom:20rpx;'>
-  <view wx:for="{{new160}}" class='new'>
-    <view>· {{item}}</view>
-  </view>
-</view>
-<text style='margin-left:15rpx;'>V 1.5.5</text>
-<view style='margin-left:30rpx;margin-bottom:20rpx;'>
-  <view wx:for="{{new155}}" class='new'>
-    <view>· {{item}}</view>
-  </view>
-</view>
-<text style='margin-left:15rpx;'>V 1.5.3</text>
-<view style='margin-left:30rpx;margin-bottom:20rpx;'>
-  <view wx:for="{{new153}}" class='new'>
-    <view>· {{item}}</view>
-  </view>
-</view>
-<text class='main' style='margin-left:15rpx'>V 1.5.0</text>
-<view style='margin-left:30rpx'>
-  <view wx:for="{{new150}}" class='new'>
-    <view>· {{item}}</view>
+  <text class='main' style='margin-left:15rpx'>V 1.5.0</text>
+  <view style='margin-left:30rpx'>
+    <view wx:for="{{new150}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
   </view>
 </view>

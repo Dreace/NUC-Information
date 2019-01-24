@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "导出课程表",
+  "usingComponents": {
+    "wux-cell-group": "../../dist/cell-group/index",
+    "wux-cell": "../../dist/cell/index",
+    "wux-calendar": "../../dist/calendar/index",
+    "wux-button": "../../dist/button/index"
+  }
+}

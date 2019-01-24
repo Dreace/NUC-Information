@@ -9,14 +9,15 @@ const buttons = [{
     icon: "/images/Share.png",
 
   },
- /* {
-    label: '导出到日历(开发中)',
-    icon: "/images/Export.png",
-  },
   {
-    label: '切换账号(开发中)',
+    label: '切换按钮位置',
     icon: "/images/Switch.png",
-  },*/
+  }
+  ,
+  {
+    label: '导出课程表',
+    icon: "/images/Export.png",
+  }
 ]
 Page({
 
@@ -57,14 +58,26 @@ Page({
     enableNow: undefined,
     weekNow: 0,
     buttons,
-    day:undefined
+    day: undefined,
+    p:0,
+    postion: ["bottomRight", "bottomLeft"]
   },
   onClick(e) {
     if (e.detail.index === 0) {
       this.refresh()
+    } else if (e.detail.index === 3) {
+      if (this.data.courseTableRawData !== undefined && this.data.courseTableRawData[1]["count"] != 0) {
+        wx.navigateTo({
+          url: '/pages/Export/Export?tables=' + JSON.stringify(this.data.courseTableRawData),
+        })
+      }
+    }else if(e.detail.index ===2){
+      this.setData({
+        p:this.data.p+1
+      })
     }
   },
-  //preventTouchMove: function() {},
+  preventTouchMove: function() {},
   closethis: function() {
     this.setData({
       showMoreInformation: false
@@ -169,7 +182,7 @@ Page({
     if (data[0]["code"] === "0") {
       wx.showToast({
         title: '没有课程表',
-        image: '/images/Error.png',
+        image: '/images/Sad.png',
         duration: 3000
       })
       return

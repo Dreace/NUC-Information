@@ -176,6 +176,7 @@ Page({
       wx.showToast({
         title: '好友的成绩',
         mask: true,
+        image: '/images/Happy.png',
         duration: 1500
       })
       return

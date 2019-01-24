@@ -1,0 +1,35 @@
+<!--pages/Export/Export.wxml-->
+<wux-calendar id="wux-calendar" />
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__hd">
+    <view class="page__title">Export Curriculum</view>
+    <view class="page__desc">导出课程表</view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">选择学期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker bindchange="bindTermChange" value="{{termsIndex}}" range="{{terms}}">
+            <view class="weui-select weui-select_in-select-after" style='font-size:1rem'>{{terms[termsIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+      
+      <view class="weui-cell__bd">
+        <wux-cell title="学期第一周周一" extra="{{value}}" bind:click="openCalendar"></wux-cell>
+      </view>
+
+    </view>
+  <view class="weui-btn-area">
+    <wux-button block  bind:click="exportTable" type="balanced" disabled='{{isFirst}}'>导出选择的课程表</wux-button>
+  </view>
+  <view class="{{show?'tips':'hide'}}" style='width:96%;margin-left:2%;'>
+    <view style='word-break:break-all; ' bindtap='tap'>iCal 文件地址：{{tableURL}}（已复制到剪切板，可直接粘贴，点击可再次复制）</view>
+    <view style='margin-top: 10rpx;margin-bottom: 10rpx;'>将上面的网址在浏览器中打开可以直接导入到系统日历中(iOS,MacOS),也可以下载后导入到可以解析 .ics 文件的应用中，如 Outlook(Windows),Google Calendar(Android)</view>
+    <view>使用搜索引擎查找“系统+导入ics”(如“iOS 导入ics”)可以获得详细的教程</view>
+  </view>
+  </view>
+</view>

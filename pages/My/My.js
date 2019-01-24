@@ -9,7 +9,9 @@ Page({
     mainServer: "待检测",
     mainServerColor: "#6b6d75",
     proxyServer: "待检测",
-    proxyServerColor: "#6b6d75"
+    proxyServerColor: "#6b6d75",
+    load: 0,
+    loadColor: "#5099B9",
   },
 
   /**
@@ -23,11 +25,11 @@ Page({
     var interval = that.data.interval;
     clearInterval(interval)
   },
-  checkServer: function () {
-    var that=this
+  checkServer: function() {
+    var that = this
     wx.request({
       url: 'https://cdn.dreace.top/getproxystate',
-      fail: function () {
+      fail: function() {
         that.setData({
           mainServer: "待检测",
           mainServerColor: "#6b6d75",
@@ -35,8 +37,8 @@ Page({
           proxyServerColor: "#6b6d75"
         })
       },
-      success: function (res) {
-        if(res.statusCode!=200){
+      success: function(res) {
+        if (res.statusCode != 200) {
           that.setData({
             mainServer: "离线",
             mainServerColor: "#ad2e2e",
@@ -45,7 +47,7 @@ Page({
           })
           return;
         }
-        
+
         that.setData({
           mainServer: "正常",
           mainServerColor: "#60ad2d",
@@ -61,6 +63,37 @@ Page({
             proxyServerColor: "#ad2e2e",
           })
         }
+      }
+    })
+    wx.request({
+      url: 'https://cdn.dreace.top/load',
+      fail: function() {
+        that.setData({
+          load: 0,
+          loadColor: "#FFFFFF"
+        })
+      },
+      success: function(res) {
+        if (res.statusCode != 200) {
+          that.setData({
+            load: 0,
+            loadColor: "#FFFFFF"
+          })
+          return;
+        }
+        var load = parseInt(res.data)
+        var loadColor = ""
+        if (load <= 70) {
+          loadColor = "#2A6EFC"
+        } else if (load <= 85) {
+          loadColor = "#FFCC00"
+        } else {
+          loadColor = "#ED4C3E"
+        }
+        that.setData({
+          load: load,
+          loadColor: loadColor
+        })
       }
     })
   },

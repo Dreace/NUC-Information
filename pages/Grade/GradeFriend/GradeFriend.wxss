@@ -4,11 +4,16 @@
 
 .add_icon {
   position: fixed;
-  width: 90rpx;
-  height: 90rpx;
-  bottom: 30rpx;
-  right: 330rpx;
+  width: 42px;
+  height: 42px;
+  bottom: 30px;
+  right: 20px;
   z-index: 999;
+}
+.url{
+  margin-top: 2%;
+  font: 50%;
+  color: #413c3c6e
 }
 .table{
   display: inline-flex;
@@ -101,7 +106,7 @@
   align-items: center;
   height: 60rpx;
   font-size: 30rpx;
-  color: rgb(110, 134, 173);
+  color:#3C3F3F;
   width: auto;
   word-break: normal;
   /*border-bottom: 1rpx solid rgba(218, 217, 217, 1);*/

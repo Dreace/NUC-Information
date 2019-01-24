@@ -62,62 +62,6 @@ Page({
       ModelContent: e.ModelContent
     })
   },
-  cancel: function (e) {
-    //关闭模态弹窗
-    this.setData({
-      isShowModel: false
-    })
-  },
-  //确定事件
-  confirm: function (e) {
-    var that = this
-    if (this.data.vcode != "") {
-      this.setData({
-        isShowModel: false
-      })
-
-      if (!(this.data.name === "" || this.data.name === "")) {
-        wx.showToast({
-          title: '加载中',
-          icon: 'loading',
-          duration: 10000
-        })
-        wx.request({
-          url: 'https://cdn.dreace.top/coursetable',
-          data: {
-            name: this.data.name,
-            passwd: this.data.passwd,
-            vcode: this.data.vcode,
-            cookie: this.data.cookie
-          },
-          success: function (res) {
-            wx.hideToast()
-            that.handleData({
-              data: res.data
-            })
-          },
-          fail: function (e) {
-            wx.showToast({
-              title: '网络异常',
-              image: '/images/Error.png',
-              duration: 3000
-            })
-            console.log(e)
-          },
-          complete: function () {
-            that.setData({
-              vcode: ""
-            })
-          }
-        })
-      }
-    }
-  },
-  inputvcode: function (e) {
-    this.setData({
-      vcode: e.detail.value
-    })
-  },
   handleData: function (e) {
     var data = e.data
     var that = this
@@ -140,15 +84,6 @@ Page({
           showTopTips: false
         });
       }, 3000);
-      if (this.data.autoVcode) {
-        this.getCourseTableWithVcode({
-          message: "自动识别失败，请手动输入验证码"
-        })
-      } else {
-        this.getCourseTableWithVcode({
-          message: "自动识别关闭，请手动输入验证码"
-        })
-      }
       return
     }
     if (data[0]["code"] === "2") {
@@ -266,6 +201,7 @@ Page({
         wx.showToast({
           title: '好友的课程表',
           mask: true,
+          image: '/images/Happy.png',
           duration: 1500
         })
         return

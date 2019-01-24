@@ -9,10 +9,10 @@ const buttons = [{
     icon: "/images/Share.png",
 
   },
-  /*{
-    label: '切换账号(开发中)',
+  {
+    label: '切换按钮位置',
     icon: "/images/Switch.png",
-  },*/
+  }
 ]
 Page({
 
@@ -43,10 +43,16 @@ Page({
     enableRefresh: true,
     gradeRawData: undefined,
     buttons,
+    p: 0,
+    postion: ["bottomRight", "bottomLeft"]
   },
   onClick(e) {
     if (e.detail.index === 0) {
       this.refresh()
+    } else if (e.detail.index === 2) {
+      this.setData({
+        p: this.data.p + 1
+      })
     }
   },
   copy: function(e) {
