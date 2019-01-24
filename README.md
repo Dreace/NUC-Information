@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-1.8.5-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
+![](https://img.shields.io/badge/Version-1.8.7-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
 
 这是什么？
 =========
@@ -42,6 +42,10 @@
 <img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
 
 ### 版本日志
+#### Version 1.8.7
+  1. 增加导出课程表功能，具体使用方法可在导出页面查看
+  2. 在最近一个学期成绩最后增加全部学期的 GPA 显示（全部和必修）
+  3. 右下角的按钮可切换到左下角
 #### Version 1.8.6
   1. UI 配色修改
   2. 加粗显示当前周数
