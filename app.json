@@ -9,7 +9,8 @@
     "pages/Setting/Setting",
     "pages/WhatsNew/WhatsNew",
     "pages/OpenSource/OpenSource",
-    "pages/Export/Export"
+    "pages/Export/Export",
+    "pages/Account/Account"
   ],
   "window": {
     "backgroundTextStyle": "light",

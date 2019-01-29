@@ -12,8 +12,7 @@ const buttons = [{
   {
     label: '切换按钮位置',
     icon: "/images/Switch.png",
-  }
-  ,
+  },
   {
     label: '导出课程表',
     icon: "/images/Export.png",
@@ -59,8 +58,10 @@ Page({
     weekNow: 0,
     buttons,
     day: undefined,
-    p:0,
-    postion: ["bottomRight", "bottomLeft"]
+    p: 0,
+    postion: ["bottomRight", "bottomLeft"],
+    current: 0,
+    showed: false
   },
   onClick(e) {
     if (e.detail.index === 0) {
@@ -71,16 +72,17 @@ Page({
           url: '/pages/Export/Export?tables=' + JSON.stringify(this.data.courseTableRawData),
         })
       }
-    }else if(e.detail.index ===2){
+    } else if (e.detail.index === 2) {
       this.setData({
-        p:this.data.p+1
+        p: this.data.p + 1
       })
     }
   },
   preventTouchMove: function() {},
   closethis: function() {
     this.setData({
-      showMoreInformation: false
+      showMoreInformation: false,
+      showCardsList: []
     })
   },
   showInformation: function(e) {
@@ -340,14 +342,25 @@ Page({
       isShowModel: false,
       vcode: ""
     })
-    if (this.data.name === "" || this.data.name === "") {
+    var that = this
+    
+    if (app.globalData.name === "" || app.globalData.passwd === ""  ) {
+      if (this.data.showed){
+        return
+      }
+      this.setData({
+        showed: true
+      })
       wx.showModal({
         title: '信息未设置',
         content: '你好像还没有设置教务账号\n请前往"我的"进行设置',
         success: function(res) {
+          that.setData({
+            showed: false
+          })
           if (res.confirm) {
             wx.navigateTo({
-              url: '/pages/Setting/Setting',
+              url: '/pages/Account/Account',
             })
           }
         }
@@ -414,9 +427,11 @@ Page({
       showCardsList = showCardsList.concat(p)
     }
     showCardsList = Array.from(new Set(showCardsList))
+    console.log(showCardsList)
     this.setData({
       showCardsList: showCardsList,
-      showMoreInformation: true
+      showMoreInformation: true,
+      current: 0
     })
   },
   /**
@@ -425,9 +440,6 @@ Page({
   onLoad: function(options) {
     var that = this
     var app = getApp()
-    app.globalData.name = wx.getStorageSync("name")
-    app.globalData.passwd = wx.getStorageSync("passwd")
-    app.globalData.autoVcode = wx.getStorageSync("autoVcode")
     app.globalData.firstWeek = wx.getStorageSync("firstWeek")
     this.setData({
       firstWeek: app.globalData.firstWeek
@@ -475,7 +487,14 @@ Page({
     }
   },
   onShow: function() {
+
     var app = getApp()
+    console.log(app.globalData.updateCourseTable)
+    if (app.globalData.updateCourseTable) {
+      this.getCourseTable()
+      app.globalData.updateCourseTable = false
+      return
+    }
     if (this.data.courseTableRawData !== undefined) {
       this.handleData({
         data: this.data.courseTableRawData

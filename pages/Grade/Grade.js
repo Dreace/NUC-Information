@@ -44,7 +44,8 @@ Page({
     gradeRawData: undefined,
     buttons,
     p: 0,
-    postion: ["bottomRight", "bottomLeft"]
+    postion: ["bottomRight", "bottomLeft"],
+    showed: false
   },
   onClick(e) {
     if (e.detail.index === 0) {
@@ -163,14 +164,24 @@ Page({
       isShowModel: false,
       vcode: ""
     })
-    if (this.data.name === "" || this.data.name === "") {
+    var that=this
+    if (app.globalData.name === "" || app.globalData.passwd === "") {
+      if (this.data.showed) {
+        return
+      }
+      this.setData({
+        showed: true
+      })
       wx.showModal({
         title: '信息未设置',
         content: '你好像还没有设置教务账号\n请前往"我的"进行设置',
         success: function(res) {
+          that.setData({
+            showed: false
+          })
           if (res.confirm) {
             wx.navigateTo({
-              url: '/pages/Setting/Setting',
+              url: '/pages/Account/Account',
             })
           }
         }
@@ -255,12 +266,19 @@ Page({
     }
 
   },
-  onShow: function() {},
-  onPullDownRefresh: function() {
-    wx.stopPullDownRefresh()
-    return;
-    wx.showNavigationBarLoading()
-    this.getGrade()
-    wx.hideNavigationBarLoading()
+  onShow: function() {
+    var app = getApp()
+    if (app.globalData.updateGrade) {
+      this.getGrade()
+      app.globalData.updateGrade = false
+      return
+    }
+    if (this.data.gradeRawData !== undefined) {
+      this.handleData({
+        data: this.data.gradeRawData
+      })
+    } else {
+      this.getGrade()
+    }
   }
 })

@@ -1,0 +1,8 @@
+<view class="sideslip-box" bindtouchstart="__start" bindtouchmove="__move" bindtouchend="__end">
+    <view class="sideslip-content" style="transform: translateX(-{{translateX}}px); transition: transform {{transitionTime / 1000}}s">
+        <slot></slot>
+    </view>
+    <view class="sideslip-tool">
+        <view class="btn {{item.color}}" style="transform: translateX({{item.type === 'del' ? translateXDel : translateXEdit}}px); transition: transform {{transitionTime / 1000}}s" wx:key="index" wx:for="{{__btns}}" wx:for-index="index" wx:for-item="item" data-type="{{item.type}}" bindtap="__taped">{{item.text}}</view>
+    </view>
+</view>

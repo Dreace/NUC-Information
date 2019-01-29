@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "账号管理",
+  "usingComponents": {
+    "sideslip-delete": "../../dist/sideslip-delete/sideslip-delete",
+    "wux-button": "../../dist/button/index"
+  }
+}

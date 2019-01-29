@@ -1,0 +1,37 @@
+.sideslip-box {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.sideslip-box .sideslip-content {
+    position: relative;
+    z-index: 99;
+}
+
+.sideslip-box .sideslip-tool {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+}
+
+.sideslip-box .btn {
+    flex: 1;
+    width: 60px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sideslip-box .btn.primary {
+    background-color: #c7c7cc;
+    color: #fff;
+}
+
+.sideslip-box .btn.danger {
+    background-color: #ff3b30;
+    color: #fff;
+}

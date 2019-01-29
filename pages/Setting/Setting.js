@@ -5,33 +5,41 @@ Page({
     message: "",
     name: "",
     passwd: "",
+    remark: "",
     testpassed: false,
     testing: false,
-    autoVcode: true
+    autoVcode: true,
+    accountID: -1,
   },
-  inputname: function (e) {
+  inputname: function(e) {
     this.setData({
       testpassed: false,
       name: e.detail.value
     })
   },
-  inputpasswd: function (e) {
+  inputremark: function(e) {
+    this.setData({
+      remark: e.detail.value
+    })
+  },
+  inputpasswd: function(e) {
     this.setData({
       testpassed: false,
       passwd: e.detail.value
     })
   },
-  swtichChnage: function (e) {
+  swtichChnage: function(e) {
     this.setData({
       autoVcode: e.detail.value
     })
   },
-  test: function (e) {
-    if(this.data.testing){
+  test: function(e) {
+    if (this.data.testing) {
       return;
     }
     var that = this
-    if(this.data.name==""||this.data.passwd==""){
+    var app = getApp()
+    if (this.data.name == "" || this.data.passwd == "") {
       that.setData({
         message: "账号密码不能为空",
         showTopTips: true
@@ -47,27 +55,44 @@ Page({
         name: this.data.name,
         passwd: this.data.passwd,
       },
-      success: function (res) {
+      success: function(res) {
         if (res.data[0]["code"] == "200") {
           wx.showToast({
-            title: '登录测试成功',
+            title: '登录成功',
             icon: 'succes',
             duration: 2500
           })
           that.setData({
-            testpassed:true
+            testpassed: true
           })
+          if (that.data.accountID == -1) {
+            if(that.data.remark==""){
+              that.setData({
+                remark:"不愿透露姓名"
+              })
+            }
+            app.globalData.accountList.push({
+              remark: that.data.remark,
+              name: that.data.name,
+              passwd: that.data.passwd
+            })
+          } else {
+            app.globalData.accountList[that.data.accountID]["name"] = that.data.name
+            app.globalData.accountList[that.data.accountID]["passwd"] = that.data.passwd
+            app.globalData.accountList[that.data.accountID]["remark"] = that.data.remark
+          }
+          wx.navigateBack()
         } else if (res.data[0]["code"] == "2") {
           that.setData({
             message: "账号或密码错误",
             showTopTips: true
           });
-          setTimeout(function () {
+          setTimeout(function() {
             that.setData({
               showTopTips: false
             });
           }, 3000);
-        }else{
+        } else {
           wx.showToast({
             title: '服务器异常',
             image: '/images/Error.png',
@@ -76,7 +101,7 @@ Page({
         }
 
       },
-      fail: function (e) {
+      fail: function(e) {
         wx.showToast({
           title: '未能完成请求',
           image: '/images/Error.png',
@@ -84,67 +109,34 @@ Page({
         })
         console.log(e)
       },
-      complete: function () {
+      complete: function() {
         that.setData({
           testing: false
         })
       }
     })
   },
-  confirm: function (e) {
-    if (this.data.name === "" || this.data.passwd === "") {
-      var that = this;
+  onLoad: function(options) {
+    var app = getApp()
+    var id = options.id
+    console.log(id)
+    if (id != -1) {
       this.setData({
-        message: "账号或密码不能为空",
-        showTopTips: true
-      });
-      setTimeout(function () {
-        that.setData({
-          showTopTips: false
-        });
-      }, 3000);
-    } else {
-      try {
-        if (!this.data.testpassed) {
-          wx.showToast({
-            title: '登陆测试未通过',
-            image: '/images/Error.png',
-            duration: 1000,
-            mask: true
-          })
-          return
-        }
-        var app = getApp()
-        app.globalData.name = this.data.name
-        app.globalData.passwd = this.data.passwd
-        app.globalData.autoVcode = this.data.autoVcode
-        wx.setStorageSync("newed", "ok")
-        wx.setStorageSync("name", this.data.name)
-        wx.setStorageSync("passwd", this.data.passwd)
-        wx.setStorageSync("autoVcode", this.data.autoVcode)
-        wx.showToast({
-          title: '保存成功',
-          icon: 'succes',
-          duration: 1000,
-          mask: true
-        })
-      } catch (e) {
-        console.log(e)
-      }
+        accountID: id,
+        name: app.globalData.accountList[id]["name"],
+        passwd: app.globalData.accountList[id]["passwd"],
+        remark: app.globalData.accountList[id]["remark"]
+      })
     }
   },
-  onLoad: function (options) { },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     wx.stopPullDownRefresh()
   },
-  onShow: function (options) {
+  onShow: function(options) {
     try {
       var app = getApp()
       this.setData({
-        name: app.globalData.name,
-        passwd: app.globalData.passwd,
-        testpassed:false,
-        autoVcode: app.globalData.autoVcode === "" ? true : app.globalData.autoVcode
+        testpassed: false,
       })
     } catch (e) {
       console.log(e)

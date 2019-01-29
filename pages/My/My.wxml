@@ -4,7 +4,7 @@
   <open-data type="userNickName" class="userinfo-nickname"></open-data>
 </view>
 <view class="weui-cells weui-cells_after-title" style='font-size:100%'>
-  <navigator url="/pages/Setting/Setting" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+  <navigator url="/pages/Account/Account" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__bd">账号管理</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
@@ -37,5 +37,5 @@
 </view>
 <ad style="width:90%;margin-top:15rpx;" unit-id="adunit-0065a48368fd1ab4"></ad>
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">Version 1.8.8.1</view>
+  <view class="weui-footer__text">Version 1.8.9</view>
 </view>

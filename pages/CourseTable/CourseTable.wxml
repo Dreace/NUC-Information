@@ -49,8 +49,8 @@
     </view>
   </view>
 </scroll-view>
-<view wx:if="{{showCardsList!=[]}}" class="{{showMoreInformation?'show':'close'}}">
-  <swiper class="sw" indicator-dots='true'>
+<view  class="{{showMoreInformation?'show':'close'}}">
+  <swiper class="sw" indicator-dots='true' current="{{current}}">
     <block wx:for="{{showCardsList}}" wx:key="unique">
       <swiper-item>
         <view class='model-pack' style='margin-top:200rpx'>

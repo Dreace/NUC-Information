@@ -4,10 +4,10 @@
 
 .add_icon {
   position: fixed;
-  width: 42px;
-  height: 42px;
-  bottom: 30px;
-  right: 20px;
+  width: 90rpx;
+  height: 90rpx;
+  bottom: 30rpx;
+  right: 330rpx;
   z-index: 999;
 }
 .url{

@@ -21,12 +21,23 @@
         <view class="weui-label">密码</view>
       </view>
       <view class="weui-cell__bd">
-        <input bindinput="inputpasswd" class="weui-input" placeholder="个人门户登录密码" password='true' value='{{passwd}}' confirm-type='done' />
+        <input bindinput="inputpasswd" class="weui-input" placeholder="个人门户登录密码" password='true' value='{{passwd}}' confirm-type='next' />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">备注</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input bindinput="inputremark" class="weui-input" placeholder="添加备注(选填)" value='{{remark}}' confirm-type='done' />
       </view>
     </view>
   </view>
-  <view class="weui-btn-area">
-    <button class="weui-btn" loading='{{testing}}' bindtap="test">测试</button>
+  <!--  <view class="weui-btn-area">
+    <button class="weui-btn" loading='{{testing}}' bindtap="test" type="primary">登录</button>
     <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
+  </view> -->
+  <view class="weui-btn-area" style='width:80%;margin-left:10%;'>
+    <wux-button block loading="{{testing}}" bind:click="test" type="balanced">登录</wux-button>
   </view>
 </view>
