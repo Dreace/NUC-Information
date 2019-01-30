@@ -11,6 +11,9 @@ App({
     accountList: [],
     updateCourseTable: false,
     updateGrade: false,
+    accountID: -1,
+    clearFlagCourseTable:false,
+    clearFlagGrade:false,
   },
   onLaunch: function() {
 
@@ -47,6 +50,10 @@ App({
     this.globalData.autoVcode = wx.getStorageSync("autoVcode")
     if (this.globalData.converted === true) {
       this.globalData.accountList = wx.getStorageSync("accountList")
+    }
+    var ID = wx.getStorageSync("accountID")
+    if (ID == "") {
+      this.globalData.accountID = -1
     }
     if (wx.getStorageSync("updated")) {
       wx.setStorageSync("updated", false)

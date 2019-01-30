@@ -34,16 +34,30 @@ Page({
     })
   },
   test: function(e) {
+    var that = this
+    var app = getApp()
     if (this.data.testing) {
       return;
     }
-    var that = this
-    var app = getApp()
+    if (this.data.accountID == -1) {
+      for (var x of app.globalData.accountList) {
+        if (x["name"] == this.data.name) {
+          wx.showToast({
+            title: '该账号已存在',
+            icon: "none",
+            duration: 2500
+          })
+          return
+        }
+      }
+    }
+
     if (this.data.name == "" || this.data.passwd == "") {
-      that.setData({
-        message: "账号密码不能为空",
-        showTopTips: true
-      });
+      wx.showToast({
+        title: '账号密码不能为空',
+        icon: "none",
+        duration: 2500
+      })
       return;
     }
     this.setData({
@@ -66,9 +80,9 @@ Page({
             testpassed: true
           })
           if (that.data.accountID == -1) {
-            if(that.data.remark==""){
+            if (that.data.remark == "") {
               that.setData({
-                remark:"不愿透露姓名"
+                remark: "不愿透露姓名"
               })
             }
             app.globalData.accountList.push({
@@ -87,6 +101,7 @@ Page({
             message: "账号或密码错误",
             showTopTips: true
           });
+
           setTimeout(function() {
             that.setData({
               showTopTips: false

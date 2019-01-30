@@ -164,7 +164,7 @@ Page({
       isShowModel: false,
       vcode: ""
     })
-    var that=this
+    var that = this
     if (app.globalData.name === "" || app.globalData.passwd === "") {
       if (this.data.showed) {
         return
@@ -259,7 +259,7 @@ Page({
       datas: this.data.grades[this.data.count + 1 - this.data.termsIndex][2]
     })
   },
-  onShareAppMessage: function (e) {
+  onShareAppMessage: function(e) {
     return {
       title: '我的成绩',
       path: 'pages/Grade/Grade?gradeRawData=' + JSON.stringify(this.data.gradeRawData),
@@ -268,12 +268,26 @@ Page({
   },
   onShow: function() {
     var app = getApp()
+    if (app.globalData.clearFlagGrade) {
+      this.setData({
+        loading: false,
+        name: "",
+        passwd: "",
+        count: 0,
+        terms: [],
+        termsIndex: 0,
+        grades: [],
+        datas: [],
+        gradeRawData: [],
+      })
+      app.globalData.clearFlagGrade = false
+    }
     if (app.globalData.updateGrade) {
       this.getGrade()
       app.globalData.updateGrade = false
       return
     }
-    if (this.data.gradeRawData !== undefined) {
+    if (this.data.gradeRawData !== undefined && this.data.gradeRawData.length > 0) {
       this.handleData({
         data: this.data.gradeRawData
       })

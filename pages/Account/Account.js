@@ -9,6 +9,28 @@ Page({
       accountList: accountList
     })
     var app = getApp()
+    if (accountList.length < 1) {
+      wx.clearStorageSync()
+      app.globalData.name = ""
+      app.globalData.passwd = ""
+      app.globalData.courseTableRawData = []
+      app.globalData.gradeRawData = []
+      app.globalData.clearFlagCourseTable = true
+      app.globalData.clearFlagGrade = true
+    } else if (app.globalData.accountID == e.target.id) {
+      app.globalData.accountID = 0
+      app.globalData.name = this.data.accountList[0]["name"]
+      app.globalData.passwd = this.data.accountList[0]["passwd"]
+      wx.setStorageSync("name", app.globalData.name)
+      wx.setStorageSync("accountID", app.globalData.accountID)
+      wx.setStorageSync("passwd", app.globalData.passwd)
+      app.globalData.clearFlagCourseTable = true
+      app.globalData.clearFlagGrade = true
+    } else if (e.target.id < app.globalData.accountID) {
+      app.globalData.accountID -= 1
+      wx.setStorageSync("accountID", app.globalData.accountID)
+    }
+
     app.globalData.accountList = accountList
     wx.setStorageSync("accountList", accountList)
   },
@@ -27,7 +49,9 @@ Page({
     if (app.globalData.name != this.data.accountList[e.currentTarget.id]["name"]) {
       app.globalData.name = this.data.accountList[e.currentTarget.id]["name"]
       app.globalData.passwd = this.data.accountList[e.currentTarget.id]["passwd"]
+      app.globalData.accountID = e.currentTarget.id
       wx.setStorageSync("name", app.globalData.name)
+      wx.setStorageSync("accountID", app.globalData.accountID)
       wx.setStorageSync("passwd", app.globalData.passwd)
       app.globalData.updateCourseTable = true
       app.globalData.updateGrade = true

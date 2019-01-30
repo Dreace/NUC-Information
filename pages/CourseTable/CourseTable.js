@@ -343,9 +343,9 @@ Page({
       vcode: ""
     })
     var that = this
-    
-    if (app.globalData.name === "" || app.globalData.passwd === ""  ) {
-      if (this.data.showed){
+
+    if (app.globalData.name === "" || app.globalData.passwd === "") {
+      if (this.data.showed) {
         return
       }
       this.setData({
@@ -487,15 +487,29 @@ Page({
     }
   },
   onShow: function() {
-
     var app = getApp()
-    console.log(app.globalData.updateCourseTable)
+    if (app.globalData.clearFlagCourseTable) {
+      this.setData({
+        name: "",
+        passwd: "",
+        count: 0,
+        terms: [],
+        termsIndex: 0,
+        table: [],
+        tables: [],
+        courseIndex: 0,
+        enableRefresh: true,
+        courseTableRawData: [],
+        showCardsList: [],
+      })
+      app.globalData.clearFlagCourseTable = false
+    }
     if (app.globalData.updateCourseTable) {
       this.getCourseTable()
       app.globalData.updateCourseTable = false
       return
     }
-    if (this.data.courseTableRawData !== undefined) {
+    if (this.data.courseTableRawData !== undefined && this.data.courseTableRawData.length > 1) {
       this.handleData({
         data: this.data.courseTableRawData
       })
