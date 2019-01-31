@@ -21,9 +21,6 @@ Page({
       success: function(res) {
         wx.getClipboardData({
           success: function(res) {
-            wx.showToast({
-              title: '已复制到剪贴板',
-            })
           }
         })
       }

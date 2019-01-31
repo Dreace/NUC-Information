@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-1.8.9-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
+![](https://img.shields.io/badge/Version-1.8.9.5-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
 
 这是什么？
 =========
@@ -13,7 +13,7 @@
 * 正计划将项目从微信脱离出来，开发独立的 Android 和 iOS 应用
 * 逐步适配国内大部分学校的教务系统
 * 继续保持开源
-* 未来将会开放服务端（Python）源码
+* 未来将会开放服务端（Python）源码（已开源）
 
 有想要一起完成这个项目的同学可以通过下面的方式联系我
 * [知乎][zhihu]
@@ -42,6 +42,9 @@
 <img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
 
 ### 版本日志
+#### Version 1.8.9.5
+  1. 账号切换逻辑优化 
+  2. 服务端代码开源，可在 我的->关于->开源 查看项目地址
 #### Version 1.8.9
   1. 修复课程表在特殊情况下显示异常
   2. 测试与保存按钮合并为登录按钮

@@ -3,8 +3,13 @@
   margin-top: 15%;
   text-align: center;
 }
+.copy{
+  margin-top: 2%;
+  font: 85%;
+  color: #413c3c6e
+}
 .url{
   margin-top: 10%;
   font: 85%;
-  color: #413c3c6e
+  color: #1339b4bd
 }
