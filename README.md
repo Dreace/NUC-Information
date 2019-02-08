@@ -1,7 +1,6 @@
-![](https://img.shields.io/badge/Version-1.8.9.5-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
+![](https://img.shields.io/badge/Version-1.9.0-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
 
-这是什么？
-=========
+### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
 ### 有什么用 & 谁可以用？ 
 方便中北大学的同学更方便的查询各种信息
@@ -42,6 +41,8 @@
 <img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
 
 ### 版本日志
+#### Version 1.9.0
+  1. 新增公告页面
 #### Version 1.8.9.5
   1. 账号切换逻辑优化 
   2. 服务端代码开源，可在 我的->关于->开源 查看项目地址

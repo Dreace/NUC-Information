@@ -10,7 +10,8 @@
     "pages/WhatsNew/WhatsNew",
     "pages/OpenSource/OpenSource",
     "pages/Export/Export",
-    "pages/Account/Account"
+    "pages/Account/Account",
+    "pages/Announcement/Announcement"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -44,6 +45,12 @@
         "pagePath": "pages/My/My",
         "iconPath": "images/My.png",
         "selectedIconPath": "images/My-active.png"
+      },
+      {
+        "text": "公告",
+        "pagePath": "pages/Announcement/Announcement",
+        "iconPath": "images/Announcement.png",
+        "selectedIconPath": "images/Announcement-active.png"
       }
     ]
   }

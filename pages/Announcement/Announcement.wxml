@@ -1,0 +1,11 @@
+<!--pages/Announcement/Announcement.wxml-->
+<view class="page">
+  <view class="page__hd" style='padding:0px;margin-bottom:1rpx;'>
+    <view class="page__title" style=' text-align: center;'>{{title}}</view>
+    <view class="page__desc" style=' text-align: center;'>{{time}}</view>
+  </view>
+</view>
+<view style='width:92%;margin-left:4%;margin-top:1rpx;'>
+  <wemark md="{{md}}" link highlight type="wemark"></wemark>
+</view>
+<!-- <wemark md="{{md}}" link highlight type="wemark"></wemark>-->

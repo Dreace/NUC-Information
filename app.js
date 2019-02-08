@@ -12,8 +12,23 @@ App({
     updateCourseTable: false,
     updateGrade: false,
     accountID: -1,
-    clearFlagCourseTable:false,
-    clearFlagGrade:false,
+    clearFlagCourseTable: false,
+    clearFlagGrade: false,
+    announcementCheck: undefined,
+    interval: undefined
+  },
+  getAnnouncementCheck: function() {
+    var that = this
+    wx.request({
+      url: 'https://dreace.top/dl/Announcement/0.json',
+      success: function(res) {
+        if (that.globalData.announcementCheck != res.data["announcementCheck"]) {
+          wx.showTabBarRedDot({
+            index: 3,
+          })
+        }
+      }
+    })
   },
   onLaunch: function() {
 
@@ -47,7 +62,12 @@ App({
     this.globalData.converted = wx.getStorageSync("converted")
     this.globalData.name = wx.getStorageSync("name")
     this.globalData.passwd = wx.getStorageSync("passwd")
-    this.globalData.autoVcode = wx.getStorageSync("autoVcode")
+    this.globalData.announcementCheck = wx.getStorageSync("announcementCheck")
+    var that = this
+
+    that.getAnnouncementCheck()
+    var interval = setInterval(that.getAnnouncementCheck, 10000)
+    this.globalData.interval = interval
     if (this.globalData.converted === true) {
       this.globalData.accountList = wx.getStorageSync("accountList")
     }
