@@ -157,8 +157,12 @@ Page({
     })
   },
   handleData: function(e) {
+    var day = new Date().getDay()
+    if (day == 0) {
+      day = 7
+    }
     this.setData({
-      day: new Date().getDay()
+      day: day
     })
     var data = e.data
     if (data === undefined) {
@@ -420,14 +424,21 @@ Page({
   },
   showCardView: function(e) {
     var index = e.currentTarget.dataset.courseindex
+    console.log(e.currentTarget.dataset.courseindex)
     var showCardsList = []
-    var card = this.data.indexToCard[index]
-    for (var i = 0; i < card.length; i++) {
-      var p = this.data.cardToIndex[card[i]["x"]][card[i]["y"]]
-      showCardsList = showCardsList.concat(p)
+    if (index < 0) {
+      showCardsList = showCardsList.concat(-index)
+    } else {
+      var card = this.data.indexToCard[index]
+      for (var i = 0; i < card.length; i++) {
+        var p = this.data.cardToIndex[card[i]["x"]][card[i]["y"]]
+        showCardsList = showCardsList.concat(p)
+      }
     }
     showCardsList = Array.from(new Set(showCardsList))
-    console.log(showCardsList)
+    if (showCardsList.length < 1) {
+      return
+    }
     this.setData({
       showCardsList: showCardsList,
       showMoreInformation: true,
@@ -509,7 +520,7 @@ Page({
       app.globalData.updateCourseTable = false
       return
     }
-    if (this.data.courseTableRawData !== undefined && this.data.courseTableRawData.length > 1) {
+    if (this.data.courseTableRawData != undefined && this.data.courseTableRawData.length > 0) {
       this.handleData({
         data: this.data.courseTableRawData
       })

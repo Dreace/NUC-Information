@@ -33,7 +33,8 @@ Page({
     toRight: undefined,
     showCardsList: undefined,
     cardToIndex: undefined,
-    indexToCard: undefined
+    indexToCard: undefined,
+    current: 0,
   },
   backto: function () {
     wx.navigateBack({
@@ -183,7 +184,8 @@ Page({
     showCardsList = Array.from(new Set(showCardsList))
     this.setData({
       showCardsList: showCardsList,
-      showMoreInformation: true
+      showMoreInformation: true,
+      current: 0
     })
   },
   /**

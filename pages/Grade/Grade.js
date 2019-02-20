@@ -287,7 +287,7 @@ Page({
       app.globalData.updateGrade = false
       return
     }
-    if (this.data.gradeRawData !== undefined && this.data.gradeRawData.length > 0) {
+    if (this.data.gradeRawData != undefined && this.data.gradeRawData.length > 0) {
       this.handleData({
         data: this.data.gradeRawData
       })

@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-1.9.0-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
+![](https://img.shields.io/badge/Version-1.9.2-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
@@ -41,6 +41,9 @@
 <img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
 
 ### 版本日志
+#### Version 1.9.2
+  1. bug 修复
+  2. 课程表底部增加没有具体时间的课程显示
 #### Version 1.9.0
   1. 新增公告页面
 #### Version 1.8.9.5

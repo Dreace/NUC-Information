@@ -46,7 +46,7 @@
   </view>
 </scroll-view>
 <view class="{{showMoreInformation?'show':'close'}}">
-  <swiper class="sw" indicator-dots='true' previous-margin='0rpx' next-margin='0rpx'>
+  <swiper class="sw" indicator-dots='true' previous-margin='0rpx' next-margin='0rpx' current="{{current}}">
     <block wx:for="{{showCardsList}}" wx:key="unique">
       <swiper-item>
         <view class='model-pack' style='margin-top:40%'>
