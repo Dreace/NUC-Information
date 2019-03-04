@@ -202,17 +202,25 @@ Page({
       that.setData({
         loading: true
       })
+      var auth = require("../../utils/authenticate.js")
       wx.request({
         url: 'https://cdn.dreace.top',
         data: {
           name: this.data.name,
-          passwd: this.data.passwd
+          passwd: this.data.passwd,
+          version: auth.version,
+          uuid: auth.uuid
         },
         success: function(res) {
           wx.hideToast()
           that.handleData({
             data: res.data
           })
+          wx.reportAnalytics('get_grade', {
+            name_grade: that.data.name,
+            code_grade: res.data[0]["code"],
+            count_grade: res.data[1]["count"],
+          });
         },
         fail: function() {
           wx.showToast({
@@ -260,9 +268,12 @@ Page({
     })
   },
   onShareAppMessage: function(e) {
+    var that = this
     return {
       title: '我的成绩',
-      path: 'pages/Grade/Grade?gradeRawData=' + JSON.stringify(this.data.gradeRawData),
+      path: 'pages/Grade/Grade?gradeRawData=' + JSON.stringify({
+        "term": that.data.terms[that.data.termsIndex],
+        "table": this.data.grades[this.data.count + 1 - this.data.termsIndex][2]}),
     }
 
   },

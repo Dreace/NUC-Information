@@ -12,11 +12,11 @@ Page({
     termsIndex: 0,
     terms: undefined,
     value: [],
-   // value: [new Date().toLocaleDateString().replace(/\//g, '-')],
+    // value: [new Date().toLocaleDateString().replace(/\//g, '-')],
     isFirst: true,
-    tableURL:undefined,
-    text:"",
-    show:false,
+    tableURL: undefined,
+    text: "",
+    show: false,
   },
   openCalendar() {
     console.log(this.data.value)
@@ -32,12 +32,12 @@ Page({
       },
     })
   },
-  tap:function(){
+  tap: function() {
     wx.setClipboardData({
       data: this.data.tableURL,
     })
   },
-  exportTable:function(){
+  exportTable: function() {
     var app = getApp()
     var that = this
     wx.showToast({
@@ -46,24 +46,34 @@ Page({
       icon: 'loading',
       duration: 60000
     })
+    var auth = require("../../utils/authenticate.js")
+    var data = undefined
+    var adata = app.globalData.additionalData[this.data.terms[this.data.termsIndex]]
+    if (adata != undefined && adata.length > 0) {
+      data = that.data.tables[this.data.tables.length - 1 - this.data.termsIndex][2].concat(adata)
+    } else {
+      table = that.data.tables[this.data.tables.length - 1 - this.data.termsIndex][2]
+    }
     wx.request({
       url: 'https://cdn.dreace.top/ical',
       data: {
-        data: JSON.stringify(this.data.tables[this.data.tables.length - 1 - this.data.termsIndex][2]),
-        firtMonday:this.data.value,
+        data: JSON.stringify(data),
+        firtMonday: this.data.value,
+        version: auth.version,
+        uuid: auth.uuid
       },
-      method:'POST',
-      success: function (res) {
+      method: 'POST',
+      success: function(res) {
         that.setData({
-          show:true,
-          tableURL:res.data
+          show: true,
+          tableURL: res.data
         })
         wx.hideToast()
         wx.setClipboardData({
           data: that.data.tableURL,
         })
       },
-      fail: function (e) {
+      fail: function(e) {
         wx.showToast({
           title: '未能完成请求',
           image: '/images/Error.png',

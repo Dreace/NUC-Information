@@ -50,7 +50,7 @@
     <block wx:for="{{showCardsList}}" wx:key="unique">
       <swiper-item>
         <view class='model-pack' style='margin-top:40%'>
-          <view class="model-title">课程信息</view>
+          <view class="model-title">课程信息({{(index+1)+"/"+showCardsList.length}})</view>
           <view class=" " style='margin:0 auto;width:90%; font-size: 100%%;'>
             <view>课程号:{{table[item]["Course_Number"]}}</view>
             <view>课程名:{{table[item]["Course_Name"]}}</view>

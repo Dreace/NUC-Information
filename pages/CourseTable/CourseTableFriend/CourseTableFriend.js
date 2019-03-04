@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    colorArrays: ["#ca8269", "#b23e52", "#008d56", "#455765", "#cd6118", "#474b42", "#6f6f43", "#48493f", "#6c2c2f", "#79520b", "#cd6118", "#104539", "#003a47", "#595455", "#6d3c14", "#005b98", "ee869a", "73b8e2", "b28c6e", "bce1df"],
+    colorArrays: ["#ca8269", "#b23e52", "#008d56", "#455765", "#cd6118", "#474b42", "#6f6f43", "#48493f", "#6c2c2f", "#79520b", "#cd6118", "#104539", "#003a47", "#595455", "#6d3c14", "#005b98", "#ee869a", "#73b8e2", "#b28c6e", "#bce1df"],
     loading: false,
     name: "",
     passwd: "",
@@ -36,89 +36,46 @@ Page({
     indexToCard: undefined,
     current: 0,
   },
-  backto: function () {
+  backto: function() {
     wx.navigateBack({
 
     })
   },
-  preventTouchMove: function () { },
-  closethis: function () {
+  preventTouchMove: function() {},
+  closethis: function() {
     this.setData({
       showMoreInformation: false
     })
   },
-  showInformation: function (e) {
+  showInformation: function(e) {
     this.setData({
       showMoreInformation: true
     })
   },
-  showInformationConfirm: function () {
+  showInformationConfirm: function() {
     this.setData({
       showMoreInformation: false
     })
   },
-  showModel: function (e) {
+  showModel: function(e) {
     this.setData({
       isShowModel: true,
       ModelContent: e.ModelContent
     })
   },
-  handleData: function (e) {
+  handleData: function(e) {
+    console.log(e)
     var data = e.data
     var that = this
-    if (data[0]["code"] === "-1") {
-      wx.showToast({
-        title: '加载失败',
-        image: '/images/Error.png',
-        duration: 3000
-      })
-      return
-    }
-    if (data[0]["code"] === "1") {
-      var that = this;
-      this.setData({
-        tips: "验证码错误",
-        showTopTips: true
-      });
-      setTimeout(function () {
-        that.setData({
-          showTopTips: false
-        });
-      }, 3000);
-      return
-    }
-    if (data[0]["code"] === "2") {
-      var that = this;
-      this.setData({
-        tips: "账号或密码错误",
-        showTopTips: true
-      });
-      setTimeout(function () {
-        that.setData({
-          showTopTips: false
-        });
-      }, 3000);
-      return
-    }
-    var count = data[1]["count"]
     var terms = []
-    for (var i = count + 1; i > 1; i--) {
-      terms.push(data[i][1])
-    }
+    terms[0] = data.term
     that.setData({
       terms: terms,
-      count: count,
-      tables: data
-    })
-    that.setData({
-      table: that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
-    })
-    that.setData({
-      courseTableRawData: data
+      table: data.table
     })
     that.handleMoreData()
   },
-  handleMoreData: function () {
+  handleMoreData: function() {
     var hasData = new Array()
     var toRight = new Array()
     var that = this
@@ -172,7 +129,7 @@ Page({
       indexToCard: indexToCard
     })
   },
-  showCardView: function (e) {
+  showCardView: function(e) {
     var index = e.currentTarget.dataset.courseindex
     var showCardsList = []
     console.log(index)
@@ -191,7 +148,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     try {
       if (options.courseTableRawData != undefined) {
         this.setData({
@@ -218,40 +175,10 @@ Page({
     }
 
   },
-  bindTermChange: function (e) {
-    this.setData({
-      termsIndex: e.detail.value
-    })
-    this.setData({
-      table: this.data.tables[this.data.count + 1 - this.data.termsIndex][2]
-    })
-    this.handleMoreData()
+  bindTermChange: function(e) {
+
   },
-  refresh: function () {
-    this.getCourseTable()
-  },
-  onShareAppMessage: function (e) {
-    return {
-      title: '我的课程表',
-      path: 'pages/CourseTable/CourseTable?courseTableRawData=' + JSON.stringify(this.data.courseTableRawData),
-      success: function (res) {
-        wx.showToast({
-          title: '已转发',
-          mask: true,
-          duration: 3000
-        })
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: '转发失败',
-          mask: true,
-          image: '/images/Error.png',
-          duration: 3000
-        })
-      }
-    }
-  },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     wx.stopPullDownRefresh()
   }
 })

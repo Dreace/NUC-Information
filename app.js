@@ -15,7 +15,8 @@ App({
     clearFlagCourseTable: false,
     clearFlagGrade: false,
     announcementCheck: undefined,
-    interval: undefined
+    interval: undefined,
+    additionalData: {}
   },
   getAnnouncementCheck: function() {
     var that = this
@@ -63,6 +64,11 @@ App({
     this.globalData.name = wx.getStorageSync("name")
     this.globalData.passwd = wx.getStorageSync("passwd")
     this.globalData.announcementCheck = wx.getStorageSync("announcementCheck")
+    var temp = undefined
+    temp = wx.getStorageSync("additionalData")
+    if (temp != "") {
+      this.globalData.additionalData = temp
+    }
     var that = this
 
     that.getAnnouncementCheck()

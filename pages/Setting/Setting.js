@@ -63,11 +63,14 @@ Page({
     this.setData({
       testing: true
     })
+    var auth = require("../../utils/authenticate.js")
     wx.request({
       url: 'https://cdn.dreace.top/test',
       data: {
         name: this.data.name,
         passwd: this.data.passwd,
+        version: auth.version,
+        uuid: auth.uuid
       },
       success: function(res) {
         if (res.data[0]["code"] == "200") {
@@ -114,7 +117,10 @@ Page({
             duration: 3000
           })
         }
-
+        wx.reportAnalytics('login_api', {
+          name_login: that.data.name,
+          code_login: res.data[0]["code"],
+        });
       },
       fail: function(e) {
         wx.showToast({

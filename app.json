@@ -11,7 +11,8 @@
     "pages/OpenSource/OpenSource",
     "pages/Export/Export",
     "pages/Account/Account",
-    "pages/Announcement/Announcement"
+    "pages/Announcement/Announcement",
+    "pages/Add/Add"
   ],
   "window": {
     "backgroundTextStyle": "light",

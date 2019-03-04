@@ -44,6 +44,7 @@
 }
 .model-button-cancel{
   float: left;
+  color: rgb(228, 46, 46);
   width: 50%;
   height: 2.5rem;
   line-height: 2.5rem;
@@ -60,4 +61,5 @@
 .confirm{
   height: 2.5rem;
   line-height: 2.5rem;
+  color: #009933;
 }

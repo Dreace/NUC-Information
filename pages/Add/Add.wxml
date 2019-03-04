@@ -1,0 +1,52 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">Add course</view>
+    <view class="page__desc">添加课程</view>
+  </view>
+  <view class="page__bd">
+    <wux-cell-group title="基本信息">
+      <wux-cell hover-class="none">
+        <wux-input label="课程名" placeholder="输入课程名" controlled data-message="课程名必须输入" bind:change="onChange0" error="{{ error0 }}" bind:error="onError" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="课程号" placeholder="输入课程号（可选）" data-index="1" bind:change="onChange" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="教师" placeholder="教师（可选）" data-index="2" bind:change="onChange" />
+      </wux-cell>
+    </wux-cell-group>
+    <wux-cell-group title="属性">
+      <wux-cell hover-class="none">
+        <wux-input label="学分" type="number" placeholder="输入学分（可选）" data-index="3" bind:change="onChange" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="课程属性" placeholder="选修/必修（可选）" data-index="4" bind:change="onChange" />
+      </wux-cell>
+    </wux-cell-group>
+    <wux-cell-group title="时间">
+      <wux-cell hover-class="none">
+        <wux-input label="周次"  controlled data-message="非法输入" bind:change="onChange4" error="{{ error4 }}" bind:error="onError" placeholder="哪几周上课（如 1-10,13,14）" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="星期" type="number" controlled data-message="只能输入 1-7" bind:change="onChange1" error="{{ error1 }}" bind:error="onError" placeholder="在星期几上课" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="开始时间" type="number" controlled data-message="只能输入 1-11" bind:change="onChange2" error="{{ error2 }}" bind:error="onError" placeholder="从第几小节开始" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="时长" type="number" controlled data-message="结束时间不能大于 11" bind:change="onChange3" error="{{ error3 }}" bind:error="onError" placeholder="上几小节" />
+      </wux-cell>
+    </wux-cell-group>
+    <wux-cell-group title="地点">
+      <wux-cell hover-class="none">
+        <wux-input label="教学楼" placeholder="上课教学楼（可选）" data-index="8" bind:change="onChange" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="教室" placeholder="上课教室（可选）" data-index="9" bind:change="onChange" />
+      </wux-cell>
+    </wux-cell-group>
+    <view class="weui-btn-area" style='width:80%;margin-left:10%;'>
+      <wux-button block disabled='{{error0||error1||error2||error3||error4}}' bind:click="add" type="balanced">添加</wux-button>
+    </view>
+  </view>
+</view>

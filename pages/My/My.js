@@ -27,8 +27,13 @@ Page({
   },
   checkServer: function() {
     var that = this
+    var auth = require("../../utils/authenticate.js")
     wx.request({
       url: 'https://cdn.dreace.top/getproxystate',
+      data:{
+        version: auth.version,
+        uuid: auth.uuid
+      },
       fail: function() {
         that.setData({
           mainServer: "待检测",
@@ -65,8 +70,13 @@ Page({
         }
       }
     })
+    var auth = require("../../utils/authenticate.js")
     wx.request({
       url: 'https://cdn.dreace.top/load',
+      data: {
+        version: auth.version,
+        uuid: auth.uuid
+      },
       fail: function() {
         that.setData({
           load: 0,

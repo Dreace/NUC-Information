@@ -4,6 +4,10 @@ const buttons = [{
     icon: "/images/Refresh.png",
   },
   {
+    label: '添加',
+    icon: "/images/Add.png",
+  },
+  {
     openType: 'share',
     label: '分享',
     icon: "/images/Share.png",
@@ -24,7 +28,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    colorArrays: ["#ca8269", "#b23e52", "#008d56", "#455765", "#cd6118", "#474b42", "#6f6f43", "#48493f", "#6c2c2f", "#79520b", "#cd6118", "#104539", "#003a47", "#595455", "#6d3c14", "#005b98", "ee869a", "73b8e2", "b28c6e", "bce1df"],
+    colorArrays: ["#ca8269", "#b23e52", "#008d56", "#455765", "#cd6118", "#474b42", "#6f6f43", "#48493f", "#6c2c2f", "#79520b", "#cd6118", "#104539", "#003a47", "#595455", "#6d3c14", "#005b98", "#ee869a", "#73b8e2", "#b28c6e", "#bce1df"],
     loading: false,
     name: "",
     passwd: "",
@@ -39,7 +43,7 @@ Page({
     cookie: "",
     courseIndex: 0,
     isShowModel: false, //控制弹窗是否显示，默认不显示
-    isShowConfirm: false, //是否只显示确定按钮，默认不是
+    isShowConfirm: true, //是否只显示确定按钮，默认不是
     ModelId: 0, //弹窗id
     ModelTitle: '验证码', //弹窗标题
     ModelContent: '', //弹窗文字内容
@@ -61,20 +65,26 @@ Page({
     p: 0,
     postion: ["bottomRight", "bottomLeft"],
     current: 0,
-    showed: false
+    showed: false,
+    showAddView: false,
   },
   onClick(e) {
     if (e.detail.index === 0) {
       this.refresh()
-    } else if (e.detail.index === 3) {
+    } else if (e.detail.index === 4) {
       if (this.data.courseTableRawData !== undefined && this.data.courseTableRawData[1]["count"] != 0) {
         wx.navigateTo({
           url: '/pages/Export/Export?tables=' + JSON.stringify(this.data.courseTableRawData),
         })
       }
-    } else if (e.detail.index === 2) {
+    } else if (e.detail.index === 3) {
       this.setData({
         p: this.data.p + 1
+      })
+    } else if (e.detail.index === 1) {
+      console.log(1)
+      wx.navigateTo({
+        url: '/pages/Add/Add?term=' + this.data.terms[this.data.termsIndex],
       })
     }
   },
@@ -83,6 +93,11 @@ Page({
     this.setData({
       showMoreInformation: false,
       showCardsList: []
+    })
+  },
+  closeAddCiew: function() {
+    this.setData({
+      showAddView: false
     })
   },
   showInformation: function(e) {
@@ -102,9 +117,36 @@ Page({
     })
   },
   cancel: function(e) {
-    //关闭模态弹窗
-    this.setData({
-      isShowModel: false
+    var app = getApp()
+    var that = this
+    wx.showModal({
+      title: '删除',
+      content: '确认删除这个课程，删除后不可恢复',
+      success: function(res) {
+        if (res.confirm) {
+          var table = that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
+          app.globalData.additionalData[that.data.terms[that.data.termsIndex]].splice(that.data.table.length - table.length - 1, 1)
+          var adata = app.globalData.additionalData[that.data.terms[that.data.termsIndex]]
+          console.log(adata != undefined && adata.length > 0)
+          if (adata != undefined && adata.length > 0) {
+            that.setData({
+              table: table.concat(adata)
+            })
+          } else {
+            that.setData({
+              table: table
+            })
+          }
+          wx.setStorageSync("additionalData", app.globalData.additionalData)
+          that.setData({
+            showMoreInformation: false,
+            showCardsList: []
+          })
+          that.handleMoreData()
+        } else {
+
+        }
+      }
     })
   },
   //确定事件
@@ -121,13 +163,16 @@ Page({
           icon: 'loading',
           duration: 10000
         })
+        var auth = require("../../utils/authenticate.js")
         wx.request({
           url: 'https://cdn.dreace.top/coursetable',
           data: {
             name: this.data.name,
             passwd: this.data.passwd,
             vcode: this.data.vcode,
-            cookie: this.data.cookie
+            cookie: this.data.cookie,
+            version: auth.version,
+            uuid: auth.uuid
           },
           success: function(res) {
             wx.hideToast()
@@ -208,6 +253,7 @@ Page({
     }
     var count = data[1]["count"]
     var terms = []
+    var app = getApp()
     for (var i = count + 1; i > 1; i--) {
       terms.push(data[i][1])
     }
@@ -216,9 +262,16 @@ Page({
       count: count,
       tables: data
     })
-    that.setData({
-      table: that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
-    })
+    var adata = app.globalData.additionalData[this.data.terms[this.data.termsIndex]]
+    if (adata != undefined && adata.length > 0) {
+      that.setData({
+        table: that.data.tables[that.data.count + 1 - that.data.termsIndex][2].concat(adata)
+      })
+    } else {
+      that.setData({
+        table: that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
+      })
+    }
     that.setData({
       courseTableRawData: data
     })
@@ -371,8 +424,13 @@ Page({
       })
       return
     }
+    var auth = require("../../utils/authenticate.js")
     wx.request({
       url: 'https://cdn.dreace.top/getdate',
+      data: {
+        version: auth.version,
+        uuid: auth.uuid
+      },
       success: function(res) {
         that.setData({
           firstWeek: res.data
@@ -394,17 +452,25 @@ Page({
       that.setData({
         loading: true
       })
+      var auth = require("../../utils/authenticate.js")
       wx.request({
         url: 'https://cdn.dreace.top/coursetable',
         data: {
           name: this.data.name,
-          passwd: this.data.passwd
+          passwd: this.data.passwd,
+          version: auth.version,
+          uuid: auth.uuid
         },
         success: function(res) {
           wx.hideToast()
           that.handleData({
             data: res.data
           })
+          wx.reportAnalytics('get_curriculum', {
+            name_curriculum: that.data.name,
+            code_curriculum: res.data[0]["code"],
+            count_curriculum: res.data[1]["count"],
+          });
         },
         fail: function() {
           wx.showToast({
@@ -455,8 +521,13 @@ Page({
     this.setData({
       firstWeek: app.globalData.firstWeek
     })
+    var auth = require("../../utils/authenticate.js")
     wx.request({
       url: 'https://cdn.dreace.top/getdate',
+      data: {
+        version: auth.version,
+        uuid: auth.uuid
+      },
       success: function(res) {
         that.setData({
           firstWeek: res.data
@@ -480,21 +551,46 @@ Page({
     }
   },
   bindTermChange: function(e) {
+    var that = this
+    var app = getApp()
     this.setData({
       termsIndex: e.detail.value
     })
-    this.setData({
-      table: this.data.tables[this.data.count + 1 - this.data.termsIndex][2]
-    })
+    var table = that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
+    var adata = app.globalData.additionalData[that.data.terms[that.data.termsIndex]]
+    console.log(adata != undefined && adata.length > 0)
+    if (adata != undefined && adata.length > 0) {
+      that.setData({
+        table: table.concat(adata)
+      })
+    } else {
+      that.setData({
+        table: table
+      })
+    }
     this.handleMoreData()
   },
   refresh: function() {
     this.getCourseTable()
   },
   onShareAppMessage: function(e) {
+    var that = this
+    var app = getApp()
+    var table = that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
+    var adata = app.globalData.additionalData[that.data.terms[that.data.termsIndex]]
+    console.log(adata != undefined && adata.length > 0)
+    if (adata != undefined && adata.length > 0) {
+      table = table.concat(adata)
+    } else {
+      table = table
+    }
+    console.log(table)
     return {
       title: '我的课程表',
-      path: 'pages/CourseTable/CourseTable?courseTableRawData=' + JSON.stringify(this.data.courseTableRawData),
+      path: 'pages/CourseTable/CourseTable?courseTableRawData=' + JSON.stringify({
+        "term": that.data.terms[that.data.termsIndex],
+        "table": table
+      }),
     }
   },
   onShow: function() {

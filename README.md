@@ -41,6 +41,9 @@
 <img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
 
 ### 版本日志
+#### Version 1.9.5
+ 1. 新增手动添加课程表功能，点击课程表页面的“加号”可以找到
+ 2. 分享课程表和成绩时只分享当前查看的学期
 #### Version 1.9.2
   1. bug 修复
   2. 课程表底部增加没有具体时间的课程显示
