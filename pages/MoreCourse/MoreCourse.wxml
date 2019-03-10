@@ -1,0 +1,31 @@
+<!--pages/MoreCourse/MoreCourse.wxml-->
+
+<wux-search-bar clear show-cancel focus="true" placeholder="搜索" bind:change="onChange" bind:cancel="onCancel" bind:clear="onClear" />
+<wux-prompt visible="{{ visible }}" icon="https://dreace.top/res/empty.png" title="空空如也" text="在搜索框键入开始搜索" style="background-color: #000;margin-top: 45%" />
+<wux-index height="100%" wx:if="{{!visible}}">
+  <wux-index-item wx:for="{{ alphabet }}" wx:key="" name="{{ item.initial }}">
+    <view class="demo-item" wx:for="{{ item.cells }}" wx:for-item="cell" wx:key="">
+      <view class='over' data-id="{{cell['ID']}}" bindtap='show'>{{ cell["Course_name"] +" "}}({{ cell["Teacher"] + cell["Time"] + " " + "周"+ Week[cell["Week"]-1]+" "+cell["Class_time"]}}小节)</view>
+    </view>
+  </wux-index-item>
+</wux-index>
+
+<view class="{{showMoreInformation?'show':'close'}}">
+  <view class='sw'>
+    <view class='model-pack' style='margin-top:200rpx'>
+      <view class="model-title">课程信息</view>
+      <view class=" " style='margin:0 auto;width:90%; font-size: 100%%;'>
+        <view>课程号:{{data[showID]["Course_number"]}}</view>
+        <view>课程名:{{data[showID]["Course_name"]}}</view>
+        <view>学院:{{data[showID]["Department"]}}</view>
+        <view>教师:{{data[showID]["Teacher"]}}</view>
+        <view>周次:{{data[showID]["Time"]}}</view>
+        <view>上课地点:{{data[showID]["Teaching_building"]+" "+data[showID]["Classroom"]}}</view>
+      </view>
+      <view class="model-button">
+        <view data-modelid="{{ModelId}}" class="model-button-cancel show" style='color: rgb(66, 121, 223);' bindtap="add">添加到课表</view>
+        <view data-modelid="{{ModelId}}" class="model-button-confirm show" bindtap="closethis">关闭</view>
+      </view>
+    </view>
+  </view>
+</view>

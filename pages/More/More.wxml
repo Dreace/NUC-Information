@@ -1,0 +1,15 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">More</view>
+    <view class="page__desc">更多</view>
+  </view>
+  <view class="page__bd">
+    <wux-grids>
+      <wux-grid thumb="https://dreace.top/res/gonggao.png" label="公告" bind:click="nav" data-url="/pages/Announcement/Announcement"/>
+      <wux-grid thumb="https://dreace.top/res/ke.png" label="蹭课" bind:click="nav" data-url="/pages/MoreCourse/MoreCourse"/>
+      <wux-grid thumb="https://dreace.top/res/git.png" label="开源" bind:click="nav" data-url="/pages/OpenSource/OpenSource"/>
+      <wux-grid thumb="https://dreace.top/res/faq.png" label="FAQ" bind:click="nav" data-url="/pages/FAQ/FAQ"/>
+      <wux-grid thumb="https://dreace.top/res/version.png" label="版本" bind:click="nav" data-url="/pages/WhatsNew/WhatsNew"/>
+    </wux-grids>
+  </view>
+</view>

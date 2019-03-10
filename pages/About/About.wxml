@@ -3,14 +3,6 @@
 <view class='centerup'>中北大学</view>
 <!--<contact-button class='add_icon' type="default-dark" size="50">
 </contact-button>-->
-<navigator url="/pages/WhatsNew/WhatsNew" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-  <view class="weui-cell__bd">版本说明</view>
-  <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-</navigator>
-<navigator url="/pages/OpenSource/OpenSource" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-  <view class="weui-cell__bd">开源</view>
-  <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-</navigator>
 <view style=' width: 95%;margin-left:2%;'>
   <view style='text-align: center;font-weight:bold;'>非常感谢你的理解与支持。</view>
   <view style='text-align: center;'>进行赞助或点击广告不影响任何功能，也不会因此限制小程序任何功能。广告由微信提供，小程序无法决定展示什么广告。</view>

@@ -14,25 +14,13 @@ App({
     accountID: -1,
     clearFlagCourseTable: false,
     clearFlagGrade: false,
-    announcementCheck: undefined,
-    interval: undefined,
-    additionalData: {}
-  },
-  getAnnouncementCheck: function() {
-    var that = this
-    wx.request({
-      url: 'https://dreace.top/dl/Announcement/0.json',
-      success: function(res) {
-        if (that.globalData.announcementCheck != res.data["announcementCheck"]) {
-          wx.showTabBarRedDot({
-            index: 3,
-          })
-        }
-      }
-    })
+    additionalData: {},
+    term: undefined,
   },
   onLaunch: function() {
-
+    wx.navigateTo({
+      url: '../../pages/More/More',
+    })
     const updateManager = wx.getUpdateManager()
 
     updateManager.onCheckForUpdate(function(res) {
@@ -59,21 +47,15 @@ App({
         title: '版本更新失败',
       })
     })
-    console.log(wx.getStorageSync("updated"))
     this.globalData.converted = wx.getStorageSync("converted")
     this.globalData.name = wx.getStorageSync("name")
     this.globalData.passwd = wx.getStorageSync("passwd")
-    this.globalData.announcementCheck = wx.getStorageSync("announcementCheck")
     var temp = undefined
     temp = wx.getStorageSync("additionalData")
     if (temp != "") {
       this.globalData.additionalData = temp
     }
     var that = this
-
-    that.getAnnouncementCheck()
-    var interval = setInterval(that.getAnnouncementCheck, 10000)
-    this.globalData.interval = interval
     if (this.globalData.converted === true) {
       this.globalData.accountList = wx.getStorageSync("accountList")
     }

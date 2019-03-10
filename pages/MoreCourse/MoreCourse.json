@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "蹭课",
+  "usingComponents": {
+    "wux-search-bar": "../../dist/search-bar/index",
+    "wux-index": "../../dist/index/index",
+    "wux-index-item": "../../dist/index-item/index",
+    "wux-prompt": "../../dist/prompt/index"
+  }
+}

@@ -142,6 +142,9 @@ Page({
             showMoreInformation: false,
             showCardsList: []
           })
+          wx.showToast({
+            title: '删除成功',
+          })
           that.handleMoreData()
         } else {
 
@@ -572,6 +575,10 @@ Page({
   },
   refresh: function() {
     this.getCourseTable()
+  },
+  onReady(){
+    var app = getApp()
+    app.globalData.term = this.data.terms[this.data.termsIndex]
   },
   onShareAppMessage: function(e) {
     var that = this

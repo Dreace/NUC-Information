@@ -15,9 +15,6 @@ Page({
     wx.request({
       url: 'https://dreace.top/dl/Announcement/0.json',
       success: function(res) {
-        wx.hideTabBarRedDot({
-          index: 3,
-        })
         app.globalData.announcementCheck = res.data["announcementCheck"]
         wx.setStorageSync("announcementCheck", res.data["announcementCheck"])
         that.setData({

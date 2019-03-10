@@ -12,7 +12,9 @@
     "pages/Export/Export",
     "pages/Account/Account",
     "pages/Announcement/Announcement",
-    "pages/Add/Add"
+    "pages/Add/Add",
+    "pages/MoreCourse/MoreCourse",
+    "pages/More/More"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -48,10 +50,10 @@
         "selectedIconPath": "images/My-active.png"
       },
       {
-        "text": "公告",
-        "pagePath": "pages/Announcement/Announcement",
-        "iconPath": "images/Announcement.png",
-        "selectedIconPath": "images/Announcement-active.png"
+        "text": "更多",
+        "pagePath": "pages/More/More",
+        "iconPath": "images/More.png",
+        "selectedIconPath": "images/More-active.png"
       }
     ]
   }

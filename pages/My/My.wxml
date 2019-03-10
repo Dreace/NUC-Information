@@ -13,10 +13,6 @@
     <view class="weui-cell__bd">关于</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
-  <navigator url="/pages/FAQ/FAQ" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">常见问题</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-  </navigator>
   <view class='weui-cell__bd b content' hover-class="none" style='text-align:center;border-top:1rpx solid #d9d9d9;font-size:100%;'>
     <view style='margin-left:1em;margin-top: 15rpx; margin-bottom: 15rpx;'>
       <text style='flex:1;'>主服务器：</text>
@@ -37,5 +33,5 @@
 </view>
 <ad style="width:90%;margin-top:15rpx;" unit-id="adunit-0065a48368fd1ab4"></ad>
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">Version 1.9.5</view>
+  <view class="weui-footer__text">Version 1.9.7</view>
 </view>

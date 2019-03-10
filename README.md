@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-1.9.2-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
+![](https://img.shields.io/badge/Version-1.9.7-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
@@ -41,9 +41,13 @@
 <img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
 
 ### 版本日志
+#### Version 1.9.7
+  1. 新增蹭课功能，可以搜索全校课程并添加到自己的课程表中，可以在“更多”页面找到
+  2. “公告”页面替换为“更多”页面，公告、FAQ、版本、开源的等页面移入
+  3. 注：蹭课功能还在测试中，如遇到问题请及时反馈
 #### Version 1.9.5
- 1. 新增手动添加课程表功能，点击课程表页面的“加号”可以找到
- 2. 分享课程表和成绩时只分享当前查看的学期
+  1. 新增手动添加课程表功能，点击课程表页面的“加号”可以找到
+  2. 分享课程表和成绩时只分享当前查看的学期
 #### Version 1.9.2
   1. bug 修复
   2. 课程表底部增加没有具体时间的课程显示
