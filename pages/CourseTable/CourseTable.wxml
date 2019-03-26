@@ -95,7 +95,7 @@
             <view>上课地点:{{table[item]["Course_Building"]+" "+table[item]["Course_Classroom"]}}</view>
           </view>
           <view class="model-button">
-            <view data-modelid="{{ModelId}}" class="model-button-cancel {{table[item]['Additional']?'show':'close'}}" bindtap="cancel">删除</view>
+            <view data-modelid="{{ModelId}}" class="model-button-cancel {{table[item]['Additional']?'show':'close'}}" bindtap="delete_" data-index="{{index}}">删除</view>
             <view data-modelid="{{ModelId}}" class="model-button-confirm {{table[item]['Additional']?'show':'close'}}" bindtap="closethis">关闭</view>
             <view data-modelid="{{ModelId}}" class="confirm {{table[item]['Additional']?'close':'show'}}" bindtap="closethis">关闭</view>
           </view>

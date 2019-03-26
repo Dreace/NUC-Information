@@ -19,6 +19,7 @@
         <view>课程名:{{data[showID]["Course_name"]}}</view>
         <view>学院:{{data[showID]["Department"]}}</view>
         <view>教师:{{data[showID]["Teacher"]}}</view>
+        <view>时间:{{"周"+ Week[data[showID]["Week"]-1]+" "+data[showID]["Class_time"]}}小节</view>
         <view>周次:{{data[showID]["Time"]}}</view>
         <view>上课地点:{{data[showID]["Teaching_building"]+" "+data[showID]["Classroom"]}}</view>
       </view>

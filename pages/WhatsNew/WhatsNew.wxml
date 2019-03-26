@@ -5,14 +5,21 @@
     <view class="page__desc">版本说明</view>
   </view>
   <view class='main' style='margin-left:15rpx;'>当前版本</view>
-  <text style='margin-left:15rpx;'>V 1.9.7</text>
+  <text style='margin-left:15rpx;'>V 1.9.8</text>
   <view style='margin-left:30rpx;margin-bottom:30rpx;'>
-    <view wx:for="{{new197}}" class='new'>
+    <view wx:for="{{new198}}" class='new'>
       <view>· {{item}}</view>
     </view>
   </view>
   <view class='line'></view>
   <view class='main' style='margin-left:15rpx;margin-top:30rpx'>历史版本</view>
+
+  <text style='margin-left:15rpx;'>V 1.9.7</text>
+  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
+    <view wx:for="{{new197}}" class='new'>
+      <view>· {{item}}</view>
+    </view>
+  </view>
 
   <text style='margin-left:15rpx;'>V 1.9.5</text>
   <view style='margin-left:30rpx;margin-bottom:20rpx;'>

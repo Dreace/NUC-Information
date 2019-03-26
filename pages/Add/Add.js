@@ -67,8 +67,10 @@ Page({
     this.data.values[6] = e.detail.value
   },
   onChange3(e) {
+    var t = parseInt(e.detail.value) + parseInt(this.data.value2)
+    console.log(t)
     this.setData({
-      error3: parseInt(e.detail.value) + parseInt(this.data.value2) > 11,
+      error3: t > 12 || isNaN(t) || parseInt(e.detail.value) <= 0,
       value3: e.detail.value
     })
     this.data.values[7] = e.detail.value

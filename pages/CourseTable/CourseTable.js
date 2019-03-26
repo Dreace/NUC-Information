@@ -116,7 +116,7 @@ Page({
       ModelContent: e.ModelContent
     })
   },
-  cancel: function(e) {
+  delete_: function(e) {
     var app = getApp()
     var that = this
     wx.showModal({
@@ -124,10 +124,15 @@ Page({
       content: '确认删除这个课程，删除后不可恢复',
       success: function(res) {
         if (res.confirm) {
+
           var table = that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
-          app.globalData.additionalData[that.data.terms[that.data.termsIndex]].splice(that.data.table.length - table.length - 1, 1)
+          console.log(that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length)
+          app.globalData.additionalData[that.data.terms[that.data.termsIndex]].splice(that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length, 1)
+          that.setData({
+            showMoreInformation: false,
+            showCardsList: []
+          })
           var adata = app.globalData.additionalData[that.data.terms[that.data.termsIndex]]
-          console.log(adata != undefined && adata.length > 0)
           if (adata != undefined && adata.length > 0) {
             that.setData({
               table: table.concat(adata)
@@ -138,10 +143,6 @@ Page({
             })
           }
           wx.setStorageSync("additionalData", app.globalData.additionalData)
-          that.setData({
-            showMoreInformation: false,
-            showCardsList: []
-          })
           wx.showToast({
             title: '删除成功',
           })
@@ -576,7 +577,7 @@ Page({
   refresh: function() {
     this.getCourseTable()
   },
-  onReady(){
+  onReady() {
     var app = getApp()
     app.globalData.term = this.data.terms[this.data.termsIndex]
   },
