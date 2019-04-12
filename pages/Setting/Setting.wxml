@@ -37,7 +37,7 @@
     <button class="weui-btn" loading='{{testing}}' bindtap="test" type="primary">登录</button>
     <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
   </view> -->
-  <view class="weui-btn-area" style='width:80%;margin-left:10%;'>
-    <wux-button block loading="{{testing}}" bind:click="test" type="balanced">登录</wux-button>
+  <view class="weui-btn-area" style='width:80%;margin-top:30%;'>
+    <wux-button block loading="{{testing}}" bind:click="getFreeClassroomList" type="balanced">登录</wux-button>
   </view>
 </view>

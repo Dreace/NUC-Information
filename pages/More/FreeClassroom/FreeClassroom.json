@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "无课教室",
+  "usingComponents": {
+    "wux-tag": "../../../dist/tag/index",
+    "wux-row": "../../../dist/row/index",
+    "wux-col": "../../../dist/col/index",
+    "wux-cell-group": "../../../dist/cell-group/index",
+    "wux-cell": "../../../dist/cell2/index",
+    "wux-select": "../../../dist/select/index",
+    "wux-button": "../../../dist/button/index"
+  }
+}

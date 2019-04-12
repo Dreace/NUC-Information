@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/CourseTable/CourseTable",
     "pages/CourseTable/CourseTableFriend/CourseTableFriend",
     "pages/Grade/Grade",
