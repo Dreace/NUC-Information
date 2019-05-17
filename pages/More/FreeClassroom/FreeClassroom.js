@@ -89,15 +89,18 @@ Page({
           })
         }
       },
+      complete: function() {
+        that.setData({
+          weekList: weekList,
+          classList: classList,
+          week: weekList[0],
+          class_: classList[0],
+          weekName: that.data.weekNameList[0]
+        })
+      }
     })
-    this.setData({
-      weekList: weekList,
-      classList: classList,
-      week: weekList[0],
-      class_: classList[0],
-      weekName: that.data.weekNameList[0]
-    })
-    setTimeout(this.next, 200)
+
+    setTimeout(this.next, 500)
   },
 
   onClick1() {

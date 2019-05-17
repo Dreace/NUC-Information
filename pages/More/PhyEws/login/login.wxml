@@ -1,11 +1,9 @@
-<!--pages/Setting/Setting.wxml-->
+<!--pages/More/PhyEws/login/login.wxml-->
 <view class="container" class="userinfo">
   <open-data type="userAvatarUrl" class="icon" mode="aspectFit"></open-data>
 </view>
 <view class="page__bd">
   <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
-  <view class="toptext">登陆方式修改为个人门户，请更新账号密码信息</view>
-  <view class="toptext">保存成功后返回之前的页面即可看到数据</view>
   <view class="weui-cells weui-cells_after-title">
 
     <view class="weui-cell weui-cell_input">
@@ -21,15 +19,7 @@
         <view class="weui-label">密码</view>
       </view>
       <view class="weui-cell__bd">
-        <input bindinput="inputpasswd" class="weui-input" placeholder="个人门户登录密码" password='true' value='{{passwd}}' confirm-type='next' />
-      </view>
-    </view>
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">备注</view>
-      </view>
-      <view class="weui-cell__bd">
-        <input bindinput="inputremark" class="weui-input" placeholder="添加备注(选填)" value='{{remark}}' confirm-type='done' />
+        <input bindinput="inputpasswd" class="weui-input" placeholder="物理实验教学中心密码" password='true' value='{{passwd}}' confirm-type='next' />
       </view>
     </view>
   </view>

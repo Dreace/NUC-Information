@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/CourseTable/CourseTable",
     "pages/CourseTable/CourseTableFriend/CourseTableFriend",
     "pages/Grade/Grade",
@@ -15,7 +14,9 @@
     "pages/Announcement/Announcement",
     "pages/Add/Add",
     "pages/MoreCourse/MoreCourse",
-    "pages/More/More"
+    "pages/More/More",
+    "pages/More/PhyEws/PhyEws",
+    "pages/More/PhyEws/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -57,5 +58,6 @@
         "selectedIconPath": "images/More-active.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

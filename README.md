@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-1.9.9-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
+![](https://img.shields.io/badge/Version-2.0.0-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
@@ -41,9 +41,12 @@
 <img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
 
 ### 版本日志
+#### Version 2.0.0
+  1. 新功能：大物实验成绩查询，可在 更多->大物实验 找到该功能
+  2. 注：仅可查询自行预约的大物实验成绩"
 #### Version 1.9.9
- 1. 新功能：全校无课教室查询
- 2. 注：可在 更多->自习室 使用查询功能
+  1. 新功能：全校无课教室查询
+  2. 注：可在 更多->自习室 使用查询功能
 #### Version 1.9.8
   1. bug 修复
 #### Version 1.9.7

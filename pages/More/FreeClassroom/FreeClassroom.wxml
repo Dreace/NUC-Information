@@ -25,7 +25,7 @@
    <!-- <view class="weui-btn-area" style='width:80%;margin-left:10%;'>
       <wux-button block bind:click="getFreeClassroomList" type="balanced">查询</wux-button>
     </view> -->
-    <view wx:if="{{freeClassroomList.length<1}}" style='text-align: center;color:#C2C3C4;'>无空闲教室，改变条件后重试</view>
+    <view wx:if="{{freeClassroomList.length<1}}" style='margin-top:10rpx;text-align: center;color:#C2C3C4;'>无空闲教室，改变条件后重试</view>
     <view wx:for="{{freeClassroomList}}" style='display:inline-flex;'>
       <wux-tag color="#2db7f5 ">{{item}}</wux-tag>
     </view>

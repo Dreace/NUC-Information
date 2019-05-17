@@ -11,6 +11,7 @@
       <wux-grid thumb="https://dreace.top/res/faq.png" label="FAQ" bind:click="nav" data-url="/pages/FAQ/FAQ"/>
       <wux-grid thumb="https://dreace.top/res/version.png" label="版本" bind:click="nav" data-url="/pages/WhatsNew/WhatsNew"/>
       <wux-grid thumb="https://dreace.top/res/classroom.png" label="自习室" bind:click="nav" data-url="/pages/More/FreeClassroom/FreeClassroom"/>
+      <wux-grid thumb="https://dreace.top/res/PhyEws.png" label="大物实验" bind:click="nav" data-url="/pages/More/PhyEws/PhyEws"/>
     </wux-grids>
   </view>
 </view>

@@ -33,5 +33,5 @@
 </view>
 <ad style="width:90%;margin-top:15rpx;" unit-id="adunit-0065a48368fd1ab4"></ad>
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">Version 1.9.9</view>
+  <view class="weui-footer__text">Version 2.0.0</view>
 </view>

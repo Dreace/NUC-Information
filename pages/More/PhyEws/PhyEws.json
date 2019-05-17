@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "大物实验",
+  "usingComponents": {
+    "wux-fab-button": "../../../dist/fab-button/index"
+  }
+}

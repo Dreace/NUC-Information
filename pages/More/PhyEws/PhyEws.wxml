@@ -1,0 +1,25 @@
+<!--pages/More/PhyEws/PhyEws.wxml-->
+<wux-fab-button  position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+<scroll-view class='scrollClass'>
+  <view class='table'>
+    <view class='table_header'>
+      <view class='th1'>
+        <view class="cell_label centerclass">{{heads[0]}}</view>
+      </view>
+      <view class='th2'>
+        <view class="cell_label centerclass">{{heads[3]}}</view>
+      </view>
+    </view>
+    <block wx:for="{{datas}}">
+      <view class='table_main'>
+        <view class='td1'>
+          <view class="table_Text_class">{{item.Course_Name}}</view>
+        </view>
+        <view class='td2'>
+          <view class="table_Text_class">{{item.Course_Grade}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>

@@ -16,11 +16,14 @@ App({
     clearFlagGrade: false,
     additionalData: {},
     term: undefined,
+    PhyEwsRawData: undefined,
+    PhyEwsname: undefined,
+    PhyEwspassed: undefined,
+    updatePhyEwsGrade: false,
+    clearFlagPhyEwsGrade: false,
   },
   onLaunch: function() {
-    wx.navigateTo({
-      url: '../../pages/More/More',
-    })
+
     const updateManager = wx.getUpdateManager()
 
     updateManager.onCheckForUpdate(function(res) {
