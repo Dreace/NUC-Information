@@ -1,17 +1,17 @@
 // pages/More/PhyEws/PhyEws.js
 const buttons = [{
-    label: '刷新',
-    icon: "/images/Refresh.png",
-  },
-  {
-    label: '登出',
-    icon: "/images/Logout.png",
+  label: '刷新',
+  icon: "/images/Refresh.png",
+},
+{
+  label: '登出',
+  icon: "/images/Logout.png",
 
-  },
-  {
-    label: '切换按钮位置',
-    icon: "/images/Switch.png",
-  }
+},
+{
+  label: '切换按钮位置',
+  icon: "/images/Switch.png",
+}
 ]
 Page({
 
@@ -24,7 +24,7 @@ Page({
     PhyEwspasswd: "",
     grades: undefined,
     datas: [],
-    heads: ["实验", "属性", "学分", "成绩"],
+    heads: ["序号", "实验", "成绩"],
     showTopTips: false,
     tips: "",
     PhyEwsRawData: undefined,
@@ -58,17 +58,17 @@ Page({
       })
     }
   },
-  refresh: function() {
+  refresh: function () {
     this.getGrade()
   },
-  preventTouchMove: function() {},
-  showModel: function(e) {
+  preventTouchMove: function () { },
+  showModel: function (e) {
     this.setData({
       isShowModel: true,
       ModelContent: e.ModelContent
     })
   },
-  handleData: function(e) {
+  handleData: function (e) {
     var data = e.data
     var that = this
     if (data[0]["code"] === "-1") {
@@ -102,7 +102,7 @@ Page({
         tips: "账号或密码错误",
         showTopTips: true
       });
-      setTimeout(function() {
+      setTimeout(function () {
         that.setData({
           showTopTips: false
         });
@@ -114,14 +114,14 @@ Page({
     })
     wx.setStorageSync("PhyEwsRawData", data)
   },
-  getGrade: function(e) {
+  getGrade: function (e) {
     if (this.data.loading) {
       var that = this;
       this.setData({
         tips: "数据加载中，请勿操作",
         showTopTips: true
       });
-      setTimeout(function() {
+      setTimeout(function () {
         that.setData({
           showTopTips: false
         });
@@ -146,7 +146,7 @@ Page({
       wx.showModal({
         title: '未登录',
         content: '登陆后才能查看成绩，现在登录？',
-        success: function(res) {
+        success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
               url: 'login/login',
@@ -158,7 +158,11 @@ Page({
     }
     this.getGradeWithoutVcode()
   },
-  getGradeWithoutVcode: function() {
+  getGradeWithoutVcode: function () {
+    var check = require("../../../utils/check_request_time.js")
+    if (!check.check()) {
+      return
+    }
     var that = this
     if (!(this.data.PhyEwsname === "" || this.data.PhyEwspasswd === "")) {
       wx.showToast({
@@ -179,13 +183,13 @@ Page({
           version: auth.version,
           uuid: auth.uuid
         },
-        success: function(res) {
+        success: function (res) {
           wx.hideToast()
           that.handleData({
             data: res.data
           })
         },
-        fail: function() {
+        fail: function () {
           wx.showToast({
             title: '未能完成请求',
             mask: true,
@@ -193,7 +197,7 @@ Page({
             duration: 3000
           })
         },
-        complete: function() {
+        complete: function () {
           that.setData({
             loading: false
           })
@@ -204,7 +208,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var app = getApp()
     app.globalData.PhyEwsname = wx.getStorageSync("PhyEwsname")
     app.globalData.PhyEwspasswd = wx.getStorageSync("PhyEwspasswd")
@@ -218,7 +222,7 @@ Page({
       this.getGrade()
     }
   },
-  onShow: function() {
+  onShow: function () {
     var app = getApp()
     if (app.globalData.clearFlagPhyEwsGrade) {
       this.setData({

@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-2.0.0-green.svg) ![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic) 
+![](https://img.shields.io/badge/Version-2.0.1-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
@@ -41,6 +41,10 @@
 <img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
 
 ### 版本日志
+#### Version 2.0.1
+  1. 课程表可以切换显示的周数并增加日期和上课事件显示
+  2. “更多”页面布局调整
+  3. UI 微调
 #### Version 2.0.0
   1. 新功能：大物实验成绩查询，可在 更多->大物实验 找到该功能
   2. 注：仅可查询自行预约的大物实验成绩"

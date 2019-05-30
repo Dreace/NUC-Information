@@ -39,7 +39,7 @@
   flex-direction: column;
   width: 450rpx;
   height: 70rpx;
-  background:rgba(217, 227, 233,0.7);
+  background:#F8F8F8;
   border-right: 1rpx solid rgba(218, 217, 217, 1); 
   border-bottom: 1rpx solid rgba(218, 217, 217, 1); 
   justify-content: center;
@@ -51,7 +51,7 @@
   flex-direction: column;
   width: 100rpx;
   height: 70rpx;
-  background:rgba(217, 227, 233,0.7);
+  background:#F8F8F8;
   border-right: 1rpx solid rgba(218, 217, 217, 1); 
   border-bottom: 1rpx solid rgba(218, 217, 217, 1); 
   justify-content: center;

@@ -1,6 +1,6 @@
 <!--pages/MoreCourse/MoreCourse.wxml-->
 
-<wux-search-bar clear show-cancel focus="true" placeholder="搜索" bind:change="onChange" bind:cancel="onCancel" bind:clear="onClear" />
+<wux-search-bar clear show-cancel focus="true" placeholder="搜索课程名、教师和学院" bind:change="onChange" bind:cancel="onCancel" bind:clear="onClear" />
 <wux-prompt visible="{{ visible }}" icon="https://dreace.top/res/empty.png" title="空空如也" text="在搜索框键入开始搜索" style="background-color: #000;margin-top: 45%" />
 <wux-index height="100%" wx:if="{{!visible}}">
   <wux-index-item wx:for="{{ alphabet }}" wx:key="" name="{{ item.initial }}">

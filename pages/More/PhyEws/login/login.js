@@ -11,20 +11,21 @@ Page({
     testing: false,
     autoVcode: true,
     accountID: -1,
+    showPassword: false,
   },
-  inputname: function(e) {
+  inputname: function (e) {
     this.setData({
       testpassed: false,
       PhyEwsname: e.detail.value
     })
   },
-  inputpasswd: function(e) {
+  inputpasswd: function (e) {
     this.setData({
       testpassed: false,
       PhyEwspasswd: e.detail.value
     })
   },
-  test: function(e) {
+  test: function (e) {
     var that = this
     var app = getApp()
     if (this.data.testing) {
@@ -51,7 +52,7 @@ Page({
         version: auth.version,
         uuid: auth.uuid
       },
-      success: function(res) {
+      success: function (res) {
         if (res.data[0]["code"] == "200") {
           wx.showToast({
             title: '登录成功',
@@ -71,10 +72,11 @@ Page({
         } else if (res.data[0]["code"] == "2") {
           that.setData({
             message: "账号或密码错误",
-            showTopTips: true
+            showTopTips: true,
+            showPassword: true,
           });
 
-          setTimeout(function() {
+          setTimeout(function () {
             that.setData({
               showTopTips: false
             });
@@ -87,7 +89,7 @@ Page({
           })
         }
       },
-      fail: function(e) {
+      fail: function (e) {
         wx.showToast({
           title: '未能完成请求',
           image: '/images/Error.png',
@@ -95,14 +97,14 @@ Page({
         })
         console.log(e)
       },
-      complete: function() {
+      complete: function () {
         that.setData({
           testing: false
         })
       }
     })
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     var app = getApp()
     this.setData({
       PhyEwsname: app.globalData.PhyEwsname,

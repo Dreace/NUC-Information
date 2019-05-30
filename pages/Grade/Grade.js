@@ -1,18 +1,18 @@
 // pages/Grade/Grade.js
 const buttons = [{
-    label: '刷新',
-    icon: "/images/Refresh.png",
-  },
-  {
-    openType: 'share',
-    label: '分享',
-    icon: "/images/Share.png",
+  label: '刷新',
+  icon: "/images/Refresh.png",
+},
+{
+  openType: 'share',
+  label: '分享',
+  icon: "/images/Share.png",
 
-  },
-  {
-    label: '切换按钮位置',
-    icon: "/images/Switch.png",
-  }
+},
+{
+  label: '切换按钮位置',
+  icon: "/images/Switch.png",
+}
 ]
 Page({
 
@@ -56,34 +56,34 @@ Page({
       })
     }
   },
-  copy: function(e) {
+  copy: function (e) {
     wx.showLoading({
       title: '加载中',
     })
     wx.downloadFile({
       url: 'https://dreace.top/GPA.pdf',
-      success: function(res) {
+      success: function (res) {
         var filePath = res.tempFilePath
         wx.openDocument({
           filePath: filePath,
-          success: function(res) {
+          success: function (res) {
             wx.hideLoading()
           }
         })
       }
     })
   },
-  refresh: function() {
+  refresh: function () {
     this.getGrade()
   },
-  preventTouchMove: function() {},
-  showModel: function(e) {
+  preventTouchMove: function () { },
+  showModel: function (e) {
     this.setData({
       isShowModel: true,
       ModelContent: e.ModelContent
     })
   },
-  handleData: function(e) {
+  handleData: function (e) {
     var data = e.data
     var that = this
     if (data[0]["code"] === "-1") {
@@ -117,7 +117,7 @@ Page({
         tips: "账号或密码错误",
         showTopTips: true
       });
-      setTimeout(function() {
+      setTimeout(function () {
         that.setData({
           showTopTips: false
         });
@@ -142,14 +142,14 @@ Page({
     }
     wx.setStorageSync("gradeRawData", data)
   },
-  getGrade: function(e) {
+  getGrade: function (e) {
     if (this.data.loading) {
       var that = this;
       this.setData({
         tips: "数据加载中，请勿操作",
         showTopTips: true
       });
-      setTimeout(function() {
+      setTimeout(function () {
         that.setData({
           showTopTips: false
         });
@@ -175,7 +175,7 @@ Page({
       wx.showModal({
         title: '信息未设置',
         content: '你好像还没有设置教务账号\n请前往"我的"进行设置',
-        success: function(res) {
+        success: function (res) {
           that.setData({
             showed: false
           })
@@ -190,7 +190,11 @@ Page({
     }
     this.getGradeWithoutVcode()
   },
-  getGradeWithoutVcode: function() {
+  getGradeWithoutVcode: function () {
+    var check = require("../../utils/check_request_time.js")
+    if (!check.check()) {
+      return
+    }
     var that = this
     if (!(this.data.name === "" || this.data.passwd === "")) {
       wx.showToast({
@@ -211,7 +215,7 @@ Page({
           version: auth.version,
           uuid: auth.uuid
         },
-        success: function(res) {
+        success: function (res) {
           wx.hideToast()
           that.handleData({
             data: res.data
@@ -222,7 +226,7 @@ Page({
             count_grade: res.data[1]["count"],
           });
         },
-        fail: function() {
+        fail: function () {
           wx.showToast({
             title: '未能完成请求',
             mask: true,
@@ -230,10 +234,12 @@ Page({
             duration: 3000
           })
         },
-        complete: function() {
+        complete: function () {
           that.setData({
             loading: false
           })
+          var app = getApp()
+          app.globalData.lastRequestTime = new Date()
         }
       })
     }
@@ -241,7 +247,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var app = getApp()
     app.globalData.name = wx.getStorageSync("name")
     app.globalData.passwd = wx.getStorageSync("passwd")
@@ -259,7 +265,7 @@ Page({
       this.getGrade()
     }
   },
-  bindTermChange: function(e) {
+  bindTermChange: function (e) {
     this.setData({
       termsIndex: e.detail.value
     })
@@ -267,17 +273,18 @@ Page({
       datas: this.data.grades[this.data.count + 1 - this.data.termsIndex][2]
     })
   },
-  onShareAppMessage: function(e) {
+  onShareAppMessage: function (e) {
     var that = this
     return {
       title: '我的成绩',
       path: 'pages/Grade/Grade?gradeRawData=' + JSON.stringify({
         "term": that.data.terms[that.data.termsIndex],
-        "table": this.data.grades[this.data.count + 1 - this.data.termsIndex][2]}),
+        "table": this.data.grades[this.data.count + 1 - this.data.termsIndex][2]
+      }),
     }
 
   },
-  onShow: function() {
+  onShow: function () {
     var app = getApp()
     if (app.globalData.clearFlagGrade) {
       this.setData({

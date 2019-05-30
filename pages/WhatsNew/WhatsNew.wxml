@@ -1,145 +1,125 @@
 <!--pages/WhatsNew/WhatsNew.wxml-->
 <view class="page">
   <view class="page__hd">
-    <view class="page__title">New Version</view>
+    <view class="page__title">Release Notes</view>
     <view class="page__desc">版本说明</view>
   </view>
-  <view class='main' style='margin-left:15rpx;'>当前版本</view>
-  <text style='margin-left:15rpx;'>V 2.0.0</text>
-  <view style='margin-left:30rpx;margin-bottom:30rpx;'>
-    <view wx:for="{{new200}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <view class='line'></view>
-  <view class='main' style='margin-left:15rpx;margin-top:30rpx'>历史版本</view>
-
-  <text style='margin-left:15rpx;'>V 1.9.9</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new199}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.9.8</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new198}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-
-  <text style='margin-left:15rpx;'>V 1.9.7</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new197}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.9.5</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new195}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.9.3</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new193}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.9.2</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new192}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.9.0</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new190}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.8.9.5</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new1895}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.8.9</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new189}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.8.8.1</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new1881}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.8.8</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new188}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.8.7</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new187}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.8.6</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new186}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.8.5</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new185}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.8.3</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new183}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.8.0</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new180}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-
-  <text style='margin-left:15rpx;'>V 1.7.0</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new170}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.6.0</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new160}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.5.5</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new155}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text style='margin-left:15rpx;'>V 1.5.3</text>
-  <view style='margin-left:30rpx;margin-bottom:20rpx;'>
-    <view wx:for="{{new153}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
-  </view>
-  <text class='main' style='margin-left:15rpx'>V 1.5.0</text>
-  <view style='margin-left:30rpx'>
-    <view wx:for="{{new150}}" class='new'>
-      <view>· {{item}}</view>
-    </view>
+  <view class="page__bd page__bd_spacing">
+    <wux-timeline>
+          <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
+        <view>2019-5-30 v2.0.1</view>
+        <view wx:for="{{new201}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-5-17 v2.0.0</view>
+        <view wx:for="{{new200}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-4-12 v1.9.9</view>
+        <view wx:for="{{new199}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-3-26 v1.9.8</view>
+        <view wx:for="{{new198}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-3-10 v1.9.7</view>
+        <view wx:for="{{new197}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-3-4 v1.9.5</view>
+        <view wx:for="{{new195}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-2-20 v1.9.2</view>
+        <view wx:for="{{new192}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-2-8 v1.9.0</view>
+        <view wx:for="{{new190}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-2-1 v1.8.9.5</view>
+        <view wx:for="{{new1895}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-1-30 v1.8.9</view>
+        <view wx:for="{{new189}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-1-24 v1.8.7</view>
+        <view wx:for="{{new187}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-1-15 v1.8.6</view>
+        <view wx:for="{{new186}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-1-20 v1.8.5</view>
+        <view wx:for="{{new185}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2019-1-9 v1.8.3</view>
+        <view wx:for="{{new183}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2018-11-2 v1.8.0</view>
+        <view wx:for="{{new180}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2018-10-1 v1.7.0</view>
+        <view wx:for="{{new170}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2018-9-2 v1.6.0</view>
+        <view wx:for="{{new160}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2018-8-29 v1.5.5</view>
+        <view wx:for="{{new155}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
+        <view>2018-8-29 v1.5.3</view>
+        <view wx:for="{{new153}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+    </wux-timeline>
   </view>
 </view>

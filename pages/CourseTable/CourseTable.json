@@ -1,5 +1,12 @@
 {
   "usingComponents": {
-    "wux-fab-button": "../../dist/fab-button/index"
-  }
+    "wux-fab-button": "../../dist/fab-button/index",
+    "navigationBar": "/dist/navigationBar/index",
+    "wux-select": "../../../dist/select/index"
+  },
+  "navigationStyle": "custom",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "课程表",
+  "navigationBarTextStyle": "black"
 }

@@ -3,6 +3,7 @@
   box-sizing: border-box;
   overflow: hidden;
   background-color: #fff;
+  border-radius: 0 0 25rpx 25rpx;
 }
 
 .wux-grids--bordered:before {

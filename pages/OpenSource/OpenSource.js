@@ -15,15 +15,8 @@ Page({
 
   },
   copy: function(e) {
-
     wx.setClipboardData({
-      data: 'https://github.com/Dreace233/North-University-of-China-Rankings-Curriculum-Information',
-      success: function(res) {
-        wx.getClipboardData({
-          success: function(res) {
-          }
-        })
-      }
+      data: e.currentTarget.dataset.url,
     })
   },
   /**

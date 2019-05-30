@@ -57,7 +57,7 @@
   height: 100%;
   width: 100%;
   text-align: center;
-  padding: 40rpx 20rpx;
+  padding: 10rpx 20rpx;
   box-sizing: border-box;
   display: -ms-flexbox;
   display: flex;

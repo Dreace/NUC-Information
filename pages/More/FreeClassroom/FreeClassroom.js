@@ -97,10 +97,9 @@ Page({
           class_: classList[0],
           weekName: that.data.weekNameList[0]
         })
+        setTimeout(that.next, 500)
       }
     })
-
-    setTimeout(this.next, 500)
   },
 
   onClick1() {

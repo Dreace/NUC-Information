@@ -28,8 +28,8 @@
     "request": 60000
   },
   "tabBar": {
-    "color": "#ccc",
-    "selectedColor": "#35495e",
+    "color": "#000",
+    "selectedColor": "#1AAD19",
     "borderStyle": "white",
     "backgroundColor": "#f9f9f9",
     "list": [

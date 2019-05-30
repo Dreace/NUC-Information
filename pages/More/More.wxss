@@ -1,5 +1,20 @@
 /* pages/More/More.wxss */
 @import "../../utils/weui.wxss";
+.background{
+  width: 96%;
+  margin-left: 2%;
+  margin-bottom: 5%;
+  border-bottom: 1rpx #d9d9d9;
+  border-radius: 25rpx;
+  background-color: rgb(255, 255, 255);
+}
+.sub-title {
+    padding: 30rpx 30rpx 18rpx;
+    font-size: 28rpx;
+    color: #888;
+    width: 100%;
+    box-sizing: border-box;
+}
 page{
     background-color: #F8F8F8;
     font-size: 16px;

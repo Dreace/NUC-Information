@@ -13,6 +13,21 @@
   margin-top: 2%;
   font: 50%;
   color: #413c3c6e
+  #99CCFF
+#FFCC99
+#FFCCCC
+#CC6699
+#99CCCC
+#FF6666
+#CCCC66
+#66CC99
+#FF9966
+#66CCCC
+#6699CC
+#99CC99
+#FFCC99
+#CCFFCC
+#99CC99
 }
 .table{
   display: inline-flex;
@@ -36,9 +51,9 @@
 .th1 {
   display: flex;
   flex-direction: column;
-  width: 650rpx;
+  width: 550rpx;
   height: 70rpx;
-  background:rgba(217, 227, 233,0.7);
+  background:#F8F8F8;
   border-right: 1rpx solid rgba(218, 217, 217, 1); 
   border-bottom: 1rpx solid rgba(218, 217, 217, 1); 
   justify-content: center;
@@ -50,7 +65,7 @@
   flex-direction: column;
   width: 100rpx;
   height: 70rpx;
-  background:rgba(217, 227, 233,0.7);
+  background:#F8F8F8;
   border-right: 1rpx solid rgba(218, 217, 217, 1); 
   border-bottom: 1rpx solid rgba(218, 217, 217, 1); 
   justify-content: center;
@@ -76,7 +91,7 @@
 .td1 {
   display: flex;
   flex-direction: column;
-  width: 650rpx;
+  width: 550rpx;
   /* height: 90rpx; */
   background: white;
   justify-content: center;

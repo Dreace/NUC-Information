@@ -1,15 +1,30 @@
-
-.main{
+.main {
   margin-top: 15%;
   text-align: center;
 }
-.copy{
+
+.copy {
   margin-top: 2%;
   font: 85%;
-  color: #413c3c6e
+  color: #413c3c6e;
 }
-.url{
+
+.url {
   margin-top: 10%;
   font: 85%;
-  color: #1339b4bd
+  color: #1339b4bd;
+}
+
+.text {
+  color: #333;
+}
+
+.text-url {
+  color: #1339b4bd;
+}
+
+.text_and_url {
+  width: 96%;
+  margin-left: 2%;
+  margin-top: 3%;
 }
