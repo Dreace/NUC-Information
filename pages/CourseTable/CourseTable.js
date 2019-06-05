@@ -32,7 +32,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    colorArrays: ["#99CCFF", "#FFCC99", "#FFCCCC", "#CC6699", "#99CCCC", "#FF6666", "#CCCC66", "#66CC99", "#FF9966", "#66CCCC", "#6699CC", "#99CC99", "#FFCC99", "#99CC99", "#99CCCC"],
+    colorArrays: ["#99CCFF", "#FFCC99", "#FFCCCC", "#CC6699", "#99CCCC", "#FF6666", "#CCCC66", "#66CC99", "#FF9966", "#66CCCC", "#6699CC", "#99CC99", "#669966", "#99CC99", "#99CCCC", "#66CCFF", "#CCCCFF", "#99CC66", "#CCCC99","#FF9999"],
     loading: false,
     name: "",
     passwd: "",
@@ -561,6 +561,8 @@ Page({
           that.setData({
             loading: false
           })
+          var app = getApp()
+          app.globalData.lastRequestTime = new Date()
         }
       })
     }

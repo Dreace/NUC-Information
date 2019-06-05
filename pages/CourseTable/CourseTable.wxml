@@ -21,11 +21,11 @@
   </view>
   <view class="top" style="background-color:#ffffff;color:#000000;">
     <view class='week' style='color:#6D7373;'>{{monthNow}}</view>
-    <view class="{{day==1?'top-text-strong':'top-text'}}" style='width:83rpx'>
+    <view class="{{day==1&&weekNow==weekNowAgain?'top-text-strong':'top-text'}}" style='width:83rpx'>
     周一
       <view class="after-left">{{dateList[0]}}</view>
     </view>
-    <view wx:for="{{['二','三','四','五','六','日']}}" wx:key="unique" class="{{day==(index+2)?'top-text-strong':'top-text'}}">
+    <view wx:for="{{['二','三','四','五','六','日']}}" wx:key="unique" class="{{day==(index+2)&&weekNow==weekNowAgain?'top-text-strong':'top-text'}}">
       周{{item}}
       <view class="after-left">{{dateList[index+1]}}</view>
     </view>

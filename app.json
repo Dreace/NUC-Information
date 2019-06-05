@@ -16,7 +16,8 @@
     "pages/MoreCourse/MoreCourse",
     "pages/More/More",
     "pages/More/PhyEws/PhyEws",
-    "pages/More/PhyEws/login/login"
+    "pages/More/PhyEws/login/login",
+    "pages/More/ExamSchedule/ExamSchedule"
   ],
   "window": {
     "backgroundTextStyle": "light",

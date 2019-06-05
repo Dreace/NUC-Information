@@ -201,6 +201,8 @@ Page({
           that.setData({
             loading: false
           })
+          var app = getApp()
+          app.globalData.lastRequestTime = new Date()
         }
       })
     }
