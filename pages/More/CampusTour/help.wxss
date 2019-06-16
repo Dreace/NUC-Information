@@ -1,0 +1,17 @@
+/* pages/More/CampusTour/help.wxss */
+.all{
+  text-align: center;
+  font-size: 100%;
+}
+.first{
+  margin-top: 45%;
+}
+.other{
+  margin-top: 10rpx;
+}
+.txt{
+  color: #a09b9b;
+}
+.mail{
+  color: #6f709b;
+}

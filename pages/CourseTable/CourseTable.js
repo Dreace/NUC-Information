@@ -679,7 +679,7 @@ Page({
     }
     console.log(table)
     return {
-      title: '我的课程表',
+      title: '我的课程表-' + that.data.terms[that.data.termsIndex],
       path: 'pages/CourseTable/CourseTable?courseTableRawData=' + JSON.stringify({
         "term": that.data.terms[that.data.termsIndex],
         "table": table

@@ -1,32 +1,30 @@
 <wux-notice-bar wx:if="{{notice.length > 0}}" loop trailing="1500" content="{{notice}}" />
 <view class="page">
-  <view class="page__hd">
-    <view class="page__title">More</view>
-    <view class="page__desc">更多</view>
-  </view>
-  <view class="page__bd">
+
+  <view class="page__bd" style='margin-top:10rpx;'>
     <view class='background'>
       <view class="sub-title">信息</view>
       <wux-grids col="4" bordered="{{ false }}">
-        <wux-grid thumb="https://dreace.top/res/gonggao.png" label="公告" bind:click="nav" data-url="/pages/Announcement/Announcement" />
-        <wux-grid thumb="https://dreace.top/res/git.png" label="开源" bind:click="nav" data-url="/pages/OpenSource/OpenSource" />
-        <wux-grid thumb="https://dreace.top/res/faq.png" label="FAQ" bind:click="nav" data-url="/pages/FAQ/FAQ" />
-        <wux-grid thumb="https://dreace.top/res/version.png" label="版本" bind:click="nav" data-url="/pages/WhatsNew/WhatsNew" />
+        <wux-grid thumb="https://dreace.top/res/gonggao.svg" label="公告" bind:click="nav" data-url="/pages/Announcement/Announcement" />
+        <wux-grid thumb="https://dreace.top/res/git.svg" label="开源" bind:click="nav" data-url="/pages/OpenSource/OpenSource" />
+        <wux-grid thumb="https://dreace.top/res/faq.svg" label="FAQ" bind:click="nav" data-url="/pages/FAQ/FAQ" />
+        <wux-grid thumb="https://dreace.top/res/version.svg" label="版本" bind:click="nav" data-url="/pages/WhatsNew/WhatsNew" />
       </wux-grids>
     </view>
     <view class='background'>
       <view class="sub-title">查询</view>
       <wux-grids col="4" bordered="{{ false }}">
-        <wux-grid thumb="https://dreace.top/res/ke.png" label="蹭课" bind:click="nav" data-url="/pages/MoreCourse/MoreCourse" />
-        <wux-grid thumb="https://dreace.top/res/classroom.png" label="自习室" bind:click="nav" data-url="/pages/More/FreeClassroom/FreeClassroom" />
-        <wux-grid thumb="https://dreace.top/res/PhyEws.png" label="大物实验" bind:click="nav" data-url="/pages/More/PhyEws/PhyEws" />
-        <wux-grid thumb="https://dreace.top/res/Exam.png" label="考试安排" bind:click="nav" data-url="/pages/More/ExamSchedule/ExamSchedule" />
+        <wux-grid thumb="https://dreace.top/res/ke.svg" label="蹭课" bind:click="nav" data-url="/pages/MoreCourse/MoreCourse" />
+        <wux-grid thumb="https://dreace.top/res/classroom.svg" label="自习室" bind:click="nav" data-url="/pages/More/FreeClassroom/FreeClassroom" />
+        <wux-grid thumb="https://dreace.top/res/PhyEws.svg" label="大物实验" bind:click="nav" data-url="/pages/More/PhyEws/PhyEws" />
+        <wux-grid thumb="https://dreace.top/res/Exam.svg" label="考试安排" bind:click="nav" data-url="/pages/More/ExamSchedule/ExamSchedule" />
+        <wux-grid thumb="https://dreace.top/res/location.svg" label="校园导览" bind:click="nav" data-url="/pages/More/CampusTour/CampusTour" />
       </wux-grids>
     </view>
     <view class='background'>
       <view class="sub-title">推广</view>
       <wux-grids col="4" bordered="{{ false }}">
-        <wux-grid thumb="https://dreace.top/res/ad.png" label="视频广告" bind:click="ad" />
+        <wux-grid thumb="https://dreace.top/res/ad.svg" label="视频广告" bind:click="ad" />
       </wux-grids>
     </view>
   </view>

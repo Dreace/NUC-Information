@@ -3,25 +3,6 @@
   <image class="add_icon" bindtap='backto' src="/images/Cancel.png"></image>
 </view>
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
-<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-  <view class="page__bd">
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_select">
-        <view class="weui-cell__hd weui-cell__hd_in-select-after">
-          <view class="weui-label">选择学期</view>
-        </view>
-        <view class="weui-cell__bd">
-          <picker bindchange="bindTermChange" value="{{termsIndex}}" range="{{terms}}">
-            <view class="weui-select weui-select_in-select-after" style='font-size:1rem'>{{terms[termsIndex]}}</view>
-          </picker>
-        </view>
-      </view>
-    </view>
-  </view>
-</view>
-
-
-
 <scroll-view scroll-x="true" class='scrollClass'>
   <view class='table'>
     <view class='table_header'>

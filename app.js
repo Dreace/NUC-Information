@@ -22,9 +22,11 @@ App({
     updatePhyEwsGrade: false,
     clearFlagPhyEwsGrade: false,
     lastRequestTime: new Date(1970, 1, 1),
+    map: [],
+    imgCDN: "https://img.dreace.top/",
+    mapShowed: true,
   },
   onLaunch: function () {
-
     const updateManager = wx.getUpdateManager()
 
     updateManager.onCheckForUpdate(function (res) {
@@ -54,6 +56,7 @@ App({
     this.globalData.converted = wx.getStorageSync("converted")
     this.globalData.name = wx.getStorageSync("name")
     this.globalData.passwd = wx.getStorageSync("passwd")
+    this.globalData.mapShowed = wx.getStorageSync("mapShowed")
     var temp = undefined
     temp = wx.getStorageSync("additionalData")
     if (temp != "") {

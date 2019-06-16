@@ -26,7 +26,7 @@
       <view class="after-left">{{dateList[0]}}</view>
     </view>
     <view wx:for="{{['二','三','四','五','六','日']}}" wx:key="unique" class="{{day==(index+2)&&weekNow==weekNowAgain?'top-text-strong':'top-text'}}">
-      周{{item}}
+      <view>周{{item}}</view>
       <view class="after-left">{{dateList[index+1]}}</view>
     </view>
   </view>
@@ -34,7 +34,7 @@
   <view style="height:1100rpx;width:730rpx;display:flex;">
     <view style="color:#000000;font-size:150%;">
       <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}" wx:key="unique" class="left">
-        {{item}}
+        <view>{{item}}</view>
         <view class="after-left">{{courseTime[index]}}</view>
       </view>
     </view>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "搜索地点",
+  "usingComponents": {
+    "wux-search-bar": "../../../dist/search-bar/index",
+    "wux-prompt": "../../../dist/prompt/index"
+  }
+}

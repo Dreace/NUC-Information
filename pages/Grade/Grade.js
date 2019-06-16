@@ -276,7 +276,7 @@ Page({
   onShareAppMessage: function (e) {
     var that = this
     return {
-      title: '我的成绩',
+      title: '我的成绩-' + that.data.terms[that.data.termsIndex],
       path: 'pages/Grade/Grade?gradeRawData=' + JSON.stringify({
         "term": that.data.terms[that.data.termsIndex],
         "table": this.data.grades[this.data.count + 1 - this.data.termsIndex][2]

@@ -17,8 +17,17 @@
     "pages/More/More",
     "pages/More/PhyEws/PhyEws",
     "pages/More/PhyEws/login/login",
-    "pages/More/ExamSchedule/ExamSchedule"
+    "pages/More/ExamSchedule/ExamSchedule",
+    "pages/More/CampusTour/CampusTour",
+    "pages/More/CampusTour/details",
+    "pages/More/CampusTour/search",
+    "pages/More/CampusTour/help"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于校园导览定位当前位置"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

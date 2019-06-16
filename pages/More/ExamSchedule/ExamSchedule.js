@@ -5,6 +5,11 @@ Page({
   },
   onLoad() {
   },
+  onCancel:function(){
+    wx.navigateBack({
+      
+    })
+  },
   onChange: function (e) {
     if (e.detail.value.length < 1) {
       this.setData({

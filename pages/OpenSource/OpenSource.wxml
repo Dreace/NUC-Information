@@ -4,7 +4,7 @@
   <view class='url' bindtap='copy' data-url="https://github.com/Dreace233/North-University-of-China-Rankings-Curriculum-Information">https://github.com/Dreace233/North-University-of-China-Rankings-Curriculum-Information</view>
 </view>
 <view class='text text_and_url' style='text-align:center;'>本项目使用以下开源项目</view>
-<view >
+<view>
   <view class='text_and_url'>
     <text class='text-url' bindtap='copy' data-url='https://github.com/wux-weapp/wux-weapp'>wux-weapp</text>
     <text class='text'>：一套组件化、可复用、易扩展的微信小程序 UI 组件库</text>
@@ -22,6 +22,10 @@
     <text class='text'>：小程序自定义模态弹窗</text>
   </view>
     <view class='text_and_url'>
+    <text class='text-url' bindtap='copy' data-url='https://github.com/gxgk/school-map'>school-map</text>
+    <text class='text'>：校园导览</text>
+  </view>
+  <view class='text_and_url'>
     <text class='text-url' bindtap='copy' data-url='https://www.iconfont.cn'>iconfont</text>
     <text class='text'>：提供部分图标</text>
   </view>

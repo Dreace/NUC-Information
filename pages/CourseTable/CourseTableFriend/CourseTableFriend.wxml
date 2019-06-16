@@ -1,31 +1,16 @@
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
-<view >
+<view>
   <image class="add_icon" bindtap='backto' src="/images/Cancel.png"></image>
 </view>
 <scroll-view scroll-y="true" class="scroll">
-  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-    <view class="page__bd">
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_select">
-          <view class="weui-cell__hd weui-cell__hd_in-select-after">
-            <view class="weui-label">选择学期</view>
-          </view>
-          <view class="weui-cell__bd">
-            <picker bindchange="bindTermChange" value="{{termsIndex}}" range="{{terms}}">
-              <view class="weui-select weui-select_in-select-after" style='font-size:1rem'>{{terms[termsIndex]}}</view>
-            </picker>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class="top" style="background-color:#ECEEEF;color:#AEB7B8;">
-   <view class='top' style='margin-left: 35rpx;'></view>
+
+  <view class="top" style="background-color:#ffffff;color:#000000;">
+    <view class='top' style='margin-left: 35rpx;'></view>
     <view wx:for="{{['一','二','三','四','五','六','日']}}" wx:key="unique" class="top-text">周{{item}}</view>
   </view>
 
   <view style="height:1100rpx;width:730rpx;display:flex;">
-    <view style="background-color:#ECEEEF;color:#AEB7B8;">
+    <view style="background-color:#ffffff;color:#000000;">
       <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}" wx:key="unique" class="left">
         {{item}}
       </view>
@@ -49,7 +34,7 @@
   <swiper class="sw" indicator-dots='true' previous-margin='0rpx' next-margin='0rpx' current="{{current}}">
     <block wx:for="{{showCardsList}}" wx:key="unique">
       <swiper-item>
-        <view class='model-pack' style='margin-top:40%'>
+        <view class='model-pack' style='margin-top:300rpx'>
           <view class="model-title">课程信息({{(index+1)+"/"+showCardsList.length}})</view>
           <view class=" " style='margin:0 auto;width:90%; font-size: 100%%;'>
             <view>课程号:{{table[item]["Course_Number"]}}</view>
@@ -60,9 +45,9 @@
             <view>周次:{{table[item]["Course_Week"]}}</view>
             <view>上课地点:{{table[item]["Course_Building"]+" "+table[item]["Course_Classroom"]}}</view>
           </view>
-    <view class="model-button">
-      <view data-modelid="{{ModelId}}" class="model-button-confirm show" bindtap="closethis" style='width:100%;'>关闭</view>
-    </view>
+          <view class="model-button">
+            <view data-modelid="{{ModelId}}" class="model-button-confirm show" bindtap="closethis" style='width:100%;'>关闭</view>
+          </view>
         </view>
       </swiper-item>
 
