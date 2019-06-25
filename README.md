@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-2.0.4-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
+![](https://img.shields.io/badge/Version-2.0.5-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
@@ -41,6 +41,9 @@
 <img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
 
 ### 版本日志
+#### Version 2.0.5
+  1. 增加功能状态显示
+  2. 发生特殊情况时展示更详细的信息
 #### Version 2.0.4
   1. 新功能：校园导览
   2. 替换“更多”页面图标

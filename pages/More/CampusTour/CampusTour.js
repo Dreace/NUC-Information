@@ -57,8 +57,6 @@ Page({
         content: '如果你有教学楼、宿舍等地点的外部照片能否提供给我？',
         success(res) {
           if (res.confirm) {
-            wx.setStorageSync("mapShowed", true)
-            app.globalData.mapShowed = true
             wx.navigateTo({
               url: 'help',
             })
@@ -66,6 +64,8 @@ Page({
         }
       })
     }
+    wx.setStorageSync("mapShowed", true)
+    app.globalData.mapShowed = true
   },
   regionchange(e) {
     // 视野变化

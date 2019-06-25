@@ -9,6 +9,7 @@
         <wux-grid thumb="https://dreace.top/res/git.svg" label="开源" bind:click="nav" data-url="/pages/OpenSource/OpenSource" />
         <wux-grid thumb="https://dreace.top/res/faq.svg" label="FAQ" bind:click="nav" data-url="/pages/FAQ/FAQ" />
         <wux-grid thumb="https://dreace.top/res/version.svg" label="版本" bind:click="nav" data-url="/pages/WhatsNew/WhatsNew" />
+        <wux-grid thumb="https://dreace.top/res/status.svg" label="系统状态" bind:click="nav" data-url="/pages/More/Status/Status" />
       </wux-grids>
     </view>
     <view class='background'>

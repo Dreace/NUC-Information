@@ -71,6 +71,16 @@ Page({
   handleData: function (e) {
     var data = e.data
     var that = this
+    console.log(data[0]["code"])
+    if (data[0]["code"] === "100") {
+      wx.showToast({
+        title: data[1]["message"],
+        mask: true,
+        image: '/images/Error.png',
+        duration: 1500
+      })
+      return
+    }
     if (data[0]["code"] === "-1") {
       wx.showToast({
         title: '服务器异常',

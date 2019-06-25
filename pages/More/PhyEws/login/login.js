@@ -53,7 +53,16 @@ Page({
         uuid: auth.uuid
       },
       success: function (res) {
-        if (res.data[0]["code"] == "200") {
+        if (res.data[0]["code"] === "100") {
+          wx.showToast({
+            title: res.data[1]["message"],
+            mask: true,
+            image: '/images/Error.png',
+            duration: 1500
+          })
+          return
+        }
+        else if (res.data[0]["code"] == "200") {
           wx.showToast({
             title: '登录成功',
             icon: 'succes',

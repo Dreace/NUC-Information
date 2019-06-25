@@ -227,6 +227,15 @@ Page({
       return;
     }
     var that = this
+    if (data[0]["code"] === "100") {
+      wx.showToast({
+        title: data[1]["message"],
+        mask: true,
+        image: '/images/Error.png',
+        duration: 1500
+      })
+      return
+    }
     if (data[0]["code"] === "-1") {
       wx.showToast({
         title: '服务器异常',
@@ -497,13 +506,8 @@ Page({
       })
       return
     }
-    var auth = require("../../utils/authenticate.js")
     wx.request({
-      url: 'https://cdn.dreace.top/getdate',
-      data: {
-        version: auth.version,
-        uuid: auth.uuid
-      },
+      url: 'https://dreace.top/res/date.txt',
       success: function (res) {
         that.setData({
           firstWeek: res.data
@@ -543,11 +547,6 @@ Page({
           that.handleData({
             data: res.data
           })
-          wx.reportAnalytics('get_curriculum', {
-            name_curriculum: that.data.name,
-            code_curriculum: res.data[0]["code"],
-            count_curriculum: res.data[1]["count"],
-          });
         },
         fail: function () {
           wx.showToast({
@@ -610,13 +609,8 @@ Page({
     this.setData({
       firstWeek: app.globalData.firstWeek
     })
-    var auth = require("../../utils/authenticate.js")
     wx.request({
-      url: 'https://cdn.dreace.top/getdate',
-      data: {
-        version: auth.version,
-        uuid: auth.uuid
-      },
+      url: 'https://dreace.top/res/date.txt',
       success: function (res) {
         that.setData({
           firstWeek: res.data
@@ -687,6 +681,7 @@ Page({
     }
   },
   onShow: function () {
+
     var app = getApp()
     if (app.globalData.clearFlagCourseTable) {
       this.setData({

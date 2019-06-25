@@ -28,6 +28,15 @@ Page({
         uuid: auth.uuid
       },
       success: function (res) {
+        if (data[0]["code"] === "100") {
+          wx.showToast({
+            title: data[1]["message"],
+            mask: true,
+            image: '/images/Error.png',
+            duration: 1500
+          })
+          return
+        }
         var data = res.data[1]["data"]
         that.setData({
           exams: data,

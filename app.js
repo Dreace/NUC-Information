@@ -27,6 +27,7 @@ App({
     mapShowed: true,
   },
   onLaunch: function () {
+
     const updateManager = wx.getUpdateManager()
 
     updateManager.onCheckForUpdate(function (res) {

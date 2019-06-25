@@ -86,6 +86,15 @@ Page({
   handleData: function (e) {
     var data = e.data
     var that = this
+    if (data[0]["code"] === "100") {
+      wx.showToast({
+        title: data[1]["message"],
+        mask: true,
+        image: '/images/Error.png',
+        duration: 1500
+      })
+      return
+    }
     if (data[0]["code"] === "-1") {
       wx.showToast({
         title: '服务器异常',
@@ -220,11 +229,6 @@ Page({
           that.handleData({
             data: res.data
           })
-          wx.reportAnalytics('get_grade', {
-            name_grade: that.data.name,
-            code_grade: res.data[0]["code"],
-            count_grade: res.data[1]["count"],
-          });
         },
         fail: function () {
           wx.showToast({

@@ -14,16 +14,6 @@
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
   <view class='weui-cell__bd b content' hover-class="none" style='text-align:center;border-top:1rpx solid #d9d9d9;font-size:100%;'>
-    <view style='margin-left:1em;margin-top: 15rpx; margin-bottom: 15rpx;'>
-      <text style='flex:1;'>主服务器：</text>
-      <text style='flex:1;color:{{mainServerColor}};'>{{mainServer}}</text>
-    </view>
-    <view style='margin-right:1em;margin-top: 15rpx; margin-bottom: 15rpx;'>
-      <text style=''>代理服务器：</text>
-      <text style='color:{{proxyServerColor}}; '>{{proxyServer}}</text>
-    </view>
-  </view>
-  <view class='weui-cell__bd b content' hover-class="none" style='text-align:center;border-top:1rpx solid #d9d9d9;font-size:100%;'>
     <view style='margin-left: 1%;margin-top: 5rpx; margin-bottom: 2rpx;display:flex;width:98%;flex-direction: column;'>
       <text style='flex:4;'>系统负载：</text>
       <wux-progress show-info style='flex:6; justify-content: center;' status="normal" percent="{{load}}" bar-style="background-color:{{loadColor}}"/>
@@ -33,5 +23,5 @@
 </view>
 <ad style="width:90%;margin-top:15rpx;" unit-id="adunit-0065a48368fd1ab4"></ad>
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">Version 2.0.4</view>
+  <view class="weui-footer__text">Version 2.0.5</view>
 </view>

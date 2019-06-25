@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "系统状态",
+  "usingComponents": {
+    "wux-cell-group": "../../../dist/cell-group/index",
+    "wux-cell": "../../../dist/cell/index"
+  }
+}

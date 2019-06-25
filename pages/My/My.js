@@ -27,56 +27,8 @@ Page({
   },
   checkServer: function() {
     var that = this
-    var auth = require("../../utils/authenticate.js")
     wx.request({
-      url: 'https://cdn.dreace.top/getproxystate',
-      data:{
-        version: auth.version,
-        uuid: auth.uuid
-      },
-      fail: function() {
-        that.setData({
-          mainServer: "待检测",
-          mainServerColor: "#6b6d75",
-          proxyServer: "待检测",
-          proxyServerColor: "#6b6d75"
-        })
-      },
-      success: function(res) {
-        if (res.statusCode != 200) {
-          that.setData({
-            mainServer: "离线",
-            mainServerColor: "#ad2e2e",
-            proxyServer: "离线",
-            proxyServerColor: "#ad2e2e",
-          })
-          return;
-        }
-
-        that.setData({
-          mainServer: "正常",
-          mainServerColor: "#60ad2d",
-        })
-        if (res.data == "1") {
-          that.setData({
-            proxyServer: "正常",
-            proxyServerColor: "#60ad2d",
-          })
-        } else {
-          that.setData({
-            proxyServer: "离线",
-            proxyServerColor: "#ad2e2e",
-          })
-        }
-      }
-    })
-    var auth = require("../../utils/authenticate.js")
-    wx.request({
-      url: 'https://cdn.dreace.top/load',
-      data: {
-        version: auth.version,
-        uuid: auth.uuid
-      },
+      url: 'https://dreace.top/res/load.txt',
       fail: function() {
         that.setData({
           load: 0,

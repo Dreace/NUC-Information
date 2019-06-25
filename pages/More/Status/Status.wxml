@@ -1,0 +1,70 @@
+<!--pages/More/Status/Status.wxml-->
+<view>
+  <view class='status'>响应时间</view>
+  <view class='status-text'>
+    <view class='status-left'>登录</view>
+    <view wx:if='{{status&&status["login"]<60&&status["login"]>0}}' class='status-normal status-right'>{{status["login"]}}s</view>
+    <view wx:elif='{{!status}}' class='status-wait status-right'>待查询</view>
+    <view wx:elif='{{status&&status["login"]==-1}}' class='status-close status-right'>暂停服务</view>
+    <view wx:else class='status-error status-right'>故障</view>
+  </view>
+  <view class='status-text'>
+    <view class='status-left'>大物实验登录</view>
+    <view wx:if='{{status&&status["PhyEwslogin"]<60&&status["PhyEwslogin"]>0}}' class='status-normal status-right'>{{status["PhyEwslogin"]}}s</view>
+    <view wx:elif='{{!status}}' class='status-wait status-right'>待查询</view>
+    <view wx:elif='{{status&&status["PhyEwslogin"]==-1}}' class='status-close status-right'>暂停服务</view>
+    <view wx:else class='status-error status-right'>故障</view>
+  </view>
+  <view class='status-text'>
+    <view class='status-left'>课程表查询</view>
+    <view wx:if='{{status&&status["coursetable"]<60&&status["coursetable"]>0}}' class='status-normal status-right'>{{status["coursetable"]}}s</view>
+    <view wx:elif='{{!status}}' class='status-wait status-right'>待查询</view>
+    <view wx:elif='{{status&&status["coursetable"]==-1}}' class='status-close status-right'>暂停服务</view>
+    <view wx:else class='status-error status-right'>故障</view>
+  </view>
+  <view class='status-text'>
+    <view class='status-left'>成绩查询</view>
+    <view wx:if='{{status&&status["grade"]<60&&status["grade"]>0}}' class='status-normal status-right'>{{status["grade"]}}s</view>
+    <view wx:elif='{{!status}}' class='status-wait status-right'>待查询</view>
+    <view wx:elif='{{status&&status["grade"]==-1}}' class='status-close status-right'>暂停服务</view>
+    <view wx:else class='status-error status-right'>故障</view>
+  </view>
+  <view class='status-text'>
+    <view class='status-left'>大物实验查询</view>
+    <view wx:if='{{status&&status["PhyEws"]<60&&status["PhyEws"]>0}}' class='status-normal status-right'>{{status["PhyEws"]}}s</view>
+    <view wx:elif='{{!status}}' class='status-wait status-right'>待查询</view>
+    <view wx:elif='{{status&&status["PhyEws"]==-1}}' class='status-close status-right'>暂停服务</view>
+    <view wx:else class='status-error status-right'>故障</view>
+  </view>
+</view>
+<view class='status'>功能状态</view>
+<view>
+  <view class='status-text'>
+    <view class='status-left'>蹭课</view>
+    <view wx:if='{{status&&status["courese"]==1}}' class='status-normal status-right'>正常</view>
+    <view wx:elif='{{!status}}' class='status-wait status-right'>待查询</view>
+    <view wx:elif='{{status&&status["courese"]==-1}}' class='status-close status-right'>暂停服务</view>
+    <view wx:else class='status-error status-right'>故障</view>
+  </view>
+  <view class='status-text'>
+    <view class='status-left'>自习室查询</view>
+    <view wx:if='{{status&&status["freeclassroom"]==1}}' class='status-normal status-right'>正常</view>
+    <view wx:elif='{{!status}}' class='status-wait status-right'>待查询</view>
+    <view wx:elif='{{status&&status["freeclassroom"]==-1}}' class='status-close status-right'>暂停服务</view>
+    <view wx:else class='status-error status-right'>故障</view>
+  </view>
+  <view class='status-text'>
+    <view class='status-left'>考试安排</view>
+    <view wx:if='{{status&&status["Exam"]==1}}' class='status-normal status-right'>正常</view>
+    <view wx:elif='{{!status}}' class='status-wait status-right'>待查询</view>
+    <view wx:elif='{{status&&status["Exam"]==-1}}' class='status-close status-right'>暂停服务</view>
+    <view wx:else class='status-error status-right'>故障</view>
+  </view>
+  <view class='status-text'>
+    <view class='status-left'>校园导览</view>
+    <view wx:if='{{status&&status["CampusTour"]==1}}' class='status-normal status-right'>正常</view>
+    <view wx:elif='{{!status}}' class='status-wait status-right'>待查询</view>
+    <view wx:elif='{{status&&status["CampusTour"]==-1}}' class='status-close status-right'>暂停服务</view>
+    <view wx:else class='status-error status-right'>故障</view>
+  </view>
+</view>

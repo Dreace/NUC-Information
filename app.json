@@ -21,7 +21,8 @@
     "pages/More/CampusTour/CampusTour",
     "pages/More/CampusTour/details",
     "pages/More/CampusTour/search",
-    "pages/More/CampusTour/help"
+    "pages/More/CampusTour/help",
+    "pages/More/Status/Status"
   ],
   "permission": {
     "scope.userLocation": {

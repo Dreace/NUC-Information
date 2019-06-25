@@ -34,6 +34,15 @@ Page({
         uuid: auth.uuid
       },
       success: function(res) {
+        if (res.data[0]["code"] === "100") {
+          wx.showToast({
+            title: res.data[1]["message"],
+            mask: true,
+            image: '/images/Error.png',
+            duration: 1500
+          })
+          return
+        }
         if (res.data[0]["code"] == "200") {
           that.setData({
             freeClassroomList: res.data[1]["data"]
