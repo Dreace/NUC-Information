@@ -1,7 +1,5 @@
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
-<view>
-  <image class="add_icon" bindtap='backto' src="/images/Cancel.png"></image>
-</view>
+
 <scroll-view scroll-y="true" class="scroll">
 
   <view class="top" style="background-color:#ffffff;color:#000000;">
@@ -28,6 +26,14 @@
         </view>
       </block>
     </view>
+  </view>
+  <view class='grade-head'>
+    <view wx:for='{{["课程名","学分","教师"]}}' class='grade-head-item' style='flex:{{index==0?4:1}};'>{{item}}</view>
+  </view>
+  <view class='grade' wx:for='{{table}}' wx:if="{{item.Course_Week==''}}" data-statu="open" data-courseIndex="{{-index}}">
+    <view class='grade-item' style='flex:4;'>{{item.Course_Name}}</view>
+    <view class='grade-item' style='flex:1;'>{{item.Course_Credit}}</view>
+    <view class='grade-item' style='flex:1;'>{{item.Course_Teacher}}</view>
   </view>
 </scroll-view>
 <view class="{{showMoreInformation?'show':'close'}}">

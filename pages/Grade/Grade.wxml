@@ -1,58 +1,24 @@
 <!--pages/Grade/Grade.wxml-->
-<wux-fab-button  position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
+<wux-fab-button position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
-<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-  <view class="page__bd">
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_select">
-        <view class="weui-cell__hd weui-cell__hd_in-select-after">
-          <view class="weui-label">选择学期</view>
-        </view>
-        <view class="weui-cell__bd">
-          <picker bindchange="bindTermChange" value="{{termsIndex}}" range="{{terms}}">
-            <view class="weui-select weui-select_in-select-after" style='font-size:1rem'>{{terms[termsIndex]}}</view>
-          </picker>
-        </view>
-      </view>
-    </view>
-  </view>
+
+<view class='term'>
+  <view wx:for='{{termName}}' class='term-item {{termIndex==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick'>{{item}}</view>
 </view>
+<view class='term'>
+  <view wx:for='{{termName_}}' class='term-item {{termIndex_==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick_'>{{item}}</view>
+</view>
+<wux-prompt wx:if="{{ visible }}" icon="https://dreace.top/res/empty.png" title="这个学期好像还没有成绩" style="margin-top: 45%;" />
 
-
-
-<scroll-view class='scrollClass'>
-  <view class='table'>
-    <view class='table_header'>
-      <view class='th1'>
-        <view class="cell_label centerclass">{{heads[0]}}</view>
-      </view>
-      <view class='th2'>
-        <view class="cell_label centerclass">{{heads[1]}}</view>
-      </view>
-      <view class='th2'>
-        <view class="cell_label centerclass">{{heads[2]}}</view>
-      </view>
-      <view class='th2'>
-        <view class="cell_label centerclass">{{heads[3]}}</view>
-      </view>
-    </view>
-    <block wx:for="{{datas}}">
-      <view class='table_main'>
-        <view class='td1'>
-          <view class="table_Text_class">{{item.Course_Name}}</view>
-        </view>
-        <view class='td2'>
-          <view class="table_Text_class">{{item.Course_Attribute}}</view>
-        </view>
-        <view class='td2'>
-          <view class="table_Text_class">{{item.Course_Credit}}</view>
-        </view>
-        <view class='td2'>
-          <view class="table_Text_class">{{item.Course_Grade}}</view>
-        </view>
-      </view>
-    </block>
+<view wx:if='{{datas.length>0}}'>
+  <view class='grade-head'>
+    <view wx:for='{{heads}}' class='grade-head-item' style='flex:{{index==0?5:1}};'>{{item}}</view>
   </view>
-</scroll-view>
-
-<view class='url' bindtap='copy'>点击查看 GPA 计算方法</view>
+  <view class='grade' wx:for='{{datas}}'>
+    <view class='grade-item' style='flex:5;text-align: left; padding-left:30rpx;'>{{item.Course_Name}}</view>
+    <view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Attribute}}</view>
+    <view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Credit}}</view>
+    <view class='grade-item' style='flex:1;font-weight: 600;'>{{item.Course_Grade}}</view>
+  </view>
+  <view class='url' bindtap='copy'>点击查看 GPA 计算方法</view>
+</view>

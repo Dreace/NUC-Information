@@ -76,6 +76,46 @@ Page({
     courseTime: [],
     monthNow: [],
     dateList: [],
+    termName: ["大一", "大二", "大三", "大四"],
+    termName_: ["上学期", "下学期"],
+    termIndex: 0,
+    termIndex_: 0,
+    visible: false
+  },
+  onTermClick(e) {
+    // console.log(e.currentTarget.dataset.index)
+
+    let termsIndex = e.currentTarget.dataset.index * 2 + this.data.termIndex_
+    if (termsIndex + 1 > this.data.count) {
+      this.setData({
+        visible: true,
+        table: [],
+        termIndex: e.currentTarget.dataset.index
+      })
+    } else {
+      this.setData({
+        visible: false,
+        termIndex: e.currentTarget.dataset.index
+      })
+      this.bindTermChange(termsIndex)
+    }
+  },
+  onTermClick_(e) {
+    // console.log(e.currentTarget.dataset.index)
+    let termsIndex = this.data.termIndex * 2 + e.currentTarget.dataset.index
+    if (termsIndex + 1 > this.data.count) {
+      this.setData({
+        visible: true,
+        table: [],
+        termIndex_: e.currentTarget.dataset.index
+      })
+    } else {
+      this.setData({
+        visible: false,
+        termIndex_: e.currentTarget.dataset.index
+      })
+      this.bindTermChange(termsIndex)
+    }
   },
   onClick(e) {
     if (e.detail.index === 0) {
@@ -134,7 +174,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
 
-          var table = that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
+          var table = that.data.tables[that.data.termsIndex + 2][2]
           console.log(that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length)
           app.globalData.additionalData[that.data.terms[that.data.termsIndex]].splice(that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length, 1)
           that.setData({
@@ -279,22 +319,31 @@ Page({
     for (var i = count + 1; i > 1; i--) {
       terms.push(data[i][1])
     }
+    terms.reverse()
     that.setData({
       terms: terms,
       count: count,
       tables: data
     })
-    var adata = app.globalData.additionalData[this.data.terms[this.data.termsIndex]]
+    let termsIndex = count - 1
+    console.log(this.data.terms[termsIndex])
+    console.log(app.globalData.additionalData[this.data.terms[termsIndex]])
+    var adata = app.globalData.additionalData[this.data.terms[termsIndex]]
     if (adata != undefined && adata.length > 0) {
       that.setData({
-        table: that.data.tables[that.data.count + 1 - that.data.termsIndex][2].concat(adata)
+        table: that.data.tables[termsIndex + 2][2].concat(adata)
       })
     } else {
       that.setData({
-        table: that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
+
+        table: that.data.tables[termsIndex + 2][2]
       })
     }
     that.setData({
+      termsIndex: termsIndex,
+      visible:false,
+      termIndex: Math.ceil(count / 2 - 1),
+      termIndex_: 1 - count % 2,
       courseTableRawData: data
     })
     that.handleMoreData()
@@ -637,10 +686,11 @@ Page({
     var that = this
     var app = getApp()
     this.setData({
-      termsIndex: e.detail.value
+      termsIndex: e
     })
-    var table = that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
-    var adata = app.globalData.additionalData[that.data.terms[that.data.termsIndex]]
+    let termsIndex  = e 
+    var table = that.data.tables[termsIndex + 2][2]
+    var adata = app.globalData.additionalData[that.data.terms[termsIndex]]
     console.log(adata != undefined && adata.length > 0)
     if (adata != undefined && adata.length > 0) {
       that.setData({
@@ -663,8 +713,9 @@ Page({
   onShareAppMessage: function (e) {
     var that = this
     var app = getApp()
-    var table = that.data.tables[that.data.count + 1 - that.data.termsIndex][2]
-    var adata = app.globalData.additionalData[that.data.terms[that.data.termsIndex]]
+    var termsIndex = this.data.termsIndex
+    var table = that.data.tables[termsIndex + 2][2]
+    var adata = app.globalData.additionalData[that.data.terms[termsIndex]]
     console.log(adata != undefined && adata.length > 0)
     if (adata != undefined && adata.length > 0) {
       table = table.concat(adata)
@@ -681,7 +732,6 @@ Page({
     }
   },
   onShow: function () {
-
     var app = getApp()
     if (app.globalData.clearFlagCourseTable) {
       this.setData({
@@ -692,6 +742,8 @@ Page({
         termsIndex: 0,
         table: [],
         tables: [],
+        termIndex: 0,
+        termIndex_: 0,
         courseIndex: 0,
         enableRefresh: true,
         courseTableRawData: [],

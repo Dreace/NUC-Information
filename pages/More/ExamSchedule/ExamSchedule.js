@@ -28,9 +28,9 @@ Page({
         uuid: auth.uuid
       },
       success: function (res) {
-        if (data[0]["code"] === "100") {
+        if (res.data[0]["code"] === "100") {
           wx.showToast({
-            title: data[1]["message"],
+            title: res.data[1]["message"],
             mask: true,
             image: '/images/Error.png',
             duration: 1500

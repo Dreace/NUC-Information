@@ -60,6 +60,7 @@ App({
     this.globalData.mapShowed = wx.getStorageSync("mapShowed")
     var temp = undefined
     temp = wx.getStorageSync("additionalData")
+    console.log(temp)
     if (temp != "") {
       this.globalData.additionalData = temp
     }

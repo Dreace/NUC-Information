@@ -2,7 +2,8 @@
   "usingComponents": {
     "wux-fab-button": "../../dist/fab-button/index",
     "navigationBar": "/dist/navigationBar/index",
-    "wux-select": "../../../dist/select/index"
+    "wux-select": "../../../dist/select/index",
+    "wux-prompt": "../../dist/prompt2/index"
   },
   "navigationStyle": "custom",
   "backgroundTextStyle": "light",

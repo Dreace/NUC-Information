@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "wux-fab-button": "../../dist/fab-button/index"
+    "wux-fab-button": "../../dist/fab-button/index",
+    "wux-prompt": "../../dist/prompt2/index"
   }
 }

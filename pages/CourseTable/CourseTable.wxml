@@ -2,27 +2,20 @@
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
 <wux-select id="wux-select" style="z-index:999999999999999;" />
 <wux-fab-button position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
-<scroll-view class="scroll">
-  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-    <view class="page__bd">
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_select">
-          <view class="weui-cell__hd weui-cell__hd_in-select-after">
-            <view class="weui-label">选择学期</view>
-          </view>
-          <view class="weui-cell__bd">
-            <picker bindchange="bindTermChange" value="{{termsIndex}}" range="{{terms}}">
-              <view class="weui-select weui-select_in-select-after" style='font-size:1rem'>{{terms[termsIndex]}}</view>
-            </picker>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
+
+<view class='term'>
+  <view wx:for='{{termName}}' class='term-item {{termIndex==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick'>{{item}}</view>
+</view>
+<view class='term'>
+  <view wx:for='{{termName_}}' class='term-item {{termIndex_==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick_'>{{item}}</view>
+</view>
+<wux-prompt wx:if="{{ visible }}" icon="https://dreace.top/res/empty.png" title="这个学期好像还没有课表" style="margin-top: 45%;" />
+
+<scroll-view class="scroll" wx:if='{{table.length>0}}'>
   <view class="top" style="background-color:#ffffff;color:#000000;">
     <view class='week' style='color:#6D7373;'>{{monthNow}}</view>
     <view class="{{day==1&&weekNow==weekNowAgain?'top-text-strong':'top-text'}}" style='width:83rpx'>
-    周一
+      周一
       <view class="after-left">{{dateList[0]}}</view>
     </view>
     <view wx:for="{{['二','三','四','五','六','日']}}" wx:key="unique" class="{{day==(index+2)&&weekNow==weekNowAgain?'top-text-strong':'top-text'}}">
@@ -56,35 +49,14 @@
       </block>
     </view>
   </view>
-  <view>
-    <view class='table'>
-      <view class='table_header' style="background-color:#ECEEEF;color:#AEB7B8;">
-        <view class='th1'>
-          <view class="cell_label centerclass">课程名</view>
-        </view>
-        <view class='th2'>
-          <view class="cell_label centerclass">学分</view>
-        </view>
-        <view class='th2'>
-          <view class="cell_label centerclass">教师</view>
-        </view>
-      </view>
-      <view wx:for="{{table}}" wx:key="unique">
-        <view wx:if="{{item.Course_Week==''}}">
-          <view class='table_main' bindtap="showCardView" data-statu="open" data-courseIndex="{{-index}}">
-            <view class='td1'>
-              <view class="table_Text_class">{{item.Course_Name}}</view>
-            </view>
-            <view class='td2'>
-              <view class="table_Text_class">{{item.Course_Credit}}</view>
-            </view>
-            <view class='td2'>
-              <view class="table_Text_class">{{item.Course_Teacher}}</view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
+
+  <view class='grade-head'>
+    <view wx:for='{{["课程名","学分","教师"]}}' class='grade-head-item' style='flex:{{index==0?4:1}};'>{{item}}</view>
+  </view>
+  <view class='grade' wx:for='{{table}}' wx:if="{{item.Course_Week==''}}" data-statu="open" data-courseIndex="{{-index}}">
+    <view class='grade-item' style='flex:4;'>{{item.Course_Name}}</view>
+    <view class='grade-item' style='flex:1;'>{{item.Course_Credit}}</view>
+    <view class='grade-item' style='flex:1;'>{{item.Course_Teacher}}</view>
   </view>
 </scroll-view>
 <view class="{{showMoreInformation?'show':'close'}}">
