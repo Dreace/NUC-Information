@@ -22,23 +22,25 @@
 ### 如何使用
 使用微信扫描下方二维码
 
-<img height="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcqmlu3j20zk0zkdib.jpg"/>
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1RNXd.jpg"/>
 
 初次使用会提示设置教务系统账号密码
 
-<img height="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcqw6mlj20u01hcdjl.jpg"/>
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gagH.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gU8e.png"/>
 
-设置完成保存即可，返回到成绩或者课程表界面刷新即可查看信息
+设置完成保存即可，返回到成绩或者课程表界面刷新即可查看信息，上部可以选择查看的学期
 
-<img height="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytmw641mj20yi1pctet.jpg"/> <img height="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytmwg6rjj20yi1pcqap.jpg"/>
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1g0KA.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gdvd.png"/>
 
-点击上部“选择学期”即可查看不同学期信息
+在“更多”页面还有其他小功能
 
-<img height="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1c7rj20yi1pc45f.jpg"/>
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gBDI.png"/>
 
-点击课程表界面的课程可以显示课程相信信息，左右滑动可以查看时间重叠的课程
+蹭课、空教室、校园导览等
 
-<img eight="30%" width="30%" src="https://ws1.sinaimg.cn/large/d3255351ly1fuytcr1p5uj20yi1pcdma.jpg"/>
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gDbt.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gyUf.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gsVP.png"/>
+
+*注：所有信息来自教务系统，空教室、蹭课、安排等有时效性的信息只有本学期内容
 
 ### 版本日志
 #### Version 2.0.6
