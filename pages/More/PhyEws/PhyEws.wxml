@@ -1,31 +1,14 @@
 <!--pages/More/PhyEws/PhyEws.wxml-->
 <wux-fab-button position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
-<scroll-view class='scrollClass'>
-  <view class='table'>
-    <view class='table_header'>
-      <view class='th2'>
-        <view class="cell_label centerclass">{{heads[0]}}</view>
-      </view>
-      <view class='th1'>
-        <view class="cell_label centerclass">{{heads[1]}}</view>
-      </view>
-      <view class='th2'>
-        <view class="cell_label centerclass">{{heads[2]}}</view>
-      </view>
-    </view>
-    <block wx:for="{{datas}}">
-      <view class='table_main'>
-        <view class='td2'>
-          <view wx:if="{{(index+1)!=datas.length}}" class="table_Text_class">{{index+1}}</view>
-        </view>
-        <view class='td1'>
-          <view class="table_Text_class">{{item.Course_Name}}</view>
-        </view>
-        <view class='td2'>
-          <view class="table_Text_class">{{item.Course_Grade}}</view>
-        </view>
-      </view>
-    </block>
+<view wx:if='{{datas.length>0}}'>
+  <view class='grade-head'>
+    <view wx:for='{{heads}}' class='grade-head-item' style='flex:{{index==1?5:1}};'>{{item}}</view>
   </view>
-</scroll-view>
+  <view class='grade' wx:for='{{datas}}'>
+    <view class='grade-item' style='flex:1;color:#9b9b9b;'>{{(index+1)!=datas.length?index+1:""}}</view>
+    <view class='grade-item' style='flex:5;text-align: left; padding-left:30rpx;'>{{item.Course_Name}}</view>
+    <view class='grade-item' style='flex:1;font-weight: 600;'>{{item.Course_Grade}}</view>
+  </view>
+</view>
+<wux-prompt wx:else icon="https://dreace.top/res/empty.png" title="还没有成绩" style="margin-top: 45%;" />

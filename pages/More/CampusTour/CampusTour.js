@@ -76,14 +76,14 @@ Page({
     this.setData({
       isSelectedBuild: e.markerId
     })
-    let temp = this.data.buildlData
-    for (var i in temp[this.data.isSelectedBuildType].data) {
-      temp[this.data.isSelectedBuildType].data[i].iconPath = temp[this.data.isSelectedBuildType].data[i].iconPath.replace("-1.png", ".png")
-    }
-    temp[this.data.isSelectedBuildType].data[e.markerId].iconPath = temp[this.data.isSelectedBuildType].data[e.markerId].iconPath.replace(".png", "-1.png")
-    this.setData({
-      buildlData: temp
-    })
+    // let temp = this.data.buildlData
+    // for (var i in temp[this.data.isSelectedBuildType].data) {
+    //   temp[this.data.isSelectedBuildType].data[i].iconPath = temp[this.data.isSelectedBuildType].data[i].iconPath.replace("-1.png", ".png")
+    // }
+    // temp[this.data.isSelectedBuildType].data[e.markerId].iconPath = temp[this.data.isSelectedBuildType].data[e.markerId].iconPath.replace(".png", "-1.png")
+    // this.setData({
+    //   buildlData: temp
+    // })
     // console.log("e.markerId", e.markerId)
   },
   navigateSearch() {

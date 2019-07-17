@@ -1,4 +1,5 @@
 function check() {
+  return true
   var app = getApp()
   var timeDelta = 15 - (new Date() - app.globalData.lastRequestTime) / 1000
   if (timeDelta > 0) {

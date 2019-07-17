@@ -22,11 +22,11 @@
         <wux-grid thumb="https://dreace.top/res/location.svg" label="校园导览" bind:click="nav" data-url="/pages/More/CampusTour/CampusTour" />
       </wux-grids>
     </view>
-    <view class='background'>
+    <!-- <view class='background'>
       <view class="sub-title">推广</view>
       <wux-grids col="4" bordered="{{ false }}">
         <wux-grid thumb="https://dreace.top/res/ad.svg" label="视频广告" bind:click="ad" />
       </wux-grids>
-    </view>
+    </view> -->
   </view>
 </view>

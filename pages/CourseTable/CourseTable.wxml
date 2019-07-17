@@ -1,14 +1,17 @@
-<navigationBar id="navigationBar" color="{{color}}" title="{{title}}" back="{{false}}" titleEvent="true" bind:title="changeWeek" background="{{barBg}}"></navigationBar>
+<navigationBar id="navigationBar" color="{{color}}" title="{{title}}" back="{{false}}" showSwitch="{{true}}" titleEvent="true" bind:switch="onSwitch" bind:title="changeWeek" background="{{barBg}}"></navigationBar>
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
 <wux-select id="wux-select" style="z-index:999999999999999;" />
 <wux-fab-button position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
 
-<view class='term'>
-  <view wx:for='{{termName}}' class='term-item {{termIndex==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick'>{{item}}</view>
+<view style="visibility:{{translateY_==0?'hidden':'visible'}} ;margin-top:{{-__maxY}}px;transform: translateY({{translateY}}px); transition: transform {{transitionTime / 1000}}s;" id="boxid">
+  <view class='term'>
+    <view wx:for='{{termName}}' class='term-item {{termIndex==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick'>{{item}}</view>
+  </view>
+  <view class='term'>
+    <view wx:for='{{termName_}}' class='term-item {{termIndex_==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick_'>{{item}}</view>
+  </view>
 </view>
-<view class='term'>
-  <view wx:for='{{termName_}}' class='term-item {{termIndex_==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick_'>{{item}}</view>
-</view>
+<view class='after-box' style='margin-top:{{translateY}}px;transition: margin-top {{transitionTime / 1000}}s;'></view>
 <wux-prompt wx:if="{{ visible }}" icon="https://dreace.top/res/empty.png" title="这个学期好像还没有课表" style="margin-top: 45%;" />
 
 <scroll-view class="scroll" wx:if='{{table.length>0}}'>

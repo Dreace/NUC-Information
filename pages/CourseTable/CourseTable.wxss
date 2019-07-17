@@ -1,5 +1,15 @@
 @import "../../utils/weui.wxss";
 @import "../../utils/showModel.wxss";
+
+.box {
+  position: absolute;
+}
+
+.after-box {
+  top: 0;
+  position: relative;
+}
+
 .term {
   display: flex;
   flex-direction: row;
@@ -18,6 +28,7 @@
   border-radius: 50rpx;
   background: #6c9;
 }
+
 .grade-head {
   border-top: 1rpx solid #f2f2f2;
   border-bottom: 1rpx solid #f2f2f2;
@@ -45,6 +56,7 @@
   color: #333;
   text-align: center;
 }
+
 .text {
   display: -webkit-box;
   overflow: hidden;
