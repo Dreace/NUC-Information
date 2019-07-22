@@ -1,4 +1,5 @@
 // pages/Grade/Grade.js
+const API = require("../../utils/API.js")
 Page({
 
   /**
@@ -25,38 +26,23 @@ Page({
     var interval = that.data.interval;
     clearInterval(interval)
   },
+
   checkServer: function() {
     var that = this
-    wx.request({
-      url: 'https://dreace.top/res/load.txt',
-      fail: function() {
-        that.setData({
-          load: 0,
-          loadColor: "#FFFFFF"
-        })
-      },
-      success: function(res) {
-        if (res.statusCode != 200) {
-          that.setData({
-            load: 0,
-            loadColor: "#FFFFFF"
-          })
-          return;
-        }
-        var load = parseInt(res.data)
-        var loadColor = ""
-        if (load <= 70) {
-          loadColor = "#2A6EFC"
-        } else if (load <= 85) {
-          loadColor = "#FFCC00"
-        } else {
-          loadColor = "#ED4C3E"
-        }
-        that.setData({
-          load: load,
-          loadColor: loadColor
-        })
+    API.getData2("load.txt",(data)=>{
+      var load = parseInt(data)
+      var loadColor = ""
+      if (load <= 70) {
+        loadColor = "#2A6EFC"
+      } else if (load <= 85) {
+        loadColor = "#FFCC00"
+      } else {
+        loadColor = "#ED4C3E"
       }
+      that.setData({
+        load: load,
+        loadColor: loadColor
+      })
     })
   },
   onShow: function() {

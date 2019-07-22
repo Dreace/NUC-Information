@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    notice: ""
+    notice: "",
   },
   ad: function () {
     if (videoAd) {
@@ -25,6 +25,11 @@ Page({
         title: '当前微信版本不支持视频广告',
       })
     }
+  },
+  navArticle:function(e){
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url + "?type=" + e.currentTarget.dataset.type,
+    })
   },
   nav: function (e) {
     wx.navigateTo({

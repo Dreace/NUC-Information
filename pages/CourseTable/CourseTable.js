@@ -1,30 +1,31 @@
 // pages/ClassTable/ClassTable.js
+const API = require("../../utils/API.js")
 import {
   $wuxSelect
 } from '../../dist/index'
 
 const buttons = [{
-    label: '刷新',
-    icon: "/images/Refresh.png",
-  },
-  {
-    label: '添加',
-    icon: "/images/Add.png",
-  },
-  {
-    openType: 'share',
-    label: '分享',
-    icon: "/images/Share.png",
+  label: '刷新',
+  icon: "/images/Refresh.png",
+},
+{
+  label: '添加',
+  icon: "/images/Add.png",
+},
+{
+  openType: 'share',
+  label: '分享',
+  icon: "/images/Share.png",
 
-  },
-  {
-    label: '切换按钮位置',
-    icon: "/images/Switch.png",
-  },
-  {
-    label: '导出课程表',
-    icon: "/images/Export.png",
-  }
+},
+{
+  label: '切换按钮位置',
+  icon: "/images/Switch.png",
+},
+{
+  label: '导出课程表',
+  icon: "/images/Export.png",
+}
 ]
 
 Page({
@@ -87,21 +88,21 @@ Page({
     translateY_: 0,
     __maxY: 0, // 内部使用，最大Y的偏移 单位像素
   },
-  onSwitch(){
+  onSwitch() {
     let translateY = 0
-    if(this.data.translateY == 0 ){
+    if (this.data.translateY == 0) {
       translateY = this.data.__maxY
-    }else{
+    } else {
       translateY = 0
     }
     this.setData({
       translateY: translateY
     })
-    setTimeout(()=>{
+    setTimeout(() => {
       this.setData({
         translateY_: translateY
       })
-    }, translateY==0?400:0)
+    }, translateY == 0 ? 400 : 0)
   },
   onTermClick(e) {
     // console.log(e.currentTarget.dataset.index)
@@ -142,9 +143,13 @@ Page({
     if (e.detail.index === 0) {
       this.refresh()
     } else if (e.detail.index === 4) {
-      if (this.data.courseTableRawData !== undefined && this.data.courseTableRawData[1]["count"] != 0) {
+      if (this.data.courseTableRawData !== undefined && this.data.courseTableRawData[0]["name"]) {
         wx.navigateTo({
           url: '/pages/Export/Export?tables=' + JSON.stringify(this.data.courseTableRawData),
+        })
+      } else {
+        wx.showToast({
+          title: '没有可导出的课程表',
         })
       }
     } else if (e.detail.index === 3) {
@@ -158,44 +163,44 @@ Page({
       })
     }
   },
-  preventTouchMove: function() {},
-  closethis: function() {
+  preventTouchMove: function () { },
+  closethis: function () {
     this.setData({
       showMoreInformation: false,
       showCardsList: []
     })
   },
-  closeAddCiew: function() {
+  closeAddCiew: function () {
     this.setData({
       showAddView: false
     })
   },
-  showInformation: function(e) {
+  showInformation: function (e) {
     this.setData({
       showMoreInformation: true
     })
   },
-  showInformationConfirm: function() {
+  showInformationConfirm: function () {
     this.setData({
       showMoreInformation: false
     })
   },
-  showModel: function(e) {
+  showModel: function (e) {
     this.setData({
       isShowModel: true,
       ModelContent: e.ModelContent
     })
   },
-  delete_: function(e) {
+  delete_: function (e) {
     var app = getApp()
     var that = this
     wx.showModal({
       title: '删除',
       content: '确认删除这个课程，删除后不可恢复',
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
 
-          var table = that.data.tables[that.data.termsIndex + 2][2]
+          var table = that.data.tables[that.data.termsIndex]["table"]
           console.log(that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length)
           app.globalData.additionalData[that.data.terms[that.data.termsIndex]].splice(that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length, 1)
           that.setData({
@@ -223,59 +228,7 @@ Page({
       }
     })
   },
-  //确定事件
-  confirm: function(e) {
-    var that = this
-    if (this.data.vcode != "") {
-      this.setData({
-        isShowModel: false
-      })
-
-      if (!(this.data.name === "" || this.data.name === "")) {
-        wx.showToast({
-          title: '加载中',
-          icon: 'loading',
-          duration: 10000
-        })
-        var auth = require("../../utils/authenticate.js")
-        wx.request({
-          url: 'https://cdn.dreace.top/coursetable',
-          data: {
-            name: this.data.name,
-            passwd: this.data.passwd,
-            vcode: this.data.vcode,
-            cookie: this.data.cookie,
-            version: auth.version,
-            uuid: auth.uuid
-          },
-          success: function(res) {
-            wx.hideToast()
-            that.handleData({
-              data: res.data
-            })
-          },
-          fail: function(e) {
-            wx.showToast({
-              title: '未能完成请求',
-              image: '/images/Error.png',
-              duration: 3000
-            })
-          },
-          complete: function() {
-            that.setData({
-              vcode: ""
-            })
-          }
-        })
-      }
-    }
-  },
-  inputvcode: function(e) {
-    this.setData({
-      vcode: e.detail.value
-    })
-  },
-  handleData: function(e) {
+  handleData: function (e) {
     var day = new Date().getDay()
     if (day == 0) {
       day = 7
@@ -288,59 +241,12 @@ Page({
       return;
     }
     var that = this
-    if (data[0]["code"] === "100") {
-      wx.showToast({
-        title: data[1]["message"],
-        mask: true,
-        image: '/images/Error.png',
-        duration: 1500
-      })
-      return
-    }
-    if (data[0]["code"] === "-1") {
-      wx.showToast({
-        title: '服务器异常',
-        image: '/images/Error.png',
-        duration: 3000
-      })
-      return
-    }
-    if (data[0]["code"] === "1") {
-      wx.showToast({
-        title: '系统错误',
-        image: '/images/Error.png',
-        duration: 3000
-      })
-      return
-    }
-    if (data[0]["code"] === "0") {
-      wx.showToast({
-        title: '没有课程表',
-        image: '/images/Sad.png',
-        duration: 3000
-      })
-      return
-    }
-    if (data[0]["code"] === "2") {
-      var that = this;
-      this.setData({
-        tips: "账号或密码错误",
-        showTopTips: true
-      });
-      setTimeout(function() {
-        that.setData({
-          showTopTips: false
-        });
-      }, 3000);
-      return
-    }
-    var count = data[1]["count"]
     var terms = []
-    var app = getApp()
-    for (var i = count + 1; i > 1; i--) {
-      terms.push(data[i][1])
+    for (var i = 0; i < data.length; i++) {
+      terms.push(data[i]["name"])
     }
-    terms.reverse()
+    var count = terms.length
+    var app = getApp()
     that.setData({
       terms: terms,
       count: count,
@@ -352,12 +258,11 @@ Page({
     var adata = app.globalData.additionalData[this.data.terms[termsIndex]]
     if (adata != undefined && adata.length > 0) {
       that.setData({
-        table: that.data.tables[termsIndex + 2][2].concat(adata)
+        table: that.data.tables[termsIndex]["table"].concat(adata)
       })
     } else {
       that.setData({
-
-        table: that.data.tables[termsIndex + 2][2]
+        table: that.data.tables[termsIndex]["table"]
       })
     }
     that.setData({
@@ -370,7 +275,7 @@ Page({
     that.handleMoreData()
     wx.setStorageSync("courseTableRawData", data)
   },
-  changeWeek: function() {
+  changeWeek: function () {
     var that = this
     var weekList = Array(35)
     for (var i = 0; i < 35; i++) {
@@ -401,7 +306,10 @@ Page({
       }
     })
   },
-  handleMoreData: function(e) {
+  handleMoreData: function (e) {
+    if (!this.data.table) {
+      return
+    }
     var hasData = new Array()
     var toRight = new Array()
     var that = this
@@ -504,7 +412,7 @@ Page({
       title: "第" + that.data.weekNow + "周▼",
     })
   },
-  handleWeek: function(e) {
+  handleWeek: function (e) {
     var weekList = []
     var tempList = undefined
     tempList = this.removeChinese(e.data).split(",")
@@ -521,14 +429,14 @@ Page({
     }
     return weekList
   },
-  removeChinese: function(strValue) {
+  removeChinese: function (strValue) {
     if (strValue != null && strValue != "") {
       var reg = /[\u4e00-\u9fa5]/g;
       return strValue.replace(reg, "");
     } else
       return "";
   },
-  getCourseTable: function(e) {
+  getCourseTable: function (e) {
     var that = this
     if (this.data.loading) {
       var that = this;
@@ -536,7 +444,7 @@ Page({
         tips: "数据加载中，请勿操作",
         showTopTips: true
       });
-      setTimeout(function() {
+      setTimeout(function () {
         that.setData({
           showTopTips: false
         });
@@ -563,7 +471,7 @@ Page({
       wx.showModal({
         title: '信息未设置',
         content: '你好像还没有设置教务账号\n请前往"我的"进行设置',
-        success: function(res) {
+        success: function (res) {
           that.setData({
             showed: false
           })
@@ -576,67 +484,38 @@ Page({
       })
       return
     }
-    wx.request({
-      url: 'https://dreace.top/res/date.txt',
-      success: function(res) {
-        that.setData({
-          firstWeek: res.data
-        })
-        wx.setStorageSync("firstWeek", res.data)
-      },
-    })
+    // API.getData2("date.txt", (data) => {
+    //   that.setData({
+    //     firstWeek: data
+    //   })
+    //   wx.setStorageSync("firstWeek", data)
+    // })
+    // wx.request({
+    //   url: 'https://dreace.top/res/date.txt',
+    //   success: function (res) {
+    //     that.setData({
+    //       firstWeek: res.data
+    //     })
+    //     wx.setStorageSync("firstWeek", res.data)
+    //   },
+    // })
     this.getCourseTableWithoutVcode()
   },
-  getCourseTableWithoutVcode: function() {
-    var check = require("../../utils/check_request_time.js")
-    if (!check.check()) {
-      return
-    }
-    var that = this
+  getCourseTableWithoutVcode: function () {
     if (!(this.data.name === "" || this.data.passwd === "")) {
-      wx.showToast({
-        title: '加载中',
-        mask: true,
-        icon: 'loading',
-        duration: 60000
-      })
-      that.setData({
-        loading: true
-      })
-      var auth = require("../../utils/authenticate.js")
-      wx.request({
-        url: 'https://cdn.dreace.top/coursetable',
-        data: {
-          name: this.data.name,
-          passwd: this.data.passwd,
-          version: auth.version,
-          uuid: auth.uuid
-        },
-        success: function(res) {
-          wx.hideToast()
-          that.handleData({
-            data: res.data
+      API.getData("coursetable", {
+        "name": this.data.name,
+        "passwd": this.data.passwd
+      }, (data) => {
+        if (data) {
+          this.handleData({
+            data: data
           })
-        },
-        fail: function() {
-          wx.showToast({
-            title: '未能完成请求',
-            mask: true,
-            image: '/images/Error.png',
-            duration: 3000
-          })
-        },
-        complete: function() {
-          that.setData({
-            loading: false
-          })
-          var app = getApp()
-          app.globalData.lastRequestTime = new Date()
         }
       })
     }
   },
-  showCardView: function(e) {
+  showCardView: function (e) {
     var index = e.currentTarget.dataset.courseindex
     console.log(e.currentTarget.dataset.courseindex)
     var showCardsList = []
@@ -662,7 +541,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
+    // wx.navigateTo({
+    //   url: '/pages/More/News/News',
+    // })
     var courseTime = []
     var month = new Date().getMonth() + 1;
     if (month < 5 || month > 9) {
@@ -679,15 +561,21 @@ Page({
     this.setData({
       firstWeek: app.globalData.firstWeek
     })
-    wx.request({
-      url: 'https://dreace.top/res/date.txt',
-      success: function(res) {
-        that.setData({
-          firstWeek: res.data
-        })
-        wx.setStorageSync("firstWeek", res.data)
-      },
+    API.getData2("date.txt", (data) => {
+      that.setData({
+        firstWeek: data
+      })
+      wx.setStorageSync("firstWeek", data)
     })
+    // wx.request({
+    //   url: 'https://dreace.top/res/date.txt',
+    //   success: function (res) {
+    //     that.setData({
+    //       firstWeek: res.data
+    //     })
+    //     wx.setStorageSync("firstWeek", res.data)
+    //   },
+    // })
     if (options.courseTableRawData != undefined) {
       wx.navigateTo({
         url: 'CourseTableFriend/CourseTableFriend?courseTableRawData=' + options.courseTableRawData,
@@ -703,14 +591,14 @@ Page({
       this.getCourseTable()
     }
   },
-  bindTermChange: function(e) {
+  bindTermChange: function (e) {
     var that = this
     var app = getApp()
     this.setData({
       termsIndex: e
     })
     let termsIndex = e
-    var table = that.data.tables[termsIndex + 2][2]
+    var table = that.data.tables[termsIndex]["table"]
     var adata = app.globalData.additionalData[that.data.terms[termsIndex]]
     console.log(adata != undefined && adata.length > 0)
     if (adata != undefined && adata.length > 0) {
@@ -724,7 +612,7 @@ Page({
     }
     this.handleMoreData()
   },
-  refresh: function() {
+  refresh: function () {
     this.getCourseTable()
   },
   onReady() {
@@ -734,16 +622,22 @@ Page({
     var that = this
     query.select('#boxid').boundingClientRect()
     query.exec(function (res) {
+      var height
+      try {
+        height = res[0].height
+      } catch (err) {
+        height = 105.6
+      }
       that.setData({
-        __maxY: res[0].height
+        __maxY: height
       })
     })
   },
-  onShareAppMessage: function(e) {
+  onShareAppMessage: function (e) {
     var that = this
     var app = getApp()
     var termsIndex = this.data.termsIndex
-    var table = that.data.tables[termsIndex + 2][2]
+    var table = that.data.tables[termsIndex]["table"]
     var adata = app.globalData.additionalData[that.data.terms[termsIndex]]
     console.log(adata != undefined && adata.length > 0)
     if (adata != undefined && adata.length > 0) {
@@ -760,7 +654,7 @@ Page({
       }),
     }
   },
-  onShow: function() {
+  onShow: function () {
     var app = getApp()
     if (app.globalData.clearFlagCourseTable) {
       this.setData({
@@ -785,7 +679,7 @@ Page({
       app.globalData.updateCourseTable = false
       return
     }
-    if (this.data.courseTableRawData != undefined && this.data.courseTableRawData.length > 0) {
+    if (this.data.courseTableRawData != undefined && this.data.courseTableRawData[0]["name"]) {
       this.handleData({
         data: this.data.courseTableRawData
       })
@@ -794,7 +688,7 @@ Page({
     }
 
   },
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
   }
 })

@@ -7,12 +7,24 @@
   <view class="page__bd page__bd_spacing">
     <wux-timeline>
       <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
+        <view>2019-7-18 v2.0.9</view>
+        <view wx:for="{{new209}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item >
+        <view>2019-7-18 v2.0.8</view>
+        <view wx:for="{{new208}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
         <view>2019-7-16 v2.0.7</view>
         <view wx:for="{{new207}}">
           <view>· {{item}}</view>
         </view>
       </wux-timeline-item>
-      <wux-timeline-item >
+      <wux-timeline-item>
         <view>2019-6-27 v2.0.6</view>
         <view wx:for="{{new206}}">
           <view>· {{item}}</view>

@@ -1,0 +1,16 @@
+<!--pages/More/News/News.wxml-->
+<view class='page'>
+  <view class='main'>
+    <view style='height:10rpx;'></view>
+    <view class="news" wx:for="{{titles}}" bindtap='goContent' data-id='{{item.id}}'>
+      <view class="title">{{item.title}}</view>
+      <view class="time icon_calendar iconfont">{{item.date}}</view>
+    </view>
+  </view>
+
+    <wux-pagination defaultCurrent="1" total="{{pages}}" bind:change="onChange">
+      <view slot="prev">上一页</view>
+      <view slot="next">下一页</view>
+    </wux-pagination>
+
+</view>

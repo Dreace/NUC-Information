@@ -15,8 +15,6 @@ Page({
     wx.request({
       url: 'https://dreace.top/dl/Announcement/0.json',
       success: function(res) {
-        app.globalData.announcementCheck = res.data["announcementCheck"]
-        wx.setStorageSync("announcementCheck", res.data["announcementCheck"])
         that.setData({
           title: res.data["title"],
           time: res.data["time"]

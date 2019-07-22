@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-2.0.7-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
+![](https://img.shields.io/badge/Version-2.0.9-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
@@ -8,6 +8,11 @@
 ### 目前实现什么功能？
 * 课程表和成绩查询
 * 自动识别验证码
+* 蹭课
+* 自习室查询
+* 大物实验成绩查询
+* 校园导览
+* 中北新闻、学校通知、学术活动查询
 ### 正在做什么？
 * 正计划将项目从微信脱离出来，开发独立的 Android 和 iOS 应用
 * 逐步适配国内大部分学校的教务系统
@@ -20,9 +25,13 @@
 * [邮箱][email]
 * [微博][weibo]
 ### 如何使用
-使用微信扫描下方二维码
+使用微信扫描下方小程序码
 
 <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1RNXd.jpg"/>
+
+QQ 小程序码
+
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/07/22/eiQ7qg.jpg"/>
 
 初次使用会提示设置教务系统账号密码
 
@@ -30,11 +39,11 @@
 
 设置完成保存即可，返回到成绩或者课程表界面刷新即可查看信息，上部可以选择查看的学期
 
-<img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1g0KA.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gdvd.png"/>
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/07/22/eilZz6.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gdvd.png"/>
 
 在“更多”页面还有其他小功能
 
-<img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gBDI.png"/>
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/07/22/eilmQK.png"/>
 
 蹭课、空教室、校园导览等
 
@@ -43,6 +52,12 @@
 *注：所有信息来自教务系统，空教室、蹭课、安排等有时效性的信息只有本学期内容
 
 ### 版本日志
+#### Version 2.0.9
+  1. 对全部 API 进行重构提升兼容性
+  2. 更新一些图标资源
+#### Version 2.0.8
+  1. 新增：咨询查询，包括中北新闻、学校通知和学术活动
+  2. 注：数据来自学校官网，每十分钟更新一次，若涉及到附件下载需到官网下载
 #### Version 2.0.7
   1. 课程表界面学期选择默认隐藏，可在左上角开启
   2. 不再有操作频繁的提示

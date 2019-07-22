@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "正文",
+  "usingComponents": {
+    "wemark": "../../../../dist/wemark/wemark"
+  }
+}

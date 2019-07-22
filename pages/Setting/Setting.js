@@ -1,4 +1,5 @@
 // pages/Setting/Setting.js
+const API = require("../../utils/API.js")
 Page({
   data: {
     showToptips: false,
@@ -61,10 +62,37 @@ Page({
       })
       return;
     }
-    this.setData({
-      testing: true
+    API.getData("test", {
+      "name": this.data.name,
+      "passwd": this.data.passwd
+    }, (data) => {
+      wx.showToast({
+        title: '登录成功',
+        icon: 'succes',
+        duration: 2500
+      })
+      that.setData({
+        testpassed: true,
+      })
+      if (that.data.accountID == -1) {
+        if (that.data.remark == "") {
+          that.setData({
+            remark: "不愿透露姓名"
+          })
+        }
+        app.globalData.accountList.push({
+          remark: that.data.remark,
+          name: that.data.name,
+          passwd: that.data.passwd
+        })
+      } else {
+        app.globalData.accountList[that.data.accountID]["name"] = that.data.name
+        app.globalData.accountList[that.data.accountID]["passwd"] = that.data.passwd
+        app.globalData.accountList[that.data.accountID]["remark"] = that.data.remark
+      }
+      wx.navigateBack()
     })
-    var auth = require("../../utils/authenticate.js")
+    return
     wx.request({
       url: 'https://cdn.dreace.top/test',
       data: {
@@ -128,10 +156,6 @@ Page({
             duration: 3000
           })
         }
-        wx.reportAnalytics('login_api', {
-          name_login: that.data.name,
-          code_login: res.data[0]["code"],
-        });
       },
       fail: function (e) {
         wx.showToast({

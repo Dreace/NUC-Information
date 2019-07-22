@@ -1,4 +1,5 @@
 // pages/More/PhyEws/PhyEws.js
+const API = require("../../../utils/API.js")
 const buttons = [{
   label: '刷新',
   icon: "/images/Refresh.png",
@@ -71,56 +72,8 @@ Page({
   handleData: function (e) {
     var data = e.data
     var that = this
-    console.log(data[0]["code"])
-    if (data[0]["code"] === "100") {
-      wx.showToast({
-        title: data[1]["message"],
-        mask: true,
-        image: '/images/Error.png',
-        duration: 1500
-      })
-      return
-    }
-    if (data[0]["code"] === "-1") {
-      wx.showToast({
-        title: '服务器异常',
-        mask: true,
-        image: '/images/Error.png',
-        duration: 1500
-      })
-      return
-    }
-    if (data[0]["code"] === "1") {
-      wx.showToast({
-        title: '系统错误',
-        image: '/images/Error.png',
-        duration: 3000
-      })
-      return
-    }
-    if (data[0]["code"] === "0") {
-      wx.showToast({
-        title: '暂时没有成绩',
-        image: '/images/Sad.png',
-        duration: 3000
-      })
-      return
-    }
-    if (data[0]["code"] === "2") {
-      var that = this;
-      this.setData({
-        tips: "账号或密码错误",
-        showTopTips: true
-      });
-      setTimeout(function () {
-        that.setData({
-          showTopTips: false
-        });
-      }, 3000);
-      return
-    }
     that.setData({
-      datas: data[1]["data"]
+      datas: data
     })
     wx.setStorageSync("PhyEwsRawData", data)
   },
@@ -169,51 +122,15 @@ Page({
     this.getGradeWithoutVcode()
   },
   getGradeWithoutVcode: function () {
-    var check = require("../../../utils/check_request_time.js")
-    if (!check.check()) {
-      return
-    }
     var that = this
     if (!(this.data.PhyEwsname === "" || this.data.PhyEwspasswd === "")) {
-      wx.showToast({
-        title: '加载中',
-        mask: true,
-        icon: 'loading',
-        duration: 60000
-      })
-      that.setData({
-        loading: true
-      })
-      var auth = require("../../../utils/authenticate.js")
-      wx.request({
-        url: 'https://cdn.dreace.top/PhyEws',
-        data: {
-          name: this.data.PhyEwsname,
-          passwd: this.data.PhyEwspasswd,
-          version: auth.version,
-          uuid: auth.uuid
-        },
-        success: function (res) {
-          wx.hideToast()
-          that.handleData({
-            data: res.data
-          })
-        },
-        fail: function () {
-          wx.showToast({
-            title: '未能完成请求',
-            mask: true,
-            image: '/images/Error.png',
-            duration: 3000
-          })
-        },
-        complete: function () {
-          that.setData({
-            loading: false
-          })
-          var app = getApp()
-          app.globalData.lastRequestTime = new Date()
-        }
+      API.getData("PhyEws",{
+        name: this.data.PhyEwsname,
+        passwd: this.data.PhyEwspasswd,
+      },(data)=>{
+        that.handleData({
+          data: data
+        })
       })
     }
   },

@@ -14,7 +14,7 @@
 
 .appname {
   font-size: 200%;
-  padding-top: 20%;
+  padding-top: 30%;
 }
 
 .poweredname {

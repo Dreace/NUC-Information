@@ -22,7 +22,9 @@
     "pages/More/CampusTour/details",
     "pages/More/CampusTour/search",
     "pages/More/CampusTour/help",
-    "pages/More/Status/Status"
+    "pages/More/Status/Status",
+    "pages/More/News/News",
+    "pages/More/News/Content/Content"
   ],
   "permission": {
     "scope.userLocation": {
@@ -32,7 +34,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "教务信息查询-中北",
+    "navigationBarTitleText": "中北信息",
     "navigationBarTextStyle": "black"
   },
   "networkTimeout": {

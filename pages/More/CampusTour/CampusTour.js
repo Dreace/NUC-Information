@@ -1,4 +1,5 @@
 //获取应用实例
+const API = require("../../../utils/API.js")
 var app = getApp();
 Page({
   data: {
@@ -25,27 +26,22 @@ Page({
         console.log(res.windowWidth)
       }
     })
-    //载入更新后的数据
     wx.showLoading({
-      title: '加载地图数据',
+      title: '加载中',
+      mask:true
     })
-    wx.request({
-      url: 'https://dreace.top/res/CampusTour.json',
-      success: function (res) {
-        _this.setData({
-          buildlData: res.data
-        })
-        app.globalData.map = res.data
-      },
-      complete: function () {
-        wx.hideLoading()
-      }
+    API.getData2("CampusTour.json", (data) => {
+      _this.setData({
+        buildlData: data
+      })
+      app.globalData.map = data
+      wx.hideLoading()
     })
     // this.setData({
     //   buildlData: app.globalData.map
     // })
   },
-  navigateHelp:function(){
+  navigateHelp: function () {
     wx.navigateTo({
       url: 'help',
     })

@@ -1,3 +1,4 @@
+const API = require("../../../utils/API.js")
 Page({
   data: {
     exams: [],
@@ -20,29 +21,13 @@ Page({
     var that = this
     var data = undefined
     var visible = true
-    var auth = require("../../../utils/authenticate.js")
-    wx.request({
-      url: 'https://cdn.dreace.top/exam?keywords=' + e.detail.value,
-      data: {
-        version: auth.version,
-        uuid: auth.uuid
-      },
-      success: function (res) {
-        if (res.data[0]["code"] === "100") {
-          wx.showToast({
-            title: res.data[1]["message"],
-            mask: true,
-            image: '/images/Error.png',
-            duration: 1500
-          })
-          return
-        }
-        var data = res.data[1]["data"]
-        that.setData({
-          exams: data,
-          visible: false
-        })
-      }
+    API.getData("exam",{
+      keywords: e.detail.value
+    },(data)=>{
+      that.setData({
+        exams: data,
+        visible: false
+      })
     })
   },
 })

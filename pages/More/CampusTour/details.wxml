@@ -1,4 +1,5 @@
 <!--pages/map/details.wxml-->
+<navigationBar id="navigationBar" color="{{color}}" title="{{title}}" back="{{true}}" ></navigationBar>
 <view>
   <swiper class="swiper" indicator-dots="{{building.img.length == 1 ? false : true}}" indicator-active-color="#fff" autoplay="1" interval="3000" duration="500">
     <block wx:for="{{building.img}}" wx:key="*this">

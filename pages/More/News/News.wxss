@@ -1,0 +1,54 @@
+/* pages/More/News/News.wxss */
+
+.page {
+  min-height: 100vh;
+  background: #eee;
+}
+.main{
+   min-height: calc(100vh - 140rpx);
+}
+.news {
+  width: 90vw;
+  margin: 30rpx auto;
+  border-radius: 25rpx;
+  background-color: white;
+  padding: 30rpx 15rpx;
+}
+
+.title {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: #666;
+}
+
+.time {
+  padding-left: 10rpx;
+  color: #a3a3a3;
+}
+
+.icon_calendar::before {
+  content: "\e604";
+  margin-right: 10rpx;
+}
+
+@font-face {
+  font-family: 'iconfont'; /* project id 1296176 */
+  src: url('//at.alicdn.com/t/font_1296176_vrbdwqzgb1.eot');
+  src: url('//at.alicdn.com/t/font_1296176_vrbdwqzgb1.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_1296176_vrbdwqzgb1.woff2') format('woff2'),
+         url('//at.alicdn.com/t/font_1296176_vrbdwqzgb1.woff') format('woff'),
+         url('//at.alicdn.com/t/font_1296176_vrbdwqzgb1.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_1296176_vrbdwqzgb1.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

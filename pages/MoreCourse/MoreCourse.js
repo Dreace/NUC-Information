@@ -1,5 +1,6 @@
 // pages/MoreCourse/MoreCourse.js
 var pinyinUtil = require("../../utils/pinyinUtil.js")
+const API = require("../../utils/API.js")
 Page({
 
   /**
@@ -15,12 +16,12 @@ Page({
     showID: 0,
     Week: ["一", "二", "三", "四", "五", "六", "日"]
   },
-  add: function() {
+  add: function () {
     var that = this
     wx.showModal({
       title: '添加',
       content: '此课程将添加到最新学期课程表，确认添加？',
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
           that.add_()
           that.closethis()
@@ -30,7 +31,7 @@ Page({
       }
     })
   },
-  add_: function() {
+  add_: function () {
     var t = this.data.data[this.data.showID]["Class_time"].split("~")
     var map = {
       "Course_Number": this.data.data[this.data.showID]["Course_number"],
@@ -57,29 +58,29 @@ Page({
       title: '添加成功',
     })
   },
-  onCancel: function() {
+  onCancel: function () {
     wx.navigateBack({
 
     })
   },
-  closethis: function() {
+  closethis: function () {
     this.setData({
       showMoreInformation: false,
     })
   },
-  show: function(e) {
+  show: function (e) {
     this.setData({
       showMoreInformation: true,
       showID: e.target.dataset.id - 1
     })
   },
-  onClear: function() {
+  onClear: function () {
     this.setData({
       alphabet: [],
       visible: true
     })
   },
-  onChange: function(e) {
+  onChange: function (e) {
     if (e.detail.value.length < 1) {
       this.setData({
         alphabet: [],
@@ -91,13 +92,34 @@ Page({
     var data = undefined
     var visible = true
     var auth = require("../../utils/authenticate.js")
+    API.getData("getcourse", {
+      keywords: e.detail.value
+    }, (data) => {
+      const alphabet = []
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach((initial) => {
+        const cells = data.filter((course) => pinyinUtil.pinyinUtil.getFirstLetter(course["Course_name"]).charAt(0) == initial)
+        if (cells.length > 0) {
+          visible = false
+          alphabet.push({
+            initial,
+            cells
+          })
+        }
+      })
+      that.setData({
+        alphabet,
+        visible: visible,
+        data: data
+      })
+    })
+    return
     wx.request({
       url: 'https://cdn.dreace.top/getcourse?keywords=' + e.detail.value,
       data: {
         version: auth.version,
         uuid: auth.uuid
       },
-      success: function(res) {
+      success: function (res) {
         if (res.data[0]["code"] == 200) {
           var data = res.data[1]["data"]
           const alphabet = []
@@ -119,7 +141,7 @@ Page({
           })
         }
       },
-      fail: function() {
+      fail: function () {
         wx.showToast({
           title: '未能完成请求',
           mask: true,
@@ -129,7 +151,7 @@ Page({
       }
     })
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
 

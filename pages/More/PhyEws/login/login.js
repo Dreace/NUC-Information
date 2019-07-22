@@ -1,5 +1,6 @@
 // pages/More/PhyEws/login/login.js
 // pages/Setting/Setting.js
+const API = require("../../../../utils/API.js")
 Page({
   data: {
     showToptips: false,
@@ -28,10 +29,6 @@ Page({
   test: function (e) {
     var that = this
     var app = getApp()
-    if (this.data.testing) {
-      return;
-    }
-
     if (this.data.PhyEwsname == "" || this.data.PhyEwspasswd == "") {
       wx.showToast({
         title: '账号密码不能为空',
@@ -40,10 +37,24 @@ Page({
       })
       return;
     }
-    this.setData({
-      testing: true
+    API.getData("testPhyEws",{
+      name: this.data.PhyEwsname,
+      passwd: this.data.PhyEwspasswd,
+    },(data)=>{
+      wx.showToast({
+        title: '登录成功',
+        icon: 'succes',
+        duration: 2500
+      })
+      app.globalData.PhyEwsname = that.data.PhyEwsname
+      app.globalData.PhyEwspasswd = that.data.PhyEwspasswd
+      app.globalData.clearFlagPhyEwsGrade = true
+      app.globalData.updatePhyEwsGrade = true
+      wx.setStorageSync("PhyEwsname", that.data.PhyEwsname)
+      wx.setStorageSync("PhyEwspasswd", that.data.PhyEwspasswd)
+      wx.navigateBack()
     })
-    var auth = require("../../../../utils/authenticate.js")
+    return
     wx.request({
       url: 'https://cdn.dreace.top/testPhyEws',
       data: {

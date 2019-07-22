@@ -11,6 +11,7 @@ Page({
     building: {
       img: []//加载中图片地址
     },
+    title:"",
     imgCDN: app.globalData.imgCDN
   },
   openLocation: function (e) {
@@ -36,11 +37,9 @@ Page({
     this.setData({
       bid: bid,
       tid: tid,
-      building: data
-    });
-    wx.setNavigationBarTitle({
+      building: data,
       title: data.name
-    })
+    });
   },
   /**
    * 用户点击右上角分享

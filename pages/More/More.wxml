@@ -4,7 +4,7 @@
   <view class="page__bd" style='margin-top:10rpx;'>
     <view class='background'>
       <view class="sub-title">信息</view>
-      <wux-grids col="4" bordered="{{ false }}">
+      <wux-grids col="5" bordered="{{ false }}">
         <wux-grid thumb="https://dreace.top/res/gonggao.svg" label="公告" bind:click="nav" data-url="/pages/Announcement/Announcement" />
         <wux-grid thumb="https://dreace.top/res/git.svg" label="开源" bind:click="nav" data-url="/pages/OpenSource/OpenSource" />
         <wux-grid thumb="https://dreace.top/res/faq.svg" label="FAQ" bind:click="nav" data-url="/pages/FAQ/FAQ" />
@@ -14,12 +14,20 @@
     </view>
     <view class='background'>
       <view class="sub-title">查询</view>
-      <wux-grids col="4" bordered="{{ false }}">
+      <wux-grids col="5" bordered="{{ false }}">
         <wux-grid thumb="https://dreace.top/res/ke.svg" label="蹭课" bind:click="nav" data-url="/pages/MoreCourse/MoreCourse" />
         <wux-grid thumb="https://dreace.top/res/classroom.svg" label="自习室" bind:click="nav" data-url="/pages/More/FreeClassroom/FreeClassroom" />
         <wux-grid thumb="https://dreace.top/res/PhyEws.svg" label="大物实验" bind:click="nav" data-url="/pages/More/PhyEws/PhyEws" />
         <wux-grid thumb="https://dreace.top/res/Exam.svg" label="考试安排" bind:click="nav" data-url="/pages/More/ExamSchedule/ExamSchedule" />
         <wux-grid thumb="https://dreace.top/res/location.svg" label="校园导览" bind:click="nav" data-url="/pages/More/CampusTour/CampusTour" />
+      </wux-grids>
+    </view>
+    <view class='background'>
+      <view class="sub-title">资讯</view>
+      <wux-grids col="5" bordered="{{ false }}">
+        <wux-grid thumb="https://dreace.top/res/news.svg" label="中北新闻" bind:click="navArticle" data-url="/pages/More/News/News" data-type="1013" />
+        <wux-grid thumb="https://dreace.top/res/tz.svg" label="学校通知" bind:click="navArticle" data-url="/pages/More/News/News" data-type="1014" />
+        <wux-grid thumb="https://dreace.top/res/academic.svg" label="学术活动" bind:click="navArticle" data-url="/pages/More/News/News" data-type="1354" />
       </wux-grids>
     </view>
     <!-- <view class='background'>

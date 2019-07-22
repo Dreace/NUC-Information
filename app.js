@@ -1,4 +1,7 @@
 //app.js
+const API = require("/utils/API.js")
+import './utils/wxPromise.min.js'
+import regeneratorRuntime from '/utils/wxPromise.min.js'
 App({
   globalData: {
     name: "",
@@ -27,7 +30,6 @@ App({
     mapShowed: true,
   },
   onLaunch: function () {
-
     const updateManager = wx.getUpdateManager()
 
     updateManager.onCheckForUpdate(function (res) {

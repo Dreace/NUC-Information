@@ -1,18 +1,19 @@
 // pages/Grade/Grade.js
+const API = require("../../utils/API.js")
 const buttons = [{
-    label: '刷新',
-    icon: "/images/Refresh.png",
-  },
-  {
-    openType: 'share',
-    label: '分享',
-    icon: "/images/Share.png",
+  label: '刷新',
+  icon: "/images/Refresh.png",
+},
+{
+  openType: 'share',
+  label: '分享',
+  icon: "/images/Share.png",
 
-  },
-  {
-    label: '切换按钮位置',
-    icon: "/images/Switch.png",
-  }
+},
+{
+  label: '切换按钮位置',
+  icon: "/images/Switch.png",
+}
 ]
 Page({
 
@@ -65,7 +66,7 @@ Page({
     } else {
       this.setData({
         visible: false,
-        datas: this.data.grades[termsIndex + 2][2],
+        datas: this.data.tables[termsIndex]["grade"],
         termIndex: e.currentTarget.dataset.index
       })
     }
@@ -82,7 +83,7 @@ Page({
     } else {
       this.setData({
         visible: false,
-        datas: this.data.grades[termsIndex + 2][2],
+        datas: this.data.tables[termsIndex]["grade"],
         termIndex_: e.currentTarget.dataset.index
       })
     }
@@ -96,114 +97,66 @@ Page({
       })
     }
   },
-  copy: function(e) {
+  copy: function (e) {
     wx.showLoading({
       title: '加载中',
     })
     wx.downloadFile({
       url: 'https://dreace.top/GPA.pdf',
-      success: function(res) {
+      success: function (res) {
         var filePath = res.tempFilePath
         wx.openDocument({
           filePath: filePath,
-          success: function(res) {
+          success: function (res) {
             wx.hideLoading()
           }
         })
       }
     })
   },
-  refresh: function() {
+  refresh: function () {
     this.getGrade()
   },
-  preventTouchMove: function() {},
-  showModel: function(e) {
+  preventTouchMove: function () { },
+  showModel: function (e) {
     this.setData({
       isShowModel: true,
       ModelContent: e.ModelContent
     })
   },
-  handleData: function(e) {
+  handleData: function (e) {
     var data = e.data
     var that = this
-    if (data[0]["code"] === "100") {
-      wx.showToast({
-        title: data[1]["message"],
-        mask: true,
-        image: '/images/Error.png',
-        duration: 1500
-      })
-      return
-    }
-    if (data[0]["code"] === "-1") {
-      wx.showToast({
-        title: '服务器异常',
-        mask: true,
-        image: '/images/Error.png',
-        duration: 1500
-      })
-      return
-    }
-    if (data[0]["code"] === "1") {
-      wx.showToast({
-        title: '系统错误',
-        image: '/images/Error.png',
-        duration: 3000
-      })
-      return
-    }
-    if (data[0]["code"] === "0") {
-      wx.showToast({
-        title: '暂时没有成绩',
-        image: '/images/Sad.png',
-        duration: 3000
-      })
-      return
-    }
-    if (data[0]["code"] === "2") {
-      var that = this;
-      this.setData({
-        tips: "账号或密码错误",
-        showTopTips: true
-      });
-      setTimeout(function() {
-        that.setData({
-          showTopTips: false
-        });
-      }, 3000);
-      return
-    }
-    var count = data[1]["count"]
+    var count
     var terms = []
-    if (count > 0) {
-      for (var i = count + 1; i > 1; i--) {
-        terms.push(data[i][1])
-      }
-      terms.reverse()
-      that.setData({
-        terms: terms,
-        count: count,
-        grades: data
-      })
-      let termsIndex = count - 1
-      that.setData({
-        visible:false,
-        termIndex: Math.ceil(count / 2 - 1),
-        termIndex_: 1 - count % 2,
-        datas: that.data.grades[termsIndex + 2][2],
-        gradeRawData: data
-      })
+    for (var i = 0; i < data.length; i++) {
+      terms.push(data[i]["name"])
     }
+    var count = terms.length
+    var app = getApp()
+    that.setData({
+      terms: terms,
+      count: count,
+      tables: data
+    })
+    let termsIndex = count - 1
+    that.setData({
+      visible: false,
+      termIndex: Math.ceil(count / 2 - 1),
+      termIndex_: 1 - count % 2,
+      datas: that.data.tables[termsIndex]["grade"],
+      gradeRawData: data
+    })
     wx.setStorageSync("gradeRawData", data)
   },
-  getGrade: function(e) {
+  getGrade: function (e) {
     if (this.data.loading) {
       var that = this;
       this.setData({
         tips: "数据加载中，请勿操作",
         showTopTips: true
       });
-      setTimeout(function() {
+      setTimeout(function () {
         that.setData({
           showTopTips: false
         });
@@ -229,7 +182,7 @@ Page({
       wx.showModal({
         title: '信息未设置',
         content: '你好像还没有设置教务账号\n请前往"我的"进行设置',
-        success: function(res) {
+        success: function (res) {
           that.setData({
             showed: false
           })
@@ -244,51 +197,21 @@ Page({
     }
     this.getGradeWithoutVcode()
   },
-  getGradeWithoutVcode: function() {
+  getGradeWithoutVcode: function () {
     var check = require("../../utils/check_request_time.js")
     if (!check.check()) {
       return
     }
     var that = this
     if (!(this.data.name === "" || this.data.passwd === "")) {
-      wx.showToast({
-        title: '加载中',
-        mask: true,
-        icon: 'loading',
-        duration: 60000
-      })
-      that.setData({
-        loading: true
-      })
-      var auth = require("../../utils/authenticate.js")
-      wx.request({
-        url: 'https://cdn.dreace.top',
-        data: {
-          name: this.data.name,
-          passwd: this.data.passwd,
-          version: auth.version,
-          uuid: auth.uuid
-        },
-        success: function(res) {
-          wx.hideToast()
-          that.handleData({
-            data: res.data
+      API.getData("grade", {
+        "name": this.data.name,
+        "passwd": this.data.passwd
+      }, (data) => {
+        if (data) {
+          this.handleData({
+            data: data
           })
-        },
-        fail: function() {
-          wx.showToast({
-            title: '未能完成请求',
-            mask: true,
-            image: '/images/Error.png',
-            duration: 3000
-          })
-        },
-        complete: function() {
-          that.setData({
-            loading: false
-          })
-          var app = getApp()
-          app.globalData.lastRequestTime = new Date()
         }
       })
     }
@@ -296,7 +219,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var app = getApp()
     app.globalData.name = wx.getStorageSync("name")
     app.globalData.passwd = wx.getStorageSync("passwd")
@@ -314,19 +237,19 @@ Page({
       this.getGrade()
     }
   },
-  onShareAppMessage: function(e) {
+  onShareAppMessage: function (e) {
     var that = this
     let termsIndex = that.data.termIndex * 2 + that.data.termIndex_
     return {
       title: '我的成绩-' + that.data.terms[termsIndex],
       path: 'pages/Grade/Grade?gradeRawData=' + JSON.stringify({
         "term": that.data.terms[termsIndex],
-        "table": this.data.grades[termsIndex + 2][2]
+        "table": that.data.tables[termsIndex]["grade"]
       }),
     }
 
   },
-  onShow: function() {
+  onShow: function () {
     var app = getApp()
     if (app.globalData.clearFlagGrade) {
       this.setData({
@@ -349,7 +272,7 @@ Page({
       app.globalData.updateGrade = false
       return
     }
-    if (this.data.gradeRawData != undefined && this.data.gradeRawData.length > 0) {
+    if (this.data.gradeRawData != undefined && this.data.gradeRawData[0]["name"]) {
       this.handleData({
         data: this.data.gradeRawData
       })

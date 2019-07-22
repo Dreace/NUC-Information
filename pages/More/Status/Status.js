@@ -1,4 +1,5 @@
 // pages/More/Status/Status.js
+const API = require("../../../utils/API.js")
 Page({
 
   /**
@@ -10,15 +11,10 @@ Page({
 
   checkServer:function(){
     var that = this
-    wx.request({
-      url: 'https://dreace.top/res/status.json',
-
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          status: res.data
-        })
-      }
+    API.getData2("status.json",(data)=>{
+      that.setData({
+        status: data
+      })
     })
   },
   onUnload:function(){

@@ -1,10 +1,5 @@
 <!--pages/About/About.wxml-->
-<view class='centerup appname'>教务信息查询</view>
+<view class='centerup appname'>中北信息</view>
 <view class='centerup'>中北大学</view>
 <!--<contact-button class='add_icon' type="default-dark" size="50">
 </contact-button>-->
-<view style=' width: 95%;margin-left:2%;'>
-  <view style='text-align: center;font-weight:bold;'>非常感谢你的理解与支持。</view>
-  <view style='text-align: center;'>进行赞助或点击广告不影响任何功能，也不会因此限制小程序任何功能。广告由微信提供，小程序无法决定展示什么广告。</view>
-  <view style='text-align: center;'></view>
-</view>

@@ -1,3 +1,4 @@
+const API = require("../../../utils/API.js")
 import {
   $wuxSelect
 } from '../../../dist/index'
@@ -18,11 +19,17 @@ Page({
   getFreeClassroomList: function() {
     var that = this
     var building = that.data.buliding
-    wx.showLoading({
-      title: '加载中',
-      mask: true
+    API.getData("getfreeclassroom",{
+      op: 2,
+      building: building,
+      class_with_week: this.data.class_ + "-" + this.data.weekIndex,
+      week: "w" + this.data.week,
+    },(data)=>{
+      that.setData({
+        freeClassroomList: data
+      })
     })
-    var auth = require("../../../utils/authenticate.js")
+    return
     wx.request({
       url: 'https://cdn.dreace.top/getfreeclassroom',
       data: {
@@ -80,8 +87,24 @@ Page({
     for (let i = 0; i < 20; i++) {
       weekList[i] = i + 1
     }
-    var auth = require("../../../utils/authenticate.js")
     var that = this
+    API.getData("getfreeclassroom",{
+      op: 1,
+    },(data)=>{
+      that.setData({
+        bulidingList: data,
+        buliding: data[0]
+      })
+      that.setData({
+        weekList: weekList,
+        classList: classList,
+        week: weekList[0],
+        class_: classList[0],
+        weekName: that.data.weekNameList[0]
+      })
+      setTimeout(that.next, 500)
+    })
+    return
     wx.request({
       url: 'https://cdn.dreace.top/getfreeclassroom',
       data: {
