@@ -1,4 +1,5 @@
 <!--pages/WhatsNew/WhatsNew.wxml-->
+<navigationBar id="navigationBar" color="{{color}}" title="{{'版本'}}" back="{{true}}"></navigationBar>
 <view class="page">
   <view class="page__hd">
     <view class="page__title">Release Notes</view>
@@ -7,12 +8,18 @@
   <view class="page__bd page__bd_spacing">
     <wux-timeline>
       <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
-        <view>2019-7-18 v2.0.9</view>
-        <view wx:for="{{new209}}">
+        <view>2019-8-10 v2.0.10</view>
+        <view wx:for="{{new2010}}">
           <view>· {{item}}</view>
         </view>
       </wux-timeline-item>
       <wux-timeline-item >
+        <view>2019-7-22 v2.0.9</view>
+        <view wx:for="{{new209}}">
+          <view>· {{item}}</view>
+        </view>
+      </wux-timeline-item>
+      <wux-timeline-item>
         <view>2019-7-18 v2.0.8</view>
         <view wx:for="{{new208}}">
           <view>· {{item}}</view>

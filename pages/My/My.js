@@ -1,5 +1,6 @@
 // pages/Grade/Grade.js
 const API = require("../../utils/API.js")
+const app = getApp()
 Page({
 
   /**
@@ -18,18 +19,18 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
-  onHide: function() {
+  onHide: function () {
     var that = this
     var interval = that.data.interval;
     clearInterval(interval)
   },
 
-  checkServer: function() {
+  checkServer: function () {
     var that = this
-    API.getData2("load.txt",(data)=>{
+    API.getData2("load.txt", (data) => {
       var load = parseInt(data)
       var loadColor = ""
       if (load <= 70) {
@@ -45,7 +46,7 @@ Page({
       })
     })
   },
-  onShow: function() {
+  onShow: function () {
     var that = this
     that.checkServer()
     var interval = setInterval(that.checkServer, 3000)
@@ -53,10 +54,10 @@ Page({
       interval: interval
     })
   },
-  getInfo: function() {
+  getInfo: function () {
     wx.getUserInfo({})
   },
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
   }
 })

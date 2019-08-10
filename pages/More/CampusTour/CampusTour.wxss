@@ -85,7 +85,7 @@ button {
 
 .controls {
   position: relative;
-  top: 50%;
+  top: 45%;
   left: 85%;
   /* display: flex; */
 }

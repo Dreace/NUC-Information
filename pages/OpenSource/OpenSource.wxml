@@ -1,7 +1,8 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{'开源'}}" back="{{true}}" ></navigationBar>
 <view class='main'>
   <image src='https://dreace.top/res/GitHub.png' mode='widthFix'></image>
   <view>本项目已在 GitHub 开源</view>
-  <view class='url' bindtap='copy' data-url="https://github.com/Dreace233/North-University-of-China-Rankings-Curriculum-Information">https://github.com/Dreace233/North-University-of-China-Rankings-Curriculum-Information</view>
+  <view class='url' bindtap='copy' data-url="https://github.com/Dreace233/NUC-Information">https://github.com/Dreace233/NUC-Information</view>
 </view>
 <view class='text text_and_url' style='text-align:center;'>本项目使用以下开源项目</view>
 <view>
@@ -28,6 +29,10 @@
   <view class='text_and_url'>
     <text class='text-url' bindtap='copy' data-url='https://www.iconfont.cn'>iconfont</text>
     <text class='text'>：提供部分图标</text>
+  </view>
+    <view class='text_and_url'>
+    <text class='text-url' bindtap='copy' data-url='https://github.com/weilanwl/ColorUI'>ColorUI</text>
+    <text class='text'>：鲜亮的高饱和色彩，专注视觉的小程序组件库</text>
   </view>
 </view>
 <view class='copy' style='text-align:center;' bindtap='copy'>点击复制地址</view>

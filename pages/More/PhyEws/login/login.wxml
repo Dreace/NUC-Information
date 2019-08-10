@@ -1,4 +1,5 @@
 <!--pages/More/PhyEws/login/login.wxml-->
+<navigationBar id="navigationBar" color="{{color}}" title="{{'登录'}}" back="{{true}}" ></navigationBar>
 <view class="container" class="userinfo">
   <open-data type="userAvatarUrl" class="icon" mode="aspectFit"></open-data>
 </view>

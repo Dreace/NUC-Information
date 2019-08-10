@@ -35,7 +35,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "中北信息",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
   },
   "networkTimeout": {
     "request": 60000
@@ -71,6 +72,9 @@
         "selectedIconPath": "images/More-active.png"
       }
     ]
+  },
+  "usingComponents": {
+    "navigationBar": "/dist/navigationBar/index"
   },
   "sitemapLocation": "sitemap.json"
 }

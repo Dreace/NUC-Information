@@ -1,3 +1,4 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{'自习室'}}" back="{{true}}" ></navigationBar>
 <wux-select id="wux-select" />
 
 <view class="page">

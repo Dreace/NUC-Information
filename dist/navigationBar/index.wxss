@@ -57,7 +57,7 @@
 }
 
 .black {
-  background: #fff;
+  /* background: #fff; */
   border-color: #e5e5e5 !important;
 }
 
@@ -67,7 +67,7 @@
 }
 
 .style-normal {
-  /* border: 1rpx solid #ededed; */
+  border: 1px solid #ededed;
   border-radius: 32rpx;
   height: 64rpx;
   width: 176rpx;

@@ -1,6 +1,9 @@
 const API = require("../../../utils/API.js")
+const app = getApp()
 Page({
   data: {
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
     exams: [],
     visible: true
   },

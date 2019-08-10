@@ -1,4 +1,14 @@
-<wux-search-bar clear show-cancel focus="true" placeholder="搜索课程名、班级" bind:change="onChange" bind:cancel="onCancel" bind:clear="onClear" />
+<navigationBar id="navigationBar" color="{{color}}" title="{{'考试安排'}}" back="{{true}}" ></navigationBar>
+<view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input auto-focus='{{true}}' type="text" placeholder="搜索课程名、班级" confirm-type="search" bindinput='onChange'></input>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-gradual-green shadow-blur round" bindtap='onCancel'>取消</button>
+  </view>
+</view>
+<!-- <wux-search-bar clear show-cancel focus="true" placeholder="搜索课程名、班级" bind:change="onChange" bind:cancel="onCancel" bind:clear="onClear" /> -->
 <wux-prompt visible="{{ visible }}" icon="https://dreace.top/res/empty.png" title="空空如也" text="在搜索框键入开始搜索" style="margin-top: 45%;" />
 <view class="weui-panel weui-panel_access">
   <view class="weui-panel__bd">

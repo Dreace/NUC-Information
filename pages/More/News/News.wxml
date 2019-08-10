@@ -1,10 +1,11 @@
 <!--pages/More/News/News.wxml-->
+<navigationBar id="navigationBar" color="{{color}}" title="{{title}}" back="{{true}}" ></navigationBar>
 <view class='page'>
   <view class='main'>
     <view style='height:10rpx;'></view>
     <view class="news" wx:for="{{titles}}" bindtap='goContent' data-id='{{item.id}}'>
       <view class="title">{{item.title}}</view>
-      <view class="time icon_calendar iconfont">{{item.date}}</view>
+      <view class="time icon_calendar iconfont" style='width:100%;'>{{item.date}}</view>
     </view>
   </view>
 

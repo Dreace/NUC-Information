@@ -8,17 +8,18 @@
   border-radius: 25rpx;
   background-color: rgb(255, 255, 255);
 }
-.sub-title {
+.sub-title-view {
     padding: 30rpx 30rpx 18rpx;
     font-size: 28rpx;
     color: #888;
     width: 100%;
     box-sizing: border-box;
 }
-page{
+.page{
     background-color: #F8F8F8;
     font-size: 16px;
     font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+    min-height: 100vh;
 }
 .page__hd {
     padding: 40px;

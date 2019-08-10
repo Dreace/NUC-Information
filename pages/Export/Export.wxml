@@ -1,4 +1,5 @@
 <!--pages/Export/Export.wxml-->
+<navigationBar id="navigationBar" color="{{color}}" title="{{'导出'}}" back="{{true}}" ></navigationBar>
 <wux-calendar id="wux-calendar" />
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__hd">

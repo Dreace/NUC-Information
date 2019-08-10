@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-2.0.9-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
+![](https://img.shields.io/badge/Version-2.0.10-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
@@ -52,6 +52,9 @@ QQ 小程序码
 *注：所有信息来自教务系统，空教室、蹭课、安排等有时效性的信息只有本学期内容
 
 ### 版本日志
+#### Version 2.0.10
+  1. 统一视觉效果
+  2. 调整一些功能入口
 #### Version 2.0.9
   1. 对全部 API 进行重构提升兼容性
   2. 更新一些图标资源

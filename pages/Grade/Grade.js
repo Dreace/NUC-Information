@@ -1,4 +1,4 @@
-// pages/Grade/Grade.js
+ // pages/Grade/Grade.js
 const API = require("../../utils/API.js")
 const buttons = [{
   label: '刷新',
@@ -221,6 +221,25 @@ Page({
    */
   onLoad: function (options) {
     var app = getApp()
+    var that = this
+    app.eventBus.on("clearGrade", this, () => {
+      that.setData({
+        loading: false,
+        name: "",
+        passwd: "",
+        count: 0,
+        terms: [],
+        termsIndex: 0,
+        termIndex: 0,
+        termIndex_: 0,
+        grades: [],
+        datas: [],
+        gradeRawData: [],
+      })
+    })
+    app.eventBus.on("updateGrade", this, () => {
+      that.getGrade()
+    })
     app.globalData.name = wx.getStorageSync("name")
     app.globalData.passwd = wx.getStorageSync("passwd")
     if (options.gradeRawData != undefined) {
@@ -248,36 +267,5 @@ Page({
       }),
     }
 
-  },
-  onShow: function () {
-    var app = getApp()
-    if (app.globalData.clearFlagGrade) {
-      this.setData({
-        loading: false,
-        name: "",
-        passwd: "",
-        count: 0,
-        terms: [],
-        termsIndex: 0,
-        termIndex: 0,
-        termIndex_: 0,
-        grades: [],
-        datas: [],
-        gradeRawData: [],
-      })
-      app.globalData.clearFlagGrade = false
-    }
-    if (app.globalData.updateGrade) {
-      this.getGrade()
-      app.globalData.updateGrade = false
-      return
-    }
-    if (this.data.gradeRawData != undefined && this.data.gradeRawData[0]["name"]) {
-      this.handleData({
-        data: this.data.gradeRawData
-      })
-    } else {
-      this.getGrade()
-    }
   }
 })

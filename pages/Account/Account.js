@@ -1,3 +1,4 @@
+const app = getApp()
 Page({
   data: {
     accountList: [],
@@ -8,15 +9,14 @@ Page({
     this.setData({
       accountList: accountList
     })
-    var app = getApp()
     if (accountList.length < 1) {
       wx.clearStorageSync()
       app.globalData.name = ""
       app.globalData.passwd = ""
       app.globalData.courseTableRawData = []
       app.globalData.gradeRawData = []
-      app.globalData.clearFlagCourseTable = true
-      app.globalData.clearFlagGrade = true
+      app.eventBus.emit("clearCourseTable")
+      app.eventBus.emit("clearGrade")
     } else if (app.globalData.accountID == e.target.id) {
       app.globalData.accountID = 0
       app.globalData.name = this.data.accountList[0]["name"]
@@ -24,8 +24,8 @@ Page({
       wx.setStorageSync("name", app.globalData.name)
       wx.setStorageSync("accountID", app.globalData.accountID)
       wx.setStorageSync("passwd", app.globalData.passwd)
-      app.globalData.clearFlagCourseTable = true
-      app.globalData.clearFlagGrade = true
+      app.eventBus.emit("clearCourseTable")
+      app.eventBus.emit("clearGrade")
     } else if (e.target.id < app.globalData.accountID) {
       app.globalData.accountID -= 1
       wx.setStorageSync("accountID", app.globalData.accountID)
@@ -53,8 +53,8 @@ Page({
       wx.setStorageSync("name", app.globalData.name)
       wx.setStorageSync("accountID", app.globalData.accountID)
       wx.setStorageSync("passwd", app.globalData.passwd)
-      app.globalData.updateCourseTable = true
-      app.globalData.updateGrade = true
+      app.eventBus.emit("updateCourseTable")
+      app.eventBus.emit("updateGrade")
     }
 
     wx.reLaunch({

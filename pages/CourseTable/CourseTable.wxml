@@ -62,6 +62,8 @@
     <view class='grade-item' style='flex:1;'>{{item.Course_Teacher}}</view>
   </view>
 </scroll-view>
+<!-- 
+<view style='height:48px;width:100vw;'></view> -->
 <view class="{{showMoreInformation?'show':'close'}}">
   <swiper class="sw" indicator-dots='true' current="{{current}}">
     <block wx:for="{{showCardsList}}" wx:key="unique">

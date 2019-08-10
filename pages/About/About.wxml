@@ -1,3 +1,4 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{'关于'}}" back="{{true}}" ></navigationBar>
 <!--pages/About/About.wxml-->
 <view class='centerup appname'>中北信息</view>
 <view class='centerup'>中北大学</view>

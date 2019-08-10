@@ -1,11 +1,14 @@
 /* pages/More/News/News.wxss */
-
-.page {
-  min-height: 100vh;
+page{
   background: #eee;
 }
+
+.page {
+  min-height: calc(100vh - 100rpx);
+
+}
 .main{
-   min-height: calc(100vh - 140rpx);
+   min-height: calc(100vh - 250rpx);
 }
 .news {
   width: 90vw;

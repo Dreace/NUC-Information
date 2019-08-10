@@ -27,7 +27,6 @@ const buttons = [{
   icon: "/images/Export.png",
 }
 ]
-
 Page({
 
   /**
@@ -253,8 +252,6 @@ Page({
       tables: data
     })
     let termsIndex = count - 1
-    console.log(this.data.terms[termsIndex])
-    console.log(app.globalData.additionalData[this.data.terms[termsIndex]])
     var adata = app.globalData.additionalData[this.data.terms[termsIndex]]
     if (adata != undefined && adata.length > 0) {
       that.setData({
@@ -545,6 +542,29 @@ Page({
     // wx.navigateTo({
     //   url: '/pages/More/News/News',
     // })
+    var app = getApp()
+    var that = this
+    app.eventBus.on("clearCourseTable", this, () => {
+      that.setData({
+        name: "",
+        passwd: "",
+        count: 0,
+        terms: [],
+        termsIndex: 0,
+        table: [],
+        tables: [],
+        termIndex: 0,
+        termIndex_: 0,
+        courseIndex: 0,
+        enableRefresh: true,
+        courseTableRawData: [],
+        showCardsList: [],
+      })
+    })
+    app.eventBus.on("updateCourseTable", this, () => {
+      console.log("ok")
+      that.getCourseTable()
+    })
     var courseTime = []
     var month = new Date().getMonth() + 1;
     if (month < 5 || month > 9) {
@@ -633,6 +653,9 @@ Page({
       })
     })
   },
+  onUnload: function () {
+    app.eventBus.off("callback", this)
+  },
   onShareAppMessage: function (e) {
     var that = this
     var app = getApp()
@@ -653,42 +676,5 @@ Page({
         "table": table
       }),
     }
-  },
-  onShow: function () {
-    var app = getApp()
-    if (app.globalData.clearFlagCourseTable) {
-      this.setData({
-        name: "",
-        passwd: "",
-        count: 0,
-        terms: [],
-        termsIndex: 0,
-        table: [],
-        tables: [],
-        termIndex: 0,
-        termIndex_: 0,
-        courseIndex: 0,
-        enableRefresh: true,
-        courseTableRawData: [],
-        showCardsList: [],
-      })
-      app.globalData.clearFlagCourseTable = false
-    }
-    if (app.globalData.updateCourseTable) {
-      this.getCourseTable()
-      app.globalData.updateCourseTable = false
-      return
-    }
-    if (this.data.courseTableRawData != undefined && this.data.courseTableRawData[0]["name"]) {
-      this.handleData({
-        data: this.data.courseTableRawData
-      })
-    } else {
-      this.getCourseTable()
-    }
-
-  },
-  onPullDownRefresh: function () {
-    wx.stopPullDownRefresh()
   }
 })

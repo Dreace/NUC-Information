@@ -1,4 +1,5 @@
 <!--pages/More/Status/Status.wxml-->
+<navigationBar id="navigationBar" color="{{color}}" title="{{'系统状态'}}" back="{{true}}" ></navigationBar>
 <view>
   <view class='status'>响应时间</view>
   <view class='status-text'>

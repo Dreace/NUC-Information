@@ -1,4 +1,5 @@
 <!--pages/More/CampusTour/help.wxml-->
+<navigationBar id="navigationBar" color="{{color}}" title="{{''}}" back="{{true}}" ></navigationBar>
 <view class='all'>
   <view class='first'>如果你有教学楼、宿舍等地点的外观照片</view>
   <view class='other'>或者地点标注缺失、有误</view>

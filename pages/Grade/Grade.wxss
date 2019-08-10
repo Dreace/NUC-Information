@@ -2,6 +2,7 @@
 @import "../../utils/weui.wxss";
 @import "../../utils/showModel.wxss";
 
+
 .term {
   display: flex;
   flex-direction: row;

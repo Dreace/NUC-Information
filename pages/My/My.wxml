@@ -1,27 +1,42 @@
 <!--pages/Grade/Grade.wxml-->
-<view class="container" class="userinfo">
-  <open-data type="userAvatarUrl" class="icon" mode="aspectFit"></open-data>
-  <open-data type="userNickName" class="userinfo-nickname"></open-data>
-</view>
-<view class="weui-cells weui-cells_after-title" style='font-size:100%'>
-  <navigator url="/pages/Account/Account" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">账号管理</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-  </navigator>
-
-  <navigator url="/pages/About/About" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">关于</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-  </navigator>
-  <view class='weui-cell__bd b content' hover-class="none" style='text-align:center;border-top:1rpx solid #d9d9d9;font-size:100%;'>
-    <view style='margin-left: 1%;margin-top: 5rpx; margin-bottom: 2rpx;display:flex;width:98%;flex-direction: column;'>
-      <text style='flex:4;'>系统负载：</text>
-      <wux-progress show-info style='flex:6; justify-content: center;' status="normal" percent="{{load}}" bar-style="background-color:{{loadColor}}"/>
+<view class='box' style='margin-top:30rpx;'>
+  <view class="cu-bar bg-white" style='justify-content:center;'>
+    <view class="action sub-title" style='margin-left:0;'>
+      <text class="text-xl text-bold text-green">我的</text>
+      <text class="bg-green" style="width:2rem;bottom:0rem;"></text>
+      <!-- last-child选择器-->
     </view>
   </view>
-
 </view>
-<ad style="width:90%;margin-top:15rpx;" unit-id="adunit-0065a48368fd1ab4"></ad>
+
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+    <open-data type="userAvatarUrl" class="icon" mode="aspectFit"></open-data>
+    <open-data type="userNickName" class="userinfo-nickname"></open-data>
+  </view>
+  <view class="cu-list menu card-menu shadow-lg radius">
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/Account/Account" hover-class="none">
+        <text class="icon-account iconfont text-red"></text>
+        <text class="text-grey">账号管理</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/OpenSource/OpenSource" hover-class="none">
+        <text class="icon-github iconfont text-grey"></text>
+        <text class="text-grey">项目开源</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/More/Status/Status" hover-class="none">
+        <text class="icon-system iconfont text-blue"></text>
+        <text class="text-grey">系统状态</text>
+      </navigator>
+    </view>
+  </view>
+  <ad style="width:90%;margin-top:15rpx;" unit-id="adunit-0065a48368fd1ab4"></ad>
+</scroll-view>
+
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">Version 2.0.9</view>
+  <view class="weui-footer__text">中北信息 v2.0.10</view>
 </view>

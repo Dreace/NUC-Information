@@ -90,86 +90,11 @@ Page({
         app.globalData.accountList[that.data.accountID]["passwd"] = that.data.passwd
         app.globalData.accountList[that.data.accountID]["remark"] = that.data.remark
       }
+      app.globalData.name = that.data.name
+      app.globalData.passwd = that.data.passwd
+      app.eventBus.emit("updateCourseTable")
+      app.eventBus.emit("updateGrade")
       wx.navigateBack()
-    })
-    return
-    wx.request({
-      url: 'https://cdn.dreace.top/test',
-      data: {
-        name: this.data.name,
-        passwd: this.data.passwd,
-        version: auth.version,
-        uuid: auth.uuid
-      },
-      success: function (res) {
-        if (res.data[0]["code"] === "100") {
-          wx.showToast({
-            title: res.data[1]["message"],
-            mask: true,
-            image: '/images/Error.png',
-            duration: 1500
-          })
-          return
-        }
-        if (res.data[0]["code"] == "200") {
-          wx.showToast({
-            title: '登录成功',
-            icon: 'succes',
-            duration: 2500
-          })
-          that.setData({
-            testpassed: true
-          })
-          if (that.data.accountID == -1) {
-            if (that.data.remark == "") {
-              that.setData({
-                remark: "不愿透露姓名"
-              })
-            }
-            app.globalData.accountList.push({
-              remark: that.data.remark,
-              name: that.data.name,
-              passwd: that.data.passwd
-            })
-          } else {
-            app.globalData.accountList[that.data.accountID]["name"] = that.data.name
-            app.globalData.accountList[that.data.accountID]["passwd"] = that.data.passwd
-            app.globalData.accountList[that.data.accountID]["remark"] = that.data.remark
-          }
-          wx.navigateBack()
-        } else if (res.data[0]["code"] == "2") {
-          that.setData({
-            message: "账号或密码错误",
-            showTopTips: true,
-            showPassword: true,
-          });
-
-          setTimeout(function () {
-            that.setData({
-              showTopTips: false
-            });
-          }, 3000);
-        } else {
-          wx.showToast({
-            title: '服务器异常',
-            image: '/images/Error.png',
-            duration: 3000
-          })
-        }
-      },
-      fail: function (e) {
-        wx.showToast({
-          title: '未能完成请求',
-          image: '/images/Error.png',
-          duration: 3000
-        })
-        console.log(e)
-      },
-      complete: function () {
-        that.setData({
-          testing: false
-        })
-      }
     })
   },
   onLoad: function (options) {

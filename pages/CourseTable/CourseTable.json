@@ -4,10 +4,5 @@
     "navigationBar": "/dist/navigationBar/index",
     "wux-select": "../../../dist/select/index",
     "wux-prompt": "../../dist/prompt2/index"
-  },
-  "navigationStyle": "custom",
-  "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTitleText": "课程表",
-  "navigationBarTextStyle": "black"
+  }
 }

@@ -10,6 +10,7 @@ function showMessage(msg) {
   })
 }
 function getData2(url, callBack) {
+  console.log(wx.showLoading)
   wx.request({
     url: dataUrl + url,
     success: (res) => {res.data

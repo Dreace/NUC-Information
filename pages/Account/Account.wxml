@@ -1,3 +1,5 @@
+
+<navigationBar id="navigationBar" color="{{color}}" title="{{'账号管理'}}" back="{{true}}" ></navigationBar>
 <view class="page__hd">
   <view class="page__title">Account Management</view>
   <view class="page__desc">账号管理</view>

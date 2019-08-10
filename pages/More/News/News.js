@@ -9,6 +9,7 @@ Page({
   data: {
     pages: 0,
     titles:[],
+    title:undefined,
     topHeight:0,
     type:undefined,
   },
@@ -41,7 +42,7 @@ Page({
   onLoad: function (options) {
     var that = this
     var type = options.type
-    wx.setNavigationBarTitle({
+    this.setData({
       title: typeName[type],
     })
     API.getData("getnews",{
