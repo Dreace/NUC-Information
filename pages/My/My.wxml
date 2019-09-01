@@ -33,10 +33,16 @@
         <text class="text-grey">系统状态</text>
       </navigator>
     </view>
+    <view class="cu-item arrow">
+      <view class="content" bindtap="toFeedback"  hover-class="none">
+        <text class="icon-feedback iconfont text-green"></text>
+        <text class="text-grey">信息反馈</text>
+      </view>
+    </view>
   </view>
-  <ad style="width:90%;margin-top:15rpx;" unit-id="adunit-0065a48368fd1ab4"></ad>
+  <ad style="width:90%;margin-top:5rpx;" unit-id="adunit-0065a48368fd1ab4"></ad>
 </scroll-view>
 
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">中北信息 v2.0.10</view>
+  <view class="weui-footer__text">中北信息 v2.0.11</view>
 </view>

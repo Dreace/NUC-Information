@@ -13,29 +13,29 @@ Page({
     accountID: -1,
     showPassword: false,
   },
-  inputname: function (e) {
+  inputname: function(e) {
     this.setData({
       testpassed: false,
       name: e.detail.value
     })
   },
-  inputremark: function (e) {
+  inputremark: function(e) {
     this.setData({
       remark: e.detail.value
     })
   },
-  inputpasswd: function (e) {
+  inputpasswd: function(e) {
     this.setData({
       testpassed: false,
       passwd: e.detail.value
     })
   },
-  swtichChnage: function (e) {
+  swtichChnage: function(e) {
     this.setData({
       autoVcode: e.detail.value
     })
   },
-  test: function (e) {
+  test: function(e) {
     var that = this
     var app = getApp()
     if (this.data.testing) {
@@ -92,12 +92,15 @@ Page({
       }
       app.globalData.name = that.data.name
       app.globalData.passwd = that.data.passwd
+      wx.setStorageSync("accountList", app.globalData.accountList)
+      wx.setStorageSync("name", app.globalData.name)
+      wx.setStorageSync("passwd", app.globalData.passwd)
       app.eventBus.emit("updateCourseTable")
       app.eventBus.emit("updateGrade")
       wx.navigateBack()
     })
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     var app = getApp()
     var id = options.id
     console.log(id)
@@ -110,10 +113,10 @@ Page({
       })
     }
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     wx.stopPullDownRefresh()
   },
-  onShow: function (options) {
+  onShow: function(options) {
     try {
       var app = getApp()
       this.setData({

@@ -481,21 +481,6 @@ Page({
       })
       return
     }
-    // API.getData2("date.txt", (data) => {
-    //   that.setData({
-    //     firstWeek: data
-    //   })
-    //   wx.setStorageSync("firstWeek", data)
-    // })
-    // wx.request({
-    //   url: 'https://dreace.top/res/date.txt',
-    //   success: function (res) {
-    //     that.setData({
-    //       firstWeek: res.data
-    //     })
-    //     wx.setStorageSync("firstWeek", res.data)
-    //   },
-    // })
     this.getCourseTableWithoutVcode()
   },
   getCourseTableWithoutVcode: function () {
@@ -587,15 +572,6 @@ Page({
       })
       wx.setStorageSync("firstWeek", data)
     })
-    // wx.request({
-    //   url: 'https://dreace.top/res/date.txt',
-    //   success: function (res) {
-    //     that.setData({
-    //       firstWeek: res.data
-    //     })
-    //     wx.setStorageSync("firstWeek", res.data)
-    //   },
-    // })
     if (options.courseTableRawData != undefined) {
       wx.navigateTo({
         url: 'CourseTableFriend/CourseTableFriend?courseTableRawData=' + options.courseTableRawData,

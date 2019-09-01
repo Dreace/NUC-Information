@@ -26,6 +26,9 @@
     "pages/More/News/News",
     "pages/More/News/Content/Content"
   ],
+  "navigateToMiniProgramAppIdList": [
+    "wx8abaf00ee8c3202e"
+  ],
   "permission": {
     "scope.userLocation": {
       "desc": "用于校园导览定位当前位置"

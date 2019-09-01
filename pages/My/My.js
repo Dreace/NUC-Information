@@ -15,20 +15,21 @@ Page({
     load: 0,
     loadColor: "#5099B9",
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  toFeedback: function() {
+    wx.navigateToMiniProgram({
+      appId: 'wx8abaf00ee8c3202e',
+      extraData: {
+        id: "66656",
+      },
+    })
   },
-  onHide: function () {
+  onHide: function() {
     var that = this
     var interval = that.data.interval;
     clearInterval(interval)
   },
 
-  checkServer: function () {
+  checkServer: function() {
     var that = this
     API.getData2("load.txt", (data) => {
       var load = parseInt(data)
@@ -46,7 +47,7 @@ Page({
       })
     })
   },
-  onShow: function () {
+  onShow: function() {
     var that = this
     that.checkServer()
     var interval = setInterval(that.checkServer, 3000)
@@ -54,10 +55,10 @@ Page({
       interval: interval
     })
   },
-  getInfo: function () {
+  getInfo: function() {
     wx.getUserInfo({})
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     wx.stopPullDownRefresh()
   }
 })

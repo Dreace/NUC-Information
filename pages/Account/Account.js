@@ -67,7 +67,6 @@ Page({
       accountList: app.globalData.accountList
     })
     wx.setStorageSync("accountList", this.data.accountList)
-    console.log(this.data.accountList.length)
     if (this.data.accountList.length == 1) {
       app.globalData.name = this.data.accountList[0]["name"]
       app.globalData.passwd = this.data.accountList[0]["passwd"]

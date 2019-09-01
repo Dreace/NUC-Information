@@ -2,7 +2,7 @@
 <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
   <view class="search-form round">
     <text class="cuIcon-search"></text>
-    <input auto-focus='{{true}}' type="text" placeholder="搜索课程名、教师和学院" confirm-type="search" bindinput='bindSearchInput'></input>
+    <input auto-focus='{{true}}' type="text" placeholder="搜索校内地点" confirm-type="search" bindinput='bindSearchInput'></input>
   </view>
   <view class="action">
     <button class="cu-btn bg-gradual-green shadow-blur round" bindtap='onCancel'>取消</button>

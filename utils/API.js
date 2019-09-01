@@ -2,6 +2,7 @@ const auth = require("authenticate.js")
 const apiUrl = "https://api.dreace.top/"
 const dataUrl = "https://dreace.top/res/"
 const svgUrl = dataUrl
+
 function showMessage(msg) {
   wx.showToast({
     title: msg || "未知错误",
@@ -9,15 +10,16 @@ function showMessage(msg) {
     mask: true,
   })
 }
+
 function getData2(url, callBack) {
-  console.log(wx.showLoading)
   wx.request({
     url: dataUrl + url,
-    success: (res) => {res.data
+    success: (res) => {
       callBack(res.data)
     },
   })
 }
+
 function getData(url, parameter, callBack, method) {
   parameter["version"] = auth.version
   parameter["uuid"] = auth.uuid
@@ -32,6 +34,28 @@ function getData(url, parameter, callBack, method) {
     success: (res) => {
       let data = res.data
       if (data["code"] != 200) {
+        if (data["code"] == 22) {
+          wx.showModal({
+            title: '登录失效',
+            content: '需重新登录,即将跳转到登录页面',
+            showCancel: false,
+            success: (res) => {
+              if (res.confirm) {
+                var app = getApp()
+                let id = 0
+                for (let i = 0; i < app.globalData.accountList.length; i++) {
+                  if (parameter["name"] == app.globalData.accountList[i]["name"]) {
+                    id = i
+                  }
+                  console.log(id)
+                }
+                wx.navigateTo({
+                  url: '/pages/Setting/Setting?id=' + id,
+                })
+              }
+            }
+          })
+        }
         showMessage(data["message"])
       } else {
         wx.hideLoading()
