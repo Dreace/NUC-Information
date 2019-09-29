@@ -2,7 +2,7 @@
 @import "../../utils/weui.wxss";
 
 .UCenter-bg {
-  background-image: url(https://dreace.top/res/cool-background-01.png);
+  background-image: url(https://dreace.top/imgs/miniappimage/cool-background.png);
   background-size: cover;
   height: 400rpx;
   display: flex;

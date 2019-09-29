@@ -42,7 +42,7 @@ Page({
     var app = getApp()
     var that = this
     var table
-    var adata = app.globalData.additionalData[this.data.termsIndex]
+    var adata = app.globalData.additionalData[that.data.tables[this.data.termsIndex]["name"]]
     if (adata != undefined && adata.length > 0) {
       table = that.data.tables[this.data.termsIndex]["table"].concat(adata)
     } else {

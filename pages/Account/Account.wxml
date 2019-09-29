@@ -1,5 +1,5 @@
-
-<navigationBar id="navigationBar" color="{{color}}" title="{{'账号管理'}}" back="{{true}}" ></navigationBar>
+<navigationBar id="navigationBar" color="{{color}}" title="{{'账号管理'}}" back="{{true}}">
+</navigationBar>
 <view class="page__hd">
   <view class="page__title">Account Management</view>
   <view class="page__desc">账号管理</view>
@@ -19,5 +19,7 @@
 <view wx:if="{{accountList.length<1}}" style='text-align: center;color:#C2C3C4;'>账号列表为空</view>
 <view class="weui-btn-area" style='width:80%;margin-left:10%;margin-top:5rpx;'>
   <view style='text-align: center;color:#C2C3C4;'>点击选择，左滑编辑、删除</view>
-  <wux-button block bind:click="addAccount" type="balanced">添加账号</wux-button>
 </view>
+  <view class="confirm-btn" bindtap="addAccount">
+    <text>添加账号</text>
+  </view>

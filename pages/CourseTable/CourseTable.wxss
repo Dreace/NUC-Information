@@ -126,7 +126,7 @@
   height: 70rpx;
   font-size: 11pt;
   font-weight: bold;
-  color: #313130;
+  color: #73b4ef;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -165,6 +165,13 @@
   justify-content: center;
   align-items: center;
   color: #aaa;
+}
+.after-left-strong {
+  text-align: center;
+  font-size: 7pt;
+  justify-content: center;
+  align-items: center;
+  color: #73b4ef;
 }
 
 .add_icon {

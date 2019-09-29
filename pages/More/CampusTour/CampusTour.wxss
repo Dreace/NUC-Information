@@ -7,7 +7,7 @@
 }
 
 .top-swich {
-  background-color: #079df2;
+  background-color: #7acfa6;
   height: 6vh;
   color: white;
   display: flex;

@@ -2,8 +2,8 @@
 
 .wemark_wrapper{
 	margin:10px 0;
-	font-size:32rpx;
-	line-height: 1.8em;
+	font-size:30rpx;
+	line-height: 1.5em;
 }
 .wemark_block_h1{
 	font-size:40rpx;

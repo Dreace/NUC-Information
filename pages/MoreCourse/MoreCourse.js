@@ -2,6 +2,7 @@
 var pinyinUtil = require("../../utils/pinyinUtil.js")
 const API = require("../../utils/API.js")
 const app = getApp()
+var keyword = ""
 Page({
 
   /**
@@ -87,20 +88,21 @@ Page({
       visible: true
     })
   },
-  onChange: function(e) {
-    if (e.detail.value.length < 1) {
-      this.setData({
-        list: [],
-        visible: true
-      })
+  serch(){
+    var visible = true
+    if(keyword.length < 1){
       return
     }
     var that = this
     var data = undefined
-    var visible = true
+
     API.getData("getcourse", {
-      keywords: e.detail.value
+      keywords: keyword
     }, (data) => {
+      wx.showLoading({
+        mask: true,
+        title: "处理中"
+      })
       const alphabet = []
       'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach((initial) => {
         const cells = data.filter((course) => pinyinUtil.pinyinUtil.getFirstLetter(course["Course_name"]).charAt(0) == initial)
@@ -118,7 +120,12 @@ Page({
         visible: visible,
         data: data
       })
+      setTimeout(wx.hideLoading, 1000)
     })
+  },
+  onChange: function(e) {
+    keyword = e.detail.value
+    
   },
   //获取文字信息
   getCur(e) {

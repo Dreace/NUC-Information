@@ -24,10 +24,16 @@
     "pages/More/CampusTour/help",
     "pages/More/Status/Status",
     "pages/More/News/News",
-    "pages/More/News/Content/Content"
+    "pages/More/News/Content/Content",
+    "pages/More/Balance/Balance",
+    "pages/More/Library/Library",
+    "pages/More/Library/SearchResults",
+    "pages/More/Library/BookDetail",
+    "pages/More/ClassCoursetable/ClassCoursetable"
   ],
   "navigateToMiniProgramAppIdList": [
-    "wx8abaf00ee8c3202e"
+    "wx8abaf00ee8c3202e",
+    "wx18a2ac992306a5a4"
   ],
   "permission": {
     "scope.userLocation": {

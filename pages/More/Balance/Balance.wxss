@@ -1,0 +1,136 @@
+/* pages/More/Balance/Balance.wxss */
+
+@font-face {
+  font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_1428579_zghsqn2bby.eot?t=1569122435750'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_1428579_zghsqn2bby.eot?t=1569122435750#iefix') format('embedded-opentype'),
+         /* IE6-IE8 */ url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAALEAAsAAAAABqwAAAJ3AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqBKIFIATYCJAMICwYABCAFhG0HPhv8BRHVkxVkXx7wZHjzaoxIFb7UiFBgDV9G96WKhqrpcz7Hw/+vxe6b+bvMCqKSOCRzSXgUT5CsJEJUaeYJj+KbvgvzsAEHBLGUwMKn5Vd3UQxtboauURGKJTkP/pfvSLsJl+ZXAPg8l9NrAQUyP1Auc0w+6oVhvDWgvTGKrEgib1ndUL1O4GMCVd0MERMnz1yokFirArFz25Z1ilxYklSuEMo1B5M4o6TITmX3cTr8fnw2NAoypZzVMHfzpI3Gvr9gF+QHGwet9AkRAh0vIccQJGJhbXq2XChmrno66YUkCd7XaLBV7NUk1F9nVddBFxTfk8SV3mp1BhKODsfiUctJLVvW67tVoxZYp6q2VpYSm1RXPHy48NGjRU+eLHn8+ICjXBwJSVCx4x9/NfbsdLdMMHa/7a/MaPjzTvr7N7EFJPTkaUPtPuZ37+aoOM9ClPPvGAsal/Ir+TiBYOWbztdrPvJbUQLPVjkSBhuXkn5eivN6gv8n6dmUdJmly65ETJ7M8MxqGaqqaGB/K6/H6tverDMUOYlCpomuyBX6UBJjCEpqhqGsMAZVg005XtPaLrlIFQxyDBBauIhMM5eQa+EBJTFeoaSdryhrETmqFkfrC2v6hZpURi3owPwhWTq9YxMV1d4wvKvmrCxkvZB7isEyzsXcgSfyHFv6J6wiHjxTgx2ew1oJLqaMVsYocm3T5OveNFpqg5JRCzpg/iBZOr3fWVTp8zcM76q5hVTjfyH3ND5YjOYelEN99iLdyyv9E1YiHnimBnaYh7USuOrnZbQyiiOS12ayW/m+6nF9bfu6XVBlGbKwJ+RsoTP0qD3XP51BSaVAwwAA') format('woff2'),
+         url('//at.alicdn.com/t/font_1428579_zghsqn2bby.woff?t=1569122435750') format('woff'),
+         url('//at.alicdn.com/t/font_1428579_zghsqn2bby.ttf?t=1569122435750') format('truetype'),
+         /* chrome,
+         firefox,
+         opera,
+         Safari,
+         Android,
+         iOS 4.2+ */ url('//at.alicdn.com/t/font_1428579_zghsqn2bby.svg?t=1569122435750#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon_icbc:before {
+  content: "\e799";
+}
+
+page {
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 10pt;
+  line-height: 150%;
+  color: #666;
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.container {
+  background-color: #f7f7f7;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.detail-remind {
+  font-size: 9pt;
+  line-height: 100%;
+  color: #aaa;
+  text-align: center;
+  margin: 10rpx 5rpx;
+}
+
+/* 今日余额 */
+
+.ykt-card {
+  display: flex;
+  flex-direction: column;
+  height: 350rpx;
+  margin: 250rpx 50rpx 45rpx;
+  background: #ffcb63;
+  border-radius: 15rpx;
+  box-shadow: 5rpx 5rpx 15rpx #ccc;
+}
+
+.ykt-black-line {
+  width: 100%;
+  height: 80rpx;
+  margin: 40rpx 0 0;
+  background: #7b7b7b;
+}
+
+.ykt-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ykt-ye {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-right: 50rpx;
+  color: #777;
+}
+
+.ykt-ye-name {
+  font-size: 11pt;
+  line-height: 50rpx;
+  padding-left: 30rpx;
+}
+
+.ykt-ye-money {
+  text-align: center;
+  font-size: 10pt;
+}
+
+.ykt-ye-value {
+  font-size: 36pt;
+  font-weight: bold;
+  line-height: 80rpx;
+  padding-right: 25rpx;
+}
+
+.ykt-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200rpx;
+}
+
+.ykt-img image {
+  width: 125rpx;
+  height: 125rpx;
+  padding: 20rpx 30rpx;
+}
+
+.ykt-card-more {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 5rpx 25rpx 10rpx 25rpx;
+  line-height: 100%;
+  opacity: 0.6;
+}
+
+.ykt-ye-time {
+  font-size: 9pt;
+}
+
+.ykt-ye-id {
+  font-size: 10pt;
+}

@@ -1,7 +1,7 @@
 /**app.wxss**/
 @import "utils/colorui.wxss";
 @import "utils/icon.wxss";
-.container {
+/* .container {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -9,4 +9,24 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
+}  */
+
+.container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
 } 
+.confirm-btn {
+  font-size: 13pt;
+  line-height: 85rpx;
+  height: 85rpx;
+  background: #7acfa6;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  margin: 10rpx 3%;
+}

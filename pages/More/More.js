@@ -8,6 +8,12 @@ Page({
   data: {
     notice: "",
   },
+  jumpToReward:function(){
+    wx.navigateToMiniProgram({
+      appId: 'wx18a2ac992306a5a4',
+      path: 'pages/apps/largess/detail?id=%2BWTvJNpJDUygPc1CLmE7uw%3D%3D'
+    })
+  },
   ad: function () {
     if (videoAd) {
       videoAd.show().catch(() => {

@@ -1,5 +1,6 @@
 const API = require("../../../utils/API.js")
 const app = getApp()
+var keyword = ""
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
@@ -14,23 +15,24 @@ Page({
       
     })
   },
-  onChange: function (e) {
-    if (e.detail.value.length < 1) {
-      this.setData({
-        visible: true
-      })
+  search(){
+    if(keyword.length < 1){
       return
     }
     var that = this
     var data = undefined
     var visible = true
-    API.getData("exam",{
-      keywords: e.detail.value
-    },(data)=>{
+    API.getData("exam", {
+      keywords: keyword
+    }, (data) => {
       that.setData({
         exams: data,
         visible: false
       })
     })
+  },
+  onChange: function (e) {
+    keyword = e.detail.value
+
   },
 })

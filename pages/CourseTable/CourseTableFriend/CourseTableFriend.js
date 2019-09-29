@@ -158,7 +158,7 @@ Page({
           data: JSON.parse(options.courseTableRawData)
         })
         wx.showToast({
-          title: '好友的课程表',
+          title: '分享的课表',
           mask: true,
           image: '/images/Happy.png',
           duration: 1500

@@ -1,16 +1,42 @@
 const auth = require("authenticate.js")
 const apiUrl = "https://api.dreace.top/"
 const dataUrl = "https://dreace.top/res/"
+const cloudUrl = "https://fc.dreace.top/"
+// const cloudUrl = "http://127.0.0.1:5000/"
 const svgUrl = dataUrl
 
 function showMessage(msg) {
   wx.showToast({
     title: msg || "未知错误",
-    image: "/images/Error.png",
+    image: "/images/Sad.png",
     mask: true,
   })
 }
 
+function cloudAPI(url, parameter, callBack){
+  parameter["version"] = auth.version
+  parameter["uuid"] = auth.uuid
+  wx.showLoading({
+    mask: true,
+    title: "加载中"
+  })
+  wx.request({
+    url: cloudUrl + url,
+    data: parameter,
+    success: (res) => {
+      let data = res.data
+      if (data["code"] != 0) {
+        showMessage(data["message"])
+      } else {
+        wx.hideLoading()
+        callBack(data["data"])
+      }
+    },
+    fail: () => {
+      showMessage()
+    },
+  })
+}
 function getData2(url, callBack) {
   wx.request({
     url: dataUrl + url,
@@ -70,5 +96,5 @@ function getData(url, parameter, callBack, method) {
 module.exports = {
   getData: getData,
   getData2: getData2,
-  svgUrl: svgUrl
+  cloudAPI: cloudAPI,
 }

@@ -1,43 +1,92 @@
-<!--pages/Setting/Setting.wxml-->
-<navigationBar id="navigationBar" color="{{color}}" title="{{'登录'}}" back="{{true}}" ></navigationBar>
-<view class="container" class="userinfo">
-  <open-data type="userAvatarUrl" class="icon" mode="aspectFit"></open-data>
+<navigationBar id="navigationBar" color="#fff" background="#7acfa6" title="{{'登录'}}" back="{{true}}"></navigationBar>
+<view class="container">
+  <view class="remind-box" wx:if="{{remind}}">
+    <image class="remind-img" src="/images/index/loading.gif"></image>
+  </view>
+  <block wx:else>
+    <image class="title" src="/images/more/title.png"></image>
+    <view class="content-setting">
+      <view class="hd" style="transform:rotateZ({{angle}}deg);">
+        <open-data type="userAvatarUrl" class="logo" mode="aspectFit"></open-data>
+        <image class="wave" src="/images/more/wave.png" mode="aspectFill"></image>
+        <image class="wave wave-bg" src="/images/more/wave.png" mode="aspectFill"></image>
+      </view>
+      <view class="bd">
+        <view class="input-group" style="display:flex;background:#fff;">
+          <view class="input-label" style="flex:1">账号</view>
+          <input bindinput="inputname" style="flex:6" placeholder="学号" value='{{name}}' confirm-type='next' />
+        </view>
+        <view class="input-group" style="display:flex;background:#fff;">
+          <view class="input-label" style="flex:1">密码</view>
+          <input bindinput="inputpasswd" style="flex:6" placeholder="个人门户登录密码" password='{{!showPassword}}' value='{{passwd}}' confirm-type='next' />
+        </view>
+        <view class="input-group" style="display:flex;background:#fff;margin-bottom: 10rpx;">
+          <view class="input-label" style="flex:1">备注</view>
+          <input bindinput="inputremark" style="flex:6" placeholder="添加备注(选填)" value='{{remark}}' confirm-type='done' />
+        </view>
+        <checkbox-group bindchange="checkboxChange">
+          <view class="cu-form-group" style="background-color:#f4f4f4;padding: 0;">
+            <view>
+              <checkbox class="checkbox-title"></checkbox>
+              <label>
+                已阅读并同意
+                <text class="text-blue" bindtap="openUserAgreement" catchtouchmove="preventTouchMove">《用户协议》</text>
+              </label>
+            </view>
+            <text class="text-blue" style="padding-right: 30rpx;" bindtap="openForgetPassword">忘记密码？</text>
+          </view>
+        </checkbox-group>
+        <view class="confirm-btn" bindtap="test">
+          <text>登录</text>
+        </view>
+      </view>
+    </view>
+  </block>
 </view>
-<view class="page__bd">
-  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
 
-  <view class="weui-cells weui-cells_after-title">
 
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">账号</view>
-      </view>
-      <view class="weui-cell__bd">
-        <input bindinput="inputname" class="weui-input" placeholder="学号" value='{{name}}' confirm-type='next' />
+<view class="cu-modal {{showUserAgreement?'show':''}}" style="font-size: 28rpx;  z-index: 99999999999999;background: rgba(0, 0, 0, 0.3);" catchtouchmove="preventTouchMove">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">用户协议</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
       </view>
     </view>
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">密码</view>
-      </view>
-      <view class="weui-cell__bd">
-        <input bindinput="inputpasswd" class="weui-input" placeholder="个人门户登录密码" password='{{!showPassword}}' value='{{passwd}}' confirm-type='next' />
-      </view>
+    <view class="padding-xl" style="text-align: left;">
+      <scroll-view scroll-y style="height: 50vh;">
+        <rich-text nodes="{{userAgreementContent}}" type="text" space="nbsp"></rich-text>
+      </scroll-view>
+
     </view>
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">备注</view>
-      </view>
-      <view class="weui-cell__bd">
-        <input bindinput="inputremark" class="weui-input" placeholder="添加备注(选填)" value='{{remark}}' confirm-type='done' />
-      </view>
+    <view class="cu-bar bg-white">
+      <!-- <navigator hover-class="none" class="action margin-0 flex-sub solid-left" open-type="exit" target="miniProgram">不同意</navigator> -->
+      <view class="action margin-0 flex-sub  text-green solid-left" bindtap="closeUserAgreement">关闭</view>
     </view>
   </view>
-  <!--  <view class="weui-btn-area">
-    <button class="weui-btn" loading='{{testing}}' bindtap="test" type="primary">登录</button>
-    <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
-  </view> -->
-  <view class="weui-btn-area" style='width:80%;margin-left:10%;'>
-    <wux-button block loading="{{testing}}" bind:click="test" type="balanced">登录</wux-button>
+</view>
+
+
+<view class="cu-modal {{showForgetPassword?'show':''}}" style="font-size: 28rpx;  z-index: 99999999999999;background: rgba(0, 0, 0, 0.3);" catchtouchmove="preventTouchMove">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">用户协议</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl" style="text-align: left;">
+      <view style="color: #999;">1.账号密码是什么？</view>
+      <view style="text-indent: 1em;">小程序登录账号为个人门户账号,即学号</view>
+      <view style="text-indent: 1em;">若未修改过密码则为身份证后六位（有 X 则大写）</view>
+      <view style="text-indent: 1em;">修改过则为修改后的密码</view>
+      <view style="color: #999;">2.忘记密码</view>
+      <view style="text-indent: 1em;">若忘记密码请到到个人门户找回密码(需校园网环境)</view>
+      <view style="text-indent: 1em;">网址为：</view>
+      <view class="text-blue" style="text-indent: 1em;word-break: break-all;" bindtap="copy">https://ca.nuc.edu.cn/zfca/securitycenter/findpwd/recoverpasswd.jsp</view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  text-green solid-left" bindtap="closeForgetPassword">关闭</view>
+    </view>
   </view>
 </view>

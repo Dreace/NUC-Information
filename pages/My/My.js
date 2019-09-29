@@ -23,38 +23,6 @@ Page({
       },
     })
   },
-  onHide: function() {
-    var that = this
-    var interval = that.data.interval;
-    clearInterval(interval)
-  },
-
-  checkServer: function() {
-    var that = this
-    API.getData2("load.txt", (data) => {
-      var load = parseInt(data)
-      var loadColor = ""
-      if (load <= 70) {
-        loadColor = "#2A6EFC"
-      } else if (load <= 85) {
-        loadColor = "#FFCC00"
-      } else {
-        loadColor = "#ED4C3E"
-      }
-      that.setData({
-        load: load,
-        loadColor: loadColor
-      })
-    })
-  },
-  onShow: function() {
-    var that = this
-    that.checkServer()
-    var interval = setInterval(that.checkServer, 3000)
-    that.setData({
-      interval: interval
-    })
-  },
   getInfo: function() {
     wx.getUserInfo({})
   },

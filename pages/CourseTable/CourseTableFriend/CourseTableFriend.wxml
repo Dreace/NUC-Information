@@ -1,4 +1,4 @@
-<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+<navigationBar id="navigationBar" title="{{'分享的课表'}}" back="{{true}}"></navigationBar>
 
 <scroll-view scroll-y="true" class="scroll">
 
@@ -36,13 +36,19 @@
     <view class='grade-item' style='flex:1;'>{{item.Course_Teacher}}</view>
   </view>
 </scroll-view>
-<view class="{{showMoreInformation?'show':'close'}}">
-  <swiper class="sw" indicator-dots='true' previous-margin='0rpx' next-margin='0rpx' current="{{current}}">
+<view class="{{showMoreInformation?'show':'close'}}" catchtouchmove="preventTouchMove" style="font-size: 28rpx; ">
+  <swiper class="sw" indicator-dots='true' current="{{current}}">
     <block wx:for="{{showCardsList}}" wx:key="unique">
       <swiper-item>
-        <view class='model-pack' style='margin-top:300rpx'>
-          <view class="model-title">课程信息({{(index+1)+"/"+showCardsList.length}})</view>
-          <view class=" " style='margin:0 auto;width:90%; font-size: 100%%;'>
+        <view class="cu-modal show">
+          <view class="cu-dialog">
+            <view class="cu-bar bg-white justify-end">
+              <view class="content">课程信息({{(index+1)+"/"+showCardsList.length}})</view>
+              <view class="action" bindtap="hideModal">
+                <text class="cuIcon-close text-red"></text>
+              </view>
+            </view>
+            <view class="padding-xl" style="text-align: left;">
             <view>课程号:{{table[item]["Course_Number"]}}</view>
             <view>课程名:{{table[item]["Course_Name"]}}</view>
             <view>课程属性:{{table[item]["Course_Attribute"]}}</view>
@@ -50,9 +56,10 @@
             <view>教师:{{table[item]["Course_Teacher"]}}</view>
             <view>周次:{{table[item]["Course_Week"]}}</view>
             <view>上课地点:{{table[item]["Course_Building"]+" "+table[item]["Course_Classroom"]}}</view>
-          </view>
-          <view class="model-button">
-            <view data-modelid="{{ModelId}}" class="model-button-confirm show" bindtap="closethis" style='width:100%;'>关闭</view>
+            </view>
+            <view class="cu-bar bg-white">
+              <view  class="action margin-0 flex-sub  text-green solid-left" bindtap="closethis">关闭</view>
+            </view>
           </view>
         </view>
       </swiper-item>

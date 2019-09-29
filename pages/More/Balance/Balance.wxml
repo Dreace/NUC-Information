@@ -1,0 +1,27 @@
+<!--pages/More/Balance/Balance.wxml-->
+<navigationBar id="navigationBar" color="{{'#ffffff'}}" title="{{'一卡通余额'}}" background="#FFCB63" back="{{true}}" ></navigationBar>
+<view class="container">
+    <block>
+        <view class="ykt-card">
+            <view class="ykt-black-line"></view>
+            <view class="ykt-content">
+                <view class="ykt-ye">
+                    <text class="ykt-ye-name">余额</text>
+                    <view class="ykt-ye-money">
+                        <text class="ykt-ye-value">{{data.balance}}</text>元
+                    </view>
+                </view>
+                <view class="ykt-img">
+                    <image src="/images/core/ykt/card-bg.png"></image>
+                </view>
+            </view>
+            <view class="ykt-card-more">
+                <text class="ykt-ye-time">更新时间：{{data.time}}</text>
+                <text class="ykt-ye-id">持卡人：{{data.name}}</text>
+            </view>
+        </view>
+    
+    </block>
+    <view class="detail-remind">以上非实时数据，仅供参考</view>
+    <view class="detail-remind">数据来自 <text class="icon_icbc iconfont" style="color: rgb(201, 41, 42);">ICBC</text></view>
+</view>

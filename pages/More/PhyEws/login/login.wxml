@@ -1,4 +1,4 @@
-<!--pages/More/PhyEws/login/login.wxml-->
+<!-- pages/More/PhyEws/login/login.wxml
 <navigationBar id="navigationBar" color="{{color}}" title="{{'登录'}}" back="{{true}}" ></navigationBar>
 <view class="container" class="userinfo">
   <open-data type="userAvatarUrl" class="icon" mode="aspectFit"></open-data>
@@ -28,7 +28,36 @@
     <button class="weui-btn" loading='{{testing}}' bindtap="test" type="primary">登录</button>
     <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
   </view> -->
-  <view class="weui-btn-area" style='width:80%;margin-left:10%;'>
+  <!-- <view class="weui-btn-area" style='width:80%;margin-left:10%;'>
     <wux-button block loading="{{testing}}" bind:click="test" type="balanced">登录</wux-button>
   </view>
+</view> --> -->
+<navigationBar id="navigationBar" color="#fff" background="#7acfa6" placeholderBg="#7acfa6" title="{{'大物实验登录'}}" back="{{true}}"></navigationBar>
+<view class="container">
+  <view class="remind-box" wx:if="{{remind}}">
+    <image class="remind-img" src="/images/index/loading.gif"></image>
+  </view>
+  <block wx:else>
+    <image class="title" src="/images/more/title.png"></image>
+    <view class="content-setting">
+      <view class="hd" style="transform:rotateZ({{angle}}deg);">
+        <open-data type="userAvatarUrl" class="logo" mode="aspectFit"></open-data>
+        <image class="wave" src="/images/more/wave.png" mode="aspectFill"></image>
+        <image class="wave wave-bg" src="/images/more/wave.png" mode="aspectFill"></image>
+      </view>
+      <view class="bd">
+        <view class="input-group" style="display:flex;background:#fff;">
+          <view class="input-label" style="flex:1">账号</view>
+          <input bindinput="inputname" style="flex:6" placeholder="学号" value='{{name}}' confirm-type='next' />
+        </view>
+        <view class="input-group" style="display:flex;background:#fff;">
+          <view class="input-label" style="flex:1">密码</view>
+          <input bindinput="inputpasswd" style="flex:6" placeholder="物理实验教学中心密码" password='{{!showPassword}}' value='{{passwd}}' confirm-type='next' />
+        </view>
+        <view class="confirm-btn" bindtap="test">
+          <text>登录</text>
+        </view>
+      </view>
+    </view>
+  </block>
 </view>

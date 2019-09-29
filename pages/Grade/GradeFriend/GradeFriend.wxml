@@ -1,4 +1,5 @@
 <!--pages/Grade/Grade.wxml-->
+<navigationBar id="navigationBar" title="{{'分享的成绩'}}" back="{{true}}"></navigationBar>
   <view class='grade-head'>
     <view wx:for='{{heads}}' class='grade-head-item' style='flex:{{index==0?5:1}};'>{{item}}</view>
   </view>

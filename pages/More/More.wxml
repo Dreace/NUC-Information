@@ -8,7 +8,7 @@
   </view>
 </view>
 <view class='page'>
-  <wux-notice-bar wx:if="{{notice.length > 0}}" loop trailing="1500" content="{{notice}}" />
+  <wux-notice-bar icon="" wx:if="{{notice.length > 0}}" loop trailing="1500" content="{{notice}}" bind:click="nav" data-url="/pages/Announcement/Announcement" />
   <view class="page">
 
     <view class="page__bd" style='margin-top:10rpx;'>
@@ -20,6 +20,7 @@
           <wux-grid thumb="https://dreace.top/res/faq.svg" label="FAQ" bind:click="nav" data-url="/pages/FAQ/FAQ" />
           <wux-grid thumb="https://dreace.top/res/version.svg" label="版本" bind:click="nav" data-url="/pages/WhatsNew/WhatsNew" />
           <!-- <wux-grid thumb="https://dreace.top/res/status.svg" label="系统状态" bind:click="nav" data-url="/pages/More/Status/Status" /> -->
+          <wux-grid thumb="https://dreace.top/res/appreciate.svg" label="赞赏" bind:click="jumpToReward" />
         </wux-grids>
       </view>
       <view class='background'>
@@ -30,6 +31,9 @@
           <wux-grid thumb="https://dreace.top/res/PhyEws.svg" label="大物实验" bind:click="nav" data-url="/pages/More/PhyEws/PhyEws" />
           <wux-grid thumb="https://dreace.top/res/Exam.svg" label="考试安排" bind:click="nav" data-url="/pages/More/ExamSchedule/ExamSchedule" />
           <wux-grid thumb="https://dreace.top/res/location.svg" label="校园导览" bind:click="nav" data-url="/pages/More/CampusTour/CampusTour" />
+          <wux-grid thumb="https://dreace.top/res/CardBalance.svg" label="一卡通余额" bind:click="nav" data-url="/pages/More/Balance/Balance" />
+          <wux-grid thumb="https://dreace.top/res/Library.svg" label="图书馆" bind:click="nav" data-url="/pages/More/Library/Library" />
+                    <wux-grid thumb="https://dreace.top/res/ClassCoursetable.svg" label="班级课表" bind:click="nav" data-url="/pages/More/ClassCoursetable/ClassCoursetable" />
         </wux-grids>
       </view>
       <view class='background'>

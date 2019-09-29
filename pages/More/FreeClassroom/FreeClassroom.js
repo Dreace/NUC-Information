@@ -29,37 +29,6 @@ Page({
         freeClassroomList: data
       })
     })
-    return
-    wx.request({
-      url: 'https://cdn.dreace.top/getfreeclassroom',
-      data: {
-        op: 2,
-        building: building,
-        class_with_week: this.data.class_ + "-" + this.data.weekIndex,
-        week: "w" + this.data.week,
-        version: auth.version,
-        uuid: auth.uuid
-      },
-      success: function(res) {
-        if (res.data[0]["code"] === "100") {
-          wx.showToast({
-            title: res.data[1]["message"],
-            mask: true,
-            image: '/images/Error.png',
-            duration: 1500
-          })
-          return
-        }
-        if (res.data[0]["code"] == "200") {
-          that.setData({
-            freeClassroomList: res.data[1]["data"]
-          })
-        }
-      },
-      complete: function() {
-        wx.hideLoading()
-      }
-    })
   },
   next: function() {
     var day = (new Date()).getDay()

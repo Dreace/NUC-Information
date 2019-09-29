@@ -16,7 +16,6 @@ Page({
     term: undefined
   },
   add: function() {
-    console.log(this.data.values)
     var map = {
       "Course_Number": this.data.values[1],
       "Course_Name": this.data.values[0],
@@ -38,6 +37,7 @@ Page({
     }
     app.globalData.additionalData[this.data.term].push(map)
     wx.setStorageSync("additionalData", app.globalData.additionalData)
+    app.eventBus.emit("refreshCourseTable")
     wx.navigateBack({
 
     })
@@ -68,7 +68,6 @@ Page({
   },
   onChange3(e) {
     var t = parseInt(e.detail.value) + parseInt(this.data.value2)
-    console.log(t)
     this.setData({
       error3: t > 12 || isNaN(t) || parseInt(e.detail.value) <= 0,
       value3: e.detail.value
@@ -79,7 +78,6 @@ Page({
     let flag = false
     for (let x of e.detail.value) {
       let m = parseInt(x)
-      console.log(x, m)
       if (isNaN(m) && (x !== ',' && x !== '-')) {
         flag = true
       }

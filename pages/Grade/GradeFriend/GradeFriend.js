@@ -70,7 +70,7 @@ Page({
         data: JSON.parse(options.gradeRawData)
       })
       wx.showToast({
-        title: '好友的成绩',
+        title: '分享的成绩',
         mask: true,
         image: '/images/Happy.png',
         duration: 1500

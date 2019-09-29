@@ -1,7 +1,9 @@
 //app.js
 const eventBus = require("./utils/eventBus.js")
+const API = require("./utils/API.js")
 App({
   eventBus: eventBus,
+  API:API,
   globalData: {
     name: "",
     passwd: "",
@@ -33,6 +35,7 @@ App({
       success: e => {
         this.globalData.StatusBar = e.statusBarHeight;
         let custom = wx.getMenuButtonBoundingClientRect();
+        console.log(e.platform)
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
       }

@@ -24,7 +24,7 @@
 .buildingName {
   margin: auto 15rpx;
   width: 80%;
-  color: #079df2;
+  color: #7acfa6;
   font-size: 50rpx;
   white-space:nowrap;
 }

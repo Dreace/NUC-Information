@@ -1,17 +1,13 @@
 <!--pages/More/News/News.wxml-->
-<navigationBar id="navigationBar" color="{{color}}" title="{{title}}" back="{{true}}" ></navigationBar>
-<view class='page'>
-  <view class='main'>
-    <view style='height:10rpx;'></view>
-    <view class="news" wx:for="{{titles}}" bindtap='goContent' data-id='{{item.id}}'>
-      <view class="title">{{item.title}}</view>
-      <view class="time icon_calendar iconfont" style='width:100%;'>{{item.date}}</view>
+<navigationBar id="navigationBar" color="{{color}}" title="{{title}}" back="{{true}}"></navigationBar>
+
+<view class="content">
+  <block wx:for="{{titles}}">
+    <view class="list-item s{{type}}" bindtap='goContent' data-id='{{item.id}}'>
+      <view class="list-item-left">
+        <text class="list-item-title">{{item.title}}</text>
+        <text class="list-item-time icon_calendar iconfont">{{item.date}}</text>
+      </view>
     </view>
-  </view>
-
-    <wux-pagination defaultCurrent="1" total="{{pages}}" bind:change="onChange">
-      <view slot="prev">上一页</view>
-      <view slot="next">下一页</view>
-    </wux-pagination>
-
+  </block>
 </view>
