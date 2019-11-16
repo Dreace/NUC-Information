@@ -8,36 +8,26 @@ Page({
   data: {
     notice: "",
   },
-  jumpToReward:function(){
+  jumpToReward: function() {
     wx.navigateToMiniProgram({
       appId: 'wx18a2ac992306a5a4',
       path: 'pages/apps/largess/detail?id=%2BWTvJNpJDUygPc1CLmE7uw%3D%3D'
     })
   },
-  ad: function () {
+  showRewardedVideoAd: function() {
     if (videoAd) {
       videoAd.show().catch(() => {
-        // 失败重试
         videoAd.load()
           .then(() => videoAd.show())
-          .catch(err => {
-            wx.showToast({
-              title: '视频广告加载失败',
-            })
-          })
-      })
-    } else {
-      wx.showToast({
-        title: '当前微信版本不支持视频广告',
       })
     }
   },
-  navArticle:function(e){
+  navArticle: function(e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.url + "?type=" + e.currentTarget.dataset.type,
     })
   },
-  nav: function (e) {
+  nav: function(e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.url,
     })
@@ -45,11 +35,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    // 在页面中定义插屏广告
-
-
-    // 在页面onLoad回调事件中创建插屏广告实例
+  onLoad: function(options) {
+    let that = this
     if (wx.createInterstitialAd) {
       interstitialAd = wx.createInterstitialAd({
         adUnitId: 'adunit-92cf10bed8c3ff03'
@@ -59,9 +46,13 @@ Page({
       videoAd = wx.createRewardedVideoAd({
         adUnitId: 'adunit-41e72a756d924507'
       })
-      videoAd.onLoad(() => { })
-      videoAd.onError((err) => { })
-      videoAd.onClose((res) => { })
+      videoAd.onLoad(() => {
+        that.setData({
+          canShowRewardedVideoAd: true
+        })
+      })
+      videoAd.onError((err) => {})
+      videoAd.onClose((res) => {})
     }
 
     // 在适合的场景显示插屏广告
@@ -71,16 +62,16 @@ Page({
       })
     }
   },
-  onShow: function () {
-    var that = this
-    wx.request({
-      url: 'https://dreace.top/res/notice.txt',
-      success: function (res) {
-        that.setData({
-          notice: res.data
-        })
-      }
-    })
-  }
+  // onShow: function () {
+  //   var that = this
+  //   wx.request({
+  //     url: 'https://dreace.top/res/notice.txt',
+  //     success: function (res) {
+  //       that.setData({
+  //         notice: res.data
+  //       })
+  //     }
+  //   })
+  // }
 
 })

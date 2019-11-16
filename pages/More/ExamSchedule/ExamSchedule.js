@@ -22,14 +22,26 @@ Page({
     var that = this
     var data = undefined
     var visible = true
-    API.getData("exam", {
-      keywords: keyword
-    }, (data) => {
-      that.setData({
-        exams: data,
-        visible: false
-      })
+    API.newAPI({
+      url: "GetExam",
+      data: {
+        keywords: keyword
+      },
+      callBack: (data) => {
+        that.setData({
+          exams: data,
+          visible: false
+        })
+      }
     })
+    // API.getData("exam", {
+    //   keywords: keyword
+    // }, (data) => {
+    //   that.setData({
+    //     exams: data,
+    //     visible: false
+    //   })
+    // })
   },
   onChange: function (e) {
     keyword = e.detail.value

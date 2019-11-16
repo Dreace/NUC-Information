@@ -75,13 +75,13 @@ baseComponent({
             }
             activeIndex = `select-${activeIndex}`
 
-            this.$$setData({ in: true, ...options, index, activeIndex })
+            this.$$setData({ in_: true, ...options, index, activeIndex })
         },
         /**
          * 关闭
          */
         close(callback) {
-            this.$$setData({ in: false })
+            this.$$setData({ in_: false })
 
             if (typeof callback === 'function') {
                 const { value, index, options } = this.data

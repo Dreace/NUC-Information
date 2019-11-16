@@ -3,6 +3,7 @@
 <wux-select id="wux-select" style="z-index:999999999999999;" />
 <wux-fab-button position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
 
+<wux-notice-bar icon="" wx:if="{{notice.length > 0 && translateY_==0}}" loop trailing="1500" content="{{notice}}" bind:click="nav" data-url="/pages/Announcement/Announcement" />
 <view style="visibility:{{translateY_==0?'hidden':'visible'}} ;margin-top:{{-__maxY}}px;transform: translateY({{translateY}}px); transition: transform {{transitionTime / 1000}}s;" id="boxid">
   <view class='term'>
     <view wx:for='{{termName}}' class='term-item {{termIndex==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick'>{{item}}</view>
@@ -19,7 +20,7 @@
     <view class='week' style='color:#6D7373;'>{{monthNow}}</view>
     <view class="{{day==1&&weekNow==weekNowAgain?'top-text-strong':'top-text'}}" style='width:83rpx'>
       周一
-      <view class="after-left">{{dateList[0]}}</view>
+      <view class="{{day==1&&weekNow==weekNowAgain?'after-left-strong':'after-left'}}">{{dateList[0]}}</view>
     </view>
     <view wx:for="{{['二','三','四','五','六','日']}}" wx:key="unique" class="{{day==(index+2)&&weekNow==weekNowAgain?'top-text-strong':'top-text'}}">
       <view>周{{item}}</view>
@@ -85,6 +86,7 @@
             </view>
             <view class="cu-bar bg-white">
               <view wx:if="{{table[item]['Additional']?true:false}}" class="action margin-0 flex-sub  text-red solid-left" bindtap="delete_" data-index="{{index}}">删除</view>
+              <view wx:if="{{table[item]['Additional']?true:false}}" class="action margin-0 flex-sub  text-blue solid-left" bindtap="edit" data-index="{{index}}">修改</view>
               <view wx:if="{{table[item]['Additional']?true:false}}" class="action margin-0 flex-sub  text-green solid-left" bindtap="closethis">关闭</view>
               <view wx:if="{{table[item]['Additional']?false:true}}" class="action margin-0 flex-sub  text-green solid-left" bindtap="closethis">关闭</view>
             </view>

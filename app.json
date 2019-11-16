@@ -29,7 +29,10 @@
     "pages/More/Library/Library",
     "pages/More/Library/SearchResults",
     "pages/More/Library/BookDetail",
-    "pages/More/ClassCoursetable/ClassCoursetable"
+    "pages/More/ClassCoursetable/ClassCoursetable",
+    "pages/More/PhysicalFitnessTest/PhysicalFitnessTest",
+    "pages/More/PhysicalFitnessTest/login/login",
+    "pages/More/PhysicalFitnessTest/detail"
   ],
   "navigateToMiniProgramAppIdList": [
     "wx8abaf00ee8c3202e",

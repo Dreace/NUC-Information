@@ -41,7 +41,7 @@ baseComponent({
             this.backdropHolds = this.backdropHolds + 1
 
             if (this.backdropHolds === 1) {
-                this.setData({ in: true })
+                this.setData({ in_: true })
             }
         },
         /**
@@ -49,7 +49,7 @@ baseComponent({
          */
         release() {
             if (this.backdropHolds === 1) {
-                this.setData({ in: false })
+                this.setData({ in_: false })
             }
             this.backdropHolds = Math.max(0, this.backdropHolds - 1)
         },

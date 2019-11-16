@@ -1,4 +1,4 @@
-<navigationBar id="navigationBar" color="{{color}}" title="{{'开源'}}" back="{{true}}" ></navigationBar>
+<navigationBar id="navigationBar" color="{{color}}" title="{{'开源'}}" back="{{true}}"></navigationBar>
 <view class='main'>
   <image src='https://dreace.top/res/GitHub.png' mode='widthFix'></image>
   <view>本项目已在 GitHub 开源</view>
@@ -19,10 +19,6 @@
     <text class='text'>：一个自适应的微信小程序自定义导航栏组件</text>
   </view>
   <view class='text_and_url'>
-    <text class='text-url' bindtap='copy' data-url='https://gitee.com/zhangyubk/wxPoput'>wxPoput</text>
-    <text class='text'>：小程序自定义模态弹窗</text>
-  </view>
-    <view class='text_and_url'>
     <text class='text-url' bindtap='copy' data-url='https://github.com/gxgk/school-map'>school-map</text>
     <text class='text'>：校园导览</text>
   </view>
@@ -30,9 +26,12 @@
     <text class='text-url' bindtap='copy' data-url='https://www.iconfont.cn'>iconfont</text>
     <text class='text'>：提供部分图标</text>
   </view>
-    <view class='text_and_url'>
+  <view class='text_and_url'>
     <text class='text-url' bindtap='copy' data-url='https://github.com/weilanwl/ColorUI'>ColorUI</text>
     <text class='text'>：鲜亮的高饱和色彩，专注视觉的小程序组件库</text>
+  </view>
+    <view class='text_and_url'>
+    <text class='text-url' bindtap='copy' data-url='https://github.com/lanshan-studio/wecqupt'>We重邮</text>
   </view>
 </view>
 <view class='copy' style='text-align:center;' bindtap='copy'>点击复制地址</view>

@@ -121,43 +121,84 @@ Page({
       })
       return
     }
-    API.getData("test", {
-      "name": this.data.name,
-      "passwd": this.data.passwd
-    }, (data) => {
-      wx.showToast({
-        title: '登录成功',
-        icon: 'succes',
-        duration: 2500
-      })
-      that.setData({
-        testpassed: true,
-      })
-      if (that.data.accountID == -1) {
-        if (that.data.remark == "") {
-          that.setData({
-            remark: "不愿透露姓名"
-          })
-        }
-        app.globalData.accountList.push({
-          remark: that.data.remark,
-          name: that.data.name,
-          passwd: that.data.passwd
+    API.newAPI({
+      url: "Login",
+      data: {
+        name: this.data.name,
+        passwd: this.data.passwd
+      },
+      callBack: (data) => {
+        wx.showToast({
+          title: '登录成功',
+          icon: 'succes',
+          duration: 2500
         })
-      } else {
-        app.globalData.accountList[that.data.accountID]["name"] = that.data.name
-        app.globalData.accountList[that.data.accountID]["passwd"] = that.data.passwd
-        app.globalData.accountList[that.data.accountID]["remark"] = that.data.remark
+        that.setData({
+          testpassed: true,
+        })
+        if (that.data.accountID == -1) {
+          if (that.data.remark == "") {
+            that.setData({
+              remark: "不愿透露姓名"
+            })
+          }
+          app.globalData.accountList.push({
+            remark: that.data.remark,
+            name: that.data.name,
+            passwd: that.data.passwd
+          })
+        } else {
+          app.globalData.accountList[that.data.accountID]["name"] = that.data.name
+          app.globalData.accountList[that.data.accountID]["passwd"] = that.data.passwd
+          app.globalData.accountList[that.data.accountID]["remark"] = that.data.remark
+        }
+        app.globalData.name = that.data.name
+        app.globalData.passwd = that.data.passwd
+        wx.setStorageSync("accountList", app.globalData.accountList)
+        wx.setStorageSync("name", app.globalData.name)
+        wx.setStorageSync("passwd", app.globalData.passwd)
+        app.eventBus.emit("updateCourseTable")
+        app.eventBus.emit("updateGrade")
+        wx.navigateBack()
       }
-      app.globalData.name = that.data.name
-      app.globalData.passwd = that.data.passwd
-      wx.setStorageSync("accountList", app.globalData.accountList)
-      wx.setStorageSync("name", app.globalData.name)
-      wx.setStorageSync("passwd", app.globalData.passwd)
-      app.eventBus.emit("updateCourseTable")
-      app.eventBus.emit("updateGrade")
-      wx.navigateBack()
     })
+    // API.getData("test", {
+    //   "name": this.data.name,
+    //   "passwd": this.data.passwd
+    // }, (data) => {
+    //   wx.showToast({
+    //     title: '登录成功',
+    //     icon: 'succes',
+    //     duration: 2500
+    //   })
+    //   that.setData({
+    //     testpassed: true,
+    //   })
+    //   if (that.data.accountID == -1) {
+    //     if (that.data.remark == "") {
+    //       that.setData({
+    //         remark: "不愿透露姓名"
+    //       })
+    //     }
+    //     app.globalData.accountList.push({
+    //       remark: that.data.remark,
+    //       name: that.data.name,
+    //       passwd: that.data.passwd
+    //     })
+    //   } else {
+    //     app.globalData.accountList[that.data.accountID]["name"] = that.data.name
+    //     app.globalData.accountList[that.data.accountID]["passwd"] = that.data.passwd
+    //     app.globalData.accountList[that.data.accountID]["remark"] = that.data.remark
+    //   }
+    //   app.globalData.name = that.data.name
+    //   app.globalData.passwd = that.data.passwd
+    //   wx.setStorageSync("accountList", app.globalData.accountList)
+    //   wx.setStorageSync("name", app.globalData.name)
+    //   wx.setStorageSync("passwd", app.globalData.passwd)
+    //   app.eventBus.emit("updateCourseTable")
+    //   app.eventBus.emit("updateGrade")
+    //   wx.navigateBack()
+    // })
   },
   onLoad: function(options) {
     var app = getApp()

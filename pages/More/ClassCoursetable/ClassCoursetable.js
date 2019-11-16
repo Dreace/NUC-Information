@@ -46,16 +46,28 @@ Page({
   },
   searchClass(e) {
     var that = this
-    app.API.getData("getclasscoursetable", {
-      'class': e
-    }, (data) => {
-      if (data) {
+    app.API.newAPI({
+      url: "GetClassCourseTable",
+      data: {
+        class: e
+      },
+      callBack: (data) => {
         that.setData({
           table: data
         })
         that.handleMoreData()
       }
     })
+    // app.API.getData("getclasscoursetable", {
+    //   'class': e
+    // }, (data) => {
+    //   if (data) {
+    //     that.setData({
+    //       table: data
+    //     })
+    //     that.handleMoreData()
+    //   }
+    // })
   },
   preventTouchMove: function() {},
   closethis: function() {

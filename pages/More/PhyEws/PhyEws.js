@@ -124,14 +124,26 @@ Page({
   getGradeWithoutVcode: function () {
     var that = this
     if (!(this.data.PhyEwsname === "" || this.data.PhyEwspasswd === "")) {
-      API.getData("PhyEws",{
-        name: this.data.PhyEwsname,
-        passwd: this.data.PhyEwspasswd,
-      },(data)=>{
-        that.handleData({
-          data: data
-        })
+      API.newAPI({
+        url: "GetPhyEwsGrade",
+        data: {
+          name: this.data.PhyEwsname,
+          passwd: this.data.PhyEwspasswd,
+        },
+        callBack: (data) => {
+          that.handleData({
+            data: data
+          })
+        }
       })
+      // API.getData("PhyEws",{
+      //   name: this.data.PhyEwsname,
+      //   passwd: this.data.PhyEwspasswd,
+      // },(data)=>{
+      //   that.handleData({
+      //     data: data
+      //   })
+      // })
     }
   },
   /**

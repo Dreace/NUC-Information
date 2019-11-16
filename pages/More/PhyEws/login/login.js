@@ -37,92 +37,44 @@ Page({
       })
       return;
     }
-    API.getData("testPhyEws",{
-      name: this.data.PhyEwsname,
-      passwd: this.data.PhyEwspasswd,
-    },(data)=>{
-      wx.showToast({
-        title: '登录成功',
-        icon: 'succes',
-        duration: 2500
-      })
-      app.globalData.PhyEwsname = that.data.PhyEwsname
-      app.globalData.PhyEwspasswd = that.data.PhyEwspasswd
-      app.globalData.clearFlagPhyEwsGrade = true
-      app.globalData.updatePhyEwsGrade = true
-      wx.setStorageSync("PhyEwsname", that.data.PhyEwsname)
-      wx.setStorageSync("PhyEwspasswd", that.data.PhyEwspasswd)
-      wx.navigateBack()
-    })
-    return
-    wx.request({
-      url: 'https://cdn.dreace.top/testPhyEws',
+    API.newAPI({
+      url: "LoginPhyEws",
       data: {
         name: this.data.PhyEwsname,
         passwd: this.data.PhyEwspasswd,
-        version: auth.version,
-        uuid: auth.uuid
       },
-      success: function (res) {
-        if (res.data[0]["code"] === "100") {
-          wx.showToast({
-            title: res.data[1]["message"],
-            mask: true,
-            image: '/images/Error.png',
-            duration: 1500
-          })
-          return
-        }
-        else if (res.data[0]["code"] == "200") {
-          wx.showToast({
-            title: '登录成功',
-            icon: 'succes',
-            duration: 2500
-          })
-          that.setData({
-            testpassed: true
-          })
-          app.globalData.PhyEwsname = that.data.PhyEwsname
-          app.globalData.PhyEwspasswd = that.data.PhyEwspasswd
-          app.globalData.clearFlagPhyEwsGrade = true
-          app.globalData.updatePhyEwsGrade = true
-          wx.setStorageSync("PhyEwsname", that.data.PhyEwsname)
-          wx.setStorageSync("PhyEwspasswd", that.data.PhyEwspasswd)
-          wx.navigateBack()
-        } else if (res.data[0]["code"] == "2") {
-          that.setData({
-            message: "账号或密码错误",
-            showTopTips: true,
-            showPassword: true,
-          });
-
-          setTimeout(function () {
-            that.setData({
-              showTopTips: false
-            });
-          }, 3000);
-        } else {
-          wx.showToast({
-            title: '服务器异常',
-            image: '/images/Error.png',
-            duration: 3000
-          })
-        }
-      },
-      fail: function (e) {
+      callBack: (data) => {
         wx.showToast({
-          title: '未能完成请求',
-          image: '/images/Error.png',
-          duration: 3000
+          title: '登录成功',
+          icon: 'succes',
+          duration: 2500
         })
-        console.log(e)
-      },
-      complete: function () {
-        that.setData({
-          testing: false
-        })
+        app.globalData.PhyEwsname = that.data.PhyEwsname
+        app.globalData.PhyEwspasswd = that.data.PhyEwspasswd
+        app.globalData.clearFlagPhyEwsGrade = true
+        app.globalData.updatePhyEwsGrade = true
+        wx.setStorageSync("PhyEwsname", that.data.PhyEwsname)
+        wx.setStorageSync("PhyEwspasswd", that.data.PhyEwspasswd)
+        wx.navigateBack()
       }
     })
+    // API.getData("testPhyEws",{
+    //   name: this.data.PhyEwsname,
+    //   passwd: this.data.PhyEwspasswd,
+    // },(data)=>{
+    //   wx.showToast({
+    //     title: '登录成功',
+    //     icon: 'succes',
+    //     duration: 2500
+    //   })
+    //   app.globalData.PhyEwsname = that.data.PhyEwsname
+    //   app.globalData.PhyEwspasswd = that.data.PhyEwspasswd
+    //   app.globalData.clearFlagPhyEwsGrade = true
+    //   app.globalData.updatePhyEwsGrade = true
+    //   wx.setStorageSync("PhyEwsname", that.data.PhyEwsname)
+    //   wx.setStorageSync("PhyEwspasswd", that.data.PhyEwspasswd)
+    //   wx.navigateBack()
+    // })
   },
   onLoad: function (options) {
     var app = getApp()

@@ -21,15 +21,26 @@ Page({
     })
     if (bookDetail.id > 1) {
       var that = this
-      app.API.cloudAPI(
-        "GetBookAvailableDetail", {
+      app.API.newAPI({
+        url: "GetBookAvailableDetail",
+        data: {
           BookID: bookDetail.id,
-        }, (data) => {
+        },
+        callBack: (data) => {
           that.setData({
             bookAvailableDetail: data
           })
         }
-      )
+      })
+      // app.API.cloudAPI(
+      //   "GetBookAvailableDetail", {
+      //     BookID: bookDetail.id,
+      //   }, (data) => {
+      //     that.setData({
+      //       bookAvailableDetail: data
+      //     })
+      //   }
+      // )
     }
   }
 })

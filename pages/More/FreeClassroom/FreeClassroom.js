@@ -19,16 +19,29 @@ Page({
   getFreeClassroomList: function() {
     var that = this
     var building = that.data.buliding
-    API.getData("getfreeclassroom",{
-      op: 2,
-      building: building,
-      class_with_week: this.data.class_ + "-" + this.data.weekIndex,
-      week: "w" + this.data.week,
-    },(data)=>{
-      that.setData({
-        freeClassroomList: data
-      })
+    API.newAPI({
+      url: "GetIdleClassroom",
+      data: {
+        building: building,
+        "class": this.data.class_ + "-" + this.data.weekIndex,
+        week: "w" + this.data.week,
+      },
+      callBack: (data) => {
+        that.setData({
+          freeClassroomList: data
+        })
+      }
     })
+    // API.getData("getfreeclassroom",{
+    //   op: 2,
+    //   building: building,
+    //   class_with_week: this.data.class_ + "-" + this.data.weekIndex,
+    //   week: "w" + this.data.week,
+    // },(data)=>{
+    //   that.setData({
+    //     freeClassroomList: data
+    //   })
+    // })
   },
   next: function() {
     var day = (new Date()).getDay()
@@ -57,40 +70,14 @@ Page({
       weekList[i] = i + 1
     }
     var that = this
-    API.getData("getfreeclassroom",{
-      op: 1,
-    },(data)=>{
-      that.setData({
-        bulidingList: data,
-        buliding: data[0]
-      })
-      that.setData({
-        weekList: weekList,
-        classList: classList,
-        week: weekList[0],
-        class_: classList[0],
-        weekName: that.data.weekNameList[0]
-      })
-      setTimeout(that.next, 500)
-    })
-    return
-    wx.request({
-      url: 'https://cdn.dreace.top/getfreeclassroom',
-      data: {
-        op: 1,
-        version: auth.version,
-        uuid: auth.uuid
-      },
-      success: function(res) {
-        if (res.data[0]["code"] == "200") {
-          bulidingList = res.data[1]["data"]
-          that.setData({
-            bulidingList: bulidingList,
-            buliding: bulidingList[0]
-          })
-        }
-      },
-      complete: function() {
+    API.newAPI({
+      url: "GetBuildingList",
+      data: {},
+      callBack: (data) => {
+        that.setData({
+          bulidingList: data,
+          buliding: data[0]
+        })
         that.setData({
           weekList: weekList,
           classList: classList,
@@ -101,6 +88,22 @@ Page({
         setTimeout(that.next, 500)
       }
     })
+    // API.getData("getfreeclassroom",{
+    //   op: 1,
+    // },(data)=>{
+    //   that.setData({
+    //     bulidingList: data,
+    //     buliding: data[0]
+    //   })
+    //   that.setData({
+    //     weekList: weekList,
+    //     classList: classList,
+    //     week: weekList[0],
+    //     class_: classList[0],
+    //     weekName: that.data.weekNameList[0]
+    //   })
+    //   setTimeout(that.next, 500)
+    // })
   },
 
   onClick1() {

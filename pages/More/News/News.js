@@ -44,17 +44,32 @@ Page({
       return
     }
     var that = this
-    API.getData("getnews", {
-      op: "2",
-      page: e,
-      type: that.data.type
-    }, (data) => {
-      var titles = this.data.titles
-      titles = titles.concat(data)
-      that.setData({
-        titles: titles
-      })
+    API.newAPI({
+      url: "GetNews",
+      data: {
+        op: "2",
+        page: e,
+        type: that.data.type
+      },
+      callBack: (data) => {
+        var titles = this.data.titles
+        titles = titles.concat(data)
+        that.setData({
+          titles: titles
+        })
+      }
     })
+    // API.getData("getnews", {
+    //   op: "2",
+    //   page: e,
+    //   type: that.data.type
+    // }, (data) => {
+    //   var titles = this.data.titles
+    //   titles = titles.concat(data)
+    //   that.setData({
+    //     titles: titles
+    //   })
+    // })
   },
   onShow: function() {
     page = 1
@@ -65,16 +80,30 @@ Page({
     this.setData({
       title: typeName[type],
     })
-    API.getData("getnews", {
-      op: "1",
-      type: type
-    }, (data) => {
-      that.setData({
-        pages: Math.ceil(data["count"] / 10),
+    API.newAPI({
+      url: "GetNews",
+      data: {
+        op: "1",
         type: type
-      })
-      that.getNews(1)
+      },
+      callBack: (data) => {
+        that.setData({
+          pages: Math.ceil(data["count"] / 10),
+          type: type
+        })
+        that.getNews(1)
+      }
     })
+    // API.getData("getnews", {
+    //   op: "1",
+    //   type: type
+    // }, (data) => {
+    //   that.setData({
+    //     pages: Math.ceil(data["count"] / 10),
+    //     type: type
+    //   })
+    //   that.getNews(1)
+    // })
   },
 
 })

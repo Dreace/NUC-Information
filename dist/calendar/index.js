@@ -112,7 +112,7 @@ baseComponent({
             this.monthsTranslate = 0
             this.isH = options.direction === 'horizontal'
 
-            this.$$setData({ in: true, ...options }).then(() => this.init())
+            this.$$setData({ in_: true, ...options }).then(() => this.init())
             this.setValue(options.value)
 
             if (typeof this.fns.onOpen === 'function') {
@@ -123,7 +123,7 @@ baseComponent({
          * 关闭日历
          */
         close() {
-            this.$$setData({ in: false })
+            this.$$setData({ in_: false })
 
             if (typeof this.fns.onClose === 'function') {
                 this.fns.onClose.call(this)

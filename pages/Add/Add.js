@@ -1,6 +1,6 @@
 // pages/Add/Add.js
-const isTel = (value) => !/^1[34578]\d{9}$/.test(value)
-
+const app = getApp()
+let id = undefined
 Page({
   data: {
     error0: true,
@@ -35,7 +35,11 @@ Page({
     if (app.globalData.additionalData[this.data.term] == undefined) {
       app.globalData.additionalData[this.data.term] = []
     }
-    app.globalData.additionalData[this.data.term].push(map)
+    if (id) {
+      app.globalData.additionalData[this.data.term][id] = map
+    } else {
+      app.globalData.additionalData[this.data.term].push(map)
+    }
     wx.setStorageSync("additionalData", app.globalData.additionalData)
     app.eventBus.emit("refreshCourseTable")
     wx.navigateBack({
@@ -112,6 +116,29 @@ Page({
     let values = []
     for (let i = 0; i <= 10; i++) {
       values[i] = ""
+    }
+    id = e.id
+    if (id) {
+      let data = app.globalData.additionalData[e.term][id]
+      values[0] = data["Course_Name"]
+      values[1] = data["Course_Number"]
+      values[3] = data["Course_Credit"]
+      values[4] = data["Course_Attribute"]
+      values[2] = data["Course_Teacher"]
+      values[10] = data["Course_Week"].replace("周上", "")
+      values[5] = data["Course_Time"]
+      values[6] = data["Course_Start"]
+      values[7] = data["Course_Length"]
+      values[8] = data["Course_Building"]
+      values[9] = data["Course_Classroom"]
+      this.setData({
+        error0: false,
+        error1: false,
+        error2: false,
+        error3: false,
+        error4: false,
+        value2: values[6]
+      })
     }
     this.setData({
       values: values,

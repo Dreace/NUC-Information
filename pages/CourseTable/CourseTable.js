@@ -4,6 +4,8 @@ import {
   $wuxSelect
 } from '../../dist/index'
 
+const app = getApp()
+
 const buttons = [{
     label: '刷新',
     icon: "/images/Refresh.png",
@@ -85,7 +87,12 @@ Page({
     transitionTime: 400,
     translateY: 0,
     translateY_: 0,
-    __maxY: 0, // 内部使用，最大Y的偏移 单位像素
+    __maxY: 0
+  },
+  nav: function(e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url,
+    })
   },
   onSwitch() {
     let translateY = 0
@@ -156,7 +163,6 @@ Page({
         p: this.data.p + 1
       })
     } else if (e.detail.index === 1) {
-      console.log(1)
       wx.navigateTo({
         url: '/pages/Add/Add?term=' + this.data.terms[this.data.termsIndex],
       })
@@ -200,7 +206,6 @@ Page({
         if (res.confirm) {
 
           var table = that.data.tables[that.data.termsIndex]["table"]
-          console.log(that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length)
           app.globalData.additionalData[that.data.terms[that.data.termsIndex]].splice(that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length, 1)
           that.setData({
             showMoreInformation: false,
@@ -225,6 +230,13 @@ Page({
 
         }
       }
+    })
+  },
+  edit: function(e) {
+    let that = this
+    var table = that.data.tables[that.data.termsIndex]["table"]
+    wx.navigateTo({
+      url: '/pages/Add/Add?term=' + that.data.terms[that.data.termsIndex] + "&id=" + (that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length),
     })
   },
   handleData: function(e) {
@@ -485,16 +497,30 @@ Page({
   },
   getCourseTableWithoutVcode: function() {
     if (!(this.data.name === "" || this.data.passwd === "")) {
-      API.getData("coursetable", {
-        "name": this.data.name,
-        "passwd": this.data.passwd
-      }, (data) => {
-        if (data) {
-          this.handleData({
-            data: data
-          })
+      API.newAPI({
+        url: "GetCourseTable",
+        data: {
+          name: this.data.name,
+          passwd: this.data.passwd
+        },
+        callBack: (data) => {
+          if (data) {
+            this.handleData({
+              data: data
+            })
+          }
         }
       })
+      // API.getData("coursetable", {
+      //   "name": this.data.name,
+      //   "passwd": this.data.passwd
+      // }, (data) => {
+      //   if (data) {
+      //     this.handleData({
+      //       data: data
+      //     })
+      //   }
+      // })
     }
   },
   showCardView: function(e) {
@@ -524,11 +550,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // wx.navigateTo({
-    //   url: '/pages/More/CampusTour/CampusTour',
-    // })
     var app = getApp()
     var that = this
+    API.getData2("notice.txt", (data) => {
+      that.setData({
+        notice: data
+      })
+    })
+    // wx.request({
+    //   url: 'https://dreace.top/res/notice.txt',
+    //   success: function(res) {
+    //     that.setData({
+    //       notice: res.data
+    //     })
+    //   }
+    // })
     app.eventBus.on("clearCourseTable", this, () => {
       that.setData({
         name: "",
@@ -569,7 +605,7 @@ Page({
     var app = getApp()
     app.globalData.firstWeek = wx.getStorageSync("firstWeek")
     this.setData({
-      firstWeek: app.globalData.firstWeek
+      firstWeek: app.globalData.firstWeek,
     })
     API.getData2("date.txt", (data) => {
       that.setData({
@@ -617,6 +653,7 @@ Page({
     this.getCourseTable()
   },
   onReady() {
+
     var app = getApp()
     app.globalData.term = this.data.terms[this.data.termsIndex]
     var query = wx.createSelectorQuery();

@@ -48,18 +48,35 @@ Page({
     } else {
       table = that.data.tables[this.data.termsIndex]["table"]
     }
-    API.getData("ical", {
-      data: JSON.stringify(table),
-      firtMonday: this.data.value,
-    }, (data) => {
-      that.setData({
-        show: true,
-        tableURL: data
-      })
-      wx.setClipboardData({
-        data: data,
-      })
-    },"POST")
+    API.newAPI({
+      url: "ToiCal",
+      method: "POST",
+      data: {
+        data: table,
+        firtMonday: this.data.value[0],
+      },
+      callBack: (data) => {
+        that.setData({
+          show: true,
+          tableURL: data.url
+        })
+        wx.setClipboardData({
+          data: data.url,
+        })
+      }
+    })
+    // API.getData("ical", {
+    //   data: table,
+    //   firtMonday: this.data.value[0],
+    // }, (data) => {
+    //   that.setData({
+    //     show: true,
+    //     tableURL: data
+    //   })
+    //   wx.setClipboardData({
+    //     data: data,
+    //   })
+    // },"POST")
   },
   bindTermChange: function(e) {
     this.setData({
@@ -76,7 +93,7 @@ Page({
     }
     this.setData({
       terms: terms,
-      termsIndex:terms.length-1
+      termsIndex: terms.length - 1
     })
   }
 })

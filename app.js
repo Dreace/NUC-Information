@@ -35,7 +35,6 @@ App({
       success: e => {
         this.globalData.StatusBar = e.statusBarHeight;
         let custom = wx.getMenuButtonBoundingClientRect();
-        console.log(e.platform)
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
       }
@@ -58,6 +57,7 @@ App({
         title: '版本更新失败',
       })
     })
+    API.loadTokenFromStorage()
     this.globalData.converted = wx.getStorageSync("converted")
     this.globalData.name = wx.getStorageSync("name")
     this.globalData.passwd = wx.getStorageSync("passwd")

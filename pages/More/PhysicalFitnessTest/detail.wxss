@@ -1,0 +1,29 @@
+@import "../../../utils/weui.wxss";
+
+.grade-head {
+  border-top: 1rpx solid #f2f2f2;
+  border-bottom: 1rpx solid #f2f2f2;
+  background-color: #f9f9f9;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+}
+
+.grade-head-item {
+  padding: 15rpx 0;
+  color: #92979b;
+  text-align: center;
+}
+
+.grade {
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.grade-item {
+  padding: 15rpx 0;
+  color: #333;
+  text-align: center;
+}

@@ -29,12 +29,23 @@ Page({
       return
     }
     let that = this
-    API.cloudAPI("CardBalance", {
-      name: app.globalData.name
-    }, (data) => {
-      that.setData({
-        data: data
-      })
+    API.newAPI({
+      url: "CardBalance",
+      data: {
+        name: app.globalData.name
+      },
+      callBack: (data) => {
+        that.setData({
+          data: data
+        })
+      }
     })
+    // API.cloudAPI("CardBalance", {
+    //   name: app.globalData.name
+    // }, (data) => {
+    //   that.setData({
+    //     data: data
+    //   })
+    // })
   },
 })

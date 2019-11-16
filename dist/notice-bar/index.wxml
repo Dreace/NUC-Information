@@ -6,10 +6,9 @@
     </block>
   </view>
   <view class="{{ classes.bd }}">
-    <view class="{{ classes.container }}">
-      <view class="{{ classes.marquee }} icon_notice iconfont" style="transform: translate3d({{ -animatedWidth + 'px' }}, 0px, 0px)">
-        <block wx:if="{{ content }}">{{ content }}</block>
-        <slot></slot>
+    <view class="{{ classes.container }}" >
+      <view style="overflow:hidden;">
+        <view class="none " wx:if="{{ content }}" style="transform: translate3d({{ -animatedWidth + 'px' }}, 0px, 0px);display: inline-block;">{{ content }} </view>
       </view>
     </view>
   </view>

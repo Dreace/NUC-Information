@@ -95,33 +95,62 @@ Page({
     }
     var that = this
     var data = undefined
-
-    API.getData("getcourse", {
-      keywords: keyword
-    }, (data) => {
-      wx.showLoading({
-        mask: true,
-        title: "处理中"
-      })
-      const alphabet = []
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach((initial) => {
-        const cells = data.filter((course) => pinyinUtil.pinyinUtil.getFirstLetter(course["Course_name"]).charAt(0) == initial)
-        if (cells.length > 0) {
-          visible = false
-          alphabet.push({
-            initial,
-            cells
-          })
-        }
-      })
-      that.setData({
-        list: alphabet,
-        listCur: alphabet[0] ? alphabet[0] : 0,
-        visible: visible,
-        data: data
-      })
-      setTimeout(wx.hideLoading, 1000)
+    API.newAPI({
+      url: "GetCourse",
+      data: {
+        keywords: keyword
+      },
+      callBack: (data) => {
+        wx.showLoading({
+          mask: true,
+          title: "处理中"
+        })
+        const alphabet = []
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach((initial) => {
+          const cells = data.filter((course) => pinyinUtil.pinyinUtil.getFirstLetter(course["Course_name"]).charAt(0) == initial)
+          if (cells.length > 0) {
+            visible = false
+            alphabet.push({
+              initial,
+              cells
+            })
+          }
+        })
+        that.setData({
+          list: alphabet,
+          listCur: alphabet[0] ? alphabet[0] : 0,
+          visible: visible,
+          data: data
+        })
+        setTimeout(wx.hideLoading, 1000)
+      }
     })
+    // API.getData("getcourse", {
+    //   keywords: keyword
+    // }, (data) => {
+    //   wx.showLoading({
+    //     mask: true,
+    //     title: "处理中"
+    //   })
+    //   const alphabet = []
+    //   'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach((initial) => {
+    //     const cells = data.filter((course) => pinyinUtil.pinyinUtil.getFirstLetter(course["Course_name"]).charAt(0) == initial)
+    //     if (cells.length > 0) {
+    //       visible = false
+    //       alphabet.push({
+    //         initial,
+    //         cells
+    //       })
+    //     }
+    //   })
+    //   that.setData({
+    //     list: alphabet,
+    //     listCur: alphabet[0] ? alphabet[0] : 0,
+    //     visible: visible,
+    //     data: data
+    //   })
+    //   setTimeout(wx.hideLoading, 1000)
+    // })
   },
   onChange: function(e) {
     keyword = e.detail.value

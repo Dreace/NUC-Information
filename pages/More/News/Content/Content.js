@@ -23,15 +23,28 @@ Page({
     id = options.id
     type = options.type
     var that = this
-    API.getData("getnews", {
-      op: "3",
-      id: id,
-      type: type
-    }, (data) => {
-      that.setData({
-        content: data
-      })
+    API.newAPI({
+      url: "GetNews",
+      data: {
+        op: "3",
+        id: id,
+        type: type
+      },
+      callBack: (data) => {
+        that.setData({
+          content: data
+        })
+      }
     })
+    // API.getData("getnews", {
+    //   op: "3",
+    //   id: id,
+    //   type: type
+    // }, (data) => {
+    //   that.setData({
+    //     content: data
+    //   })
+    // })
   },
   onShareAppMessage() {
     return {
