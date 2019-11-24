@@ -2,7 +2,7 @@
 <navigationBar id="navigationBar" color="{{color}}" title="{{'体测成绩'}}" back="{{true}}"></navigationBar>
 <wux-fab-button position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
 <view wx:if='{{datas.length>0}}' class="container text-grey">
-  <view wx:for="{{datas}}" class="group">
+  <view wx:for="{{datas}}" class="group shadow shadow-lg bg-white">
     <view class="grade" data-id="{{item.meaScoreId}}" data-title="{{item.year+' '+item.gradeType}}" bindtap="goDetail">
       <view class="text">
         <view class="line-top">

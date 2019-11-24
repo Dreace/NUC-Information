@@ -1,5 +1,6 @@
  // pages/Grade/Grade.js
  const API = require("../../utils/API.js")
+ const app = getApp()
  const buttons = [{
      label: '刷新',
      icon: "/images/Refresh.png",
@@ -133,7 +134,7 @@
        terms.push(data[i]["name"])
      }
      var count = terms.length
-     var app = getApp()
+     
      that.setData({
        terms: terms,
        count: count,
@@ -147,7 +148,9 @@
        datas: that.data.tables[termsIndex]["grade"],
        gradeRawData: data
      })
-     wx.setStorageSync("gradeRawData", data)
+     if (app.globalData.name != "guest") {
+       wx.setStorageSync("gradeRawData", data)
+     }
    },
    getGrade: function(e) {
      if (this.data.loading) {
@@ -163,7 +166,6 @@
        }, 1500);
        return
      }
-     var app = getApp()
      this.setData({
        name: app.globalData.name,
        passwd: app.globalData.passwd,
@@ -180,8 +182,12 @@
          showed: true
        })
        wx.showModal({
-         title: '信息未设置',
-         content: '你好像还没有设置教务账号\n请前往"我的"进行设置',
+         title: '未登录',
+         content: '跳转到登录页面，或者以游客身份浏览',
+         cancelText: "游客",
+         cancelColor: "#03a6ff",
+         confirmText: "去登陆",
+         confirmColor: "#79bd9a",
          success: function(res) {
            that.setData({
              showed: false
@@ -190,6 +196,10 @@
              wx.navigateTo({
                url: '/pages/Account/Account',
              })
+           } else {
+             app.globalData.name = "guest"
+             app.globalData.passwd = "guest"
+             that.getGrade()
            }
          }
        })
@@ -203,12 +213,12 @@
        return
      }
      var that = this
-     if (!(this.data.name === "" || this.data.passwd === "")) {
+     if (!(app.globalData.name === "" || app.globalData.passwd === "")) {
        API.newAPI({
          url: "GetGrade",
          data: {
-           name: this.data.name,
-           passwd: this.data.passwd
+           name: app.globalData.name,
+           passwd: app.globalData.passwd
          },
          callBack: (data) => {
            if (data) {
@@ -218,23 +228,13 @@
            }
          }
        })
-       //  API.getData("grade", {
-       //    "name": this.data.name,
-       //    "passwd": this.data.passwd
-       //  }, (data) => {
-       //    if (data) {
-       //      this.handleData({
-       //        data: data
-       //      })
-       //    }
-       //  })
      }
    },
    /**
     * 生命周期函数--监听页面加载
     */
    onLoad: function(options) {
-     var app = getApp()
+     
      var that = this
      app.eventBus.on("clearGrade", this, () => {
        that.setData({
@@ -254,8 +254,6 @@
      app.eventBus.on("updateGrade", this, () => {
        that.getGrade()
      })
-     app.globalData.name = wx.getStorageSync("name")
-     app.globalData.passwd = wx.getStorageSync("passwd")
      if (options.gradeRawData != undefined) {
        wx.navigateTo({
          url: 'GradeFriend/GradeFriend?gradeRawData=' + options.gradeRawData,

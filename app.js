@@ -3,7 +3,7 @@ const eventBus = require("./utils/eventBus.js")
 const API = require("./utils/API.js")
 App({
   eventBus: eventBus,
-  API:API,
+  API: API,
   globalData: {
     name: "",
     passwd: "",
@@ -34,11 +34,24 @@ App({
     wx.getSystemInfo({
       success: e => {
         this.globalData.StatusBar = e.statusBarHeight;
-        let custom = wx.getMenuButtonBoundingClientRect();
+        let custom = {
+          width: 80,
+          height: 30,
+          left: e.windowWidth - 12 - 80,
+          right: e.windowWidth - 12,
+          top: e.statusBarHeight + 10,
+          bottom: e.statusBarHeight + 10 + 30
+        }
+        try {
+          if (typeof(qq) === 'undefined') {
+            custom = wx.getMenuButtonBoundingClientRect();
+          }
+        } catch (error) { }
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
       }
     })
+
     const updateManager = wx.getUpdateManager()
 
     updateManager.onCheckForUpdate(function(res) {
@@ -64,7 +77,6 @@ App({
     this.globalData.mapShowed = wx.getStorageSync("mapShowed")
     var temp = undefined
     temp = wx.getStorageSync("additionalData")
-    console.log(temp)
     if (temp != "") {
       this.globalData.additionalData = temp
     }

@@ -197,7 +197,7 @@ Page({
     })
   },
   delete_: function(e) {
-    var app = getApp()
+
     var that = this
     wx.showModal({
       title: '删除',
@@ -257,7 +257,7 @@ Page({
       terms.push(data[i]["name"])
     }
     var count = terms.length
-    var app = getApp()
+
     that.setData({
       terms: terms,
       count: count,
@@ -282,7 +282,9 @@ Page({
       courseTableRawData: data
     })
     that.handleMoreData()
-    wx.setStorageSync("courseTableRawData", data)
+    if (app.globalData.name != "guest") {
+      wx.setStorageSync("courseTableRawData", data)
+    }
   },
   changeWeek: function() {
     var that = this
@@ -460,7 +462,7 @@ Page({
       }, 1500);
       return
     }
-    var app = getApp()
+
     this.setData({
       name: app.globalData.name,
       passwd: app.globalData.passwd,
@@ -478,8 +480,12 @@ Page({
         showed: true
       })
       wx.showModal({
-        title: '信息未设置',
-        content: '你好像还没有设置教务账号\n请前往"我的"进行设置',
+        title: '未登录',
+        content: '跳转到登录页面，或者以游客身份浏览',
+        cancelText: "游客",
+        cancelColor: "#03a6ff",
+        confirmText: "去登陆",
+        confirmColor: "#79bd9a",
         success: function(res) {
           that.setData({
             showed: false
@@ -488,6 +494,10 @@ Page({
             wx.navigateTo({
               url: '/pages/Account/Account',
             })
+          } else {
+            app.globalData.name = "guest"
+            app.globalData.passwd = "guest"
+            that.getCourseTable()
           }
         }
       })
@@ -496,12 +506,12 @@ Page({
     this.getCourseTableWithoutVcode()
   },
   getCourseTableWithoutVcode: function() {
-    if (!(this.data.name === "" || this.data.passwd === "")) {
+    if (!(app.globalData.name === "" || app.globalData.passwd === "")) {
       API.newAPI({
         url: "GetCourseTable",
         data: {
-          name: this.data.name,
-          passwd: this.data.passwd
+          name: app.globalData.name,
+          passwd: app.globalData.passwd
         },
         callBack: (data) => {
           if (data) {
@@ -511,16 +521,6 @@ Page({
           }
         }
       })
-      // API.getData("coursetable", {
-      //   "name": this.data.name,
-      //   "passwd": this.data.passwd
-      // }, (data) => {
-      //   if (data) {
-      //     this.handleData({
-      //       data: data
-      //     })
-      //   }
-      // })
     }
   },
   showCardView: function(e) {
@@ -550,21 +550,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var app = getApp()
+
     var that = this
     API.getData2("notice.txt", (data) => {
       that.setData({
         notice: data
       })
     })
-    // wx.request({
-    //   url: 'https://dreace.top/res/notice.txt',
-    //   success: function(res) {
-    //     that.setData({
-    //       notice: res.data
-    //     })
-    //   }
-    // })
     app.eventBus.on("clearCourseTable", this, () => {
       that.setData({
         name: "",
@@ -602,7 +594,7 @@ Page({
       courseTime: courseTime
     })
     var that = this
-    var app = getApp()
+
     app.globalData.firstWeek = wx.getStorageSync("firstWeek")
     this.setData({
       firstWeek: app.globalData.firstWeek,
@@ -630,7 +622,7 @@ Page({
   },
   bindTermChange: function(e) {
     var that = this
-    var app = getApp()
+
     this.setData({
       termsIndex: e
     })
@@ -654,7 +646,7 @@ Page({
   },
   onReady() {
 
-    var app = getApp()
+
     app.globalData.term = this.data.terms[this.data.termsIndex]
     var query = wx.createSelectorQuery();
     var that = this
@@ -673,7 +665,7 @@ Page({
   },
   onShareAppMessage: function(e) {
     var that = this
-    var app = getApp()
+
     var termsIndex = this.data.termsIndex
     var table = that.data.tables[termsIndex]["table"]
     var adata = app.globalData.additionalData[that.data.terms[termsIndex]]

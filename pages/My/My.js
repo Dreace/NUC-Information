@@ -14,6 +14,7 @@ Page({
     proxyServerColor: "#6b6d75",
     load: 0,
     loadColor: "#5099B9",
+    isQQ: false
   },
   toFeedback: function() {
     wx.navigateToMiniProgram({
@@ -28,5 +29,10 @@ Page({
   },
   onPullDownRefresh: function() {
     wx.stopPullDownRefresh()
+  },
+  onLoad: function() {
+    this.setData({
+      isQQ: !(typeof(qq) === 'undefined')
+    })
   }
 })

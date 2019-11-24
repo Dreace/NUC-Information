@@ -44,7 +44,7 @@ Page({
     }
     if (wx.createRewardedVideoAd) {
       videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-41e72a756d924507'
+        adUnitId: typeof(qq) === 'undefined' ? 'adunit-41e72a756d924507' : "4a439a4c5aebff88ea5a596b49648907"
       })
       videoAd.onLoad(() => {
         that.setData({

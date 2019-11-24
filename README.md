@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-2.1.0-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
+![](https://img.shields.io/badge/Version-2.1.3-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
@@ -35,23 +35,26 @@ QQ 小程序码
 
 初次使用会提示设置教务系统账号密码
 
-<img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gagH.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gU8e.png"/>
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/11/23/MqXyfx.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/11/23/MqX26O.png"/>
 
 设置完成保存即可，返回到成绩或者课程表界面刷新即可查看信息，上部可以选择查看的学期
 
-<img height="30%" width="30%" src="https://s2.ax1x.com/2019/07/22/eilZz6.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gdvd.png"/>
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/11/23/MqXB79.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gdvd.png"/>
 
 在“更多”页面还有其他小功能
 
-<img height="30%" width="30%" src="https://s2.ax1x.com/2019/07/22/eilmQK.png"/>
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/11/23/MqXRXD.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/11/23/MqXjBQ.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/11/23/MqXv7j.png"/>
 
 蹭课、空教室、校园导览等
 
-<img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gDbt.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gyUf.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gsVP.png"/>
+<img height="30%" width="30%" src="https://s2.ax1x.com/2019/11/23/MqX47d.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/06/30/Z1gyUf.png"/> <img height="30%" width="30%" src="https://s2.ax1x.com/2019/11/23/MqXh0H.png"/>
 
-*注：所有信息来自教务系统，空教室、蹭课、安排等有时效性的信息只有本学期内容
+*注：所有信息来自教务系统和学校官网，空教室、蹭课、安排等有时效性的信息只有本学期内容
 
 ### 版本日志
+#### Version 2.1.3
+  1. A 新增 游客模式
+  2. U 更新 体测成绩页面 UI
 #### Version 2.1.2
   1. A 新增 查询体测成绩
   2. A 新增 手动添加的课程表可修改
@@ -185,5 +188,5 @@ QQ 小程序码
 
 [blog]:https://dreace.top
 [zhihu]:https://www.zhihu.com/people/ni-xiang-42-96/
-[weibo]:http://weibo.com/Dreace 
+[weibo]:http://weibo.com/Dreace
 [email]:mailto:Dreace@Foxmail.com

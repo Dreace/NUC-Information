@@ -28,15 +28,15 @@
       </navigator>
     </view>
     <view class="cu-item arrow">
-      <view class="content" bindtap="toFeedback"  hover-class="none">
+      <view class="content" bindtap="toFeedback" hover-class="none">
         <text class="icon-feedback iconfont text-green"></text>
         <text class="text-grey">信息反馈</text>
       </view>
     </view>
   </view>
-  <ad  unit-id="adunit-0065a48368fd1ab4"></ad>
+  <ad unit-id="{{isQQ?'e96e50f9c60d305217833f07cb4b7e61':'adunit-0065a48368fd1ab4'}}"></ad>
 </scroll-view>
 
 <view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">中北信息 v2.1.2</view>
+  <view class="weui-footer__text">中北信息 v2.1.3</view>
 </view>

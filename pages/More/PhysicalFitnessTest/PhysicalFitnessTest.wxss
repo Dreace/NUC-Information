@@ -24,7 +24,7 @@
 }
 
 page {
-  background: #f7f7f7;
+  background: var(--ghostWhite);
 }
 
 .icon-more:before {
@@ -82,7 +82,7 @@ page {
 
 .group {
   width: 95%;
-  border-radius: 45rpx;
+  border-radius: 15rpx;
   margin: 10rpx auto;
   border: 1rpx solid #eee;
   background-color: #fff;
