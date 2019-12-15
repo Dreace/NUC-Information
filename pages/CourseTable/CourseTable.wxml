@@ -43,11 +43,11 @@
     <!--课表-->
     <view wx:for="{{table}}" wx:key="unique">
       <block wx:if="{{item.Course_Week!=''}}">
-        <view wx:if="{{enableNow[index]}}" class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*99+5}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:{{colorArrays[item.Course_Color%20]}};z-index:999">
+        <view wx:if="{{enableNow[index]}}" class="flex-item kcb-item shadow shadow-lg bg-white" bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*99+5}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:{{colorArrays[item.Course_Color%20]}};z-index:999">
           <view class="smalltext text">{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
         </view>
 
-        <view wx:else class="flex-item kcb-item " bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*99+5}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:#727171;z-index:99">
+        <view wx:else class="flex-item kcb-item group shadow shadow-lg bg-white" bindtap="showCardView" data-statu="open" data-courseIndex="{{index}}" style="margin-left:{{(item.Course_Time-1)*99+5}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;height:{{item.Course_Length*100-5}}rpx;background-color:#727171;z-index:99">
           <view class="smalltext text">[非本周]{{item.Course_Name}}@{{item.Course_Building}}{{item.Course_Classroom}}</view>
         </view>
       </block>

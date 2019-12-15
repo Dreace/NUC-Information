@@ -9,10 +9,8 @@ const cloudUrl = "https://fc.dreace.top/"
 // const cloudUrl = "http://127.0.0.1:100/"
 const svgUrl = dataUrl
 
-var token = {
-  token: "",
-  exp: new Date(0)
-}
+let key = ""
+const appSecret = ''
 
 function showMessage(msg) {
   wx.showToast({
@@ -29,54 +27,37 @@ function randomString(length, chars) {
 }
 wx.getStorageInfoSync()
 
-function loadTokenFromStorage() {
-  var token_t = wx.getStorageSync("token")
-  if (checkToken(token_t)) {
-    token = token_t
-  } else {
-    getToken()
+function loadKeyFromStorage() {
+  var k = wx.getStorageSync("key")
+  if (!k) {
+    let str = randomString(16, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    wx.setStorageSync("key", k)
   }
+  key = k
 }
 
-function getToken() {
-  var key = ""
-  var sign = ""
-  wx.request({
-    url: newAPIURL + "Token",
-    data: {
-      key: key,
-      sign: sign
-    },
-    success: (res) => {
-      token.token = res.data.data.token
-      token.exp = Date.parse(new Date()) + 3600000
-      wx.setStorageSync("token", token)
-    }
-  })
-}
-
-function checkToken(t) {
-  if (t.token && t.exp && Date.parse(new Date()) < t.exp) {
-    return true
-  } else {
-    return false
+function sign_data(params, key) {
+  params.ts = Date.now()
+  params.key = key
+  let list = []
+  for (let i in params) {
+    list.push(i + "=" + encodeURIComponent(params[i]))
   }
+  list.sort()
+  let q = list.join("&")
+  params.sign = md5.hexMD5(q + appSecret)
+  return params
 }
 
 function newAPI(e) {
-  if (!checkToken(token)) {
-    getToken()
-    showMessage("鉴权过期请重试")
-    return
-  }
-  e.data["token"] = token.token
+  let data = sign_data(e.data, key)
   wx.showLoading({
     mask: true,
     title: "加载中"
   })
   wx.request({
-    url: newAPIURL + e.url + (e.method == 'POST' ? '?token=' + token.token : ''),
-    data: e.data,
+    url: newAPIURL + e.url + (e.method == 'POST' ? '?key=' + data.key + "&ts=" + data.ts + "&sign=" + data.sign : ''),
+    data: data,
     method: e.method || "GET",
     success: (res) => {
       let data = res.data
@@ -84,7 +65,7 @@ function newAPI(e) {
         showMessage(data["message"])
       } else {
         wx.hideLoading()
-        if(data["data"].length < 1){
+        if (data["data"].length < 1) {
           showMessage("无数据")
           return
         }
@@ -133,7 +114,6 @@ function getData2(url, callBack) {
 module.exports = {
   getData2: getData2,
   cloudAPI: cloudAPI,
-  getToken: getToken,
-  loadTokenFromStorage: loadTokenFromStorage,
+  loadKeyFromStorage: loadKeyFromStorage,
   newAPI: newAPI
 }

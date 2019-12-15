@@ -72,16 +72,16 @@
         "selectedIconPath": "images/Grade-active.png"
       },
       {
-        "text": "我的",
-        "pagePath": "pages/My/My",
-        "iconPath": "images/My.png",
-        "selectedIconPath": "images/My-active.png"
-      },
-      {
         "text": "更多",
         "pagePath": "pages/More/More",
         "iconPath": "images/More.png",
         "selectedIconPath": "images/More-active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/My/My",
+        "iconPath": "images/My.png",
+        "selectedIconPath": "images/My-active.png"
       }
     ]
   },

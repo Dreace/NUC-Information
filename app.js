@@ -25,7 +25,6 @@ App({
     PhyEwspassed: undefined,
     updatePhyEwsGrade: false,
     clearFlagPhyEwsGrade: false,
-    lastRequestTime: new Date(1970, 1, 1),
     map: [],
     imgCDN: "https://img.dreace.top/",
     mapShowed: true,
@@ -55,12 +54,10 @@ App({
     const updateManager = wx.getUpdateManager()
 
     updateManager.onCheckForUpdate(function(res) {
-      // 请求完新版本信息的回调
       console.log(res.hasUpdate)
     })
 
     updateManager.onUpdateReady(function() {
-      // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
       wx.setStorageSync("updated", true)
       updateManager.applyUpdate()
     })
@@ -70,7 +67,7 @@ App({
         title: '版本更新失败',
       })
     })
-    API.loadTokenFromStorage()
+    API.loadKeyFromStorage()
     this.globalData.converted = wx.getStorageSync("converted")
     this.globalData.name = wx.getStorageSync("name")
     this.globalData.passwd = wx.getStorageSync("passwd")

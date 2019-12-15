@@ -20,7 +20,7 @@
           <wux-grid thumb="https://dreace.top/res/version.svg" label="版本" bind:click="nav" data-url="/pages/WhatsNew/WhatsNew" />
           <!-- <wux-grid thumb="https://dreace.top/res/status.svg" label="系统状态" bind:click="nav" data-url="/pages/More/Status/Status" /> -->
           <wux-grid thumb="https://dreace.top/res/appreciate.svg" label="赞赏" bind:click="jumpToReward" />
-          <wux-grid wx:if="{{canShowRewardedVideoAd}}" thumb="https://dreace.top/res/RewardedVideoAd.svg" label="发电" bind:click="showRewardedVideoAd" />
+          <!-- <wux-grid wx:if="{{canShowRewardedVideoAd}}" thumb="https://dreace.top/res/RewardedVideoAd.svg" label="发电" bind:click="showRewardedVideoAd" /> -->
         </wux-grids>
       </view>
       <view class='background'>
