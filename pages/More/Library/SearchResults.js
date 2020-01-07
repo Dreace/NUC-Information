@@ -46,20 +46,6 @@ Page({
         })
       }
     })
-    // app.API.cloudAPI(
-    //   api, {
-    //     keyword: data,
-    //     page: e.page,
-    //     type: type
-    //   }, (data) => {
-    //     var bookList = this.data.bookList
-    //     bookList = bookList.concat(data["list"])
-    //     totalPages = Math.ceil(data["total_records"] / data["page_records"])
-    //     that.setData({
-    //       bookList: bookList
-    //     })
-    //   }
-    // )
   },
   onLoad: function(options) {
     page = 1

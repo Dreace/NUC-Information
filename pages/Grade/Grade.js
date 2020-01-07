@@ -1,15 +1,18 @@
  // pages/Grade/Grade.js
  const API = require("../../utils/API.js")
  const app = getApp()
+ var usingMode2 = false
  const buttons = [{
      label: '刷新',
+     icon: "/images/Refresh.png",
+   }, {
+     label: '刷新(模式二)',
      icon: "/images/Refresh.png",
    },
    {
      openType: 'share',
      label: '分享',
      icon: "/images/Share.png",
-
    },
    {
      label: '切换按钮位置',
@@ -52,7 +55,8 @@
      termName_: ["上学期", "下学期"],
      termIndex: 0,
      termIndex_: 0,
-     visible: false
+     visible: false,
+     failedGrade: {}
    },
    onTermClick(e) {
      // console.log(e.currentTarget.dataset.index)
@@ -91,41 +95,45 @@
    },
    onClick(e) {
      if (e.detail.index === 0) {
+       usingMode2 = false
        this.refresh()
-     } else if (e.detail.index === 2) {
+     } else if (e.detail.index === 1) {
+       usingMode2 = true
+       this.refresh()
+     } else if (e.detail.index === 3) {
        this.setData({
          p: this.data.p + 1
        })
      }
    },
-   copy: function(e) {
+   copy: function (e) {
      wx.showLoading({
        title: '加载中',
      })
      wx.downloadFile({
        url: 'https://dreace.top/GPA.pdf',
-       success: function(res) {
+       success: function (res) {
          var filePath = res.tempFilePath
          wx.openDocument({
            filePath: filePath,
-           success: function(res) {
+           success: function (res) {
              wx.hideLoading()
            }
          })
        }
      })
    },
-   refresh: function() {
+   refresh: function () {
      this.getGrade()
    },
-   preventTouchMove: function() {},
-   showModel: function(e) {
+   preventTouchMove: function () {},
+   showModel: function (e) {
      this.setData({
        isShowModel: true,
        ModelContent: e.ModelContent
      })
    },
-   handleData: function(e) {
+   handleData: function (e) {
      var data = e.data
      var that = this
      var count
@@ -134,7 +142,7 @@
        terms.push(data[i]["name"])
      }
      var count = terms.length
-     
+
      that.setData({
        terms: terms,
        count: count,
@@ -152,14 +160,14 @@
        wx.setStorageSync("gradeRawData", data)
      }
    },
-   getGrade: function(e) {
+   getGrade: function (e) {
      if (this.data.loading) {
        var that = this;
        this.setData({
          tips: "数据加载中，请勿操作",
          showTopTips: true
        });
-       setTimeout(function() {
+       setTimeout(function () {
          that.setData({
            showTopTips: false
          });
@@ -188,7 +196,7 @@
          cancelColor: "#03a6ff",
          confirmText: "去登陆",
          confirmColor: "#79bd9a",
-         success: function(res) {
+         success: function (res) {
            that.setData({
              showed: false
            })
@@ -207,15 +215,11 @@
      }
      this.getGradeWithoutVcode()
    },
-   getGradeWithoutVcode: function() {
-     var check = require("../../utils/check_request_time.js")
-     if (!check.check()) {
-       return
-     }
+   getGradeWithoutVcode: function () {
      var that = this
      if (!(app.globalData.name === "" || app.globalData.passwd === "")) {
        API.newAPI({
-         url: "GetGrade",
+         url: usingMode2 ? "GetGradeMode2" : "GetGrade",
          data: {
            name: app.globalData.name,
            passwd: app.globalData.passwd
@@ -228,13 +232,35 @@
            }
          }
        })
+       if (usingMode2 && app.globalData.name != "guest") {
+         API.newAPI({
+           url: "GetGradeMode2/FailedGrade",
+           data: {
+             name: app.globalData.name,
+             passwd: app.globalData.passwd
+           },
+           callBack: (data) => {
+             if (data) {
+               this.setData({
+                 failedGrade: data
+               })
+               wx.setStorageSync('failedGrade', data)
+             }
+           }
+         })
+       } else {
+         this.setData({
+           failedGrade: {}
+         })
+         wx.setStorageSync('failedGrade', "")
+       }
      }
    },
    /**
     * 生命周期函数--监听页面加载
     */
-   onLoad: function(options) {
-     
+   onLoad: function (options) {
+
      var that = this
      app.eventBus.on("clearGrade", this, () => {
        that.setData({
@@ -260,6 +286,12 @@
        })
      }
      app.globalData.gradeRawData = wx.getStorageSync("gradeRawData")
+     var failedGrade = wx.getStorageSync('failedGrade')
+     if (failedGrade) {
+       this.setData({
+         failedGrade: failedGrade
+       })
+     }
      if (app.globalData.gradeRawData != "") {
        this.handleData({
          data: app.globalData.gradeRawData
@@ -268,7 +300,7 @@
        this.getGrade()
      }
    },
-   onShareAppMessage: function(e) {
+   onShareAppMessage: function (e) {
      var that = this
      let termsIndex = that.data.termIndex * 2 + that.data.termIndex_
      return {

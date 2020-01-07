@@ -29,7 +29,7 @@
           <wux-grid thumb="https://dreace.top/res/ke.svg" label="蹭课" bind:click="nav" data-url="/pages/MoreCourse/MoreCourse" />
           <wux-grid thumb="https://dreace.top/res/classroom.svg" label="自习室" bind:click="nav" data-url="/pages/More/FreeClassroom/FreeClassroom" />
           <wux-grid thumb="https://dreace.top/res/PhyEws.svg" label="大物实验" bind:click="nav" data-url="/pages/More/PhyEws/PhyEws" />
-          <wux-grid thumb="https://dreace.top/res/Exam.svg" label="考试安排" bind:click="nav" data-url="/pages/More/ExamSchedule/ExamSchedule" />
+          <!-- <wux-grid thumb="https://dreace.top/res/Exam.svg" label="考试安排" bind:click="nav" data-url="/pages/More/ExamSchedule/ExamSchedule" /> -->
           <wux-grid thumb="https://dreace.top/res/location.svg" label="校园导览" bind:click="nav" data-url="/pages/More/CampusTour/CampusTour" />
           <wux-grid thumb="https://dreace.top/res/CardBalance.svg" label="一卡通余额" bind:click="nav" data-url="/pages/More/Balance/Balance" />
           <wux-grid thumb="https://dreace.top/res/Library.svg" label="图书馆" bind:click="nav" data-url="/pages/More/Library/Library" />

@@ -1,4 +1,3 @@
-const auth = require("authenticate.js")
 const base64 = require("base64.js")
 const md5 = require("md5.js")
 const apiUrl = "https://api.dreace.top/"
@@ -31,6 +30,7 @@ function loadKeyFromStorage() {
   var k = wx.getStorageSync("key")
   if (!k) {
     let str = randomString(16, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    k = md5.hexMD5(base64.base64Encode(str))
     wx.setStorageSync("key", k)
   }
   key = k
@@ -78,31 +78,6 @@ function newAPI(e) {
   })
 }
 
-function cloudAPI(url, parameter, callBack) {
-  parameter["version"] = auth.version
-  parameter["uuid"] = auth.uuid
-  wx.showLoading({
-    mask: true,
-    title: "加载中"
-  })
-  wx.request({
-    url: cloudUrl + url,
-    data: parameter,
-    success: (res) => {
-      let data = res.data
-      if (data["code"] != 0) {
-        showMessage(data["message"])
-      } else {
-        wx.hideLoading()
-        callBack(data["data"])
-      }
-    },
-    fail: () => {
-      showMessage()
-    },
-  })
-}
-
 function getData2(url, callBack) {
   wx.request({
     url: dataUrl + url,
@@ -113,7 +88,6 @@ function getData2(url, callBack) {
 }
 module.exports = {
   getData2: getData2,
-  cloudAPI: cloudAPI,
   loadKeyFromStorage: loadKeyFromStorage,
   newAPI: newAPI
 }

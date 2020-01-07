@@ -32,15 +32,6 @@ Page({
           })
         }
       })
-      // app.API.cloudAPI(
-      //   "GetBookAvailableDetail", {
-      //     BookID: bookDetail.id,
-      //   }, (data) => {
-      //     that.setData({
-      //       bookAvailableDetail: data
-      //     })
-      //   }
-      // )
     }
   }
 })

@@ -2,32 +2,54 @@
 <wux-fab-button position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
 <view class='box' style='margin-top:30rpx;'>
-  <view class="cu-bar bg-white" style='justify-content:center;'>
-    <view class="action sub-title" style='margin-left:0;'>
-      <text class="text-xl text-bold text-green">成绩</text>
-      <text class="bg-green" style="width:2rem;bottom:0rem;"></text>
-      <!-- last-child选择器-->
-    </view>
-  </view>
+	<view class="cu-bar bg-white" style='justify-content:center;'>
+		<view class="action sub-title" style='margin-left:0;'>
+			<text class="text-xl text-bold text-green">成绩</text>
+			<text class="bg-green" style="width:2rem;bottom:0rem;"></text>
+			<!-- last-child选择器-->
+		</view>
+	</view>
 </view>
 <view class='term'>
-  <view wx:for='{{termName}}' class='term-item {{termIndex==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick'>{{item}}</view>
+	<view wx:for='{{termName}}' class='term-item {{termIndex==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick'>{{item}}</view>
 </view>
 <view class='term'>
-  <view wx:for='{{termName_}}' class='term-item {{termIndex_==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick_'>{{item}}</view>
+	<view wx:for='{{termName_}}' class='term-item {{termIndex_==index?"term-select":""}}' data-index='{{index}}' bindtap='onTermClick_'>{{item}}</view>
 </view>
 <wux-prompt wx:if="{{ visible }}" icon="https://dreace.top/res/empty.png" title="这个学期好像还没有成绩" style="margin-top: 45%;" />
 
 <view wx:if='{{datas.length>0}}'>
-  <view class='grade-head'>
-    <view wx:for='{{heads}}' class='grade-head-item' style='flex:{{index==0?5:1}};'>{{item}}</view>
-  </view>
-  <view class='grade' wx:for='{{datas}}'>
-    <view class='grade-item' style='flex:5;text-align: left; padding-left:30rpx;'>{{item.Course_Name}}</view>
-    <view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Attribute}}</view>
-    <view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Credit}}</view>
-    <view class='grade-item' style='flex:1;font-weight: 600;'>{{item.Course_Grade}}</view>
-  </view>
-  <view class='url' bindtap='copy'>点击查看 GPA 计算方法</view>
+	<view class='grade-head'>
+		<view wx:for='{{heads}}' class='grade-head-item' style='flex:{{index==0?5:1}};'>{{item}}</view>
+	</view>
+	<view class='grade' wx:for='{{datas}}'>
+		<view class='grade-item' style='flex:5;text-align: left; padding-left:30rpx;'>{{item.Course_Name}}</view>
+		<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Attribute}}</view>
+		<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Credit}}</view>
+		<view class='grade-item' style='flex:1;font-weight: 600;'>{{item.Course_Grade}}</view>
+	</view>
+	<view wx:if="{{failedGrade['stillFailed'].length > 0}}">
+		<view class='grade-head'>
+			<view class='grade-head-item' style='flex:1;'>尚不及格</view>
+		</view>
+		<view class='grade' wx:for="{{failedGrade['stillFailed']}}">
+			<view class='grade-item' style='flex:5;text-align: left; padding-left:30rpx;'>{{item.Course_Name}}</view>
+			<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Attribute}}</view>
+			<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Credit}}</view>
+			<view class='grade-item' style='flex:1;font-weight: 600;'>{{item.Course_Grade}}</view>
+		</view>
+	</view>
+  	<view wx:if="{{failedGrade['usedFailed'].length > 0}}">
+		<view class='grade-head'>
+			<view class='grade-head-item' style='flex:1;'>曾不及格</view>
+		</view>
+		<view class='grade' wx:for="{{failedGrade['usedFailed']}}">
+			<view class='grade-item' style='flex:5;text-align: left; padding-left:30rpx;'>{{item.Course_Name}}</view>
+			<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Attribute}}</view>
+			<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Credit}}</view>
+			<view class='grade-item' style='flex:1;font-weight: 600;'>{{item.Course_Grade}}</view>
+		</view>
+	</view>
+	<view class='url' bindtap='copy'>点击查看 GPA 计算方法</view>
 </view>
 <!-- <view style='height:48px;width:100vw;'></view> -->
