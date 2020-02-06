@@ -50,14 +50,14 @@ function sign_data(params, key) {
 }
 
 function newAPI(e) {
-  let data = sign_data(e.data, key)
+  let data = sign_data(e.method == 'POST' ? {} : e.data, key)
   wx.showLoading({
     mask: true,
     title: "加载中"
   })
   wx.request({
     url: newAPIURL + e.url + (e.method == 'POST' ? '?key=' + data.key + "&ts=" + data.ts + "&sign=" + data.sign : ''),
-    data: data,
+    data: e.method == 'POST' ? e.data : data,
     method: e.method || "GET",
     success: (res) => {
       let data = res.data

@@ -1,10 +1,11 @@
-![](https://img.shields.io/badge/Version-2.1.5-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
+![](https://img.shields.io/badge/Version-2.1.6-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
 ### 有什么用 & 谁可以用？ 
 方便中北大学的同学更方便的查询各种信息
 目前只适配了中北的教务系统（URP 综合教务系统）
+
 ### 目前实现什么功能？
 * 课程表和成绩查询
 * 自动识别验证码
@@ -52,6 +53,11 @@ QQ 小程序码
 *注：所有信息来自教务系统和学校官网，空教室、蹭课、安排等有时效性的信息只有本学期内容
 
 ### 版本日志
+
+#### Version 2.1.6
+
+  1. F 修复 课程表导出异常问题
+
 #### Version 2.1.5
   1. A 新增 成绩查询模式二，仅供原有模式失效时使用
   2. R 移除 考试安排查询
