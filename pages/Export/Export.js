@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tables: undefined,
+    table: undefined,
     termsIndex: 0,
     terms: undefined,
     value: [],
@@ -41,12 +41,10 @@ Page({
   exportTable: function() {
     var app = getApp()
     var that = this
-    var table
-    var adata = app.globalData.additionalData[that.data.tables[this.data.termsIndex]["name"]]
+    var table = that.data.table
+    var adata = app.globalData.additionalData
     if (adata != undefined && adata.length > 0) {
-      table = that.data.tables[this.data.termsIndex]["table"].concat(adata)
-    } else {
-      table = that.data.tables[this.data.termsIndex]["table"]
+      table = table.concat(adata)
     }
     API.newAPI({
       url: "ToiCal",
@@ -65,35 +63,10 @@ Page({
         })
       }
     })
-    // API.getData("ical", {
-    //   data: table,
-    //   firtMonday: this.data.value[0],
-    // }, (data) => {
-    //   that.setData({
-    //     show: true,
-    //     tableURL: data
-    //   })
-    //   wx.setClipboardData({
-    //     data: data,
-    //   })
-    // },"POST")
-  },
-  bindTermChange: function(e) {
-    this.setData({
-      termsIndex: e.detail.value
-    })
   },
   onLoad: function(e) {
     this.setData({
-      tables: JSON.parse(e.tables),
-    })
-    var terms = []
-    for (var i = 0; i < this.data.tables.length; i++) {
-      terms.push(this.data.tables[i]["name"])
-    }
-    this.setData({
-      terms: terms,
-      termsIndex: terms.length - 1
+      table: JSON.parse(e.table),
     })
   }
 })

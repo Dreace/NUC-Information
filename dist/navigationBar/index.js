@@ -5,10 +5,6 @@ Component({
       type: Boolean,
       value: false,
     },
-    showSwitch: { //是否显示返回
-      type: Boolean,
-      value: false,
-    },
     background: { //导航栏背景色
       type: String,
       value: '#ffffff', //默认
@@ -176,12 +172,6 @@ Component({
   },
   methods: {
     // 这里是一个自定义方法
-    tapSwitch(){
-      this.setData({
-        cnt:this.data.cnt+1,
-      })
-      this.triggerEvent("switch")
-    },
     tapTitle() {
       if (!this.properties.titleEvent) {
         return;

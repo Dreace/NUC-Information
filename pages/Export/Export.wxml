@@ -8,17 +8,6 @@
   </view>
   <view class="page__bd">
     <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_select">
-        <view class="weui-cell__hd weui-cell__hd_in-select-after">
-          <view class="weui-label">选择学期</view>
-        </view>
-        <view class="weui-cell__bd">
-          <picker bindchange="bindTermChange" value="{{termsIndex}}" range="{{terms}}">
-            <view class="weui-select weui-select_in-select-after" style='font-size:1rem'>{{terms[termsIndex]}}</view>
-          </picker>
-        </view>
-      </view>
-      
       <view class="weui-cell__bd">
         <wux-cell title="学期第一周周一" extra="{{value}}" bind:click="openCalendar"></wux-cell>
       </view>

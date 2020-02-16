@@ -42,8 +42,6 @@ Page({
     autoVcode: false,
     vcode: "",
     count: 0,
-    terms: [],
-    termsIndex: 0,
     table: undefined,
     tables: [],
     vcodeImage: "",
@@ -51,9 +49,6 @@ Page({
     courseIndex: 0,
     isShowModel: false, //控制弹窗是否显示，默认不显示
     isShowConfirm: true, //是否只显示确定按钮，默认不是
-    ModelId: 0, //弹窗id
-    ModelTitle: '验证码', //弹窗标题
-    ModelContent: '', //弹窗文字内容
     showMoreInformation: false,
     showTopTips: false,
     tips: "",
@@ -79,79 +74,20 @@ Page({
     courseTime: [],
     monthNow: [],
     dateList: [],
-    termName: ["大一", "大二", "大三", "大四"],
-    termName_: ["上学期", "下学期"],
-    termIndex: 0,
-    termIndex_: 0,
-    visible: false,
-    transitionTime: 400,
-    translateY: 0,
-    translateY_: 0,
-    __maxY: 0
   },
-  nav: function(e) {
+  nav: function (e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.url,
     })
   },
-  onSwitch() {
-    let translateY = 0
-    if (this.data.translateY == 0) {
-      translateY = this.data.__maxY
-    } else {
-      translateY = 0
-    }
-    this.setData({
-      translateY: translateY
-    })
-    setTimeout(() => {
-      this.setData({
-        translateY_: translateY
-      })
-    }, translateY == 0 ? 400 : 0)
-  },
-  onTermClick(e) {
-    // console.log(e.currentTarget.dataset.index)
 
-    let termsIndex = e.currentTarget.dataset.index * 2 + this.data.termIndex_
-    if (termsIndex + 1 > this.data.count) {
-      this.setData({
-        visible: true,
-        table: [],
-        termIndex: e.currentTarget.dataset.index
-      })
-    } else {
-      this.setData({
-        visible: false,
-        termIndex: e.currentTarget.dataset.index
-      })
-      this.bindTermChange(termsIndex)
-    }
-  },
-  onTermClick_(e) {
-    // console.log(e.currentTarget.dataset.index)
-    let termsIndex = this.data.termIndex * 2 + e.currentTarget.dataset.index
-    if (termsIndex + 1 > this.data.count) {
-      this.setData({
-        visible: true,
-        table: [],
-        termIndex_: e.currentTarget.dataset.index
-      })
-    } else {
-      this.setData({
-        visible: false,
-        termIndex_: e.currentTarget.dataset.index
-      })
-      this.bindTermChange(termsIndex)
-    }
-  },
   onClick(e) {
     if (e.detail.index === 0) {
       this.refresh()
     } else if (e.detail.index === 4) {
-      if (this.data.courseTableRawData !== undefined && this.data.courseTableRawData[0]["name"]) {
+      if (this.data.courseTableRawData !== undefined) {
         wx.navigateTo({
-          url: '/pages/Export/Export?tables=' + JSON.stringify(this.data.courseTableRawData),
+          url: '/pages/Export/Export?table=' + JSON.stringify(this.data.courseTableRawData),
         })
       } else {
         wx.showToast({
@@ -164,54 +100,52 @@ Page({
       })
     } else if (e.detail.index === 1) {
       wx.navigateTo({
-        url: '/pages/Add/Add?term=' + this.data.terms[this.data.termsIndex],
+        url: '/pages/Add/Add'
       })
     }
   },
-  preventTouchMove: function() {},
-  closethis: function() {
+  preventTouchMove: function () {},
+  closethis: function () {
     this.setData({
       showMoreInformation: false,
       showCardsList: []
     })
   },
-  closeAddCiew: function() {
+  closeAddCiew: function () {
     this.setData({
       showAddView: false
     })
   },
-  showInformation: function(e) {
+  showInformation: function (e) {
     this.setData({
       showMoreInformation: true
     })
   },
-  showInformationConfirm: function() {
+  showInformationConfirm: function () {
     this.setData({
       showMoreInformation: false
     })
   },
-  showModel: function(e) {
+  showModel: function (e) {
     this.setData({
       isShowModel: true,
       ModelContent: e.ModelContent
     })
   },
-  delete_: function(e) {
-
+  delete_: function (e) {
     var that = this
     wx.showModal({
       title: '删除',
       content: '确认删除这个课程，删除后不可恢复',
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
-
-          var table = that.data.tables[that.data.termsIndex]["table"]
-          app.globalData.additionalData[that.data.terms[that.data.termsIndex]].splice(that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length, 1)
+          var table = that.data.courseTableRawData
+          app.globalData.additionalData.splice(that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length, 1)
           that.setData({
             showMoreInformation: false,
             showCardsList: []
           })
-          var adata = app.globalData.additionalData[that.data.terms[that.data.termsIndex]]
+          var adata = app.globalData.additionalData
           if (adata != undefined && adata.length > 0) {
             that.setData({
               table: table.concat(adata)
@@ -225,21 +159,21 @@ Page({
           wx.showToast({
             title: '删除成功',
           })
-          that.handleMoreData()
-        } else {
-
+          that.handleData({
+            data: app.globalData.courseTableRawData
+          })
         }
       }
     })
   },
-  edit: function(e) {
+  edit: function (e) {
     let that = this
-    var table = that.data.tables[that.data.termsIndex]["table"]
+    var table = that.data.courseTableRawData
     wx.navigateTo({
-      url: '/pages/Add/Add?term=' + that.data.terms[that.data.termsIndex] + "&id=" + (that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length),
+      url: '/pages/Add/Add?id=' + (that.data.showCardsList[e.currentTarget.dataset["index"]] - table.length),
     })
   },
-  handleData: function(e) {
+  handleData: function (e) {
     var day = new Date().getDay()
     if (day == 0) {
       day = 7
@@ -252,33 +186,8 @@ Page({
       return;
     }
     var that = this
-    var terms = []
-    for (var i = 0; i < data.length; i++) {
-      terms.push(data[i]["name"])
-    }
-    var count = terms.length
-
     that.setData({
-      terms: terms,
-      count: count,
-      tables: data
-    })
-    let termsIndex = count - 1
-    var adata = app.globalData.additionalData[this.data.terms[termsIndex]]
-    if (adata != undefined && adata.length > 0) {
-      that.setData({
-        table: that.data.tables[termsIndex]["table"].concat(adata)
-      })
-    } else {
-      that.setData({
-        table: that.data.tables[termsIndex]["table"]
-      })
-    }
-    that.setData({
-      termsIndex: termsIndex,
-      visible: false,
-      termIndex: Math.ceil(count / 2 - 1),
-      termIndex_: 1 - count % 2,
+      table: data[0]["name"] ? data[data.length - 1]["table"] : data.concat(app.globalData.additionalData),
       courseTableRawData: data
     })
     that.handleMoreData()
@@ -286,7 +195,7 @@ Page({
       wx.setStorageSync("courseTableRawData", data)
     }
   },
-  changeWeek: function() {
+  changeWeek: function () {
     var that = this
     var weekList = Array(35)
     for (var i = 0; i < 35; i++) {
@@ -317,7 +226,7 @@ Page({
       }
     })
   },
-  handleMoreData: function(e) {
+  handleMoreData: function (e) {
     if (!this.data.table) {
       return
     }
@@ -423,7 +332,7 @@ Page({
       title: "第" + that.data.weekNow + "周▼",
     })
   },
-  handleWeek: function(e) {
+  handleWeek: function (e) {
     var weekList = []
     var tempList = undefined
     tempList = this.removeChinese(e.data).split(",")
@@ -440,14 +349,14 @@ Page({
     }
     return weekList
   },
-  removeChinese: function(strValue) {
+  removeChinese: function (strValue) {
     if (strValue != null && strValue != "") {
       var reg = /[\u4e00-\u9fa5]/g;
       return strValue.replace(reg, "");
     } else
       return "";
   },
-  getCourseTable: function(e) {
+  getCourseTable: function (e) {
     var that = this
     if (this.data.loading) {
       var that = this;
@@ -455,7 +364,7 @@ Page({
         tips: "数据加载中，请勿操作",
         showTopTips: true
       });
-      setTimeout(function() {
+      setTimeout(function () {
         that.setData({
           showTopTips: false
         });
@@ -486,7 +395,7 @@ Page({
         cancelColor: "#03a6ff",
         confirmText: "去登陆",
         confirmColor: "#79bd9a",
-        success: function(res) {
+        success: function (res) {
           that.setData({
             showed: false
           })
@@ -505,10 +414,10 @@ Page({
     }
     this.getCourseTableWithoutVcode()
   },
-  getCourseTableWithoutVcode: function() {
+  getCourseTableWithoutVcode: function () {
     if (!(app.globalData.name === "" || app.globalData.passwd === "")) {
       API.newAPI({
-        url: "GetCourseTable",
+        url: "v2/GetCourseTable",
         data: {
           name: app.globalData.name,
           passwd: app.globalData.passwd
@@ -523,7 +432,7 @@ Page({
       })
     }
   },
-  showCardView: function(e) {
+  showCardView: function (e) {
     var index = e.currentTarget.dataset.courseindex
     console.log(e.currentTarget.dataset.courseindex)
     var showCardsList = []
@@ -549,7 +458,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
     var that = this
     API.getData2("notice.txt", (data) => {
@@ -562,12 +471,8 @@ Page({
         name: "",
         passwd: "",
         count: 0,
-        terms: [],
-        termsIndex: 0,
         table: [],
         tables: [],
-        termIndex: 0,
-        termIndex_: 0,
         courseIndex: 0,
         enableRefresh: true,
         courseTableRawData: [],
@@ -611,7 +516,6 @@ Page({
       })
     }
     app.globalData.courseTableRawData = wx.getStorageSync("courseTableRawData")
-    app.globalData.autoVcode = true
     if (app.globalData.courseTableRawData != "") {
       this.handleData({
         data: app.globalData.courseTableRawData
@@ -620,68 +524,19 @@ Page({
       this.getCourseTable()
     }
   },
-  bindTermChange: function(e) {
-    var that = this
-
-    this.setData({
-      termsIndex: e
-    })
-    let termsIndex = e
-    var table = that.data.tables[termsIndex]["table"]
-    var adata = app.globalData.additionalData[that.data.terms[termsIndex]]
-    console.log(adata != undefined && adata.length > 0)
-    if (adata != undefined && adata.length > 0) {
-      that.setData({
-        table: table.concat(adata)
-      })
-    } else {
-      that.setData({
-        table: table
-      })
-    }
-    this.handleMoreData()
+  onUnload: function () {
+    app.eventBus.off("updateCourseTable", this)
+    app.eventBus.off("refreshCourseTable", this)
+    app.eventBus.off("clearCourseTable", this)
   },
-  refresh: function() {
+  refresh: function () {
     this.getCourseTable()
   },
-  onReady() {
-
-
-    app.globalData.term = this.data.terms[this.data.termsIndex]
-    var query = wx.createSelectorQuery();
-    var that = this
-    query.select('#boxid').boundingClientRect()
-    query.exec(function(res) {
-      var height
-      try {
-        height = res[0].height
-      } catch (err) {
-        height = 105.6
-      }
-      that.setData({
-        __maxY: height
-      })
-    })
-  },
-  onShareAppMessage: function(e) {
-    var that = this
-
-    var termsIndex = this.data.termsIndex
-    var table = that.data.tables[termsIndex]["table"]
-    var adata = app.globalData.additionalData[that.data.terms[termsIndex]]
-    console.log(adata != undefined && adata.length > 0)
-    if (adata != undefined && adata.length > 0) {
-      table = table.concat(adata)
-    } else {
-      table = table
-    }
-    console.log(table)
+  onShareAppMessage: function (e) {
+    console.log('courseTableRawData=' + JSON.stringify(this.data.table))
     return {
-      title: '我的课程表-' + that.data.terms[that.data.termsIndex],
-      path: 'pages/CourseTable/CourseTable?courseTableRawData=' + JSON.stringify({
-        "term": that.data.terms[that.data.termsIndex],
-        "table": table
-      }),
+      title: '我的课程表',
+      path: 'pages/CourseTable/CourseTable?courseTableRawData=' + JSON.stringify(this.data.table),
     }
   }
 })

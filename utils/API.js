@@ -1,5 +1,6 @@
 const base64 = require("base64.js")
 const md5 = require("md5.js")
+const eventBus = require("eventBus.js")
 const apiUrl = "https://api.dreace.top/"
 const newAPIURL = "https://api-new.dreace.top/"
 // const newAPIURL = "http://127.0.0.1:100/"
@@ -63,6 +64,9 @@ function newAPI(e) {
       let data = res.data
       if (data["code"] != 0) {
         showMessage(data["message"])
+        if (data["code"] == -3) {
+          eventBus.emit("showPassword")
+        }
       } else {
         wx.hideLoading()
         if (data["data"].length < 1) {

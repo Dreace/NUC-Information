@@ -13,7 +13,6 @@ Page({
     value2: undefined,
     value3: undefined,
     values: [],
-    term: undefined
   },
   add: function() {
     var map = {
@@ -22,7 +21,7 @@ Page({
       "Course_Credit": this.data.values[3],
       "Course_Attribute": this.data.values[4],
       "Course_Teacher": this.data.values[2],
-      "Course_Week": this.data.values[10] + "周上",
+      "Course_Week": this.data.values[10] + "周",
       "Course_Color": Math.floor(Math.random() * 21),
       "Course_Time": this.data.values[5],
       "Course_Start": this.data.values[6],
@@ -32,13 +31,10 @@ Page({
       "Additional": true
     }
     var app = getApp()
-    if (app.globalData.additionalData[this.data.term] == undefined) {
-      app.globalData.additionalData[this.data.term] = []
-    }
     if (id) {
-      app.globalData.additionalData[this.data.term][id] = map
+      app.globalData.additionalData[id] = map
     } else {
-      app.globalData.additionalData[this.data.term].push(map)
+      app.globalData.additionalData.push(map)
     }
     wx.setStorageSync("additionalData", app.globalData.additionalData)
     app.eventBus.emit("refreshCourseTable")
@@ -119,13 +115,13 @@ Page({
     }
     id = e.id
     if (id) {
-      let data = app.globalData.additionalData[e.term][id]
+      let data = app.globalData.additionalData[id]
       values[0] = data["Course_Name"]
       values[1] = data["Course_Number"]
       values[3] = data["Course_Credit"]
       values[4] = data["Course_Attribute"]
       values[2] = data["Course_Teacher"]
-      values[10] = data["Course_Week"].replace("周上", "")
+      values[10] = data["Course_Week"].replace("周", "")
       values[5] = data["Course_Time"]
       values[6] = data["Course_Start"]
       values[7] = data["Course_Length"]
@@ -142,7 +138,6 @@ Page({
     }
     this.setData({
       values: values,
-      term: e.term
     })
   }
 })

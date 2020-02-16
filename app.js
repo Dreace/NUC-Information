@@ -18,7 +18,7 @@ App({
     accountID: -1,
     clearFlagCourseTable: false,
     clearFlagGrade: false,
-    additionalData: {},
+    additionalData: [],
     term: undefined,
     PhyEwsRawData: undefined,
     PhyEwsname: undefined,
@@ -29,7 +29,7 @@ App({
     imgCDN: "https://img.dreace.top/",
     mapShowed: true,
   },
-  onLaunch: function() {
+  onLaunch: function () {
     wx.getSystemInfo({
       success: e => {
         this.globalData.StatusBar = e.statusBarHeight;
@@ -42,10 +42,10 @@ App({
           bottom: e.statusBarHeight + 10 + 30
         }
         try {
-          if (typeof(qq) === 'undefined') {
+          if (typeof (qq) === 'undefined') {
             custom = wx.getMenuButtonBoundingClientRect();
           }
-        } catch (error) { }
+        } catch (error) {}
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
       }
@@ -53,16 +53,16 @@ App({
 
     const updateManager = wx.getUpdateManager()
 
-    updateManager.onCheckForUpdate(function(res) {
+    updateManager.onCheckForUpdate(function (res) {
       console.log(res.hasUpdate)
     })
 
-    updateManager.onUpdateReady(function() {
+    updateManager.onUpdateReady(function () {
       wx.setStorageSync("updated", true)
       updateManager.applyUpdate()
     })
 
-    updateManager.onUpdateFailed(function() {
+    updateManager.onUpdateFailed(function () {
       wx.showToast({
         title: '版本更新失败',
       })
@@ -72,6 +72,24 @@ App({
     this.globalData.name = wx.getStorageSync("name")
     this.globalData.passwd = wx.getStorageSync("passwd")
     this.globalData.mapShowed = wx.getStorageSync("mapShowed")
+    if (this.globalData.name && !wx.getStorageSync('updatedPasswd')) {
+      wx.removeStorageSync('additionalData')
+      wx.showModal({
+        title: '更新信息',
+        content: '新教务系统已启用请更新账号信息',
+        cancelText: "待会",
+        cancelColor: "#03a6ff",
+        confirmText: "好的",
+        confirmColor: "#79bd9a",
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/Account/Account',
+            })
+          }
+        }
+      })
+    }
     var temp = undefined
     temp = wx.getStorageSync("additionalData")
     if (temp != "") {
@@ -90,7 +108,7 @@ App({
       wx.showModal({
         title: '更新完成',
         content: '已更新到最新版本，是否查看版本说明？',
-        success: function(res) {
+        success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
               url: '../../pages/WhatsNew/WhatsNew',

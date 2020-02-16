@@ -5,9 +5,6 @@
  const buttons = [{
      label: '刷新',
      icon: "/images/Refresh.png",
-   }, {
-     label: '刷新(模式二)',
-     icon: "/images/Refresh.png",
    },
    {
      openType: 'share',
@@ -17,6 +14,10 @@
    {
      label: '切换按钮位置',
      icon: "/images/Switch.png",
+   },
+   {
+     label: '导出成绩',
+     icon: "/images/Export.png",
    }
  ]
  Page({
@@ -35,7 +36,7 @@
      termsIndex: 0,
      grades: undefined,
      datas: [],
-     heads: ["课程名", "属性", "学分", "成绩"],
+     heads: ["课程名", "学分", "绩点", "成绩"],
      vcodeImage: "",
      cookie: "",
      isShowModel: false, //控制弹窗是否显示，默认不显示
@@ -56,7 +57,39 @@
      termIndex: 0,
      termIndex_: 0,
      visible: false,
-     failedGrade: {}
+     showExportModal: false,
+   },
+   closethis() {
+     this.setData({
+       showExportModal: false
+     })
+   },
+   export (e) {
+     API.newAPI({
+       url: "v2/ExportGrade",
+       data: {
+         name: app.globalData.name,
+         passwd: app.globalData.passwd,
+         type: e.currentTarget.dataset.filetype
+       },
+       callBack: (data) => {
+         if (data) {
+           this.setData({
+             showExportModal: false
+           })
+           wx.setClipboardData({
+             data: data["url"],
+           })
+           wx.showModal({
+             title: '导出成功',
+             content: '文件链接复制到剪贴板，可粘贴到浏览器中下载',
+             confirmText: "好的",
+             confirmColor: "#79bd9a",
+             showCancel: false
+           })
+         }
+       }
+     })
    },
    onTermClick(e) {
      // console.log(e.currentTarget.dataset.index)
@@ -71,7 +104,7 @@
      } else {
        this.setData({
          visible: false,
-         datas: this.data.tables[termsIndex]["grade"],
+         datas: this.data.tables[termsIndex],
          termIndex: e.currentTarget.dataset.index
        })
      }
@@ -88,7 +121,7 @@
      } else {
        this.setData({
          visible: false,
-         datas: this.data.tables[termsIndex]["grade"],
+         datas: this.data.tables[termsIndex],
          termIndex_: e.currentTarget.dataset.index
        })
      }
@@ -100,9 +133,13 @@
      } else if (e.detail.index === 1) {
        usingMode2 = true
        this.refresh()
-     } else if (e.detail.index === 3) {
+     } else if (e.detail.index === 2) {
        this.setData({
          p: this.data.p + 1
+       })
+     } else if (e.detail.index === 3) {
+       this.setData({
+         showExportModal: true
        })
      }
    },
@@ -153,7 +190,7 @@
        visible: false,
        termIndex: Math.ceil(count / 2 - 1),
        termIndex_: 1 - count % 2,
-       datas: that.data.tables[termsIndex]["grade"],
+       datas: that.data.tables[termsIndex],
        gradeRawData: data
      })
      if (app.globalData.name != "guest") {
@@ -219,7 +256,7 @@
      var that = this
      if (!(app.globalData.name === "" || app.globalData.passwd === "")) {
        API.newAPI({
-         url: usingMode2 ? "GetGradeMode2" : "GetGrade",
+         url: "v2/GetGrade",
          data: {
            name: app.globalData.name,
            passwd: app.globalData.passwd
@@ -232,28 +269,6 @@
            }
          }
        })
-       if (usingMode2 && app.globalData.name != "guest") {
-         API.newAPI({
-           url: "GetGradeMode2/FailedGrade",
-           data: {
-             name: app.globalData.name,
-             passwd: app.globalData.passwd
-           },
-           callBack: (data) => {
-             if (data) {
-               this.setData({
-                 failedGrade: data
-               })
-               wx.setStorageSync('failedGrade', data)
-             }
-           }
-         })
-       } else {
-         this.setData({
-           failedGrade: {}
-         })
-         wx.setStorageSync('failedGrade', "")
-       }
      }
    },
    /**
@@ -300,14 +315,17 @@
        this.getGrade()
      }
    },
+   onUnload: function () {
+     app.eventBus.off("clearGrade", this)
+     app.eventBus.off("updateGrade", this)
+   },
    onShareAppMessage: function (e) {
      var that = this
      let termsIndex = that.data.termIndex * 2 + that.data.termIndex_
      return {
-       title: '我的成绩-' + that.data.terms[termsIndex],
+       title: '我的成绩',
        path: 'pages/Grade/Grade?gradeRawData=' + JSON.stringify({
-         "term": that.data.terms[termsIndex],
-         "table": that.data.tables[termsIndex]["grade"]
+         "table": that.data.tables[termsIndex]
        }),
      }
 

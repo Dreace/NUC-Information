@@ -24,32 +24,27 @@
 	</view>
 	<view class='grade' wx:for='{{datas}}'>
 		<view class='grade-item' style='flex:5;text-align: left; padding-left:30rpx;'>{{item.Course_Name}}</view>
-		<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Attribute}}</view>
 		<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Credit}}</view>
+		<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Grade_Point}}</view>
 		<view class='grade-item' style='flex:1;font-weight: 600;'>{{item.Course_Grade}}</view>
-	</view>
-	<view wx:if="{{failedGrade['stillFailed'].length > 0}}">
-		<view class='grade-head'>
-			<view class='grade-head-item' style='flex:1;'>尚不及格</view>
-		</view>
-		<view class='grade' wx:for="{{failedGrade['stillFailed']}}">
-			<view class='grade-item' style='flex:5;text-align: left; padding-left:30rpx;'>{{item.Course_Name}}</view>
-			<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Attribute}}</view>
-			<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Credit}}</view>
-			<view class='grade-item' style='flex:1;font-weight: 600;'>{{item.Course_Grade}}</view>
-		</view>
-	</view>
-  	<view wx:if="{{failedGrade['usedFailed'].length > 0}}">
-		<view class='grade-head'>
-			<view class='grade-head-item' style='flex:1;'>曾不及格</view>
-		</view>
-		<view class='grade' wx:for="{{failedGrade['usedFailed']}}">
-			<view class='grade-item' style='flex:5;text-align: left; padding-left:30rpx;'>{{item.Course_Name}}</view>
-			<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Attribute}}</view>
-			<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.Course_Credit}}</view>
-			<view class='grade-item' style='flex:1;font-weight: 600;'>{{item.Course_Grade}}</view>
-		</view>
 	</view>
 	<view class='url' bindtap='copy'>点击查看 GPA 计算方法</view>
 </view>
-<!-- <view style='height:48px;width:100vw;'></view> -->
+<view class="cu-modal {{showExportModal?'show':''}}" style="font-size: 28rpx;  z-index: 99999999999999;background: rgba(0, 0, 0, 0.3);" catchtouchmove="preventTouchMove">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">导出成绩</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl" style="text-align: center;">
+      <view>选择需要导出的文件格式</view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  text-green solid-left" data-fileType="xls" bindtap="export">Excel(.xls)</view>
+      <view class="action margin-0 flex-sub  text-red solid-left"  data-fileType="pdf" bindtap="export">PDF(.pdf)</view>
+	  <view class="action margin-0 flex-sub  text-black solid-left" bindtap="closethis">取消</view>
+    </view>
+  </view>
+</view>

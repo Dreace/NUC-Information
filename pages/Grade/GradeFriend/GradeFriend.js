@@ -15,7 +15,7 @@ Page({
     termsIndex: 0,
     grades: undefined,
     datas: [],
-    heads: ["课程名", "属性", "学分", "成绩"],
+    heads: ["课程名", "学分", "绩点", "成绩"],
     vcodeImage: "",
     cookie: "",
     isShowModel: false, //控制弹窗是否显示，默认不显示

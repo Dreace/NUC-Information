@@ -64,16 +64,10 @@ Page({
     })
   },
   handleData: function(e) {
-    console.log(e)
-    var data = e.data
-    var that = this
-    var terms = []
-    terms[0] = data.term
-    that.setData({
-      terms: terms,
-      table: data.table
+    this.setData({
+      table: e.data
     })
-    that.handleMoreData()
+    this.handleMoreData()
   },
   handleMoreData: function() {
     var hasData = new Array()
@@ -166,10 +160,11 @@ Page({
         return
       }
     } catch (e) {
+      console.error(e)
       wx.showToast({
         title: '加载失败',
         mask: true,
-        image: '/images/Error.png',
+        image: '/images/Sad.png',
         duration: 1500
       })
     }

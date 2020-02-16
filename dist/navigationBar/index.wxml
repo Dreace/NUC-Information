@@ -10,11 +10,6 @@
       <view class="back-home icon" style="" bind:tap="navigateBackHome"></view>
     </view>
   </view>
-  <view class="back" wx:if="{{showSwitch}}" style="padding-top:{{paddingTop}}px;height:{{height}}px;line-height:{{height}}px;">
-    <view class="style-simple {{navigationBarTextStyle}}">
-      <view class="icon-right icon" style="transform:rotate({{cnt%2==1?90:0}}deg);transition:transform 0.4s;" bind:tap="tapSwitch"></view>
-    </view>
-  </view>
   <view class="title" bind:tap="tapTitle">{{title!='none'?title:''}}</view>
 </view>
 <view class="navigation-bar-holder" wx:if="{{fixed && show}}" style="background:{{placeholderBg}};padding-top:{{paddingTop}}px;height:{{height}}px;line-height:{{height}}px;width:750rpx;"></view>
