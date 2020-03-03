@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-2.1.7-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
+![](https://img.shields.io/badge/Version-2.1.8-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace233/North-University-of-China-Rankings-Curriculum-Information.svg)
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
@@ -18,7 +18,7 @@
 * 正计划将项目从微信脱离出来，开发独立的 Android 和 iOS 应用
 * 逐步适配国内大部分学校的教务系统
 * 继续保持开源
-* 未来将会开放服务端（Python）源码（已开源）
+* 未来将会开放服务端（Python）源码（[NUC-Information-Backend](https://github.com/Dreace/NUC-Information-Backend)）
 
 有想要一起完成这个项目的同学可以通过下面的方式联系我
 * [知乎][zhihu]
@@ -53,7 +53,10 @@ QQ 小程序码
 *注：所有信息来自教务系统和学校官网，空教室、蹭课、安排等有时效性的信息只有本学期内容
 
 ### 版本日志
-
+#### Version 2.1.8
+  1. O 优化 重叠课程显示
+  2. O 优化 账号迁移提示
+  3. F 修复 蹭课到课程表添加失败
 #### Version 2.1.7
   1. U 更新 适配新版教务系统，需要重新登录
   2. A 新增 导出成绩

@@ -37,7 +37,7 @@ Page({
   },
   copy() {
     wx.setClipboardData({
-      data: 'https://ca.nuc.edu.cn/zfca/securitycenter/findpwd/recoverpasswd.jsp',
+      data: 'http://222.31.49.139/jwglxt/http://222.31.49.139/jwglxt/',
     })
   },
   closeUserAgreement() {
@@ -183,7 +183,8 @@ Page({
         accountID: id,
         name: app.globalData.accountList[id]["name"],
         passwd: app.globalData.accountList[id]["passwd"],
-        remark: app.globalData.accountList[id]["remark"]
+        remark: app.globalData.accountList[id]["remark"],
+        showForgetPassword: !wx.getStorageSync('updatedPasswd')
       })
     }
   },

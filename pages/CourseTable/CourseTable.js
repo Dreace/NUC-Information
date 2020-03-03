@@ -55,7 +55,7 @@ Page({
     enableRefresh: true,
     courseTableRawData: undefined,
     hasData: undefined,
-    toRight: undefined,
+    isOverlapping: undefined,
     showCardsList: undefined,
     cardToIndex: undefined,
     indexToCard: undefined,
@@ -231,31 +231,27 @@ Page({
       return
     }
     var hasData = new Array()
-    var toRight = new Array()
+    var isOverlapping = new Array()
     var that = this
     for (var i = 0; i < 8; i++) {
       hasData[i] = new Array()
       for (var j = 0; j < 12; j++) {
-        hasData[i][j] = false
+        hasData[i][j] = 0
       }
     }
     for (var i = 0; i < this.data.table.length; i++) {
-      toRight[i] = false
+      isOverlapping[i] = false
       if (this.data.table[i]["Course_Start"] === '') {
         continue
       }
-      var flag = false
+      // for (var j = Number(this.data.table[i]["Course_Start"]); j < Number(this.data.table[i]["Course_Length"]) + Number(this.data.table[i]["Course_Start"]); j++) {
+      //   if (hasData[Number(this.data.table[i]["Course_Time"])][j]) {
+      //     isOverlapping[i] = true
+      //     isOverlapping[j] = true
+      //   }
+      // }
       for (var j = Number(this.data.table[i]["Course_Start"]); j < Number(this.data.table[i]["Course_Length"]) + Number(this.data.table[i]["Course_Start"]); j++) {
-        if (hasData[Number(this.data.table[i]["Course_Time"])][j]) {
-          flag = true
-          break
-        }
-      }
-      if (flag) {
-        toRight[i] = true
-      }
-      for (var j = Number(this.data.table[i]["Course_Start"]); j < Number(this.data.table[i]["Course_Length"]) + Number(this.data.table[i]["Course_Start"]); j++) {
-        hasData[Number(this.data.table[i]["Course_Time"])][j] = true
+        hasData[Number(this.data.table[i]["Course_Time"])][j] += 1
       }
     }
     var cardToIndex = []
@@ -326,21 +322,32 @@ Page({
     }
     that.setData({
       hasData: hasData,
-      toRight: toRight,
+      isOverlapping: isOverlapping,
       cardToIndex: cardToIndex,
       indexToCard: indexToCard,
       title: "第" + that.data.weekNow + "周▼",
     })
   },
   handleWeek: function (e) {
+    if (!e.data) {
+      return []
+    }
     var weekList = []
     var tempList = undefined
+    let isEvenWeek = e.data.indexOf("双") != -1
+    let isOddWeek = e.data.indexOf("单") != -1
     tempList = this.removeChinese(e.data).split(",")
     for (var i = 0; i < tempList.length; i++) {
       var str = String(tempList[i])
       if (str.indexOf("-") != -1) {
         var t = str.split("-")
         for (var j = Number(t[0]); j <= Number(t[1]); j++) {
+          if (isEvenWeek && j % 2 == 1) {
+            continue
+          }
+          if (isOddWeek && j % 2 == 0) {
+            continue
+          }
           weekList.push(j)
         }
       } else {
@@ -351,7 +358,7 @@ Page({
   },
   removeChinese: function (strValue) {
     if (strValue != null && strValue != "") {
-      var reg = /[\u4e00-\u9fa5]/g;
+      var reg = /[\u4e00-\u9fa5\(\)（）]/g;
       return strValue.replace(reg, "");
     } else
       return "";
@@ -434,7 +441,7 @@ Page({
   },
   showCardView: function (e) {
     var index = e.currentTarget.dataset.courseindex
-    console.log(e.currentTarget.dataset.courseindex)
+    console.log(index)
     var showCardsList = []
     if (index < 0) {
       showCardsList = showCardsList.concat(-index)
