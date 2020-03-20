@@ -115,7 +115,7 @@ Page({
     var that = this
     if (app.globalData.fitnessid) {
       API.newAPI({
-        url: "PhysicalFitnessTestGetScoreList",
+        url: "v2/fitness/list",
         data: {
           id: app.globalData.fitnessid
         },

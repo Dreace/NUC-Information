@@ -75,12 +75,11 @@ App({
     if (this.globalData.name && !wx.getStorageSync('updatedPasswd')) {
       wx.removeStorageSync('additionalData')
       wx.showModal({
-        title: '更新信息',
-        content: '新教务系统已启用请更新账号信息',
-        cancelText: "待会",
-        cancelColor: "#03a6ff",
-        confirmText: "好的",
+        title: '需重新登录',
+        content: '已适配新教务系统，需重新登录，默认密码“zbdx+身份证后六位”',
+        confirmText: "去登陆",
         confirmColor: "#79bd9a",
+        showCancel:false,
         success: function (res) {
           if (res.confirm) {
             wx.navigateTo({

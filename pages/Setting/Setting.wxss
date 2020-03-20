@@ -12,6 +12,13 @@ page {
   align-items: stretch;
 }
 
+.tip-text {
+  font-size: 30rpx;
+  text-align: center;
+  color: gray;
+  margin: 30rpx;
+}
+
 .checkbox-title {
   font-size: 30rpx;
   font-weight: 900;
@@ -236,7 +243,8 @@ page {
   border-right: 1px solid #d8d8d8;
 }
 
-.input-group input, .input-group picker {
+.input-group input,
+.input-group picker {
   flex: 1;
   font-size: 13pt;
   min-height: 52rpx;
@@ -245,8 +253,7 @@ page {
   padding: 0 25rpx;
 }
 
-.input-placeholder, .input-group picker.placeholder {
+.input-placeholder,
+.input-group picker.placeholder {
   color: #ccc;
 }
-
-

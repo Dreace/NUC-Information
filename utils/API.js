@@ -64,6 +64,8 @@ function newAPI(e) {
       let data = res.data
       if (data["code"] != 0) {
         showMessage(data["message"])
+      }
+      if (data["code"] < 0) {
         if (data["code"] == -3) {
           eventBus.emit("showPassword")
         }
@@ -73,7 +75,11 @@ function newAPI(e) {
           showMessage("无数据")
           return
         }
-        e.callBack(data["data"])
+        if (e.rawData) {
+          e.callBack(data)
+        } else {
+          e.callBack(data["data"])
+        }
       }
     },
     fail: () => {

@@ -15,7 +15,7 @@ Page({
       title: options.title
     })
     API.newAPI({
-      url: "PhysicalFitnessTestGetScore",
+      url: "v2/fitness/detail",
       data: {
         id: id
       },

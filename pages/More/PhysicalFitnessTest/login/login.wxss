@@ -1,4 +1,8 @@
 /* pages/More/PhyEws/login/login.wxss */
+.captcha{
+  height: 36px;
+  /* width: 112.5px; */
+}
 page {
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   font-size: 10pt;

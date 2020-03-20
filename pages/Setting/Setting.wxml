@@ -24,6 +24,9 @@
 					<view class="input-label" style="flex:1">备注</view>
 					<input bindinput="inputremark" style="flex:6" placeholder="添加备注(选填)" value='{{remark}}' confirm-type='done' />
 				</view>
+				<view class="tip-text">
+					<view>已适配新教务系统，默认密码“zbdx+身份证后六位”</view>
+				</view>
 				<checkbox-group bindchange="checkboxChange">
 					<view class="cu-form-group" style="background-color:#f4f4f4;padding: 0;">
 						<view>
@@ -79,7 +82,7 @@
 			<view style="text-indent: 1em;word-break: break-all;">登陆方式已修改为新教务系统（<text class="text-blue" style="" bindtap="copy">http://222.31.49.139/jwglxt/</text>），与个人门户密码不通用，请及时更新信息。</view>
 			<view style="color: #999;">1.账号密码是什么？</view>
 			<view style="text-indent: 1em;">账号为学号</view>
-			<view style="text-indent: 1em;">若未修改过密码则为“zbdx+身份证后六位”，如“zbdx123456”</view>
+			<view style="text-indent: 1em;">若未修改过密码则为“zbdx+身份证后六位”</view>
 			<view style="text-indent: 1em;">修改过则为修改后的密码</view>
 			<view style="color: #999;">2.忘记密码</view>
 			<view style="text-indent: 1em;">尚没有找回密码的方法</view>
