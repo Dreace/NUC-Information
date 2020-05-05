@@ -1,49 +1,46 @@
 // pages/Announcement/Announcement.js
+const API = require("../../utils/API.js")
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     md: "",
     title: "加载中",
-    time: "",
+    time: "", 
+    top:[],
+    normal:[]
+
   },
-  getAnnouncement: function() {
-    var that = this
-    var app = getApp()
-    wx.request({
-      url: 'https://dreace.top/dl/Announcement/0.json',
-      success: function(res) {
-        that.setData({
-          title: res.data["title"],
-          time: res.data["time"]
-        })
-      },
-      fail: function() {
-        that.setData({
-          title: "加载失败"
-        })
-      }
-    })
-    wx.request({
-      url: 'https://dreace.top/dl/Announcement/0.md',
-      success: function(res) {
-        that.setData({
-          md: res.data
-        })
-      },
-      fail: function() {
-        that.setData({
-          title: "加载失败"
-        })
-      }
+  goContent(e){
+    console.log(e)
+    let id = e.currentTarget.dataset.id
+    console.log(id)
+    wx.navigateTo({
+      url: 'Content/Content?id='+id,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onShow: function() {
-    this.getAnnouncement()
+  onLoad: function() {
+    // this.getAnnouncement()
+    API.newAPI({
+      url: "v2/notice/GetNoticeList",
+      data: {
+      },
+      callBack: (data) => {
+        if (data) {
+          this.setData({
+            top:data.top,
+            normal:data.normal
+          })
+          console.log(data)
+        }else{
+          console.log("失败")
+        }
+        console.log(data)
+      }
+    })
   },
 })

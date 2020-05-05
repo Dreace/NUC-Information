@@ -3,8 +3,9 @@
 <wux-select id="wux-select" style="z-index:999999999999999;" />
 <wux-fab-button position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onClick" />
 
-<wux-notice-bar icon="" wx:if="{{notice.length > 0}}" loop trailing="1500" content="{{notice}}" bind:click="nav" data-url="/pages/Announcement/Announcement" />
+<wux-notice-bar icon="" wx:if="{{notice.title.length > 0}}" loop trailing="1500" content="最新公告：{{notice.title}}" bind:click="nav" data-url="/pages/Announcement/Content/Content?id={{notice.id}}" />
 <wux-prompt wx:if="{{ visible }}" icon="https://dreace.top/res/empty.png" title="这个学期好像还没有课表" style="margin-top: 45%;" />
+
 
 <scroll-view class="scroll" wx:if='{{table.length>0}}'>
 	<view class="top" style="background-color:#ffffff;color:#000000;">
@@ -88,4 +89,29 @@
 
 		</block>
 	</swiper>
+</view>
+<!-- {{showNoticeContent?'show':'close'}} -->
+
+<view class="{{showNoticeContent?'show':'close'}}" catchtouchmove="preventTouchMove" style="font-size: 28rpx;  ">
+	<view class="cu-modal show sw">
+		<view class="cu-dialog" style="height:550px;">
+			<view class="cu-bar bg-white justify-end">
+				<view class="content">{{notice.title}}</view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close text-red"></text>
+				</view>
+			</view>
+			<scroll-view scroll-y style="height:440px">
+				<view style="text-align: left;">
+					<view style='width:92%;margin-left:4%;margin-top:1rpx;'>
+						<wemark md="{{notice.content}}" link highlight type="wemark"></wemark>
+					</view>
+				</view>
+			</scroll-view>
+			<view class="cu-bar bg-white">
+				<view class="action margin-0 flex-sub  text-blue solid-left" bindtap="dontShowLatestNotice">不再提醒</view>
+				<view class="action margin-0 flex-sub  text-green solid-left" bindtap="CloseLatestNotice">关闭</view>
+			</view>
+		</view>
+	</view>
 </view>

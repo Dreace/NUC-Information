@@ -32,7 +32,8 @@
     "pages/More/ClassCoursetable/ClassCoursetable",
     "pages/More/PhysicalFitnessTest/PhysicalFitnessTest",
     "pages/More/PhysicalFitnessTest/login/login",
-    "pages/More/PhysicalFitnessTest/detail"
+    "pages/More/PhysicalFitnessTest/detail",
+    "pages/Announcement/Content/Content"
   ],
   "navigateToMiniProgramAppIdList": [
     "wx8abaf00ee8c3202e",

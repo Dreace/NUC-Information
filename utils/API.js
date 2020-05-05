@@ -52,10 +52,12 @@ function sign_data(params, key) {
 
 function newAPI(e) {
   let data = sign_data(e.method == 'POST' ? {} : e.data, key)
-  wx.showLoading({
-    mask: true,
-    title: "加载中"
-  })
+  if (!e.dontShowLoading) {
+    wx.showLoading({
+      mask: true,
+      title: "加载中"
+    })
+  }
   wx.request({
     url: newAPIURL + e.url + (e.method == 'POST' ? '?key=' + data.key + "&ts=" + data.ts + "&sign=" + data.sign : ''),
     data: e.method == 'POST' ? e.data : data,
@@ -70,7 +72,9 @@ function newAPI(e) {
           eventBus.emit("showPassword")
         }
       } else {
-        wx.hideLoading()
+        if (!e.dontShowLoading) {
+          wx.hideLoading()
+        }
         if (data["data"].length < 1) {
           showMessage("无数据")
           return

@@ -8,12 +8,18 @@
 	<view class="page__bd page__bd_spacing">
 		<wux-timeline>
 			<wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
+				<view>2020-5-4 v2.1.10</view>
+				<view wx:for="{{new2110}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
 				<view>2020-3-20 v2.1.9</view>
 				<view wx:for="{{new219}}">
 					<view>· {{item}}</view>
 				</view>
 			</wux-timeline-item>
-			<wux-timeline-item >
+			<wux-timeline-item>
 				<view>2020-3-3 v2.1.8</view>
 				<view wx:for="{{new218}}">
 					<view>· {{item}}</view>

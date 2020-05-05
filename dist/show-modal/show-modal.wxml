@@ -1,0 +1,10 @@
+<view class="modal" hidden="{{!modalShow}}">
+  <view class="panel">
+    <!-- slot插槽 占位符 具名插槽 -->
+    <scroll-view scroll-y style="height:300px">
+      <slot name="modal-title"></slot>
+      <slot name="modal-content"></slot>
+    </scroll-view >
+    <button bind:tap="onClose">我知道了</button>
+  </view>
+</view>

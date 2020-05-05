@@ -74,6 +74,7 @@ Page({
     courseTime: [],
     monthNow: [],
     dateList: [],
+    showNoticeContent: false,
   },
   nav: function (e) {
     wx.navigateTo({
@@ -462,17 +463,71 @@ Page({
       current: 0
     })
   },
+  CloseLatestNotice() {
+    this.setData({
+      showNoticeContent: false
+    })
+  },
+  dontShowLatestNotice() {
+    this.setData({
+      showNoticeContent: false
+    })
+    wx.setStorage({
+      data: true,
+      key: 'dontShowLatestNotice',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    var that = this
-    API.getData2("notice.txt", (data) => {
-      that.setData({
-        notice: data
-      })
+    const dontShowLatestNotice = wx.getStorageSync('dontShowLatestNotice');
+    const lastShowNoticeID = wx.getStorageSync('lastShowNoticeID'); // 上一次显示的公告 ID
+    API.newAPI({
+      dontShowLoading: true,
+      url: "v2/notice/GetNewNotice",
+      data: {},
+      callBack: (data) => {
+        if (data) {
+          this.setData({
+            notice: data,
+          })
+          if (!dontShowLatestNotice && lastShowNoticeID < data.id) {
+            wx.setStorage({
+              data: data.id,
+              key: 'lastShowNoticeID',
+            })
+            if (data.importance == 0) {
+              wx.showModal({
+                title: '有新公告',
+                content: data.title,
+                cancelText: "不再提醒",
+                cancelColor: "#03a6ff",
+                confirmText: "去看看",
+                confirmColor: "#79bd9a",
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.navigateTo({
+                      url: '/pages/Announcement/Content/Content?id=' + data.id,
+                    })
+                  } else if (res.cancel) {
+                    wx.setStorage({
+                      data: true,
+                      key: 'dontShowLatestNotice',
+                    })
+                  }
+                }
+              })
+            } else {
+              this.setData({
+                showNoticeContent: true
+              })
+            }
+          }
+        }
+      }
     })
+
     app.eventBus.on("clearCourseTable", this, () => {
       that.setData({
         name: "",

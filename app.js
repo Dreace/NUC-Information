@@ -72,8 +72,23 @@ App({
     this.globalData.name = wx.getStorageSync("name")
     this.globalData.passwd = wx.getStorageSync("passwd")
     this.globalData.mapShowed = wx.getStorageSync("mapShowed")
+    this.globalData.additionalData = wx.getStorageSync("additionalData")
+    var that = this
+    if (this.globalData.converted) {
+      this.globalData.accountList = wx.getStorageSync("accountList")
+    }
+    if (!wx.getStorageSync("accountID")) {
+      this.globalData.accountID = -1
+    }
     if (this.globalData.name && !wx.getStorageSync('updatedPasswd')) {
       wx.removeStorageSync('additionalData')
+      wx.removeStorageSync('accountList')
+      wx.removeStorageSync('name')
+      wx.removeStorageSync('passwd')
+      this.globalData.name = ""
+      this.globalData.passwd = ""
+      this.globalData.accountList = []
+      this.globalData.accountID = -1
       wx.showModal({
         title: '需重新登录',
         content: '已适配新教务系统，需重新登录，默认密码“zbdx+身份证后六位”',
@@ -88,19 +103,6 @@ App({
           }
         }
       })
-    }
-    var temp = undefined
-    temp = wx.getStorageSync("additionalData")
-    if (temp != "") {
-      this.globalData.additionalData = temp
-    }
-    var that = this
-    if (this.globalData.converted === true) {
-      this.globalData.accountList = wx.getStorageSync("accountList")
-    }
-    var ID = wx.getStorageSync("accountID")
-    if (ID == "") {
-      this.globalData.accountID = -1
     }
     if (wx.getStorageSync("updated")) {
       wx.setStorageSync("updated", false)

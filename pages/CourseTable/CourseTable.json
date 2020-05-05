@@ -4,6 +4,8 @@
     "navigationBar": "/dist/navigationBar/index",
     "wux-select": "../../../dist/select/index",
     "wux-prompt": "../../dist/prompt2/index",
-    "wux-notice-bar": "../../../dist/notice-bar/index"
+    "wux-notice-bar": "../../../dist/notice-bar/index",
+    "wux-show-modal": "../../../dist/show-modal/show-modal",
+    "wemark": "../../../dist/wemark/wemark"
   }
 }
