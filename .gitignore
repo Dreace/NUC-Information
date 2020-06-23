@@ -2,3 +2,4 @@ project.config.json
 authenticate.js
 authenticate.py
 .wechatide/fileCache.cfg
+functions/getOpenId/node_modules/**

@@ -28,8 +28,13 @@ App({
     map: [],
     imgCDN: "https://img.dreace.top/",
     mapShowed: true,
+    openId: "",
   },
   onLaunch: function () {
+    wx.cloud.init({
+      env: 'nuc-code-eeed10',
+      traceUser: true
+    })
     wx.getSystemInfo({
       success: e => {
         this.globalData.StatusBar = e.statusBarHeight;
@@ -73,7 +78,19 @@ App({
     this.globalData.passwd = wx.getStorageSync("passwd")
     this.globalData.mapShowed = wx.getStorageSync("mapShowed")
     this.globalData.additionalData = wx.getStorageSync("additionalData")
-    var that = this
+    this.globalData.openId = wx.getStorageSync("openId")
+    if (!this.globalData.openId) {
+      wx.cloud.callFunction({
+        name: 'getOpenId',
+        complete: res => {
+          this.globalData.openId = res.result.openId;
+          wx.setStorage({
+            data: res.result.openId,
+            key: 'openId',
+          })
+        }
+      })
+    }
     if (this.globalData.converted) {
       this.globalData.accountList = wx.getStorageSync("accountList")
     }
@@ -94,7 +111,7 @@ App({
         content: '已适配新教务系统，需重新登录，默认密码“zbdx+身份证后六位”',
         confirmText: "去登陆",
         confirmColor: "#79bd9a",
-        showCancel:false,
+        showCancel: false,
         success: function (res) {
           if (res.confirm) {
             wx.navigateTo({

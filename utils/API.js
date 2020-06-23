@@ -1,13 +1,9 @@
 const base64 = require("base64.js")
 const md5 = require("md5.js")
 const eventBus = require("eventBus.js")
-const apiUrl = "https://api.dreace.top/"
 const newAPIURL = "https://api-new.dreace.top/"
 // const newAPIURL = "http://127.0.0.1:100/"
 const dataUrl = "https://dreace.top/res/"
-const cloudUrl = "https://fc.dreace.top/"
-// const cloudUrl = "http://127.0.0.1:100/"
-const svgUrl = dataUrl
 
 let key = ""
 const appSecret = ''
@@ -28,7 +24,7 @@ function randomString(length, chars) {
 wx.getStorageInfoSync()
 
 function loadKeyFromStorage() {
-  var k = wx.getStorageSync("key")
+  var k = wx.getStorageSync("openId") || wx.getStorageSync("key")
   if (!k) {
     let str = randomString(16, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
     k = md5.hexMD5(base64.base64Encode(str))

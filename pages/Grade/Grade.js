@@ -7,6 +7,10 @@
      icon: "/images/Refresh.png",
    },
    {
+     label: '刷新（稍后通知）',
+     icon: "/images/Refresh.png",
+   },
+   {
      openType: 'share',
      label: '分享',
      icon: "/images/Share.png",
@@ -92,8 +96,6 @@
      })
    },
    onTermClick(e) {
-     // console.log(e.currentTarget.dataset.index)
-
      let termsIndex = e.currentTarget.dataset.index * 2 + this.data.termIndex_
      if (termsIndex + 1 > this.data.count) {
        this.setData({
@@ -128,20 +130,56 @@
    },
    onClick(e) {
      if (e.detail.index === 0) {
-       usingMode2 = false
        this.refresh()
      } else if (e.detail.index === 1) {
-       usingMode2 = true
-       this.refresh()
-     } else if (e.detail.index === 2) {
+       this.refreshAsync()
+     } else if (e.detail.index === 3) {
        this.setData({
          p: this.data.p + 1
        })
-     } else if (e.detail.index === 3) {
+     } else if (e.detail.index === 4) {
        this.setData({
          showExportModal: true
        })
      }
+   },
+   refreshAsync: function () {
+     if (!app.globalData.openId) {
+       wx.showModal({
+         title: '无法订阅',
+         content: '还未获取到 OpenID，请稍后再试',
+         showCancel: false
+       })
+       return
+     }
+     wx.requestSubscribeMessage({
+       tmplIds: ['YsXoEvD-biQR20DUekLsnkOKW0A3Cg9QKNqRMkRP5AM'],
+       success(res) {
+         if (res['YsXoEvD-biQR20DUekLsnkOKW0A3Cg9QKNqRMkRP5AM'] === 'accept') {
+           API.newAPI({
+             url: "v2/GetGrade/Async",
+             data: {
+               name: app.globalData.name,
+               passwd: app.globalData.passwd,
+               openID: app.globalData.openId,
+             },
+             callBack: (data) => {
+               wx.showToast({
+                 title: '请稍后查看微信消息',
+                 image: "/images/Happy.png",
+                 mask: true,
+               })
+             }
+           })
+         }
+       },
+       fail(res) {
+         wx.showToast({
+           title: '你未授权订阅消息',
+         })
+       }
+     })
+
    },
    copy: function (e) {
      wx.showLoading({
@@ -295,19 +333,18 @@
      app.eventBus.on("updateGrade", this, () => {
        that.getGrade()
      })
-     if (options.gradeRawData != undefined) {
+     if (options.gradeRawData) {
        wx.navigateTo({
          url: 'GradeFriend/GradeFriend?gradeRawData=' + options.gradeRawData,
        })
      }
-     app.globalData.gradeRawData = wx.getStorageSync("gradeRawData")
-     var failedGrade = wx.getStorageSync('failedGrade')
-     if (failedGrade) {
-       this.setData({
-         failedGrade: failedGrade
-       })
+     if (options.grade) {
+       app.globalData.gradeRawData = JSON.parse(options.grade)
+       console.log(app.globalData.gradeRawData)
+     } else {
+       app.globalData.gradeRawData = wx.getStorageSync("gradeRawData")
      }
-     if (app.globalData.gradeRawData != "") {
+     if (app.globalData.gradeRawData) {
        this.handleData({
          data: app.globalData.gradeRawData
        })
