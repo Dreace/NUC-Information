@@ -1,15 +1,19 @@
-<view class="navigation-bar" style="padding-top:{{paddingTop}}px;height:{{height}}px;line-height:{{height}}px;background:{{background}};color:{{color}};font-size:{{fontSize}};position:{{fixed&&'fixed'}};transform:translateY({{!show?-paddingTop-height+'px':'0'}});">
-  <view class="back" wx:if="{{back}}" style="padding-top:{{paddingTop}}px;height:{{height}}px;line-height:{{height}}px;">
+<view class="navigation-bar"
+  style="padding-top:{{paddingTop}}px;height:{{height}}px;line-height:{{height}}px;background:{{background}};color:{{color}};font-size:{{fontSize}};position:{{fixed&&'fixed'}};transform:translateY({{!show?-paddingTop-height+'px':'0'}});">
+  <view class="back" wx:if="{{back}}"
+    style="padding-top:{{paddingTop}}px;height:{{height}}px;line-height:{{height}}px;">
     <view class="style-simple" wx:if="{{backStyle==='simple'}}">
-      <view class="icon-fanhui icon" bind:tap="navigateBack"></view>
-      <view class="back-home icon" wx:if="{{showHomeButton}}" style="" bind:tap="navigateBackHome">首页</view>
+      <view class="icon-back icon" bind:tap="navigateBack"></view>
+      <view class="icon-home icon" wx:if="{{showHomeButton}}" style="" bind:tap="navigateBackHome">首页</view>
     </view>
     <view class="style-normal {{navigationBarTextStyle}}" wx:if="{{backStyle==='normal'}}">
-      <view class="icon-fanhui icon" bind:tap="navigateBack"></view>
+      <view class="icon-back icon" bind:tap="navigateBack"></view>
       <view class="split"></view>
-      <view class="back-home icon" style="" bind:tap="navigateBackHome"></view>
+      <view class="icon-home icon" style="" bind:tap="navigateBackHome"></view>
     </view>
   </view>
   <view class="title" bind:tap="tapTitle">{{title!='none'?title:''}}</view>
 </view>
-<view class="navigation-bar-holder" wx:if="{{fixed && show}}" style="background:{{placeholderBg}};padding-top:{{paddingTop}}px;height:{{height}}px;line-height:{{height}}px;width:750rpx;"></view>
+<view class="navigation-bar-holder" wx:if="{{fixed && show}}"
+  style="background:{{placeholderBg}};padding-top:{{paddingTop}}px;height:{{height}}px;line-height:{{height}}px;width:750rpx;">
+</view>

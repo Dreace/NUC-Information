@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "版本说明",
-  "usingComponents": {
-    "wux-timeline": "../../dist/timeline/index",
-    "wux-timeline-item": "../../dist/timeline-item/index"
-  }
-}

@@ -1,4 +1,3 @@
-<!--pages/More/News/Content/Content.wxml-->
 <navigationBar id="navigationBar" color="{{color}}" title="{{'正文'}}" back="{{true}}" ></navigationBar>
 <view class="page">
   <view class="page__hd" style='padding:0px;margin-bottom:1rpx;'>

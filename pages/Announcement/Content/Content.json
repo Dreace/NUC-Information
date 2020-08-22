@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "公告",
-  "usingComponents": {
-    "wemark": "../../../dist/wemark/wemark"
-  }
-}

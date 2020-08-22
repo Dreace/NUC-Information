@@ -1,0 +1,74 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{'蹭课'}}" back="{{true}}"></navigationBar>
+
+<!-- Todo 图标路径 -->
+<wux-prompt wx:if="{{ list.length == 0 }}" icon="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/empty.svg" title="空空如也" text="在搜索框键入开始搜索"
+	style="margin-top: 45%;" />
+
+
+<view class="cu-bar bg-white search fixed" style="top:{{customBarHeight}}px;">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input auto-focus='{{true}}' type="text" placeholder="搜索课程名、教师和学院" bindinput="onKeywordChange" confirm-type="search"
+      bindconfirm="search"></input>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-gradual-green shadow-blur round" bindtap='search'>搜索</button>
+  </view>
+</view>
+<scroll-view wx:if="{{list}}" scroll-y class="indexes" scroll-into-view="indexes-{{listCurID.initial}}"
+  style="height:calc(100vh - {{customBarHeight}}px - 50px)" scroll-with-animation="true" enable-back-to-top="true">
+  <block wx:for="{{ list }}" wx:key="" name="{{ item.initial }}">
+    <view class="indexItem" id="indexes-{{list[index].initial}}"
+      data-index="{{list[index].initial}}" style='padding:10rpx;'>{{list[index].initial}}</view>
+    <view class="cu-list menu-avatar no-padding">
+      <view class="cu-item item-border" wx:for="{{ item.cells }}" wx:for-item="cell">
+        <view class="content" style='left:20rpx;'>
+          <view class="text-grey" style='display:inline;' data-id="{{cell['id']}}" bindtap='showDetail'>
+            <text>{{ cell["name"] +" "}}</text>
+            <view class="text-gray text-sm">
+              {{ cell["teacher"] + cell["weeks"] + " " + "周" + Week[cell["dayOfWeek"] - 1] + " " + cell["start"] + "~" + (cell["start"] + cell["length"] - 1)}}小节
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+<view class="indexBar" style="height:calc(100vh - {{customBarHeight}}px - 50px)">
+  <view class="indexBar-box" bindtouchstart="tStart" bindtouchend="tEnd" catchtouchmove="tMove">
+    <view class="indexBar-item" wx:for="{{list}}" wx:key id="{{index}}" bindtouchstart="getCur" bindtouchend="setCur">
+      {{list[index].initial}}</view>
+  </view>
+</view>
+<!--选择显示-->
+<view hidden="{{hidden}}" class="indexToast">
+  {{listCur.initial}}
+</view>
+
+
+
+
+<view class="cu-modal {{showDetailModal?'show':''}}"
+  style="font-size: 28rpx;  z-index: 99999999999999;background: rgba(0, 0, 0, 0.3);" catchtouchmove="preventTouchMove">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">课程信息</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl" style="text-align: left;">
+      <view>课程名:{{detail["name"]}}</view>
+      <view>学院:{{detail["department"]}}</view>
+      <view>教师:{{detail["teacher"]}}</view>
+      <view>时间:{{"周" + Week[detail["dayOfWeek"] - 1] + " " + detail["start"] + "~" + (detail["start"] + detail["length"] - 1)}}小节</view>
+      <view>周次:{{detail["weeks"]}}</view>
+      <view>上课地点:{{detail["building"]+" "+detail["classroom"]}}</view>
+
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  text-blue solid-left" bindtap="addCustomCourse">添加到课程表</view>
+      <view class="action margin-0 flex-sub  text-green solid-left" bindtap="closeDetailModal">关闭</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,25 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{'体测成绩'}}" back="{{true}}"></navigationBar>
+<wux-fab-button position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10"
+  sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onFloatButtonClick" />
+<view wx:if='{{gradeItems.length > 0}}' class="container text-grey">
+  <view wx:for="{{gradeItems}}" class="group shadow shadow-lg bg-white">
+    <view class="grade" data-id="{{item.meaScoreId}}" data-title="{{item.year+' '+item.gradeType}}" bindtap="goDetail">
+      <view class="text">
+        <view class="line-top">
+          <view class="block left">{{item.year}}</view>
+          <view class="block right">{{item.meaScoreId?item.gradeType:""}}</view>
+        </view>
+        <view class="line">
+          <view class="block left">{{item.totalScore+" 分"}}</view>
+          <view class="block right">{{item.rank}}</view>
+        </view>
+      </view>
+      <view class="iconfont {{item.meaScoreId?'icon-more':''}} icon"></view>
+    </view>
+  </view>
+  <view class="tip-text">
+    <view>总分计算规则:[(G1+G2+G3)/3*50%+(G4*50%)]</view>
+    <view>学年无成绩按0分处理</view>
+  </view>
+</view>
+<wux-prompt wx:else icon="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/empty.svg" title="还没有成绩" style="margin-top: 45%;" />

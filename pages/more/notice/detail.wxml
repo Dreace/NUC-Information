@@ -1,0 +1,8 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{'公告'}}" back="{{true}}"></navigationBar>
+<view class="page">
+  <view class="title">{{detail.title}}</view>
+  <view class="time">{{detail.time}}</view>
+  <view class="body">
+    <wemark md="{{detail.content}}" link highlight type="wemark"></wemark>
+  </view>
+</view>

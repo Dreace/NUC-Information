@@ -1,43 +1,36 @@
 {
   "pages": [
-    "pages/CourseTable/CourseTable",
-    "pages/CourseTable/CourseTableFriend/CourseTableFriend",
-    "pages/Grade/Grade",
-    "pages/Grade/GradeFriend/GradeFriend",
-    "pages/My/My",
-    "pages/About/About",
-    "pages/Setting/Setting",
-    "pages/WhatsNew/WhatsNew",
-    "pages/OpenSource/OpenSource",
-    "pages/Export/Export",
-    "pages/Account/Account",
-    "pages/Announcement/Announcement",
-    "pages/Add/Add",
-    "pages/MoreCourse/MoreCourse",
-    "pages/More/More",
-    "pages/More/PhyEws/PhyEws",
-    "pages/More/PhyEws/login/login",
-    "pages/More/ExamSchedule/ExamSchedule",
-    "pages/More/CampusTour/CampusTour",
-    "pages/More/CampusTour/details",
-    "pages/More/CampusTour/search",
-    "pages/More/CampusTour/help",
-    "pages/More/Status/Status",
-    "pages/More/News/News",
-    "pages/More/News/Content/Content",
-    "pages/More/Balance/Balance",
-    "pages/More/Library/Library",
-    "pages/More/Library/SearchResults",
-    "pages/More/Library/BookDetail",
-    "pages/More/ClassCoursetable/ClassCoursetable",
-    "pages/More/PhysicalFitnessTest/PhysicalFitnessTest",
-    "pages/More/PhysicalFitnessTest/login/login",
-    "pages/More/PhysicalFitnessTest/detail",
-    "pages/Announcement/Content/Content"
-  ],
-  "navigateToMiniProgramAppIdList": [
-    "wx8abaf00ee8c3202e",
-    "wx18a2ac992306a5a4"
+    "pages/timetable/timetable",
+    "pages/grade/friend",
+    "pages/grade/grade",
+    "pages/more/balance/balance",
+    "pages/more/classTimetable/classTimetable",
+    "pages/more/fitness/detail",
+    "pages/more/fitness/fitness",
+    "pages/more/fitness/login",
+    "pages/more/guide/detail",
+    "pages/more/guide/guide",
+    "pages/more/library/detail",
+    "pages/more/library/library",
+    "pages/more/library/result",
+    "pages/more/map/details",
+    "pages/more/map/help",
+    "pages/more/map/map",
+    "pages/more/map/search",
+    "pages/more/more",
+    "pages/more/notice/detail",
+    "pages/more/notice/notice",
+    "pages/more/physical/login",
+    "pages/more/physical/physical",
+    "pages/more/releaseNote/releaseNote",
+    "pages/more/rubLesson/rubLesson",
+    "pages/my/account",
+    "pages/my/login/login",
+    "pages/my/my",
+    "pages/my/openSource",
+    "pages/my/storage",
+    "pages/timetable/add",
+    "pages/timetable/friend"
   ],
   "permission": {
     "scope.userLocation": {
@@ -62,27 +55,27 @@
     "list": [
       {
         "text": "课表",
-        "pagePath": "pages/CourseTable/CourseTable",
-        "iconPath": "images/CourseTable.png",
-        "selectedIconPath": "images/CourseTable-active.png"
+        "pagePath": "pages/timetable/timetable",
+        "iconPath": "images/timetable.png",
+        "selectedIconPath": "images/timetable-active.png"
       },
       {
         "text": "成绩",
-        "pagePath": "pages/Grade/Grade",
-        "iconPath": "images/Grade.png",
-        "selectedIconPath": "images/Grade-active.png"
+        "pagePath": "pages/grade/grade",
+        "iconPath": "images/grade.png",
+        "selectedIconPath": "images/grade-active.png"
       },
       {
         "text": "更多",
-        "pagePath": "pages/More/More",
-        "iconPath": "images/More.png",
-        "selectedIconPath": "images/More-active.png"
+        "pagePath": "pages/more/more",
+        "iconPath": "images/more.png",
+        "selectedIconPath": "images/more-active.png"
       },
       {
         "text": "我的",
-        "pagePath": "pages/My/My",
-        "iconPath": "images/My.png",
-        "selectedIconPath": "images/My-active.png"
+        "pagePath": "pages/my/my",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my-active.png"
       }
     ]
   },

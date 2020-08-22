@@ -1,0 +1,50 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{'添加课程'}}" back="{{true}}"></navigationBar>
+
+
+<form catchsubmit="formSubmit">
+  <view class="cu-form-group margin-top">
+    <view class="title">课程名</view>
+    <input name="name" value="{{values.name}}" confirm-type="next" placeholder="输入课程名"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">课程号</view>
+    <input name="id" value="{{values.id}}" confirm-type="next" placeholder="输入课程号（可选）"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">教师</view>
+    <input name="teacher" value="{{values.teacher}}" confirm-type="next" placeholder="教师（可选）"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">学分</view>
+    <input name="credit" value="{{values.credit}}" confirm-type="next" placeholder="学分（可选）"></input>
+  </view>
+
+  <view class="cu-form-group margin-top">
+    <view class="title">周次</view>
+    <input name="weeks" value="{{values.weeks}}" confirm-type="next" placeholder="哪几周上课（如 1-10,13,14）"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">星期</view>
+    <input name="dayOfWeek" value="{{values.dayOfWeek}}" type="number" confirm-type="next" placeholder="在星期几上课"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">开始时间</view>
+    <input name="start" value="{{values.start}}" type="number" confirm-type="next" placeholder="从第小节开始"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">时长</view>
+    <input name="length" value="{{values.length}}" type="number" confirm-type="next" placeholder="上几小节"></input>
+  </view>
+  
+  <view class="cu-form-group margin-top">
+    <view class="title">教学楼</view>
+    <input name="building" value="{{values.building}}" confirm-type="next" placeholder="输入教学楼（可选）"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">教室</view>
+    <input name="classroom" value="{{values.classroom}}" placeholder="输入教室（可选）"></input>
+  </view>
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-green lg" formType="submit">保存</button>
+  </view>
+</form>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "体测成绩",
+  "usingComponents": {
+    "wux-fab-button": "/dist/fab-button/index",
+    "wux-prompt": "/dist/prompt2/index"
+  }
+}

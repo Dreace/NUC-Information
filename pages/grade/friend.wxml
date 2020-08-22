@@ -1,0 +1,23 @@
+
+<navigationBar id="navigationBar" title="好友的成绩" back="{{true}}" ></navigationBar>
+
+<view class='semester'>
+	<view wx:for='{{yearNames}}' class='semester-item {{yearIndex==index?"semester-selected":""}}' data-index='{{index}}' bindtap='onYearClick'>{{item}}</view>
+</view>
+<view class='semester'>
+	<view wx:for='{{semesterNames}}' class='semester-item {{semesterIndex==index?"semester-selected":""}}' data-index='{{index}}' bindtap='onSemesterIndexClick'>{{item}}</view>
+</view>
+<wux-prompt wx:if="{{ !gradeItems.length }}" icon="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/empty.svg" title="这个学期好像还没有成绩" style="margin-top: 45%;" />
+
+<view wx:if='{{gradeItems.length}}'>
+	<view class='grade-head'>
+		<view wx:for='{{headerNames}}' class='grade-head-item' style='flex:{{index==0?5:(index==3?2:1)}};'>{{item}}</view>
+	</view>
+	<view class='grade' wx:for='{{gradeItems}}'>
+		<view class='grade-item' style='flex:5;text-align: left; padding-left:30rpx;'>{{item.name}}</view>
+		<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.credit}}</view>
+		<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.gradePoint}}</view>
+		<view class='grade-item' style='flex:2;font-weight: 600;'>{{item.grade}}</view>
+	</view>
+	<view class='url' bindtap='openGradePointPDF'>点击查看 GPA 计算方法</view>
+</view>

@@ -1,0 +1,48 @@
+<navigationBar id="navigationBar" title="更多" back="{{true}}"></navigationBar>
+<view class="cu-list menu sm-border">
+    <view class="cu-item">
+        <view class="content">
+            <text>教务系统</text>
+        </view>
+        <view wx:if="{{isMainLogin}}">
+            <button class="cu-btn bg-red" bindtap="logoutMain">
+                退出登录
+            </button>
+        </view>
+        <view wx:else>
+            <button class="cu-btn bg-green">
+                <navigator url="login/login">登录</navigator>
+            </button>
+        </view>
+    </view>
+    <view class="cu-item">
+        <view class="content">
+            <text>物理教学实验中心</text>
+        </view>
+        <view wx:if="{{isPhysicalLogin}}">
+            <button class="cu-btn bg-red" bindtap="logoutPhysical">
+                退出登录
+            </button>
+        </view>
+        <view wx:else>
+            <button class="cu-btn bg-green">
+                <navigator url="/pages/more/physical/login" hover-class="none">登录</navigator>
+            </button>
+        </view>
+    </view>
+    <view class="cu-item">
+        <view class="content">
+            <text>体育综合信息管理系统</text>
+        </view>
+        <view wx:if="{{isFitnessLogin}}">
+            <button class="cu-btn bg-red" bindtap="logoutFitness">
+                退出登录
+            </button>
+        </view>
+        <view wx:else>
+            <button class="cu-btn bg-green">
+                <navigator url="/pages/more/fitness/login">登录</navigator>
+            </button>
+        </view>
+    </view>
+</view>

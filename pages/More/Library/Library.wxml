@@ -1,11 +1,11 @@
-<!--pages/More/Library/Library.wxml-->
 <navigationBar id="navigationBar" title="{{'图书馆藏书'}}" back="{{true}}"></navigationBar>
 <view class="container">
-  <image src="/images/library/title.png" mode="aspectFit" class="title-img"></image>
+  <image src="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/library/title.png" mode="aspectFit" class="title-img"></image>
   <view class="search-bar">
     <view class="search-input-container">
       <view class="input-left" bindtap="selectType">{{type}}</view>
-      <input placeholder="搜索关键词" focus="true" class="search-input" confirm-type="search" bindinput="inputChange" bindconfirm="searchByName"></input>
+      <input placeholder="搜索关键词" focus="true" class="search-input" confirm-type="search" bindinput="inputChange"
+        bindconfirm="searchByName"></input>
     </view>
     <view class="search-button" bindtap="searchByName">搜索</view>
   </view>

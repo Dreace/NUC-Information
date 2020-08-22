@@ -1,4 +1,3 @@
-<!--pages/More/News/News.wxml-->
 <navigationBar id="navigationBar" color="{{color}}" title="{{title}}" back="{{true}}"></navigationBar>
 
 <view class="content">

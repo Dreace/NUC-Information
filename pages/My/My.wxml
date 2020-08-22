@@ -1,42 +1,58 @@
-<!--pages/Grade/Grade.wxml-->
-<view class='box' style='margin-top:30rpx;'>
-  <view class="cu-bar bg-white" style='justify-content:center;'>
-    <view class="action sub-title" style='margin-left:0;'>
-      <text class="text-xl text-bold text-green">我的</text>
-      <text class="bg-green" style="width:2rem;bottom:0rem;"></text>
-      <!-- last-child选择器-->
+<navigationBar id="navigationBar" title="更多" back="{{fase}}"></navigationBar>
+
+<view class="header">
+  <open-data type="userAvatarUrl" class="avatar" mode="aspectFit"></open-data>
+  <view class="info">
+    <open-data type="userNickName" class="nickname"></open-data>
+    <view class="account text-gray">{{account?account:'未登录'}}</view>
+  </view>
+</view>
+<view class="cu-list menu sm-border">
+  <view class="cu-item arrow">
+    <navigator class="content" url="account" hover-class="none">
+      <text class="iconfont icon-account text-grey"></text>
+      <text>账号管理</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class="content" url="storage" hover-class="none">
+      <text class="iconfont icon-storage text-blue"></text>
+      <text>本地存储</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class="content" url="./openSource" hover-class="none">
+      <text class="iconfont icon-open-source text-red"></text>
+      <text>开源说明</text>
+    </navigator>
+  </view>
+  <view wx:if="{{insider}}" class="cu-item arrow">
+    <view class="content">
+      <text class="iconfont icon-beta text-orange"></text>
+      <text>内测权限</text>
     </view>
+    <text class="text-grey">截至：永久</text>
+  </view>
+  <view class="cu-item arrow" bindtap="toFeedback">
+    <view class="content">
+      <text class="iconfont icon-feedback text-pink"></text>
+      <text>反馈</text>
+    </view>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class="content" url="/pages/more/releaseNote/releaseNote" hover-class="none">
+      <text class="iconfont icon-about text-mauve"></text>
+      <text>关于</text>
+    </navigator>
+    <text class="text-grey">v{{version}}</text>
+  </view>
+  <view class="cu-item" bindtap="copyOpenId">
+    <view class="content">
+      <text class="iconfont icon-open-id text-yellow"></text>
+      <text>用户识别码</text>
+    </view>
+    <text class="text-grey">{{openId}}</text>
   </view>
 </view>
 
-<scroll-view scroll-y class="scrollPage">
-  <view class="UCenter-bg">
-    <open-data type="userAvatarUrl" class="icon" mode="aspectFit"></open-data>
-    <open-data type="userNickName" class="userinfo-nickname"></open-data>
-  </view>
-  <view class="cu-list menu card-menu shadow-lg radius">
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/Account/Account" hover-class="none">
-        <text class="icon-account iconfont text-red"></text>
-        <text class="text-grey">账号管理</text>
-      </navigator>
-    </view>
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/OpenSource/OpenSource" hover-class="none">
-        <text class="icon-github iconfont text-grey"></text>
-        <text class="text-grey">项目开源</text>
-      </navigator>
-    </view>
-    <view class="cu-item arrow">
-      <view class="content" bindtap="toFeedback" hover-class="none">
-        <text class="icon-feedback iconfont text-green"></text>
-        <text class="text-grey">问题反馈</text>
-      </view>
-    </view>
-  </view>
-  <ad unit-id="{{isQQ?'e96e50f9c60d305217833f07cb4b7e61':'adunit-0065a48368fd1ab4'}}"></ad>
-</scroll-view>
-
-<view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">中北信息 v2.1.11</view>
-</view>
+<ad class="margin-top" unit-id="{{'adunit-0065a48368fd1ab4'}}"></ad>

@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "考试安排",
-  "usingComponents": {
-    "wux-filterbar": "../../../dist/filterbar/index",
-    "wux-search-bar": "../../../dist/search-bar/index",
-    "wux-prompt": "../../../dist/prompt/index"
-  }
-}

@@ -1,5 +1,5 @@
-// pages/More/News/Content/Content.js
-const API = require("../../../../utils/API.js")
+// pages/more/News/Content/Content.js
+const API = require("../../../../utils/api.js")
 const typeName = {
   "1013": "中北新闻",
   "1014": "学校通知",
@@ -49,7 +49,7 @@ Page({
   onShareAppMessage() {
     return {
       title: typeName[type] + '-' + this.data.content["title"],
-      path: 'pages/More/News/Content/Content?id=' + id + "&type=" + type
+      path: 'pages/more/News/Content/Content?id=' + id + "&type=" + type
     }
   }
 })

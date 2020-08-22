@@ -1,0 +1,36 @@
+page {
+  background-color: #f8f8f8;
+  font-size: 30rpx;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+}
+.cell-item {
+  padding: 0 40rpx;
+}
+.p {
+  line-height: 1.4em;
+}
+.img {
+  display: flex;
+  flex-direction: column;
+}
+image {
+  margin: 0 auto;
+  border-radius: 3px;
+}
+.caption {
+  margin: 5px auto 0px;
+}
+.footer {
+  margin-top: 30rpx;
+  height: 80rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: #b5b4b9;
+}
+.cu-load.load-modal {
+  box-shadow: unset;
+}

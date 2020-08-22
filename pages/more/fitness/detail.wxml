@@ -1,0 +1,10 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{title}}" back="{{true}}"></navigationBar>
+<view class='grade-head'>
+  <view wx:for='{{headerItems}}' class='grade-head-item' style='flex:{{index==0?2:1}};'>{{item}}</view>
+</view>
+<view class='grade' wx:for='{{gradeItems}}'>
+  <view class='grade-item' style='flex:2;'>{{item.examName}}</view>
+  <view class='grade-item' style='flex:1;'>{{item.actualScore}}</view>
+  <view class='grade-item' style='flex:1;'>{{item.examunit}}</view>
+  <view class='grade-item' style='flex:1;font-weight: 600;'>{{item.score}}</view>
+</view>

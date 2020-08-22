@@ -1,0 +1,43 @@
+<navigationBar id="navigationBar" title="开源说明" back="{{true}}}"></navigationBar>
+<view class="container">
+    <view>
+        本项目（包括“中北信息”小程序及其后端）开放所有源代码，代码使用 GPL-3.0 协议授权，在协议许可范围内，可以任意使用项目源代码。
+    </view>
+    <view class="margin-top">
+        <view>
+            小程序源代码：<text class="text-blue" bindtap="copyText"
+                data-url="https://github.com/Dreace/NUC-Information">https://github.com/Dreace/NUC-Information</text>
+        </view>
+        <view>
+            后端源代码：<text class="text-blue" bindtap="copyText"
+                data-url="https://github.com/Dreace/NUC-Information-Backend">https://github.com/Dreace/NUC-Information-Backend</text>
+        </view>
+    </view>
+    <view class="margin-top">
+        感谢以下项目使“中北信息”的出现成为可能：
+        <view>
+            wux-weapp（MIT）：<view class="text-blue" bindtap="copyText"
+                data-url="https://github.com/wux-weapp/wux-weapp">https://github.com/wux-weapp/wux-weapp</view >
+        </view>
+        <view>
+            TimeTable：<view class="text-blue" bindtap="copyText"
+                data-url="https://github.com/qq273681448/TimeTable">https://github.com/qq273681448/TimeTable</view >
+        </view>
+        <view>
+            weapp-navigation-bar：<view class="text-blue" bindtap="copyText"
+                data-url="https://github.com/mulook/weapp-navigation-bar">https://github.com/mulook/weapp-navigation-bar</view >
+        </view>
+        <view>
+            school-map（MIT）：<view class="text-blue" bindtap="copyText"
+                data-url="https://github.com/gxgk/school-map">https://github.com/gxgk/school-map</view >
+        </view>
+        <view>
+            ColorUI（MIT）：<view class="text-blue" bindtap="copyText"
+                data-url="https://github.com/weilanwl/ColorUI">https://github.com/weilanwl/ColorUI</view >
+        </view>
+        <view>
+            We重邮（AGPL-3.0）：<view class="text-blue" bindtap="copyText"
+                data-url="https://github.com/lanshan-studio/wecqupt">https://github.com/lanshan-studio/wecqupt</view >
+        </view>
+    </view>
+</view>

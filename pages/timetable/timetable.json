@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "wux-fab-button": "/dist/fab-button/index",
+    "navigationBar": "/dist/navigationBar/index",
+    "wux-notice-bar": "/dist/notice-bar/index",
+    "picker": "/dist/picker/picker"
+  }
+}

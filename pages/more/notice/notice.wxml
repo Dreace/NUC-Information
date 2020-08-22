@@ -1,0 +1,24 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{'公告'}}" back="{{true}}"></navigationBar>
+
+<view class="content">
+	<block wx:for="{{stick}}">
+		<view class="list-item" bindtap="goContent" data-id='{{item.id}}'>
+			<view class="list-item-left">
+				<text class="list-item-title">{{item.title}}</text>
+				<text class="list-item-time icon_calendar iconfont">{{item.time}}</text>
+			</view>
+			<view class="stick-badge">置顶</view>
+		</view>
+	</block>
+</view>
+
+<view class="content">
+	<block wx:for="{{notStick}}">
+		<view class="list-item" bindtap="goContent" data-id='{{item.id}}'>
+			<view class="list-item-left">
+				<text class="list-item-title">{{item.title}}</text>
+				<text class="list-item-time icon_calendar iconfont">{{item.time}}</text>
+			</view>
+		</view>
+	</block>
+</view>

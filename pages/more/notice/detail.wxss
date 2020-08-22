@@ -1,0 +1,23 @@
+page {
+  background-color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+}
+
+.title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.time {
+  text-align: center;
+  margin-top: 5px;
+  color: #888888;
+  font-size: 14px;
+}
+.body {
+  width: 92%;
+  margin-left: 4%;
+  margin-top: 1rpx;
+}

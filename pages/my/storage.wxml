@@ -1,0 +1,22 @@
+<navigationBar id="navigationBar" title="本地存储" back="{{true}}"></navigationBar>
+<view class="cu-list menu sm-border">
+    <view class="cu-item">
+        <view class="content">
+            <text>总共可用</text>
+        </view>
+        <view>
+            {{total}}
+        </view>
+    </view>
+    <view class="cu-item">
+        <view class="content">
+            <text>已使用</text>
+        </view>
+        <view>
+            {{used}}
+        </view>
+    </view>
+</view>
+<view class="button-group">
+    <button class="cu-btn lg bg-red margin-top" bindtap="clearAll">清空本地存储</button>
+</view>

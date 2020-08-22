@@ -1,5 +1,5 @@
-// pages/More/News/News.js
-const API = require("../../../utils/API.js")
+// pages/more/News/News.js
+const API = require("../../../utils/api.js")
 const typeName = {
   "1013": "中北新闻",
   "1014": "学校通知",

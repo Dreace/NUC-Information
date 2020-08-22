@@ -1,139 +1,139 @@
-//app.js
-const eventBus = require("./utils/eventBus.js")
-const API = require("./utils/API.js")
+const api = require('./utils/api');
+const storage = require('./utils/storage');
+const eventBus = require('./utils/eventBus');
+
 App({
+  require: path => require(path),
+  api: api,
+  storage: storage,
   eventBus: eventBus,
-  API: API,
-  globalData: {
-    name: "",
-    passwd: "",
-    autoVcode: "",
-    firstWeek: "",
-    courseTableRawData: [],
-    gradeRawData: [],
-    converted: true,
-    accountList: [],
-    updateCourseTable: false,
-    updateGrade: false,
-    accountID: -1,
-    clearFlagCourseTable: false,
-    clearFlagGrade: false,
-    additionalData: [],
-    term: undefined,
-    PhyEwsRawData: undefined,
-    PhyEwsname: undefined,
-    PhyEwspassed: undefined,
-    updatePhyEwsGrade: false,
-    clearFlagPhyEwsGrade: false,
-    map: [],
-    imgCDN: "https://img.dreace.top/",
-    mapShowed: true,
-    openId: "",
-  },
+  globalData: {},
   onLaunch: function () {
+    // 初始化云函数
     wx.cloud.init({
       env: 'nuc-code-eeed10',
-      traceUser: true
-    })
+      traceUser: true,
+    });
     wx.getSystemInfo({
       success: e => {
-        this.globalData.StatusBar = e.statusBarHeight;
+        storage.setKey('statusBarHeight', e.statusBarHeight);
         let custom = {
           width: 80,
           height: 30,
           left: e.windowWidth - 12 - 80,
           right: e.windowWidth - 12,
           top: e.statusBarHeight + 10,
-          bottom: e.statusBarHeight + 10 + 30
-        }
+          bottom: e.statusBarHeight + 10 + 30,
+        };
         try {
-          if (typeof (qq) === 'undefined') {
+          if (typeof qq === 'undefined') {
             custom = wx.getMenuButtonBoundingClientRect();
           }
         } catch (error) {}
-        this.globalData.Custom = custom;
-        this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+        storage.setKey(
+          'customBarHeight',
+          custom.bottom + custom.top - e.statusBarHeight
+        );
+      },
+    });
+    // 学期第一天
+    api.request({
+      dontShowLoading: true,
+      rawData: true,
+      url: 'static/firstWeekDateTime',
+      data: {},
+      callBack: res => {
+        storage.setKey('firstWeekDateTime', res);
+      },
+    });
+
+    if (!storage.getKey('version')) {
+      storage.setKey('updated', wx.getStorageSync('updated'));
+      storage.setKey('name', wx.getStorageSync('name'));
+      storage.setKey('password', wx.getStorageSync('passwd'));
+      storage.setKey('mapModalShowed', wx.getStorageSync('mapShowed'));
+      storage.setKey('openId', wx.getStorageSync('openId'));
+      storage.setKey('updatedPassword', wx.getStorageSync('updatedPasswd'));
+      storage.setKey('lastShowNoticeID', wx.getStorageSync('lastShowNoticeID'));
+      storage.setKey(
+        'dontShowLatestNotice',
+        wx.getStorageSync('dontShowLatestNotice')
+      );
+
+      if (!(storage.getKey('accountList') instanceof Array)) {
+        storage.setKey('accountList', []);
       }
-    })
+      // 需要重新登录
+      if (storage.getKey('name') && !storage.getKey('updatedPassword')) {
+        // storage.removeKey('customTimetable')
+        storage.removeKey('accountList');
+        storage.removeKey('name');
+        storage.removeKey('password');
 
-    const updateManager = wx.getUpdateManager()
-
+        wx.showModal({
+          title: '需重新登录',
+          content: '已适配新教务系统，需重新登录，默认密码“zbdx+身份证后六位”',
+          confirmText: '去登陆',
+          confirmColor: '#79bd9a',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/my/login/login',
+              });
+            }
+          },
+        });
+      }
+    }
+    if (storage.getKey('name') === 'guest') {
+      storage.removeKey('name');
+      storage.removeKey('password');
+    }
+    storage.setKey('version', '2.2.0');
+    // 新版本检查
+    const updateManager = wx.getUpdateManager();
     updateManager.onCheckForUpdate(function (res) {
-      console.log(res.hasUpdate)
-    })
+      if (res.hasUpdate) {
+        console.log('检测到新版本');
+      }
+    });
 
     updateManager.onUpdateReady(function () {
-      wx.setStorageSync("updated", true)
-      updateManager.applyUpdate()
-    })
+      storage.setKey('updated', true);
+      updateManager.applyUpdate();
+    });
 
     updateManager.onUpdateFailed(function () {
       wx.showToast({
         title: '版本更新失败',
-      })
-    })
-    API.loadKeyFromStorage()
-    this.globalData.converted = wx.getStorageSync("converted")
-    this.globalData.name = wx.getStorageSync("name")
-    this.globalData.passwd = wx.getStorageSync("passwd")
-    this.globalData.mapShowed = wx.getStorageSync("mapShowed")
-    this.globalData.additionalData = wx.getStorageSync("additionalData")
-    this.globalData.openId = wx.getStorageSync("openId")
-    if (!this.globalData.openId) {
+      });
+    });
+
+    // 获取 OpenID
+    if (!storage.getKey('openId')) {
       wx.cloud.callFunction({
         name: 'getOpenId',
         complete: res => {
-          this.globalData.openId = res.result.openId;
-          wx.setStorage({
-            data: res.result.openId,
-            key: 'openId',
-          })
-        }
-      })
+          storage.setKey('openId', res.result.openId);
+          eventBus.emit('updateKey');
+        },
+      });
     }
-    if (this.globalData.converted) {
-      this.globalData.accountList = wx.getStorageSync("accountList")
-    }
-    if (!wx.getStorageSync("accountID")) {
-      this.globalData.accountID = -1
-    }
-    if (this.globalData.name && !wx.getStorageSync('updatedPasswd')) {
-      wx.removeStorageSync('additionalData')
-      wx.removeStorageSync('accountList')
-      wx.removeStorageSync('name')
-      wx.removeStorageSync('passwd')
-      this.globalData.name = ""
-      this.globalData.passwd = ""
-      this.globalData.accountList = []
-      this.globalData.accountID = -1
-      wx.showModal({
-        title: '需重新登录',
-        content: '已适配新教务系统，需重新登录，默认密码“zbdx+身份证后六位”',
-        confirmText: "去登陆",
-        confirmColor: "#79bd9a",
-        showCancel: false,
-        success: function (res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '/pages/Account/Account',
-            })
-          }
-        }
-      })
-    }
-    if (wx.getStorageSync("updated")) {
-      wx.setStorageSync("updated", false)
+
+    if (storage.getKey('updated')) {
+      storage.getKey('updated', false);
       wx.showModal({
         title: '更新完成',
         content: '已更新到最新版本，是否查看版本说明？',
         success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
-              url: '../../pages/WhatsNew/WhatsNew',
-            })
+              url: '/pages/more/releaseNote/releaseNote',
+            });
           }
-        }
-      })
+        },
+      });
     }
   },
-})
+});

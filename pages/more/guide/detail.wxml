@@ -1,0 +1,52 @@
+<navigationBar id="navigationBar" title="中北指南 - {{article.title}}" back="{{true}}"></navigationBar>
+<view class="margin-top-xs"></view>
+<block wx:for="{{article.content}}">
+	<view class="cu-bar bg-white solid-bottom margin-top-xs" wx:if="{{item.type == 'header'}}">
+		<view class='action'>
+			<text class='iconfont icon-dot text-blue margin-lr-xs'></text> {{item.text}}
+		</view>
+	</view>
+	<view class="cu-card article no-card margin-bottom" wx:if="{{item.type == 'paragraph'}}">
+		<view class="cu-item shadow">
+			<view class="cell-item margin-top-sm">
+				<text decode="{{true}}" class="p">{{item.text}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="cu-card article no-card margin-bottom" wx:if="{{item.type == 'image'}}">
+		<view class="cu-item shadow">
+			<view class="cell-item margin-top-xs">
+				<view class="img">
+					<image src="{{cdnUrl}}/{{item.path}}" mode="aspectFit"></image>
+					<view class="text-gray caption">{{item.caption}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="cu-list menu card-menu margin-top-xs shadow-lg margin-bottom" wx:if="{{item.type == 'link'}}">
+		<navigator class="cu-item arrow" url="detail?url={{item.target}}">
+			<view class="content">
+				<text class="cuIcon-github text-grey"></text>
+				<text class="text-black">{{item.text}}</text>
+			</view>
+		</navigator>
+	</view>
+	<view class="cu-list menu card-menu margin-top-xs shadow-lg margin-bottom" wx:if="{{item.type == 'url'}}">
+		<view class="cu-item" bindtap="copyText" data-text="{{item.url}}">
+			<view class="content">
+				<text class="iconfont icon-link text-blue"></text>
+				<text class="text-cut text-blue">{{item.url}}</text>
+			</view>
+		</view>
+	</view>
+</block>
+<view class="footer">
+	<view>作者:{{article.author}}</view>
+	<view>最后更新于:{{article.lastModified}}</view>
+</view>
+
+<view class='cu-load load-modal' wx:if="{{loading}}">
+  <!-- <view class='cuIcon-emojifill text-orange'></view> -->
+  <image src='/images/Happy.png' class='png' mode='aspectFit'></image>
+  <view class='text-gray'>加载中...</view>
+</view>

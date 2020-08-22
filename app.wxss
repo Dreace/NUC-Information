@@ -1,15 +1,6 @@
-/**app.wxss**/
-@import "utils/colorui.wxss";
-@import "utils/icon.wxss";
-/* .container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-}  */
+@import "wxss/colorui.wxss";
+@import "wxss/icon.wxss";
+@import 'wxss/modal.wxss';
 
 .container {
   position: relative;

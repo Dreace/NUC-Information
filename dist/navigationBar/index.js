@@ -1,137 +1,149 @@
 Component({
   properties: {
     // 这里定义属性，属性值可以在组件使用时指定
-    back: { //是否显示返回
+    back: {
+      //是否显示返回
       type: Boolean,
       value: false,
     },
-    background: { //导航栏背景色
+    background: {
+      //导航栏背景色
       type: String,
       value: '#ffffff', //默认
-      observer: function(newVal, oldVal, changedPath) {
+      observer: function (newVal, oldVal, changedPath) {
         if (!newVal) {
           let obj = {};
           obj[changedPath[0]] = oldVal;
           this.setData(obj);
         }
-      }
+      },
     },
-    placeholderBg: { //导航栏占位栏背景色
+    placeholderBg: {
+      //导航栏占位栏背景色
       type: String,
       value: 'transparent', //默认
-      observer: function(newVal, oldVal, changedPath) {
+      observer: function (newVal, oldVal, changedPath) {
         if (!newVal) {
           let obj = {};
           obj[changedPath[0]] = oldVal;
           this.setData(obj);
         }
-      }
+      },
     },
-    color: { //导航栏字体色
+    color: {
+      //导航栏字体色
       type: String,
       value: '#000000', //默认
-      observer: function(newVal, oldVal, changedPath) {
+      observer: function (newVal, oldVal, changedPath) {
         if (!newVal) {
           let obj = {};
           obj[changedPath[0]] = oldVal;
           this.setData(obj);
         }
-      }
+      },
     },
-    fontSize: { //导航栏字大小
+    fontSize: {
+      //导航栏字大小
       type: String,
       value: '16px', //默认
-      observer: function(newVal, oldVal, changedPath) {
+      observer: function (newVal, oldVal, changedPath) {
         if (!newVal) {
           let obj = {};
           obj[changedPath[0]] = oldVal;
           this.setData(obj);
         }
-      }
+      },
     },
-    title: { //导航栏标题
+    title: {
+      //导航栏标题
       type: String,
       value: 'none', //默认
-      observer: function(newVal, oldVal, changedPath) {
+      observer: function (newVal, oldVal, changedPath) {
         // console.log(newVal,oldVal,changedPath);
         if (!newVal) {
           let obj = {};
           obj[changedPath[0]] = oldVal;
           this.setData(obj);
         }
-      }
+      },
     },
-    fixed: { //导航栏是否fixed定位
+    fixed: {
+      //导航栏是否fixed定位
       type: Boolean,
       value: true, //默认
-      observer: function(newVal, oldVal, changedPath) {
+      observer: function (newVal, oldVal, changedPath) {
         // console.log(newVal,oldVal,changedPath);
         if (newVal !== false && newVal !== true) {
           let obj = {};
           obj[changedPath[0]] = oldVal;
           this.setData(obj);
         }
-      }
+      },
     },
-    backStyle: { //导航栏返回按钮的风格
+    backStyle: {
+      //导航栏返回按钮的风格
       type: String,
       value: 'normal', //默认值 可赋值simple或者normal
-      observer: function(newVal, oldVal, changedPath) {
+      observer: function (newVal, oldVal, changedPath) {
         // console.log(newVal,oldVal,changedPath);
         if (!newVal) {
           let obj = {};
           obj[changedPath[0]] = oldVal;
           this.setData(obj);
         }
-      }
+      },
     },
-    backEvent: { //是否绑定返回按钮事件
+    backEvent: {
+      //是否绑定返回按钮事件
       type: Boolean,
       value: false, //默认
-      observer: function(newVal, oldVal, changedPath) {
+      observer: function (newVal, oldVal, changedPath) {
         // console.log(newVal,oldVal,changedPath);
         if (newVal !== false && newVal !== true) {
           let obj = {};
           obj[changedPath[0]] = oldVal;
           this.setData(obj);
         }
-      }
+      },
     },
-    titleEvent: { //是否绑定返回按钮事件
+    titleEvent: {
+      //是否绑定返回按钮事件
       type: Boolean,
       value: false, //默认
-      observer: function(newVal, oldVal, changedPath) {
+      observer: function (newVal, oldVal, changedPath) {
         // console.log(newVal,oldVal,changedPath);
         if (newVal !== false && newVal !== true) {
           let obj = {};
           obj[changedPath[0]] = oldVal;
           this.setData(obj);
         }
-      }
+      },
     },
-    showEvent: { //是否绑定返回按钮事件
+    showEvent: {
+      //是否绑定返回按钮事件
       type: Boolean,
       value: false, //默认
-      observer: function(newVal, oldVal, changedPath) {
+      observer: function (newVal, oldVal, changedPath) {
         // console.log(newVal,oldVal,changedPath);
         if (newVal !== false && newVal !== true) {
           let obj = {};
           obj[changedPath[0]] = oldVal;
           this.setData(obj);
         }
-      }
+      },
     },
-    backHomeEvent: { //是否绑定返回首页按钮事件
+    backHomeEvent: {
+      //是否绑定返回首页按钮事件
       type: Boolean,
       value: false, //默认
-      observer: function(newVal, oldVal, changedPath) {
+      observer: function (newVal, oldVal, changedPath) {
         // console.log(newVal,oldVal,changedPath);
         if (newVal !== false && newVal !== true) {
           let obj = {};
           obj[changedPath[0]] = oldVal;
           this.setData(obj);
         }
-      }
+      },
     },
   },
   data: {
@@ -143,7 +155,7 @@ Component({
     navigationBarTextStyle: 'black',
     cnt: 0,
   },
-  attached: function(option) {
+  attached: function (option) {
     //检测首页是否在当前页面栈中
     let pages = getCurrentPages();
     let showHomeButton = false;
@@ -162,13 +174,14 @@ Component({
       pt = systemInfo.statusBarHeight;
       h = 48;
     }
-    var navigationBarTextStyle = __wxConfig.global.window.navigationBarTextStyle; //获取当前项目导航栏文本风格
+    var navigationBarTextStyle =
+      __wxConfig.global.window.navigationBarTextStyle; //获取当前项目导航栏文本风格
     this.setData({
       height: h,
       paddingTop: pt,
       showHomeButton: showHomeButton,
-      navigationBarTextStyle: navigationBarTextStyle
-    })
+      navigationBarTextStyle: navigationBarTextStyle,
+    });
   },
   methods: {
     // 这里是一个自定义方法
@@ -192,11 +205,11 @@ Component({
       let pages = getCurrentPages();
       if (pages.length < 2 && pages[0].route != __wxConfig.pages[0]) {
         wx.reLaunch({
-          url: '/' + __wxConfig.pages[0]
-        })
+          url: '/' + __wxConfig.pages[0],
+        });
       } else {
         wx.navigateBack({
-          delta: 1
+          delta: 1,
         });
       }
     },
@@ -214,12 +227,12 @@ Component({
       let pages = getCurrentPages();
       if (pages[0].route === __wxConfig.pages[0]) {
         wx.navigateBack({
-          delta: 10
+          delta: 10,
         });
       } else {
         wx.reLaunch({
-          url: '/' + __wxConfig.pages[0]
-        })
+          url: '/' + __wxConfig.pages[0],
+        });
       }
     },
     /**
@@ -228,7 +241,7 @@ Component({
     toggleShow() {
       if (!this.data.show) {
         this.setData({
-          show: true
+          show: true,
         });
       }
     },
@@ -238,9 +251,9 @@ Component({
     toggleHide() {
       if (this.data.show) {
         this.setData({
-          show: false
+          show: false,
         });
       }
-    }
-  }
-})
+    },
+  },
+});

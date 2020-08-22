@@ -1,0 +1,32 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{'搜索地点'}}" back="{{true}}" ></navigationBar>
+<view class="cu-bar bg-white search fixed" style="top:{{customBarHeight}}px;">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input auto-focus='{{true}}' type="text" placeholder="搜索校内地点" confirm-type="search" bindinput='bindSearchInput'></input>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-gradual-green shadow-blur round" bindtap='onCancel'>取消</button>
+  </view>
+</view>
+
+<wux-prompt wx:if="{{ list.length == 0 }}" icon="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/empty.svg" title="空空如也" text="在搜索框键入开始搜索" style="margin-top: 45%;" />
+
+<view wx:for="{{list}}" wx:key="name" class="building-item">
+
+  <view style="height:100%; display: flex;">
+    <navigator class="img" url='details?tid={{item.tid}}&bid={{item.bid}}'>
+      <image src="{{imgCDN}}{{item.img[0]}}" mode="aspectFill"> </image>
+      <view class="item">
+        <view class="itemName">
+          {{item.name}}
+        </view>
+        <view class="itemFloor" wx:if="{{item.floor}}">
+          {{item.floor}}
+        </view>
+      </view>
+    </navigator>
+    <view class="text" bindtap='openLocation' data-name="{{item.name}}" data-latitude="{{item.latitude}}" data-longitude='{{item.longitude}}'>
+      <image src="/images/Location.svg"> </image>
+    </view>
+  </view>
+</view>

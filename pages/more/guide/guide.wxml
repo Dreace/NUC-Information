@@ -1,0 +1,14 @@
+<navigationBar id="navigationBar" title="{{'中北指南'}}" back="{{true}}"></navigationBar>
+
+
+<view class='page'>
+	<view class="page__bd" style='padding-top: 10px;'>
+		<view wx:for="{{guide}}" class='background'>
+			<view class="sub-title-view">{{item.category}}</view>
+			<wux-grids col="5" bordered="{{ false }}">
+				<wux-grid wx:for="{{item.list}}" wx:for-item="post" thumb="{{cdnUrl}}/{{post.icon}}" label="{{post.text}}" bind:click="goDetail"
+					data-url="detail?url={{post.url}}" />
+			</wux-grids>
+		</view>
+	</view>
+</view>

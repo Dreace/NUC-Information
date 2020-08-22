@@ -1,0 +1,271 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{'关于'}}" back="{{true}}"></navigationBar>
+<view class="page">
+	<view class="page__bd page__bd_spacing">
+		<wux-timeline>
+			<wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
+				<view>2020-8-18 v2.2.2</view>
+				<view wx:for="{{new2_2_0}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2020-6-23 v2.1.12</view>
+				<view wx:for="{{new2112}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2020-5-30 v2.1.11</view>
+				<view wx:for="{{new2111}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2020-5-4 v2.1.10</view>
+				<view wx:for="{{new2110}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2020-3-20 v2.1.9</view>
+				<view wx:for="{{new219}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2020-3-3 v2.1.8</view>
+				<view wx:for="{{new218}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2020-2-16 v2.1.7</view>
+				<view wx:for="{{new217}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2020-2-6 v2.1.6</view>
+				<view wx:for="{{new216}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-12-27 v2.1.5</view>
+				<view wx:for="{{new215}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-12-5 v2.1.4</view>
+				<view wx:for="{{new214}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-11-23 v2.1.3</view>
+				<view wx:for="{{new213}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-11-16 v2.1.2</view>
+				<view wx:for="{{new212}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-10-12 v2.1.1</view>
+				<view wx:for="{{new211}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-9-29 v2.1.0</view>
+				<view wx:for="{{new210}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-9-2 v2.0.12</view>
+				<view wx:for="{{new2012}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-8-12 v2.0.11</view>
+				<view wx:for="{{new2011}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-8-10 v2.0.10</view>
+				<view wx:for="{{new2010}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-7-22 v2.0.9</view>
+				<view wx:for="{{new209}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-7-18 v2.0.8</view>
+				<view wx:for="{{new208}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-7-16 v2.0.7</view>
+				<view wx:for="{{new207}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-6-27 v2.0.6</view>
+				<view wx:for="{{new206}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-6-25 v2.0.5</view>
+				<view wx:for="{{new205}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-6-15 v2.0.4</view>
+				<view wx:for="{{new204}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-6-5 v2.0.3</view>
+				<view wx:for="{{new203}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-6-4 v2.0.2</view>
+				<view wx:for="{{new202}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-5-30 v2.0.1</view>
+				<view wx:for="{{new201}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-5-17 v2.0.0</view>
+				<view wx:for="{{new200}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-4-12 v1.9.9</view>
+				<view wx:for="{{new199}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-3-26 v1.9.8</view>
+				<view wx:for="{{new198}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-3-10 v1.9.7</view>
+				<view wx:for="{{new197}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-3-4 v1.9.5</view>
+				<view wx:for="{{new195}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-2-20 v1.9.2</view>
+				<view wx:for="{{new192}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-2-8 v1.9.0</view>
+				<view wx:for="{{new190}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-2-1 v1.8.9.5</view>
+				<view wx:for="{{new1895}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-1-30 v1.8.9</view>
+				<view wx:for="{{new189}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-1-24 v1.8.7</view>
+				<view wx:for="{{new187}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-1-15 v1.8.6</view>
+				<view wx:for="{{new186}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-1-20 v1.8.5</view>
+				<view wx:for="{{new185}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2019-1-9 v1.8.3</view>
+				<view wx:for="{{new183}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2018-11-2 v1.8.0</view>
+				<view wx:for="{{new180}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2018-10-1 v1.7.0</view>
+				<view wx:for="{{new170}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2018-9-2 v1.6.0</view>
+				<view wx:for="{{new160}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2018-8-29 v1.5.5</view>
+				<view wx:for="{{new155}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+			<wux-timeline-item>
+				<view>2018-8-29 v1.5.3</view>
+				<view wx:for="{{new153}}">
+					<view>· {{item}}</view>
+				</view>
+			</wux-timeline-item>
+		</wux-timeline>
+	</view>
+</view>

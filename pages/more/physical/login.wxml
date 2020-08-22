@@ -1,0 +1,28 @@
+<navigationBar id="navigationBar" color="#fff" background="#7acfa6" placeholderBg="#7acfa6" title="{{'大物实验登录'}}"
+  back="{{true}}"></navigationBar>
+<view class="container">
+  <block>
+    <image class="title" src="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/more/title.png"></image>
+    <view class="content-setting">
+      <view class="hd" style="transform:rotateZ({{angle}}deg);">
+        <open-data type="userAvatarUrl" class="logo" mode="aspectFit"></open-data>
+        <image class="wave" src="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/more/wave.png" mode="aspectFill"></image>
+        <image class="wave wave-bg" src="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/more/wave.png" mode="aspectFill"></image>
+      </view>
+      <view class="bd">
+        <view class="input-group" style="display:flex;background:#fff;">
+          <view class="input-label" style="flex:1">账号</view>
+          <input bindinput="inputname" style="flex:6" placeholder="学号" value='{{name}}' confirm-type='next' />
+        </view>
+        <view class="input-group" style="display:flex;background:#fff;">
+          <view class="input-label" style="flex:1">密码</view>
+          <input bindinput="inputpasswd" style="flex:6" placeholder="物理实验教学中心密码" value='{{passwd}}'
+            confirm-type='done' />
+        </view>
+        <view class="confirm-btn" bindtap="login">
+          <text>登录</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

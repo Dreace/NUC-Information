@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "蹭课",
+  "usingComponents": {
+    "wux-prompt": "/dist/prompt2/index"
+  }
+}

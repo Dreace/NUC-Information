@@ -1,0 +1,12 @@
+page {
+  background-color: #f8f8f8;
+  font-size: 16px;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+.button-group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

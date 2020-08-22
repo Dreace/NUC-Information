@@ -1,0 +1,81 @@
+<navigationBar id="navigationBar" title="{{'班级课表'}}" back="{{true}}"></navigationBar>
+<view class="cu-bar bg-white search fixed" style="top:{{customBarHeight}}px;">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input auto-focus='{{true}}' type="text" placeholder="搜索班级号" confirm-type="search" bindinput='bindSearchInput'
+      bindconfirm="tapSearchButton"></input>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-gradual-green shadow-blur round" bindtap='tapSearchButton'>搜索</button>
+  </view>
+</view>
+<scroll-view class="scroll" style="margin-top:{{customBarHeight}}px;">
+	<view class="top">
+		<view class='week' style='color:#6D7373;'></view>
+		<!-- 周一单独处理 -->
+		<view class="top-text" style='width:83rpx'>
+			周一
+		</view>
+		<view wx:for="{{['二','三','四','五','六','日']}}" wx:key="unique" class="top-text">
+			<view>周{{item}}</view>
+		</view>
+	</view>
+
+	<view class="timetable">
+		<view>
+			<view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}" wx:key="unique" class="left">
+				<view>{{item}}</view>
+				<view class="after-left">{{courseTime[index]}}</view>
+			</view>
+		</view>
+		<view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}" wx:key="unique">
+			<view class="{{index==3||index==7?'text-red':'text-gray'}};" style="width:750rpx;margin-top:{{(index+1)*100}}rpx;  position: absolute;border-bottom:1rpx solid">
+			</view>
+		</view>
+
+		<!--课表-->
+		<view wx:for="{{timetableItems}}" wx:key="unique">
+			<block wx:if="{{item.weeks}}">
+				<view class="flex-item timetable-item shadow shadow-lg bg-white" bindtap="showCourseDetail" data-index="{{index}}" style="margin-left:{{(item.dayOfWeek-1)*99+5}}rpx;margin-top:{{(item.start-1)*100+5}}rpx;height:{{item.length*100-5}}rpx;background-color:{{colorArrays[item.color%20]}};z-index:999">
+					<view class="smalltext text">{{item.name}}@{{item.building}}{{item.classroom}}</view>
+				</view>
+			</block>
+		</view>
+	</view>
+
+	<view class='grade-head'>
+		<view class='grade-head-item' style='flex:1'>其他课程</view>
+	</view>
+	<view class='grade' wx:for='{{timetableItems}}' wx:if="{{!item.weeks}}">
+		<view class='grade-item' style='flex:1;'>{{item.name}}</view>
+	</view>
+</scroll-view>
+<view class="{{showcourseDetailModal?'show':'close'}}" catchtouchmove="preventTouchMove" style="font-size: 28rpx; ">
+	<swiper class="sw" indicator-dots='true' current="{{courseDetailIndex}}">
+		<block wx:for="{{courseDetailItems}}" wx:key="unique">
+			<swiper-item>
+				<view class="cu-modal show">
+					<view class="cu-dialog">
+						<view class="cu-bar bg-white justify-end">
+							<view class="content">课程信息({{(index+1)+"/"+courseDetailItems.length}})</view>
+						</view>
+						<view class="padding-xl" style="text-align: left;">
+							<view>课程号:{{timetableItems[item]["id"]}}</view>
+							<view>课程名:{{timetableItems[item]["name"]}}</view>
+							<view>考查方式:{{timetableItems[item]["testType"]}}</view>
+							<view>学分:{{timetableItems[item]["credit"]}}</view>
+							<view>教师:{{timetableItems[item]["teacher"]}}</view>
+							<view>周次:{{timetableItems[item]["weeks"]}}</view>
+							<view>上课地点:{{timetableItems[item]["building"]+" "+timetableItems[item]["classroom"]}}</view>
+						</view>
+						<view class="cu-bar bg-white">
+							<view class="action margin-0 flex-sub  text-green solid-left" bindtap="closeCourseDetailModal">关闭</view>
+							<!-- <view wx:if="{{timetableItems[item]['custom']?false:true}}" class="action margin-0 flex-sub  text-green solid-left" bindtap="showcourseDetailModal">关闭</view> -->
+						</view>
+					</view>
+				</view>
+			</swiper-item>
+
+		</block>
+	</swiper>
+</view>

@@ -1,8 +1,7 @@
 {
   "navigationBarTitleText": "更多",
   "usingComponents": {
-    "wux-grids": "../../dist/grids/index",
-    "wux-grid": "../../dist/grid/index",
-    "wux-notice-bar": "../../../dist/notice-bar/index"
+    "wux-grids": "/dist/grids/index",
+    "wux-grid": "/dist/grid/index"
   }
 }

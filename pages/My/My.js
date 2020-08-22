@@ -1,38 +1,38 @@
-// pages/Grade/Grade.js
-const API = require("../../utils/API.js")
-const app = getApp()
+const app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    interval: undefined,
-    mainServer: "待检测",
-    mainServerColor: "#6b6d75",
-    proxyServer: "待检测",
-    proxyServerColor: "#6b6d75",
-    load: 0,
-    loadColor: "#5099B9",
-    isQQ: false
+    account: app.storage.getKey('name'),
+    openId: app.storage.getKey('openId'),
+    version: app.storage.getKey('version'),
+    insider: false,
   },
-  toFeedback: function() {
+  copyOpenId: function () {
+    wx.setClipboardData({
+      data: app.storage.getKey('openId'),
+    });
+  },
+  toFeedback: function () {
+    wx.getUserInfo({
+      success: res => {
+        console.log(res);
+      },
+    });
     wx.navigateToMiniProgram({
       appId: 'wx8abaf00ee8c3202e',
       extraData: {
-        id: "66656",
+        id: '66656',
       },
-    })
+    });
   },
-  getInfo: function() {
-    wx.getUserInfo({})
+  getInfo: function () {
+    wx.getUserInfo({});
   },
-  onPullDownRefresh: function() {
-    wx.stopPullDownRefresh()
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
   },
-  onLoad: function() {
+  onLoad: function () {
     this.setData({
-      isQQ: !(typeof(qq) === 'undefined')
-    })
-  }
-})
+      isQQ: !(typeof qq === 'undefined'),
+    });
+  },
+});

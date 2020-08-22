@@ -1,0 +1,114 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{title}}" back="{{false}}" showSwitch="{{true}}" titleEvent="true" bind:switch="onSwitch" bind:title="changeWeek" background="{{barBg}}">
+</navigationBar>
+<!-- Todo 进入、退出动画 -->
+<picker isShowPicker="{{showPicker}}" sureClass="text-blue" cancelClass="text-gray" bind:sure="pickerSure" bind:cancel="pickerCancel" scrollType='normal' listData="{{pickerData}}"></picker>
+
+<wux-fab-button position="{{postion[p%2]}}" theme="balanced" direction="vertical" spaceBetween="10" sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onFloatButtonClick" />
+
+<wux-notice-bar icon="" wx:if="{{notice.title.length > 0}}" loop trailing="1500" content="最新公告：{{notice.title}}" bind:click="goToPage" data-url="/pages/more/notice/detail?id={{notice.id}}" />
+
+
+<scroll-view class="scroll" wx:if='{{timetableItems}}'>
+	<view class="top">
+		<view class='week' style='color:#6D7373;'>{{monthNow}}月</view>
+		<!-- 周一单独处理 -->
+		<view class="top-text {{ dayOfWeek==1&&weekNow==weekOfYear?'top-text-strong':''}}" style='width:83rpx'>
+			周一
+			<view class="after-left {{dayOfWeek==1&&weekNow==weekOfYear?'after-left-strong':''}}">{{dateList[0]}}</view>
+		</view>
+		<view wx:for="{{['二','三','四','五','六','日']}}" wx:key="unique" class="top-text {{dayOfWeek==(index+2)&&weekNow==weekOfYear?'top-text-strong':''}}">
+			<view>周{{item}}</view>
+			<view class="after-left {{dayOfWeek==(index+2)&&weekNow==weekOfYear?'after-left-strong':''}}">{{dateList[index+1]}}</view>
+		</view>
+	</view>
+
+	<view class="timetable">
+		<view>
+			<view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}" wx:key="unique" class="left">
+				<view>{{item}}</view>
+				<view class="after-left">{{courseTime[index]}}</view>
+			</view>
+		</view>
+		<view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}" wx:key="unique">
+			<view class="{{index==3||index==7?'text-red':'text-gray'}};" style="width:750rpx;margin-top:{{(index+1)*100}}rpx;  position: absolute;border-bottom:1rpx solid">
+			</view>
+		</view>
+
+		<!--课表-->
+		<view wx:for="{{timetableItems}}" wx:key="unique">
+			<block wx:if="{{item.weeks}}">
+				<view wx:if="{{isScheduled[index]}}" class="flex-item timetable-item shadow shadow-lg bg-white" bindtap="showCourseDetail" data-index="{{index}}" style="margin-left:{{(item.dayOfWeek-1)*99+5}}rpx;margin-top:{{(item.start-1)*100+5}}rpx;height:{{item.length*100-5}}rpx;background-color:{{colorArrays[item.color%20]}};z-index:999">
+					<view class="smalltext text">{{item.name}}@{{item.building}}{{item.classroom}}</view>
+				</view>
+
+				<view wx:else class="flex-item timetable-item group shadow shadow-lg bg-white" bindtap="showCourseDetail" data-index="{{index}}" style="margin-left:{{(item.dayOfWeek-1)*99+5}}rpx;margin-top:{{(item.start-1)*100+5}}rpx;height:{{item.length*100-5}}rpx;background-color:#727171;z-index:99">
+					<view class="smalltext text">[非本周]{{item.name}}@{{item.building}}{{item.classroom}}</view>
+				</view>
+
+				<!-- Todo 重叠课程右上角三角形 -->
+				<view wx-if="{{isScheduled[index]&&hasData[item.Course_Time][item.Course_Start]>1}}" class="triangle-topright" style="margin-left:{{(item.Course_Time-1)*99+(item.Course_Time==3?78:77)}}rpx;margin-top:{{(item.Course_Start-1)*100+5}}rpx;border-color: {{colorArrays[item.Course_Color%20]}}; z-index:{{1000*index}};"></view>
+
+			</block>
+		</view>
+	</view>
+
+	<view class='grade-head'>
+		<view class='grade-head-item' style='flex:1'>其他课程</view>
+	</view>
+	<view class='grade' wx:for='{{timetableItems}}' wx:if="{{!item.weeks}}">
+		<view class='grade-item' style='flex:1;'>{{item.name}}</view>
+	</view>
+</scroll-view>
+<view class="{{showcourseDetailModal?'show':'close'}}" catchtouchmove="preventTouchMove" style="font-size: 28rpx; ">
+	<swiper class="sw" indicator-dots='true' current="{{courseDetailIndex}}">
+		<block wx:for="{{courseDetailItems}}" wx:key="unique">
+			<swiper-item>
+				<view class="cu-modal show">
+					<view class="cu-dialog">
+						<view class="cu-bar bg-white justify-end">
+							<view class="content">课程信息({{(index+1)+"/"+courseDetailItems.length}})</view>
+						</view>
+						<view class="padding-xl" style="text-align: left;">
+							<view>课程号:{{timetableItems[item]["id"]}}</view>
+							<view>课程名:{{timetableItems[item]["name"]}}</view>
+							<view>考查方式:{{timetableItems[item]["testType"]}}</view>
+							<view>学分:{{timetableItems[item]["credit"]}}</view>
+							<view>教师:{{timetableItems[item]["teacher"]}}</view>
+							<view>周次:{{timetableItems[item]["weeks"]}}</view>
+							<view>上课地点:{{timetableItems[item]["building"]+" "+timetableItems[item]["classroom"]}}</view>
+						</view>
+						<view class="cu-bar bg-white">
+							<view wx:if="{{timetableItems[item]['custom']}}" class="action margin-0 flex-sub  text-red solid-left" bindtap="deleteCustomCourse" data-index="{{index}}">删除</view>
+							<view wx:if="{{timetableItems[item]['custom']}}" class="action margin-0 flex-sub  text-blue solid-left" bindtap="editCustomCourse" data-index="{{index}}">修改</view>
+							<view class="action margin-0 flex-sub  text-green solid-left" bindtap="closeCourseDetailModal">关闭</view>
+							<!-- <view wx:if="{{timetableItems[item]['custom']?false:true}}" class="action margin-0 flex-sub  text-green solid-left" bindtap="showcourseDetailModal">关闭</view> -->
+						</view>
+					</view>
+				</view>
+			</swiper-item>
+
+		</block>
+	</swiper>
+</view>
+<!-- {{showNoticeContent?'show':'close'}} -->
+
+<view class="{{showNoticeModal?'show':'close'}}" catchtouchmove="preventTouchMove" style="font-size: 28rpx;  ">
+	<view class="cu-modal show sw">
+		<view class="cu-dialog" style="height:550px;">
+			<view class="cu-bar bg-white justify-end">
+				<view class="content">{{notice.title}}</view>
+			</view>
+			<scroll-view scroll-y style="height:440px">
+				<view style="text-align: left;">
+					<view style='width:92%;margin-left:4%;margin-top:1rpx;'>
+						<wemark md="{{notice.content}}" link highlight type="wemark"></wemark>
+					</view>
+				</view>
+			</scroll-view>
+			<view class="cu-bar bg-white">
+				<view class="action margin-0 flex-sub  text-blue solid-left" bindtap="dontShowLatestNotice">不再提醒</view>
+				<view class="action margin-0 flex-sub  text-green solid-left" bindtap="closeNoticeModal">关闭</view>
+			</view>
+		</view>
+	</view>
+</view>
