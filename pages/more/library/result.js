@@ -27,7 +27,7 @@ Page({
         JSON.stringify(this.data.bookList[e.currentTarget.dataset.index]),
     });
   },
-  searchBook(e) {
+  searchBook() {
     app.api.request({
       url: `${api}${data}`,
       data: type
@@ -53,10 +53,9 @@ Page({
       type = options.type;
     } else {
       data = options.isbn;
-      api = '/v3/library/search/isbn/';
+      api = 'v3/library/search/isbn/';
     }
-    this.searchBook({
-      page: 1,
-    });
+    page = 1;
+    this.searchBook();
   },
 });

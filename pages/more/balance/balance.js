@@ -31,7 +31,7 @@ Page({
           } else {
             app.storage.setKey('name', 'guest');
             app.storage.setKey('password', 'guest');
-            that.getData();
+            this.getData();
           }
         },
       });

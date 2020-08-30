@@ -3,8 +3,7 @@ const md5 = require('md5.js');
 const eventBus = require('eventBus.js');
 const storage = require('storage.js');
 const aprUrl = 'https://nuc-info-api.dreace.top/';
-// const newAPIURL = "http://127.0.0.1:100/"
-const dataUrl = 'https://dreace.top/res/';
+// const aprUrl = "http://127.0.0.1:10001/"
 const staticUrl = 'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/';
 const appSecret = '';
 

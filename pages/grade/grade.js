@@ -113,7 +113,7 @@ Page({
     }
   },
   getGradeAsync: function () {
-    if (!app.globalData.openId) {
+    if (!app.storage.getKey('openId')) {
       wx.showModal({
         title: '无法订阅',
         content: '还未获取到 OpenID，请稍后再试',
@@ -151,7 +151,8 @@ Page({
   },
   openGradePointPDF: function (e) {
     wx.downloadFile({
-      url: 'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/PDF/GPA.pdf',
+      url:
+        'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/PDF/GPA.pdf',
       success: function (res) {
         var filePath = res.tempFilePath;
         wx.openDocument({
@@ -212,10 +213,7 @@ Page({
       },
     });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function () {
+  onLoad: function (options) {
     app.api.request({
       dontShowLoading: true,
       url: 'v3/notices/latest',
@@ -231,7 +229,11 @@ Page({
     app.eventBus.on('updateGrade', this, () => {
       this.getGrade();
     });
-    if (app.storage.getKey('gradeCache')) {
+    // 从订阅消息进入
+    if (options.grade) {
+      console.log(options.grade);
+      this.handleData(JSON.parse(options.grade));
+    } else if (app.storage.getKey('gradeCache')) {
       this.handleData(app.storage.getKey('gradeCache'));
     } else {
       this.getGrade();

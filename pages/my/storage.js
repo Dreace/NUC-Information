@@ -14,6 +14,7 @@ Page({
           wx.clearStorageSync();
           this.update();
           app.storage.clear();
+          app.getOpenId();
         }
       },
     });

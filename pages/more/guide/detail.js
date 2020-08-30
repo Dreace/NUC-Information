@@ -23,13 +23,6 @@ Page({
     let content = e.currentTarget.dataset.text;
     wx.setClipboardData({
       data: content,
-      success(res) {
-        wx.getClipboardData({
-          success: rs => {
-            console.log(rs);
-          },
-        });
-      },
     });
   },
 });

@@ -9,11 +9,14 @@ App({
   eventBus: eventBus,
   globalData: {},
   onLaunch: function () {
+    storage.setKey('isQQ', typeof qq !== 'undefined');
     // 初始化云函数
-    wx.cloud.init({
-      env: 'nuc-code-eeed10',
-      traceUser: true,
-    });
+    if (!storage.getKey('isQQ')) {
+      wx.cloud.init({
+        env: 'nuc-code-eeed10',
+        traceUser: true,
+      });
+    }
     wx.getSystemInfo({
       success: e => {
         storage.setKey('statusBarHeight', e.statusBarHeight);
@@ -59,10 +62,8 @@ App({
         'dontShowLatestNotice',
         wx.getStorageSync('dontShowLatestNotice')
       );
+      eventBus.emit('updateKey');
 
-      if (!(storage.getKey('accountList') instanceof Array)) {
-        storage.setKey('accountList', []);
-      }
       // 需要重新登录
       if (storage.getKey('name') && !storage.getKey('updatedPassword')) {
         // storage.removeKey('customTimetable')
@@ -90,7 +91,19 @@ App({
       storage.removeKey('name');
       storage.removeKey('password');
     }
-    storage.setKey('version', '2.2.0');
+    // 向下兼容
+    if (storage.getKey('name') && storage.getKey('version') < '2.2.1') {
+      storage.setKey('accounts', [
+        {
+          name: storage.getKey('name'),
+          password: storage.getKey('password'),
+        },
+      ]);
+    }
+    if (!storage.getKey('name')) {
+      storage.setKey('accounts', []);
+    }
+    storage.setKey('version', '2.2.1');
     // 新版本检查
     const updateManager = wx.getUpdateManager();
     updateManager.onCheckForUpdate(function (res) {
@@ -111,17 +124,8 @@ App({
     });
 
     // 获取 OpenID
-    if (!storage.getKey('openId')) {
-      wx.cloud.callFunction({
-        name: 'getOpenId',
-        complete: res => {
-          storage.setKey('openId', res.result.openId);
-          eventBus.emit('updateKey');
-        },
-      });
-    }
-
-    if (storage.getKey('updated')) {
+    this.getOpenId();
+    if (storage.getKey('updated') === true) {
       storage.getKey('updated', false);
       wx.showModal({
         title: '更新完成',
@@ -132,6 +136,20 @@ App({
               url: '/pages/more/releaseNote/releaseNote',
             });
           }
+        },
+      });
+    }
+  },
+  getOpenId: function () {
+    if (storage.getKey('isQQ')) {
+      return;
+    }
+    if (!storage.getKey('openId')) {
+      wx.cloud.callFunction({
+        name: 'getOpenId',
+        complete: res => {
+          storage.setKey('openId', res.result.openId);
+          eventBus.emit('updateKey');
         },
       });
     }

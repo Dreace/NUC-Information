@@ -205,7 +205,7 @@ switch[checked]::before {
 radio::before,
 checkbox::before {
   font-family: "iconfont";
-  content: "\e60c";
+  content: "\e655";
   position: absolute;
   color: var(--white) !important;
   top: 50%;
