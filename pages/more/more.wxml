@@ -25,15 +25,16 @@
           data-url="classTimetable/classTimetable" />
         <wux-grid thumb="{{svgCDN}}fitness.svg" label="体测成绩" bind:click="nav" data-url="fitness/fitness" />
         <wux-grid thumb="{{svgCDN}}guide.svg" label="中北指南" bind:click="nav" data-url="guide/guide" />
+        <wux-grid thumb="{{svgCDN}}SelfStudyRoom.svg" label="空教室查询" bind:click="nav" data-url="selfStudyRoom/selfStudyRoom" />
       </wux-grids>
     </view>
-    <!-- <view class='background'>
-        <view class="sub-title-view">资讯</view>
+    <view class='background'>
+        <view class="sub-title-view">中北</view>
         <wux-grids col="5" bordered="{{ false }}">
-          <wux-grid thumb="{{svgCDN}}news.svg" label="中北新闻" bind:click="navArticle" data-url="/pages/more/News/News" data-type="1013" />
-          <wux-grid thumb="{{svgCDN}}tz.svg" label="学校通知" bind:click="navArticle" data-url="/pages/more/News/News" data-type="1014" />
-          <wux-grid thumb="{{svgCDN}}academic.svg" label="学术活动" bind:click="navArticle" data-url="/pages/more/News/News" data-type="1354" />
+          <!-- <wux-grid thumb="{{svgCDN}}new/news.svg" label="中北新闻" bind:click="navArticle" data-url="/pages/more/news/news" data-type="1013" /> -->
+          <wux-grid thumb="{{svgCDN}}news/notice.svg" label="学校通知" bind:click="navArticle" data-url="/pages/more/news/news" data-type="1014" />
+          <wux-grid thumb="{{svgCDN}}news/academic.svg" label="学术活动" bind:click="navArticle" data-url="/pages/more/news/news" data-type="1354" />
         </wux-grids>
-      </view> -->
+      </view>
   </view>
 </view>

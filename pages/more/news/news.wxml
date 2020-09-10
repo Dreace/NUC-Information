@@ -1,11 +1,11 @@
 <navigationBar id="navigationBar" color="{{color}}" title="{{title}}" back="{{true}}"></navigationBar>
 
 <view class="content">
-  <block wx:for="{{titles}}">
+  <block wx:for="{{newsList}}">
     <view class="list-item s{{type}}" bindtap='goContent' data-id='{{item.id}}'>
       <view class="list-item-left">
         <text class="list-item-title">{{item.title}}</text>
-        <text class="list-item-time icon_calendar iconfont">{{item.date}}</text>
+        <text class="list-item-time icon_calendar iconfont">{{item.publishTime}}</text>
       </view>
     </view>
   </block>

@@ -29,7 +29,7 @@ App({
           bottom: e.statusBarHeight + 10 + 30,
         };
         try {
-          if (typeof qq === 'undefined') {
+          if (!storage.getKey('isQQ')) {
             custom = wx.getMenuButtonBoundingClientRect();
           }
         } catch (error) {}
@@ -103,7 +103,7 @@ App({
     if (!storage.getKey('name')) {
       storage.setKey('accounts', []);
     }
-    storage.setKey('version', '2.2.1');
+    storage.setKey('version', '2.2.2');
     // 新版本检查
     const updateManager = wx.getUpdateManager();
     updateManager.onCheckForUpdate(function (res) {

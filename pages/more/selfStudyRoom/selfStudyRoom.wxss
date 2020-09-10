@@ -1,0 +1,15 @@
+/* pages/more/selfStudyRoom/selfStudyRoom.wxss */
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+.line {
+  width: 100%;
+}
+page {
+  background-color: rgba(245, 245, 245, 1);
+}
+.picker-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

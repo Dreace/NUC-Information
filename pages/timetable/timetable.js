@@ -103,7 +103,6 @@ Page({
     });
   },
   deleteCustomCourse: function (e) {
-    // Todo 删除自定义课程
     wx.showModal({
       title: '删除',
       content: '确认删除这个课程，删除后不可恢复',

@@ -30,7 +30,9 @@
     "pages/my/openSource",
     "pages/my/storage",
     "pages/timetable/add",
-    "pages/timetable/friend"
+    "pages/timetable/friend",
+    "pages/more/faq/faq",
+    "pages/more/selfStudyRoom/selfStudyRoom"
   ],
   "permission": {
     "scope.userLocation": {

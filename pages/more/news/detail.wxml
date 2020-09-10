@@ -1,0 +1,10 @@
+<navigationBar id="navigationBar" color="{{color}}" title="{{'正文'}}" back="{{true}}" ></navigationBar>
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">{{content.title}}</view>
+    <view class="page__desc">{{content.time}}</view>
+  </view>
+</view>
+<view class="content">
+  <wemark md="{{content.content}}" link highlight type="wemark"></wemark>
+</view>

@@ -1,0 +1,35 @@
+<!--pages/more/selfStudyRoom/selfStudyRoom.wxml-->
+<navigationBar id="navigationBar" title="{{'查询空教室'}}" back="{{true}}">
+</navigationBar>
+<scroll-view scroll-y="{{true}}" class="page">
+  <view class="cu-list menu sm-border margin-top-sm">
+    <view class="cu-item">
+      <view class="content picker-container">
+        <picker mode="multiSelector" bindchange="onMultiChange" value="{{multiIndex}}" range="{{multiArray}}"
+          class="text-grey">
+          {{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}，{{multiArray[3][multiIndex[3]]}}
+          （点我切换） </picker>
+        <!-- <view class="action" style="float:right">
+          <button class="cu-btn bg-green shadow">
+            <text class="cuIcon-upload"></text>👈点击切换</button>
+        </view> -->
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<scroll-view scroll-y="{{modalName==null}}" class="page {{modalName!=null?'show':''}}">
+  <view class="cu-list menu margin-top">
+    <view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{list}}" wx:key>
+      <view class="content">
+        <text class="cuIcon-tagfill text-red"></text>
+        <text class="text-grey">{{item.roomId}}</text>
+      </view>
+      <view class="action">
+        <view class="cu-tag round bg-orange light">{{item.location}}</view>
+        <view class="cu-tag round bg-olive light">{{item.seatType}}</view>
+        <view class="cu-tag round bg-blue light">容量:{{item.seats}}</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
