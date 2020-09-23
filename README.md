@@ -1,4 +1,5 @@
 ![](https://img.shields.io/badge/Version-2.2.2-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace/NUC-Information.svg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDreace%2FNUC-Information.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FDreace%2FNUC-Information?ref=badge_shield)
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
@@ -229,3 +230,7 @@ QQ 小程序码
 [zhihu]:https://www.zhihu.com/people/ni-xiang-42-96/
 [weibo]:http://weibo.com/Dreace
 [email]:mailto:Dreace@Foxmail.com
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDreace%2FNUC-Information.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FDreace%2FNUC-Information?ref=badge_large)
