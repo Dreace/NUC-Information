@@ -19,7 +19,7 @@ Page({
       return;
     }
     if (!data.weeks) {
-      this.showMessage('周次格式有误');
+      this.showMessage('周次不能为空');
       return;
     }
     // 验证周次格式
@@ -45,7 +45,12 @@ Page({
         }
       }
     }
-    if (!data.dayOfWeek || data.dayOfWeek > 7 || data.dayOfWeek < 1) {
+    if (
+      !data.dayOfWeek ||
+      isNaN(data.dayOfWeek) ||
+      data.dayOfWeek > 7 ||
+      data.dayOfWeek < 1
+    ) {
       this.showMessage('星期只能为 1~7');
       return;
     }

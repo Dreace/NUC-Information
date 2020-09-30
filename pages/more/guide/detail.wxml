@@ -39,6 +39,14 @@
 			</view>
 		</view>
 	</view>
+	<view class="cu-list menu card-menu margin-top-xs shadow-lg margin-bottom" wx:if="{{item.type == 'map'}}">
+		<view class="cu-item" bindtap="jumpTo" data-url="/pages/more/map/details?tid={{item.buildingType}}&bid={{item.buildingId}}">
+			<view class="content">
+				<text class="iconfont icon-map text-blue"></text>
+				<text class="text-cut text-blue">{{item.text}}</text>
+			</view>
+		</view>
+	</view>
 </block>
 <view class="footer">
 	<view>作者:{{article.author}}</view>

@@ -19,6 +19,19 @@ Page({
     });
   },
   onLoad: function (options) {
+    if (!app.globalData.map) {
+      app.api.staticData('map/map.json', data => {
+        this.setData({
+          buildlData: data,
+        });
+        app.globalData.map = data;
+        this.afterLoad(options);
+      });
+    } else {
+      this.afterLoad(options);
+    }
+  },
+  afterLoad: function (options) {
     const bid = parseInt(options.bid);
     const tid = parseInt(options.tid);
     const building = app.globalData.map[tid].data[bid];

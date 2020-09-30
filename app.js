@@ -103,7 +103,7 @@ App({
     if (!storage.getKey('name')) {
       storage.setKey('accounts', []);
     }
-    storage.setKey('version', '2.2.2');
+    storage.setKey('version', '2.2.3');
     // 新版本检查
     const updateManager = wx.getUpdateManager();
     updateManager.onCheckForUpdate(function (res) {
@@ -126,7 +126,7 @@ App({
     // 获取 OpenID
     this.getOpenId();
     if (storage.getKey('updated') === true) {
-      storage.getKey('updated', false);
+      storage.setKey('updated', false);
       wx.showModal({
         title: '更新完成',
         content: '已更新到最新版本，是否查看版本说明？',
