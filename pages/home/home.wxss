@@ -1,0 +1,211 @@
+/* pages/home/home.wxss */
+.page {
+  background-color: #fafbfc85;
+  font-size: 16px;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+.title {
+  color: #1c3f53e8;
+  letter-spacing: 1rpx;
+}
+
+.stitle {
+  color: rgb(109, 124, 139);
+}
+
+.scroll-view_H {
+  width: 100%;
+  height: 165rpx;
+  overflow: scroll;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.block {
+  border: rgba(221, 221, 221, 0.418) solid 2px;
+  border-radius: 10%;
+  background-color: rgba(240, 245, 244, 0.404);
+}
+
+.scroll-view_H .scroll-view-item_H {
+  vertical-align: top;
+  width: 250rpx;
+  height: 155rpx;
+  display: inline-block;
+}
+
+.card {
+  border: rgba(255, 124, 49, 0.247) solid 2px;
+  background-color: rgba(255, 166, 0, 0.247);
+  border-radius: 10%;
+  /* box-shadow: 3rpx 3rpx 8rpx #888888; */
+}
+
+.card-text {
+  color: #5e5e5e;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+  font-size: small;
+}
+
+.background {
+  width: 96%;
+  margin-left: 2%;
+  margin-bottom: 5%;
+  border-bottom: 1rpx #d9d9d9;
+  border-radius: 25rpx;
+  background-color: rgb(255, 255, 255);
+}
+
+.line {
+  margin: 0 auto;
+  width: 700rpx;
+  height: 2rpx;
+  background-color: #d8d8d8;
+}
+
+.header {
+  float: right;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 70rpx;
+  height: 70rpx;
+  background: white;
+}
+
+.notice {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  padding: 10rpx 25rpx;
+  background: #f1f1f1;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.voice {
+  margin-right: 5rpx;
+  margin-top: 2rpx;
+  color: #fa6016;
+}
+
+.left-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 30rpx;
+}
+
+.left-text {
+  position: absolute;
+  left: 0;
+  width: 50rpx;
+  height: 100%;
+  margin-left: -20rpx;
+  background: linear-gradient(to left,
+      rgba(241, 241, 241, 0),
+      rgba(241, 241, 241, 1));
+  z-index: 99;
+}
+
+.right-text {
+  position: absolute;
+  right: -1rpx;
+  width: 40rpx;
+  height: 100%;
+  background: linear-gradient(to left,
+      rgba(241, 241, 241, 1),
+      rgba(241, 241, 241, 0));
+  z-index: 99;
+}
+
+.content-box {
+  margin-left: -20rpx;
+  overflow: hidden;
+}
+
+.content-text {
+  color: #5e5e5e;
+  white-space: nowrap;
+  font-size: 28rpx;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.app {
+  height: 48rpx;
+}
+
+.more {
+  margin-left: 5rpx;
+  color: #aaa;
+  font-size: 24rpx;
+}
+
+.container {
+  margin-top: 10rpx;
+}
+
+.balance {
+  float: right;
+  text-decoration: underline;
+  margin-right: 18rpx;
+  margin-top: 10rpx
+}
+
+.news {
+  display: -webkit-box;
+  margin-top: -13rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.class {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.icon-ICBC {
+  margin-left: 25rpx;
+  font-size: 54rpx;
+  color: rgb(224, 58, 72);
+}
+
+.animation-slide-top {
+  animation-name: slide-top;
+}
+
+[class*='animation-'] {
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+@keyframes slide-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

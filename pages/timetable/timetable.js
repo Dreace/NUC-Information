@@ -399,36 +399,6 @@ Page({
           this.setData({
             notice: data,
           });
-          // 重要公告
-          if (data.isImportant) {
-            this.setData({
-              showNoticeModal: true,
-            });
-            // 普通公告
-          } else if (
-            !app.storage.getKey('dontShowLatestNotice') &&
-            app.storage.getKey('lastShowNoticeID') < data.id
-          ) {
-            app.storage.setKey('lastShowNoticeID', data.id);
-            wx.showModal({
-              title: '有新公告',
-              content: data.title,
-              cancelText: '不再提醒',
-              cancelColor: '#03a6ff',
-              confirmText: '去看看',
-              confirmColor: '#79bd9a',
-              success: res => {
-                if (res.confirm) {
-                  wx.navigateTo({
-                    url: '/pages/more/notice/detail?id=' + data.id,
-                  });
-                } else if (res.cancel) {
-                  // 不再显示最新公告
-                  app.storage.setKey('dontShowLatestNotice', true);
-                }
-              },
-            });
-          }
         }
       },
     });

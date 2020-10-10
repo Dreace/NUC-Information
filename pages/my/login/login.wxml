@@ -5,8 +5,11 @@
 		<view class="content-setting">
 			<view class="hd" style="transform:rotateZ({{angle}}deg);">
 				<open-data type="userAvatarUrl" class="logo" mode="aspectFit"></open-data>
-				<image class="wave" src="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/more/wave.png" mode="aspectFill"></image>
-				<image class="wave wave-bg" src="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/more/wave.png" mode="aspectFill"></image>
+				<image class="wave" src="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/more/wave.png"
+					mode="aspectFill"></image>
+				<image class="wave wave-bg"
+					src="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/more/wave.png" mode="aspectFill">
+				</image>
 			</view>
 			<view class="bd">
 				<view class="input-group">
@@ -19,7 +22,8 @@
 						password='{{!showPassword}}' />
 				</view>
 				<view class="tip-text">
-					<view>已适配新教务系统，默认密码“zbdx+身份证后六位”</view>
+					<view>已适配新教务系统，默认密码“zbdx+身份证后六位（有 X，则大写）”</view>
+					<view>20 级同学默认密码为身份证后六位（有 X，则大写）</view>
 				</view>
 				<checkbox-group bindchange="checkboxChange">
 					<view class="cu-form-group" style="background-color:#f4f4f4;padding: 0;">
@@ -81,7 +85,8 @@
 					bindtap="copy">http://222.31.49.139/jwglxt/</text>），与个人门户密码不通用，请及时更新信息。</view>
 			<view style="color: #999;">1.账号密码是什么？</view>
 			<view style="text-indent: 1em;">账号为学号</view>
-			<view style="text-indent: 1em;">若未修改过密码则为“zbdx+身份证后六位”</view>
+			<view style="text-indent: 1em;">若未修改过，默认密码“zbdx+身份证后六位（有 X，则大写）”</view>
+			<view style="text-indent: 1em;">20 级同学默认密码为身份证后六位（有 X，则大写）</view>
 			<view style="text-indent: 1em;">修改过则为修改后的密码</view>
 			<view style="color: #999;">2.忘记密码</view>
 			<view style="text-indent: 1em;">尚没有找回密码的方法</view>

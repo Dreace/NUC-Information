@@ -103,7 +103,7 @@ App({
     if (!storage.getKey('name')) {
       storage.setKey('accounts', []);
     }
-    storage.setKey('version', '2.2.3');
+    storage.setKey('version', '2.3.1');
     // 新版本检查
     const updateManager = wx.getUpdateManager();
     updateManager.onCheckForUpdate(function (res) {
@@ -136,6 +136,19 @@ App({
               url: '/pages/more/releaseNote/releaseNote',
             });
           }
+        },
+      });
+    }
+    if (storage.getKey('insider')) {
+      api.request({
+        url: `v3/insiders/${storage.getKey('openId')}`,
+        data: {},
+        callBack: data => {
+          if (data.status === -3 || data.status === -2 || data.status == -1) {
+            storage.removeKey('insider');
+            return;
+          }
+          storage.setKey('insider', data);
         },
       });
     }

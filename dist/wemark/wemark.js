@@ -33,6 +33,11 @@ Component({
         data: e.target.dataset["url"],
       })
     },
+    previewImage(e){
+      wx.previewImage({
+        urls: [e.currentTarget.dataset.url],
+      })
+    },
     parseMd() {
       if (this.data.md) {
         var parsedData = parser.parse(this.data.md, {

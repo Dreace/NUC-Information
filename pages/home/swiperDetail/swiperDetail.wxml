@@ -1,0 +1,4 @@
+<navigationBar id="navigationBar" title="{{'详情'}}"back="{{true}}" ></navigationBar>
+<view class="content margin">
+  <wemark md="{{content}}" link highlight type="wemark"></wemark>
+</view>

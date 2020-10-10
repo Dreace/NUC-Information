@@ -1,0 +1,7 @@
+/* pages/home/exam/exam.wxss */
+.line{
+  margin: 0 auto;
+  width: 700rpx;
+  height: 2rpx;
+  background-color: #D8D8D8;
+}

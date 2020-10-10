@@ -65,6 +65,10 @@ Page({
           app.eventBus.emit('updateFitness');
           wx.navigateBack();
         } else {
+          wx.showToast({
+            title: data.message,
+            image: '/images/Sad.png',
+          });
           this.getCaptcha();
         }
       },

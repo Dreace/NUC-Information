@@ -22,7 +22,7 @@
         </view>
 
     </block>
-    <view class="detail-remind">以上非实时数据，仅供参考</view>
-    <view class="detail-remind">数据来自 <text class="icon_icbc iconfont" style="color: rgb(201, 41, 42);">ICBC</text>
+    <view class="detail-remind">以上非实时数据，仅供参考（不包含补助金额）</view>
+    <view class="detail-remind">数据来自 <text class="icon-ICBC iconfont" style="color: rgb(201, 41, 42);">ICBC</text>
     </view>
 </view>

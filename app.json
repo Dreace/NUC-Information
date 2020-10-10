@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/timetable/timetable",
-    "pages/grade/friend",
-    "pages/grade/grade",
+    "pages/more/grade/friend",
+    "pages/more/grade/grade",
     "pages/more/balance/balance",
     "pages/more/classTimetable/classTimetable",
     "pages/more/fitness/detail",
@@ -32,7 +33,8 @@
     "pages/timetable/add",
     "pages/timetable/friend",
     "pages/more/faq/faq",
-    "pages/more/selfStudyRoom/selfStudyRoom"
+    "pages/more/selfStudyRoom/selfStudyRoom",
+    "pages/more/exam/exam"
   ],
   "permission": {
     "scope.userLocation": {
@@ -56,16 +58,16 @@
     "backgroundColor": "#f9f9f9",
     "list": [
       {
+        "text": "主页",
+        "pagePath": "pages/home/home",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
         "text": "课表",
         "pagePath": "pages/timetable/timetable",
         "iconPath": "images/timetable.png",
         "selectedIconPath": "images/timetable-active.png"
-      },
-      {
-        "text": "成绩",
-        "pagePath": "pages/grade/grade",
-        "iconPath": "images/grade.png",
-        "selectedIconPath": "images/grade-active.png"
       },
       {
         "text": "更多",

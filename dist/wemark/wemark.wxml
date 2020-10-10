@@ -10,7 +10,7 @@
 
         <view class="wemark_inline_link" bindtap='setClipboard' data-url="{{renderInline.data.href}}" wx:if="{{renderInline.type === 'link' && !renderInline.data.internal}}">{{renderInline.content}}</view>
 
-        <image mode="widthFix" class="wemark_inline_image" src="{{renderInline.src}}" wx:if="{{renderInline.type === 'image'}}"></image>
+        <image mode="widthFix" class="wemark_inline_image" src="{{renderInline.src}}" wx:if="{{renderInline.type === 'image'}}" data-url="{{renderInline.src}}" bindtap="previewImage"></image>
       </block>
       <block wx:if="{{!renderBlock.isArray}}">
         <view wx:if="{{renderBlock.type === 'code'}}">{{renderBlock.content}}</view>

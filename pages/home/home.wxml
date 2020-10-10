@@ -1,0 +1,115 @@
+<!--pages/home/home.wxml-->
+<view class="page">
+	<view class="text-xl padding"></view>
+	<view class="text-sm padding">
+		<view class="{{toggleDelay?'animation-slide-top':''}}"style="animation-delay: 0s;">
+			<text class="text-grey">今天是{{date}}，</text>
+			<text class="text-grey text-sm">{{weekday}}</text>
+		</view>
+		<view class="{{toggleDelay?'animation-slide-top':''}}" style="animation-delay: 0s;">
+			<text class="text-xxl title">你好,</text>
+			<open-data type="userNickName" class="text-xxl title"></open-data>
+			<view class='header'>
+				<open-data class='userInfo' type="userAvatarUrl"></open-data>
+			</view>
+		</view>
+	</view>
+	<view class="line" style="margin-top:-8rpx"></view>
+	<swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="4000"
+		duration="800" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+		<swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+			<view class="swiper-item" bindtap="nav" data-url="swiperDetail/swiperDetail?id={{item.id}}">
+				<image src="{{item.imageUrl}}" mode="aspectFill" data-id="{{item.id}}">
+				</image>
+				<!-- <video src="{{item.imageUrl}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
+					objectFit="cover" wx:if="{{item.type=='video'}}" bindtap="goSwiperDetail"
+					data-id="{{item.id}}"></video> -->
+			</view>
+		</swiper-item>
+	</swiper>
+
+	<view class='notice' bindtap="nav" data-url="{{notice.id?'/pages/more/notice/detail?id='+notice.id:''}}">
+		<view class="left">
+			<view class="cu-tag radius bg-blue light sm" style="display:inline-block">消息</view>
+			<view class="left-box">
+				<view class="left-text"></view>
+				<view class='content-box'>
+					<view class='content-text' style="{{notice.id?'width: 530rpx;':''}}" animation="{{animationData}}">
+						<text id="text">{{notice.title}}</text>
+					</view>
+				</view>
+				<view class="right-text"></view>
+			</view>
+		</view>
+		<view class="right" wx:if="{{notice.id}}">
+			<text class="more">更多></text>
+		</view>
+	</view>
+
+	<view class="container">
+		<scroll-view class="scroll-view_H margin-top" scroll-x="true" style="width: 100%">
+			<view class="scroll-view-item_H margin-left block" bindtap="nav"
+				data-url="/pages/more/balance/balance">
+				<block>
+					<view style="margin-top:8rpx">
+						<text class="card-text">一卡通余额\n</text>
+					</view>
+					<text class="text-grey" style="float:left;margin-left:20rpx;font-size:15rpx">{{balance.time}}</text>
+					<view class="line" style="width:100rpx;margin-top:8rpx;margin-left:145rpx"></view>
+					<view class="margin-top">
+						<text class="iconfont icon-ICBC"></text>
+						<text class="text-xl stitle balance">¥{{balance.balance}}</text>
+					</view>
+				</block>
+			</view>
+			<view class="scroll-view-item_H margin-left block">
+				<view style="margin-top:8rpx">
+					<text class="card-text">下节课：\n</text>
+				</view>
+				<view class="line" style="width:240rpx;margin-top:8rpx"></view>
+				<view style="margin-left:20rpx;margin-top:5rpx">
+					<text class="text-sm stitle class">{{nextClass}}</text>
+				</view>
+				<view style="margin-left:20rpx">
+					<text class="text-sm stitle class">{{nextClassRoom}}</text>
+				</view>
+			</view>
+			<view class="scroll-view-item_H margin-left margin-right block">
+				<view style="margin-top:8rpx">
+					<text class="card-text text-gray">距离</text>
+				</view>
+				<image src="/images/plane.png"
+					style="width:50rpx;height:50rpx;float:right;margin-right:25rpx;margin-top:-20rpx"></image>
+				<view>
+					<text class="card-text stitle">{{holiday.name}}</text>
+				</view>
+				<view class="text-xl" style="margin-left:20rpx">
+					<text class="text-blue light">还有</text><text class="text-orange">{{holiday.days}}</text><text
+						class="text-blue">天</text>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+
+	<view style="margin-top:-65rpx;margin-bottom:10rpx" class="line"></view>
+
+	<wux-grids col="4" bordered="{{ false }}" style="background-color: #fafafabe;">
+		<wux-grid wx:for="{{homeList}}" thumb="{{item.icon}}" bind:click="nav" data-url="{{item.url}}">
+			<view style="margin-top:15rpx">
+				<text class="text-sm text-grey">{{item.name}}</text>
+			</view>
+		</wux-grid>
+	</wux-grids>
+	<view class="line"></view>
+
+	<view class="margin">
+		<text class="text-grey">- 学校通知 -</text>
+		<text wx:for="{{newsList}}" wx:key="" class="text-grey text-sm news s{{type}}" bindtap="nav"
+			data-url="/pages/more/news/detail?id={{item.id}}&type=1014">\n• {{item.title}}</text>
+	</view>
+
+	<view class="line margin-bottom"></view>
+	<view class="text-grey text-center margin">
+		<text class="text-sm">到底啦~祝你今天好心情！</text>
+	</view>
+</view>

@@ -245,7 +245,7 @@ Page({
   onShareAppMessage: function (e) {
     return {
       title: '我的成绩',
-      path: 'pages/grade/friend?grade=' + JSON.stringify(semesterItems),
+      path: 'pages/more/grade/friend?grade=' + JSON.stringify(semesterItems),
     };
   },
 });

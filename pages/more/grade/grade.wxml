@@ -2,7 +2,7 @@
 <wux-fab-button position="{{postion[floatButtonClickCount%2]}}" theme="balanced" direction="vertical" spaceBetween="10"
 	sAngle="{{ sAngle }}" eAngle="360" buttons="{{ buttons }}" bind:click="onFloatButtonClick" />
 
-<navigationBar id="navigationBar" title="成绩" back="{{fase}}"></navigationBar>
+<navigationBar id="navigationBar" title="成绩" back="{{true}}"></navigationBar>
 
 <wux-notice-bar icon="" wx:if="{{notice.title.length > 0}}" loop trailing="1500" content="最新公告：{{notice.title}}"
 	bind:click="goToPage" data-url="/pages/more/notice/detail?id={{notice.id}}" />
@@ -29,7 +29,7 @@
 		<view class='grade-item' style='flex:1;color:#9b9b9b;'>{{item.gradePoint}}</view>
 		<view class='grade-item' style='flex:2;font-weight: 600;'>{{item.grade}}</view>
 	</view>
-	<view class='url' bindtap='openGradePointPDF'>点击查看 GPA 计算方法</view>
+	<view class='url margin-left margin-bottom' bindtap='openGradePointPDF'>点击查看 GPA 计算方法</view>
 </view>
 <view class="cu-modal modal {{showExportModal?'show':''}}" catchtouchmove="preventTouchMove">
 	<view class="cu-dialog">

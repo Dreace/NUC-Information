@@ -11,6 +11,7 @@ Page({
         this.setData({
           balance: data,
         });
+        app.storage.setKey('balance',data);
       },
     });
   },

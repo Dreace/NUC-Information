@@ -3,9 +3,8 @@ const md5 = require('md5.js');
 const eventBus = require('eventBus.js');
 const storage = require('storage.js');
 const aprUrl = 'https://nuc-info-api.dreace.top/';
-//const aprUrl = "http://127.0.0.1:10001/"
+// const aprUrl = "http://127.0.0.1:10001/"
 const staticUrl = 'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/';
-const appSecret = '';
 
 function randomString(length, chars) {
   var result = '';
@@ -77,7 +76,9 @@ function request(option) {
         return;
       }
       if (data['code'] !== 0) {
-        showMessage(data['message']);
+        if (!option.rawData) {
+          showMessage(data['message']);
+        }
       }
       if (data['code'] < 0) {
         if (data['code'] == -3) {

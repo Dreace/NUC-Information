@@ -1,9 +1,9 @@
-<navigationBar id="navigationBar" title="更多" back="{{fase}}"></navigationBar>
+<navigationBar id="navigationBar" title="我的" back="{{fase}}"></navigationBar>
 
 <view class="header">
   <open-data type="userAvatarUrl" class="avatar" mode="aspectFit"></open-data>
   <view class="info">
-    <open-data type="userNickName" class="nickname"></open-data>
+    <open-data type="userNickName" class="nickname" bindtap="OnTapName"></open-data>
     <view class="account text-gray">{{account?account:'未登录'}}</view>
   </view>
 </view>
@@ -26,12 +26,12 @@
       <text>开源说明</text>
     </navigator>
   </view>
-  <view wx:if="{{insider}}" class="cu-item arrow">
+  <view wx:if="{{insider}}" class="cu-item">
     <view class="content">
       <text class="iconfont icon-beta text-orange"></text>
       <text>内测权限</text>
     </view>
-    <text class="text-grey">截至：永久</text>
+    <text class="text-grey">{{insiderText}}</text>
   </view>
   <view class="cu-item arrow" bindtap="toFeedback">
     <view class="content">
@@ -54,5 +54,3 @@
     <text class="text-grey">{{openId}}</text>
   </view>
 </view>
-
-<ad class="margin-top" unit-id="{{'adunit-0065a48368fd1ab4'}}"></ad>

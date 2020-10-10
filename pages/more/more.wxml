@@ -15,17 +15,17 @@
       <view class="sub-title-view">查询</view>
       <wux-grids col="5" bordered="{{ false }}">
         <wux-grid thumb="{{svgCDN}}rubLesson.svg" label="蹭课" bind:click="nav" data-url="rubLesson/rubLesson" />
-        <!-- <wux-grid thumb="{{svgCDN}}classroom.svg" label="自习室" bind:click="nav"
-          data-url="/pages/more/FreeClassroom/FreeClassroom" /> -->
         <wux-grid thumb="{{svgCDN}}physical.svg" label="大物实验" bind:click="nav" data-url="physical/physical" />
-        <wux-grid thumb="{{svgCDN}}map.svg" label="校园导览" bind:click="nav" data-url="map/map" />
+        <wux-grid thumb="{{svgCDN}}navgation-map.svg" label="校园导览" bind:click="nav" data-url="map/map" />
         <wux-grid thumb="{{svgCDN}}balance.svg" label="一卡通余额" bind:click="nav" data-url="balance/balance" />
         <wux-grid thumb="{{svgCDN}}library.svg" label="图书馆" bind:click="nav" data-url="library/library" />
         <wux-grid thumb="{{svgCDN}}classTimetable.svg" label="班级课表" bind:click="nav"
           data-url="classTimetable/classTimetable" />
         <wux-grid thumb="{{svgCDN}}fitness.svg" label="体测成绩" bind:click="nav" data-url="fitness/fitness" />
-        <wux-grid thumb="{{svgCDN}}guide.svg" label="中北指南" bind:click="nav" data-url="guide/guide" />
-        <wux-grid thumb="{{svgCDN}}SelfStudyRoom.svg" label="空教室查询" bind:click="nav" data-url="selfStudyRoom/selfStudyRoom" />
+        <wux-grid thumb="{{svgCDN}}navigate.svg" label="中北指南" bind:click="nav" data-url="guide/guide" />
+        <wux-grid thumb="{{svgCDN}}SelfStudyRoom.svg" label="空闲教室" bind:click="nav" data-url="selfStudyRoom/selfStudyRoom" />
+        <wux-grid thumb="{{svgCDN}}search.svg" label="考试查询" bind:click="nav" data-url="exam/exam" />
+        <wux-grid thumb="{{svgCDN}}grade.svg" label="我的成绩" bind:click="nav" data-url="grade/grade" />
       </wux-grids>
     </view>
     <view class='background'>

@@ -1,0 +1,25 @@
+<!--pages/home/exam/exam.wxml-->
+<navigationBar id="navigationBar" title="查询考试" back="{{true}}"></navigationBar>
+<view wx:if="{{!isDataEmpty}}" style="text-align:center">
+  <image src="https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/empty.svg"
+  style="margin:auto;opacity:0.2;width:250rpx;height:250rpx;margin-top:200rpx"/>
+  <view>
+    <text class="text-grey text-md">没有考试信息</text>
+  </view>
+</view>
+<scroll-view wx:else scroll-y="{{modalName==null}}" class="page {{modalName!=null?'show':''}}">
+  <view class="cu-list menu margin-top">
+    <view class="cu-item" wx:for="{{info}}" wx:key>
+      <view class="content margin-top">
+        <view class="line"></view>
+        <text class="text-grey">考试名称：{{item.college}}\n</text>
+        <text class="text-grey">考试时间：{{item.time}}\n</text>
+        <text class="text-grey">考试地点：{{item.location}}\n</text>
+        <text class="text-grey">考试类型：{{item.type}}</text>
+        <view class="line"></view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+

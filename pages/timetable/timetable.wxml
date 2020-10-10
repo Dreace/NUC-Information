@@ -90,25 +90,3 @@
 		</block>
 	</swiper>
 </view>
-<!-- {{showNoticeContent?'show':'close'}} -->
-
-<view class="{{showNoticeModal?'show':'close'}}" catchtouchmove="preventTouchMove" style="font-size: 28rpx;  ">
-	<view class="cu-modal show sw">
-		<view class="cu-dialog" style="height:550px;">
-			<view class="cu-bar bg-white justify-end">
-				<view class="content">{{notice.title}}</view>
-			</view>
-			<scroll-view scroll-y style="height:440px">
-				<view style="text-align: left;">
-					<view style='width:92%;margin-left:4%;margin-top:1rpx;'>
-						<wemark md="{{notice.content}}" link highlight type="wemark"></wemark>
-					</view>
-				</view>
-			</scroll-view>
-			<view class="cu-bar bg-white">
-				<view class="action margin-0 flex-sub  text-blue solid-left" bindtap="dontShowLatestNotice">不再提醒</view>
-				<view class="action margin-0 flex-sub  text-green solid-left" bindtap="closeNoticeModal">关闭</view>
-			</view>
-		</view>
-	</view>
-</view>
