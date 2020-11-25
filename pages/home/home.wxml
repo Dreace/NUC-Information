@@ -48,7 +48,7 @@
 
 	<view class="container">
 		<scroll-view class="scroll-view_H margin-top" scroll-x="true" style="width: 100%">
-			<view class="scroll-view-item_H margin-left block" bindtap="nav"
+			<!-- <view class="scroll-view-item_H margin-left block" bindtap="nav"
 				data-url="/pages/more/balance/balance">
 				<block>
 					<view style="margin-top:8rpx">
@@ -61,7 +61,7 @@
 						<text class="text-xl stitle balance">¥{{balance.balance}}</text>
 					</view>
 				</block>
-			</view>
+			</view> -->
 			<view class="scroll-view-item_H margin-left block">
 				<view style="margin-top:8rpx">
 					<text class="card-text">下节课：\n</text>

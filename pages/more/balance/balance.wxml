@@ -17,7 +17,7 @@
             </view>
             <view class="ykt-card-more">
                 <text class="ykt-ye-time">更新时间：{{balance.time}}</text>
-                <text class="ykt-ye-id">持卡人：{{balance.name}}</text>
+                <!-- <text class="ykt-ye-id">持卡人：{{balance.name}}</text> -->
             </view>
         </view>
 

@@ -23,6 +23,7 @@ Component({
     duration: 0,
     textWidth: 0,
     wrapWidth: 0,
+    isScheduled: undefined,
     date: null,
     weekday: null,
     cardCur: 0,
@@ -57,6 +58,7 @@ Component({
       },
     ],
     holiday: null,
+    weekNow: 0
   },
   methods: {
     onLoad(options) {
@@ -71,10 +73,10 @@ Component({
         weekday: this.getDate('weekday'),
         nextClass: nextClass[0],
         nextClassRoom: nextClass[1],
-        type: options.type,
+        // type: options.type,
       });
 
-      this.getBalance();
+      // this.getBalance();
       this.setData({
         show: true,
       });
@@ -153,10 +155,13 @@ Component({
     getBalance() {
       if (app.storage.getKey('name')) {
         app.api.request({
-          dontShowLoading: true,
           rawData: true,
-          url: `v3/balance/${app.storage.getKey('name')}`,
-          data: {},
+          dontShowLoading: true,
+          url: `v3/balance`,
+          data: {
+            name: app.storage.getKey('name'),
+            passwd: app.storage.getKey('password'),
+          },
           callBack: data => {
             if (data.code === 0) {
               this.setData({
@@ -164,6 +169,120 @@ Component({
               });
             }
           },
+        });
+      }
+    },
+    removeChinese: function (str) {
+      if (str) {
+        var reg = /[\u4e00-\u9fa5\(\)（）]/g;
+        return str.replace(reg, '');
+      } else {
+        return '';
+      }
+    },
+    handleWeek: function (weeksStr) {
+      // 单双周
+      const isEvenWeek = weeksStr.indexOf('双') != -1;
+      const isOddWeek = weeksStr.indexOf('单') != -1;
+      const tempList = this.removeChinese(weeksStr).split(',');
+      const weeks = [];
+      tempList.forEach(item => {
+        // 形如：1-9
+        if (item.indexOf('-') != -1) {
+          const splited = item.split('-');
+          for (let j = Number(splited[0]); j <= splited[1]; j++) {
+            // 双周课，但是当前是单周，跳过
+            if (isEvenWeek && j % 2 == 1) {
+              continue;
+            }
+            if (isOddWeek && j % 2 == 0) {
+              continue;
+            }
+            weeks.push(j);
+          }
+        } else {
+          weeks.push(Number(item));
+        }
+      });
+      return weeks;
+    },
+    handleMoreData: function (data, week) {
+      // 课程卡片到下标的映射
+      let cardToIndex = [];
+      // 下标到课程卡片的映射
+      let indexToCard = [];
+      for (let i = 0; i < 8; i++) {
+        cardToIndex[i] = [];
+        for (let j = 0; j < 12; j++) {
+          cardToIndex[i][j] = [];
+        }
+      }
+      for (let i = 0; i < data.length; i++) {
+        if (!data[i]['weeks']) {
+          continue;
+        }
+        indexToCard[i] = [];
+        // 一节课可能是多个小节组成
+        for (
+          let j = data[i]['start']; j < data[i]['length'] + data[i]['start']; j++
+        ) {
+          indexToCard[i].push({
+            x: Number(data[i]['dayOfWeek']),
+            y: j,
+          });
+          cardToIndex[Number(data[i]['dayOfWeek'])][j].push(i);
+        }
+      }
+      if (app.storage.getKey('firstWeekDateTime')) {
+        // 一年的第几周
+        let weekOfYear;
+        // 用户选择的周数
+        if (week) {
+          weekOfYear = week;
+          // 计算当前周数
+        } else {
+          weekOfYear =
+            Math.floor(
+              (new Date().getTime() -
+                new Date(app.storage.getKey('firstWeekDateTime')).getTime()) /
+              (24 * 3600 * 1000 * 7)
+            ) + 1;
+          this.setData({
+            weekOfYear: weekOfYear,
+            weekNow: weekOfYear,
+          });
+        }
+        // 开学第一周的周一
+        // 当前日期
+        const dateTimeNow = new Date(app.storage.getKey('firstWeekDateTime'));
+        dateTimeNow.setDate(dateTimeNow.getDate() + (weekOfYear - 1) * 7);
+        const monthNow = dateTimeNow.getMonth() + 1;
+        // 一周七天的日期日期
+        const dateList = [];
+        dateTimeNow.setDate(dateTimeNow.getDate() - 1);
+        for (let i = 0; i < 7; i++) {
+          dateTimeNow.setDate(dateTimeNow.getDate() + 1);
+          dateList[i] = dateTimeNow.getDate() + '日';
+        }
+        this.setData({
+          monthNow: monthNow,
+          dateList: dateList,
+        });
+        // 当前选择的周上课情况，根据下标对应
+        var isScheduled = [];
+        for (let i = 0; i < data.length; i++) {
+          if (!data[i]['weeks']) {
+            continue;
+          }
+          let t = this.handleWeek(data[i]['weeks']);
+          if (t.indexOf(weekOfYear) != -1) {
+            isScheduled[i] = true;
+          } else {
+            isScheduled[i] = false;
+          }
+        }
+        this.setData({
+          isScheduled: isScheduled,
         });
       }
     },
@@ -184,6 +303,21 @@ Component({
         let classes = app.storage.getKey('timetableCache').filter(item => {
           return item.dayOfWeek == time.getDay();
         });
+        let weekOfYear = Math.floor(
+          (new Date().getTime() -
+            new Date(app.storage.getKey('firstWeekDateTime')).getTime()) /
+          (24 * 3600 * 1000 * 7)
+        ) + 1;
+        this.setData({
+          weekNow: weekOfYear,
+        });
+
+        this.handleMoreData(classes, this.data.weekNow);
+        this.data.isScheduled.forEach((i,j)=>{
+          if(i === false){
+            classes.splice(j,1);
+          }
+        })
 
         let cTime = null;
         if (month < 5 || month > 9) {
@@ -308,15 +442,16 @@ Component({
       query.select('.content-box').boundingClientRect();
       query.select('#text').boundingClientRect();
       query.exec(rect => {
-        that.setData(
-          {
-            wrapWidth: rect[0].width,
-            textWidth: rect[1].width,
-          },
-          () => {
-            this.startAnimation();
-          }
-        );
+        try {
+          that.setData({
+              wrapWidth: rect[0].width,
+              textWidth: rect[1].width,
+            },
+            () => {
+              this.startAnimation();
+            }
+          );
+        } catch (error) {}
       });
     },
     // 定时器动画

@@ -18,12 +18,12 @@
 				</view>
 				<view class="input-group">
 					<view class="input-label" style="flex:1">密码</view>
-					<input bindinput="inputpasswd" style="flex:6" placeholder="教学管理信息服务平台密码"
+					<input bindinput="inputpasswd" style="flex:6" placeholder="新个人门户密码"
 						password='{{!showPassword}}' />
 				</view>
 				<view class="tip-text">
-					<view>已适配新教务系统，默认密码“zbdx+身份证后六位（有 X，则大写）”</view>
-					<view>20 级同学默认密码为身份证后六位（有 X，则大写）</view>
+					<view class="text-red">登录方式更改为新个人门户，密码与旧个人门户一致。登陆前请在网页（<text class="text-blue"
+							bindtap="copy">http://newi.nuc.edu.cn</text>，需校园网）绑定手机号。20级同学若未修改个人门户密码，则为 zbdx123。</view>
 				</view>
 				<checkbox-group bindchange="checkboxChange">
 					<view class="cu-form-group" style="background-color:#f4f4f4;padding: 0;">
@@ -81,18 +81,18 @@
 			</view>
 		</view>
 		<view class="padding-xl" style="text-align: left;">
-			<view style="text-indent: 1em;word-break: break-all;">登陆方式已修改为新教务系统（<text class="text-blue" style=""
-					bindtap="copy">http://222.31.49.139/jwglxt/</text>），与个人门户密码不通用，请及时更新信息。</view>
+			<view style="text-indent: 1em;word-break: break-all;">登陆方式已修改为新个人门户（<text class="text-blue" style=""
+					bindtap="copy">http://newi.nuc.edu.cn</text>），与旧个人门户一致。</view>
 			<view style="color: #999;">1.账号密码是什么？</view>
 			<view style="text-indent: 1em;">账号为学号</view>
-			<view style="text-indent: 1em;">若未修改过，默认密码“zbdx+身份证后六位（有 X，则大写）”</view>
-			<view style="text-indent: 1em;">20 级同学默认密码为身份证后六位（有 X，则大写）</view>
-			<view style="text-indent: 1em;">修改过则为修改后的密码</view>
+			<view style="text-indent: 1em;">自行设定的个人门户密码</view>
+			<view style="text-indent: 1em;">20级同学默认密码为 zbdx123</view>
 			<view style="color: #999;">2.忘记密码</view>
-			<view style="text-indent: 1em;">尚没有找回密码的方法</view>
-			<!-- <view style="text-indent: 1em;">若忘记密码请到到个人门户找回密码(需校园网环境)</view>
-      <view style="text-indent: 1em;">网址为：</view>
-      <view class="text-blue" style="text-indent: 1em;word-break: break-all;" bindtap="copy">https://ca.nuc.edu.cn/zfca/securitycenter/findpwd/recoverpasswd.jsp</view> -->
+			<!-- <view style="text-indent: 1em;">尚没有找回密码的方法</view> -->
+			<view style="text-indent: 1em;">若忘记密码请到到个人门户找回密码(需校园网环境)</view>
+			<view style="text-indent: 1em;">网址为：</view>
+			<view class="text-blue" style="text-indent: 1em;word-break: break-all;" bindtap="copy">
+				http://newi.nuc.edu.cn</view>
 		</view>
 		<view class="cu-bar bg-white">
 			<view class="action margin-0 flex-sub  text-green solid-left" bindtap="closeForgetPassword">关闭</view>

@@ -31,7 +31,7 @@ Page({
   },
   copy() {
     wx.setClipboardData({
-      data: 'http://222.31.49.139/jwglxt/http://222.31.49.139/jwglxt/',
+      data: 'http://newi.nuc.edu.cn/',
     });
   },
   closeUserAgreement() {

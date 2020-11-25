@@ -5,13 +5,16 @@ Page({
   },
   getData: function () {
     app.api.request({
-      url: `v3/balance/${app.storage.getKey('name')}`,
-      data: {},
+      url: `v3/balance`,
+      data: {
+        name: app.storage.getKey('name'),
+        passwd: app.storage.getKey('password'),
+      },
       callBack: data => {
         this.setData({
           balance: data,
         });
-        app.storage.setKey('balance',data);
+        app.storage.setKey('balance', data);
       },
     });
   },

@@ -103,7 +103,7 @@ App({
     if (!storage.getKey('name')) {
       storage.setKey('accounts', []);
     }
-    storage.setKey('version', '2.3.1');
+    storage.setKey('version', '2.3.2');
     // 新版本检查
     const updateManager = wx.getUpdateManager();
     updateManager.onCheckForUpdate(function (res) {
@@ -141,6 +141,7 @@ App({
     }
     if (storage.getKey('insider')) {
       api.request({
+        dontShowLoading: true,
         url: `v3/insiders/${storage.getKey('openId')}`,
         data: {},
         callBack: data => {
