@@ -10,7 +10,7 @@
 			<text class="text-xxl title">你好,</text>
 			<open-data type="userNickName" class="text-xxl title"></open-data>
 			<view class='header'>
-				<open-data class='userInfo' type="userAvatarUrl"></open-data>
+				<!-- <open-data class='userInfo' type="userAvatarUrl"></open-data> -->
 			</view>
 		</view>
 	</view>
@@ -48,25 +48,24 @@
 
 	<view class="container">
 		<scroll-view class="scroll-view_H margin-top" scroll-x="true" style="width: 100%">
-			<!-- <view class="scroll-view-item_H margin-left block" bindtap="nav"
+			<view class="scroll-view-item_H margin-left block" bindtap="nav"
 				data-url="/pages/more/balance/balance">
 				<block>
 					<view style="margin-top:8rpx">
 						<text class="card-text">一卡通余额\n</text>
 					</view>
-					<text class="text-grey" style="float:left;margin-left:20rpx;font-size:15rpx">{{balance.time}}</text>
-					<view class="line" style="width:100rpx;margin-top:8rpx;margin-left:145rpx"></view>
+					<view class="line" style="width:240rpx;margin-top:8rpx"></view>
 					<view class="margin-top">
 						<text class="iconfont icon-ICBC"></text>
-						<text class="text-xl stitle balance">¥{{balance.balance}}</text>
+						<text class="stitle balance">点击查询</text>
 					</view>
 				</block>
-			</view> -->
+			</view>
 			<view class="scroll-view-item_H margin-left block">
 				<view style="margin-top:8rpx">
 					<text class="card-text">下节课：\n</text>
 				</view>
-				<view class="line" style="width:240rpx;margin-top:8rpx"></view>
+				<view class="line" style="width:240rpx;margin-top:8rpx;margin-bottom:15rpx"></view>
 				<view style="margin-left:20rpx;margin-top:5rpx">
 					<text class="text-sm stitle class">{{nextClass}}</text>
 				</view>

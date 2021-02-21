@@ -103,7 +103,7 @@ App({
     if (!storage.getKey('name')) {
       storage.setKey('accounts', []);
     }
-    storage.setKey('version', '2.3.2');
+    storage.setKey('version', '2.3.3');
     // 新版本检查
     const updateManager = wx.getUpdateManager();
     updateManager.onCheckForUpdate(function (res) {

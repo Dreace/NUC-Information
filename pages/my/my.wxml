@@ -51,6 +51,6 @@
       <text class="iconfont icon-open-id text-yellow"></text>
       <text>用户识别码</text>
     </view>
-    <text class="text-grey">{{openId}}</text>
+    <text class="text-grey text-sm">{{openId}}</text>
   </view>
 </view>

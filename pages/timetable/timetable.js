@@ -2,7 +2,10 @@ const app = getApp();
 let timetableItems = [];
 let indexToCard = [];
 let cardToIndex = [];
-const buttons = [
+const buttons = [{
+    label: '多学期查询',
+    icon: '/images/Refresh.png',
+  },
   {
     label: '刷新',
     icon: '/images/Refresh.png',
@@ -67,18 +70,20 @@ Page({
   },
 
   onFloatButtonClick(e) {
-    if (e.detail.index === 0) {
+    if (e.detail.index === 1) {
       this.getTimetable();
-    } else if (e.detail.index === 4) {
+    } else if (e.detail.index === 5) {
       this.exportTimetable();
-    } else if (e.detail.index === 3) {
+    } else if (e.detail.index === 4) {
       this.setData({
         p: this.data.p + 1,
       });
-    } else if (e.detail.index === 1) {
+    } else if (e.detail.index === 2) {
       wx.navigateTo({
         url: 'add',
       });
+    } else if (e.detail.index === 0) {
+      this.getMultilTimetable();
     }
   },
   preventTouchMove: function () {},
@@ -112,7 +117,7 @@ Page({
             .getKey('customTimetable')
             .splice(
               this.data.courseDetailItems[e.currentTarget.dataset['index']] -
-                timetableItems.length,
+              timetableItems.length,
               1
             );
         }
@@ -124,8 +129,7 @@ Page({
   },
   editCustomCourse: function (e) {
     wx.navigateTo({
-      url:
-        'add?id=' +
+      url: 'add?id=' +
         (this.data.courseDetailItems[e.currentTarget.dataset['index']] -
           timetableItems.length),
     });
@@ -223,9 +227,7 @@ Page({
       indexToCard[i] = [];
       // 一节课可能是多个小节组成
       for (
-        let j = data[i]['start'];
-        j < data[i]['length'] + data[i]['start'];
-        j++
+        let j = data[i]['start']; j < data[i]['length'] + data[i]['start']; j++
       ) {
         indexToCard[i].push({
           x: Number(data[i]['dayOfWeek']),
@@ -246,7 +248,7 @@ Page({
           Math.floor(
             (new Date().getTime() -
               new Date(app.storage.getKey('firstWeekDateTime')).getTime()) /
-              (24 * 3600 * 1000 * 7)
+            (24 * 3600 * 1000 * 7)
           ) + 1;
         this.setData({
           weekOfYear: weekOfYear,
@@ -366,6 +368,58 @@ Page({
       },
     });
   },
+  getMultilTimetable: function () {
+    if (!app.storage.getKey('name')) {
+      wx.showModal({
+        title: '未登录',
+        content: '跳转到登录页面，或者以游客身份浏览',
+        cancelText: '游客',
+        cancelColor: '#03a6ff',
+        confirmText: '去登陆',
+        confirmColor: '#79bd9a',
+        success: res => {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/my/login/login',
+            });
+          } else {
+            app.storage.setKey('name', 'guest');
+            app.storage.setKey('password', 'guest');
+            this.getTimetable();
+          }
+        },
+      });
+      return;
+    }
+    app.api.request({
+      url: 'v3/timetable/all',
+      data: {
+        name: app.storage.getKey('name'),
+        passwd: app.storage.getKey('password'),
+      },
+      callBack: data => {
+        if (data) {
+          let arr = [];
+          data.forEach(i => {
+            arr.push(i.name);
+          })
+          let that = this;
+          wx.showActionSheet({
+            itemList: arr,
+            success(res) {
+              that.handleData(data[res.tapIndex].timetable);
+              if (app.storage.getKey('name') !== 'guest') {
+                app.storage.setKey('timetableCache', data[res.tapIndex].timetable);
+              }
+            },
+            fail(res) {
+              console.log(res.errMsg)
+            }
+          })
+        }
+      },
+    });
+  },
   showCourseDetail: function (e) {
     let courseDetailItems = [];
     const card = indexToCard[e.currentTarget.dataset.index];
@@ -458,8 +512,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '我的课程表',
-      path:
-        'pages/timetable/friend?timetable=' +
+      path: 'pages/timetable/friend?timetable=' +
         JSON.stringify(this.data.timetableItems),
     };
   },

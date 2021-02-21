@@ -73,7 +73,11 @@
 							<view>课程名:{{timetableItems[item]["name"]}}</view>
 							<view>考查方式:{{timetableItems[item]["testType"]}}</view>
 							<view>学分:{{timetableItems[item]["credit"]}}</view>
+							<view class='line'></view>
+							<view>理论学时:{{timetableItems[item]["theoryTime"]}}</view>
+							<view>实验学时:{{timetableItems[item]["practiceTime"]}}</view>
 							<view>教师:{{timetableItems[item]["teacher"]}}</view>
+							<view class='line'></view>
 							<view>周次:{{timetableItems[item]["weeks"]}}</view>
 							<view>上课地点:{{timetableItems[item]["building"]+" "+timetableItems[item]["classroom"]}}</view>
 						</view>
@@ -86,7 +90,6 @@
 					</view>
 				</view>
 			</swiper-item>
-
 		</block>
 	</swiper>
 </view>

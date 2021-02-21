@@ -11,6 +11,7 @@ Page({
         passwd: app.storage.getKey('password'),
       },
       callBack: data => {
+        data.balance = parseFloat(data.balance).toFixed(2)
         this.setData({
           balance: data,
         });

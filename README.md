@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Version-2.2.3-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace/NUC-Information.svg)
+![](https://img.shields.io/badge/Version-2.3.3-green.svg) ![GitHub](https://img.shields.io/github/license/Dreace/NUC-Information.svg)
 
 ### 这是什么？
 一个简单的课程表&成绩信息查询微信小程序
@@ -53,6 +53,9 @@ QQ 小程序码
 *注：所有信息来自教务系统和学校官网，空教室、蹭课、安排等有时效性的信息只有本学期内容
 
 ### 版本日志
+#### Version 2.3.3
+  1. F 修复 已知问题
+  2. A 新增 查询多学期课表
 #### Version 2.3.2
   1. F 修复 已知问题
   2. U 更新 登录方式为新个人门户

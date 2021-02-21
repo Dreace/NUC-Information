@@ -13,10 +13,6 @@ Component({
     type: 0,
     nextClass: '今天没有课啦',
     nextClassRoom: '好好享受吧！',
-    balance: {
-      balance: '---.--',
-      time: '-- --:-- 暂时不可查',
-    },
     title: '',
     animation: null,
     timer: null,
@@ -30,30 +26,25 @@ Component({
     toggleDelay: false,
     content: null,
     swiperList: [{}],
-    homeList: [
-      {
+    homeList: [{
         name: '中北指南',
-        icon:
-          'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/navigate.svg',
+        icon: 'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/navigate.svg',
         url: '/pages/more/guide/guide',
       },
       {
         name: '校园导览',
-        icon:
-          'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/navgation-map.svg',
+        icon: 'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/navgation-map.svg',
         url: '/pages/more/map/map',
       },
 
       {
         name: '我的成绩',
-        icon:
-          'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/grade.svg',
+        icon: 'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/grade.svg',
         url: '/pages/more/grade/grade',
       },
       {
         name: '查询考试',
-        icon:
-          'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/search.svg',
+        icon: 'https://cdn.jsdelivr.net/gh/dreace/NUC-Info-Static@master/svg/search.svg',
         url: '/pages/more/exam/exam',
       },
     ],
@@ -73,10 +64,8 @@ Component({
         weekday: this.getDate('weekday'),
         nextClass: nextClass[0],
         nextClassRoom: nextClass[1],
-        // type: options.type,
+        type: options.type,
       });
-
-      // this.getBalance();
       this.setData({
         show: true,
       });
@@ -103,17 +92,12 @@ Component({
     getNotice() {
       app.api.request({
         dontShowLoading: true,
-        url: 'v3/weather',
+        url: 'v3/notices/latest',
         data: {},
         callBack: data => {
           let notice = null;
-          if (data.notice) {
-            notice = data.notice;
-          } else {
-            const weather = data.weather.lives[0];
-            notice = {
-              title: `现在中北大学${weather.weather}，气温${weather.temperature}度，${weather.winddirection}风${weather.windpower}级，湿度${weather.humidity}%`,
-            };
+          if (data) {
+            notice = data;
           }
           this.setData({
             notice,
@@ -141,7 +125,7 @@ Component({
         callBack: data => {
           const days = Math.floor(
             (new Date(data.date).getTime() - new Date().getTime()) /
-              (24 * 3600 * 1000)
+            (24 * 3600 * 1000)
           );
           this.setData({
             holiday: {
@@ -151,26 +135,6 @@ Component({
           });
         },
       });
-    },
-    getBalance() {
-      if (app.storage.getKey('name')) {
-        app.api.request({
-          rawData: true,
-          dontShowLoading: true,
-          url: `v3/balance`,
-          data: {
-            name: app.storage.getKey('name'),
-            passwd: app.storage.getKey('password'),
-          },
-          callBack: data => {
-            if (data.code === 0) {
-              this.setData({
-                balance: data.data,
-              });
-            }
-          },
-        });
-      }
     },
     removeChinese: function (str) {
       if (str) {
@@ -313,9 +277,9 @@ Component({
         });
 
         this.handleMoreData(classes, this.data.weekNow);
-        this.data.isScheduled.forEach((i,j)=>{
-          if(i === false){
-            classes.splice(j,1);
+        this.data.isScheduled.forEach((i, j) => {
+          if (i === false) {
+            classes.splice(j, 1);
           }
         })
 
@@ -519,6 +483,6 @@ Component({
         path: 'pages/home/home',
         imageUrl: 'http://img.dreace.top/shareImage.jpg',
       };
-    },
+    }
   },
 });

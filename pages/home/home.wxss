@@ -156,9 +156,10 @@
 
 .balance {
   float: right;
-  text-decoration: underline;
-  margin-right: 18rpx;
-  margin-top: 10rpx
+  margin-right: 25rpx;
+  margin-top: 6rpx;
+  color: #aaa;
+  font-size: 30rpx;
 }
 
 .news {
@@ -184,6 +185,7 @@
 
 .icon-ICBC {
   margin-left: 25rpx;
+  margin-bottom: 15rpx;
   font-size: 54rpx;
   color: rgb(224, 58, 72);
 }

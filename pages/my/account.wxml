@@ -2,7 +2,7 @@
 <view class="cu-list menu sm-border">
 	<view class="cu-item">
 		<view class="content">
-			<text>教务系统</text>
+			<text>个人门户</text>
 		</view>
 		<button class="cu-btn bg-green">
 			<navigator url="login/login">添加</navigator>

@@ -59,11 +59,15 @@ Component({
         Math.floor(
           (now.getTime() -
             new Date(app.storage.getKey('firstWeekDateTime')).getTime()) /
-            (24 * 3600 * 1000 * 7)
+          (24 * 3600 * 1000 * 7)
         ),
         dayOfWeek - 1,
         0,
       ];
+      // 新学期没有开始时计算的周数是负值
+      if (multiIndex[1] < 0) {
+        multiIndex[1] = 0;
+      }
       this.setData({
         multiIndex,
       });
